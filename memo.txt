@@ -1,0 +1,11 @@
+
+cd /home/owner/workspace/tmp/simple_phpfw/src
+
+
+-----------------------------------
+
+サーバー起動
+
+php -S localhost:8000 -t public
+
+
