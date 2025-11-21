@@ -9,6 +9,8 @@ use SFW\Database\DB;
 
 use App\Services\Sample\SampleService;
 
+use App\Models\User;
+
 /**
  * 開発者向けページ
  */
@@ -56,40 +58,65 @@ class DevlepmentController extends ApplicationController
 
         $db->tracable = true;
 
-        $ret = (new Query())->table('users')->where("id = ?", 123)->where("age > ?", 456)->build();
-        var_dump($ret);
-
-        // データ取得
-        $user = $db->one($ret['sql'], ...$ret['bindings']);
-        var_dump($user);
-
         // 挿入
-        $newId = $db->insert(
-            'users',
+        $newId = User::insert(
             [
                 'name' => 'Alice',
                 'email' => 'alice@example.com',
                 'age'  => 25
             ]
         );
+        var_dump($newId);
 
         // データ取得
         $user = $db->one("SELECT * FROM users WHERE id = ?", $newId);
-        var_dump($user);
-
+        print_r($user);
+        // 失敗時
         $user = $db->one("SELECT * FROM users WHERE id = ?", $newId + 10);
         var_dump($user);
 
         // 複数取得
-        $users = $db->get("SELECT * FROM users WHERE age > ?", 20);
-        var_dump($users);
+        $users = $db->all("SELECT * FROM users WHERE age > ?", 20);
+        print_r($users);
+
+        // クエリービルダーで取得
+        $ret = (new Query())
+            ->table('users')
+            ->where("id > ?", 0)
+            ->where("age < ?", 100)
+            ->order("age desc")
+            ->order("email asc")
+            ->build();
+
+        print_r($ret);
+        $users = $db->all($ret['sql'], ...$ret['bindings']);
+        print_r($users);
+
+        // モデルのクエリービルダーで取得
+        $ret = User::query()
+            ->where("id > ?", 0)
+            ->where("age < ?", 100)
+            ->order("age desc")
+            ->order("email asc")
+            ->build();
+
+        print_r($ret);
+        $users = $db->all($ret['sql'], ...$ret['bindings']);
+        print_r($users);
 
         // 更新
-        $rows = $db->update('users', ['age' => 26], 'id = ?' , $newId);
+        $rows = User::update($newId, ['age' => 26]);
         var_dump($rows);
 
+        // モデルでデータ取得
+        $user = User::find($newId);
+        print_r($user);
+        // 失敗時
+        $user = User::find($newId + 100);
+        var_dump($user);
+
         // 削除
-        $rows = $db->delete('users', 'id = ?' , $newId);
+        $rows = $db->delete('users', 'id = ?', $newId);
         var_dump($rows);
 
         $view = new View();

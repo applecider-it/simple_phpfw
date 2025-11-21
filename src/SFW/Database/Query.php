@@ -8,6 +8,7 @@ class Query
 {
     private string $table;
     private array $wheres = [];
+    private array $orders = [];
 
     /** テーブル指定 */
     public function table(string $table): self
@@ -26,6 +27,13 @@ class Query
         return $this;
     }
 
+    /** order追加 */
+    public function order(string $sql): self
+    {
+        $this->orders[] = $sql;
+        return $this;
+    }
+
     /** SQLと値をビルドする */
     public function build()
     {
@@ -36,6 +44,10 @@ class Query
             $ret = $this->buildWhere();
             $sql .= " WHERE " . $ret['sql'];
             $bindings = array_merge($bindings, $ret['bindings']);
+        }
+
+        if ($this->orders) {
+            $sql .= " ORDER BY " . implode(", ", $this->orders);
         }
 
         return [

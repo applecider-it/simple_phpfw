@@ -5,6 +5,8 @@ namespace SFW\Database;
 use PDO;
 use PDOException;
 
+use SFW\Output\Html;
+
 /**
  * データベース管理
  */
@@ -25,7 +27,7 @@ class DB
     }
 
     /** １行だけ取得 */
-    public function one(string $sql, ...$bindings)
+    public function one(string $sql, ...$bindings): array|false
     {
         $stmt = $this->exec($sql, $bindings);
 
@@ -33,7 +35,7 @@ class DB
     }
 
     /** 全件取得 */
-    public function get(string $sql, ...$bindings)
+    public function all(string $sql, ...$bindings): array
     {
         $stmt = $this->exec($sql, $bindings);
 
@@ -41,7 +43,7 @@ class DB
     }
 
     /** 追加 */
-    public function insert(string $table, array $data)
+    public function insert(string $table, array $data): int
     {
         $columns = implode(',', array_keys($data));
         $placeholders = implode(',', array_fill(0, count($data), '?'));
@@ -53,7 +55,7 @@ class DB
     }
 
     /** 更新 */
-    public function update(string $table, array $data, string $whereSql, ...$whereBindings)
+    public function update(string $table, array $data, string $whereSql, ...$whereBindings): int
     {
         $set = implode(',', array_map(fn($col) => "$col = ?", array_keys($data)));
         $sql = "UPDATE {$table} SET $set";
@@ -65,7 +67,7 @@ class DB
     }
 
     /** 削除 */
-    public function delete($table, string $whereSql, ...$whereBindings)
+    public function delete($table, string $whereSql, ...$whereBindings): int
     {
         $sql = "DELETE FROM {$table}";
         $sql .= " WHERE {$whereSql}";
@@ -90,11 +92,11 @@ class DB
     {
         if (! $this->tracable) return;
 
-        echo "<hr />\n";
+        echo "<div>--------------- sql trace begin ---------------</div>\n";
         echo "<div>SQL:</div>\n";
-        echo "<div>\n";
-        var_dump([$sql, $bindings]);
-        echo "</div>\n";
-        echo "<hr />\n";
+        echo "<pre>\n";
+        echo Html::esc(print_r([$sql, $bindings], true));
+        echo "</pre>\n";
+        echo "<div>--------------- sql trace end ---------------</div>\n";
     }
 }
