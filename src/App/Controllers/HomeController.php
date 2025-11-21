@@ -2,15 +2,32 @@
 
 namespace App\Controllers;
 
-class HomeController
+use SFW\Output\View;
+
+use App\Services\Sample\SampleService;
+
+class HomeController extends ApplicationController
 {
     public function index()
     {
-        return "Hello!";
+        $sampleService = new SampleService();
+
+        $view = new View();
+        $view->data['id'] = 456;
+        return $view->render('layouts.app', [
+            'CONTENT' => $view->render('home.index', [
+                'id' => $sampleService->sampleMethod(),
+            ]),
+        ]);
     }
 
-    public function test()
+    public function test($id)
     {
-        return "test!";
+        $view = new View();
+        return $view->render('layouts.app', [
+            'CONTENT' => $view->render('home.test', [
+                'id' => $id,
+            ]),
+        ]);
     }
 }
