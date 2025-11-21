@@ -10,6 +10,7 @@ use SFW\Database\DB;
 use App\Services\Sample\SampleService;
 
 use App\Models\User;
+use App\Models\User\Tweet;
 
 /**
  * 開発者向けページ
@@ -62,11 +63,19 @@ class DevlepmentController extends ApplicationController
         $newId = User::insert(
             [
                 'name' => 'Alice',
-                'email' => 'alice@example.com',
+                'email' => 'alice' . time() . '@example.com',
                 'age'  => 25
             ]
         );
         var_dump($newId);
+
+        $newIdTweet = Tweet::insert(
+            [
+                'user_id' => $newId,
+                'content' => 'ツイートテキスト' . time(),
+            ]
+        );
+        var_dump($newIdTweet);
 
         // データ取得
         $user = $db->one("SELECT * FROM users WHERE id = ?", $newId);
@@ -103,6 +112,15 @@ class DevlepmentController extends ApplicationController
         print_r($ret);
         $users = $db->all($ret['sql'], ...$ret['bindings']);
         print_r($users);
+
+        // ツイート
+        $ret = User::tweets($newId)
+            ->order("id asc")
+            ->build();
+
+        print_r($ret);
+        $tweets = $db->all($ret['sql'], ...$ret['bindings']);
+        print_r($tweets);
 
         // 更新
         $rows = User::update($newId, ['age' => 26]);
