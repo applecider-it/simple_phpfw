@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use SFW\Output\View;
 use SFW\Core\App;
+use SFW\Core\Lang;
 use SFW\Database\Query;
 use SFW\Database\DB;
 
@@ -142,6 +143,17 @@ class DevlepmentController extends ApplicationController
         $view = new View();
         return $view->render('layouts.app', [
             'content' => $view->render('devlepment.database_test'),
+        ]);
+    }
+
+    /** バリデーションテスト */
+    public function validation_test()
+    {
+        echo Lang::get('aaa.bbb.ccc');
+
+        $view = new View();
+        return $view->render('layouts.app', [
+            'content' => $view->render('devlepment.validation_test'),
         ]);
     }
 }

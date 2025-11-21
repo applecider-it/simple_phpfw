@@ -1,11 +1,9 @@
 <?php
 
-use SFW\Core\App;
-
-$config = App::get('config');
+use SFW\Core\Config;
 ?>
 <header>
-    <h1><?= $config['applicationName'] ?></h1>
+    <h1><?= Config::get('applicationName') ?></h1>
     <nav>
         <a href="/">Home</a>
         <a href="/about">About</a>

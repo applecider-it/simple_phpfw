@@ -13,6 +13,8 @@ return [
     // アプリケーション名
     'applicationName' => 'Simple PHPFW Project',
 
+    'lang' => 'ja',
+
     'database' => [
         'driver'   => $env['SFW_DATABASE_DRIVER'],
         'host'     => $env['SFW_DATABASE_HOST'],

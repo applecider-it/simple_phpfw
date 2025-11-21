@@ -5,6 +5,8 @@ namespace SFW\Boot;
 use SFW\Core\App;
 use SFW\Core\Container;
 use SFW\Core\Env;
+use SFW\Core\Lang;
+use SFW\Core\Config;
 use SFW\Routing\Router;
 use SFW\Database\DB;
 
@@ -36,13 +38,8 @@ class Common
     private function setupService()
     {
         App::getContainer()->setSingleton('router', new Router());
-        App::getContainer()->setSingleton('config', $this->includeConfig());
-    }
-
-    /** 設定ファイル読み込み */
-    private function includeConfig()
-    {
-        return include(SFW_PROJECT_ROOT . '/config/config.php');
+        App::getContainer()->setSingleton('config', Config::includeConfig());
+        App::getContainer()->setSingleton('lang', Lang::includeLang());
     }
 
     /** ルート読み込み */
@@ -57,9 +54,7 @@ class Common
     /** データベースセットアップ */
     private function setupDatabase()
     {
-        $config = App::get('config');
-
-        $db = new DB($config['database']);
+        $db = new DB(Config::get('database'));
         App::getContainer()->setSingleton('db', $db);
     }
 }

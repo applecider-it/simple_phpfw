@@ -14,4 +14,5 @@ $router->get('/devlepment', [DevlepmentController::class, 'index']);
 $router->get('/devlepment/view_test', [DevlepmentController::class, 'view_test']);
 $router->get('/devlepment/param_test/{id}', [DevlepmentController::class, 'param_test']);
 $router->get('/devlepment/database_test', [DevlepmentController::class, 'database_test']);
+$router->get('/devlepment/validation_test', [DevlepmentController::class, 'validation_test']);
 
