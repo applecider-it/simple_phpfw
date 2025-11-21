@@ -9,7 +9,10 @@ use SFW\Core\App;
  */
 class Model
 {
+    /** プライマリIDカラム名 */
     protected static $primary = 'id';
+
+    /** テーブル名 */
     protected static $table = '';
 
     /** クエリービルダーを返す */

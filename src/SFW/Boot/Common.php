@@ -22,7 +22,7 @@ class Common
         $this->includeEnv();
         $this->setupService();
         $this->includeRoutes();
-        $this->initDatabase();
+        $this->setupDatabase();
     }
 
     /** .env読み込み */
@@ -54,7 +54,8 @@ class Common
         include(SFW_PROJECT_ROOT . '/config/routes.php');
     }
 
-    private function initDatabase()
+    /** データベースセットアップ */
+    private function setupDatabase()
     {
         $config = App::get('config');
 

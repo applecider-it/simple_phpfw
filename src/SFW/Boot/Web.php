@@ -9,6 +9,7 @@ use SFW\Core\App;
  */
 class Web
 {
+    /** 実行 */
     public function dispatch()
     {
         $router = App::get('router');

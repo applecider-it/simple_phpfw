@@ -9,8 +9,10 @@ use SFW\Console\Starter;
  */
 class Console
 {
+    /** 実行 */
     public function dispatch($argv)
     {
+        // タイムアウトを止める
         set_time_limit(0);
 
         $starter = new Starter();

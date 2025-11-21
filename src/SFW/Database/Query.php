@@ -6,8 +6,13 @@ namespace SFW\Database;
  */
 class Query
 {
+    /** テーブル名 */
     private string $table;
+
+    /** WHERE文用データ配列 */
     private array $wheres = [];
+
+    /** ORDER文用データ配列 */
     private array $orders = [];
 
     /** テーブル指定 */

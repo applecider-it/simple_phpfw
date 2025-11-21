@@ -13,6 +13,8 @@ use SFW\Output\Html;
 class DB
 {
     protected PDO $pdo;
+
+    /** trueだと、sqlのトレースをする */
     public $tracable = false;
 
     public function __construct(array $config)

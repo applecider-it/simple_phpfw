@@ -10,7 +10,11 @@ class View
     /** 共通変数 */
     public array $data = [];
 
-    /** 描画して文字列を返す */
+    /**
+     * 描画して文字列を返す
+     * 
+     * $dataはインクルード先で利用している
+     */
     public function render(string $view, array $data = [])
     {
         $path = SFW_PROJECT_ROOT . '/resources/views/' . str_replace('.', '/', $view) . '.html.php';

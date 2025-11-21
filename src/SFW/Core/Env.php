@@ -3,6 +3,8 @@ namespace SFW\Core;
 
 /**
  * 環境変数管理
+ * 
+ * 先頭に#がある行はコメント扱い
  */
 class Env
 {
