@@ -2,6 +2,9 @@
 
 namespace SFW\Core;
 
+/**
+ * グローバルアクセス管理
+ */
 class App
 {
     private static Container $container;

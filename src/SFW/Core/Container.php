@@ -2,6 +2,9 @@
 
 namespace SFW\Core;
 
+/**
+ * サービスコンテナ
+ */
 class Container
 {
     protected array $singleton = [];

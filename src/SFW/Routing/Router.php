@@ -2,26 +2,35 @@
 
 namespace SFW\Routing;
 
+/**
+ * ルート管理
+ * 
+ * /test/{id} などの指定も可能
+ */
 class Router
 {
+    /** ルート定義 */
     private array $routes = [
         'GET' => [],
         'POST' => [],
     ];
 
+    /** GETメソッドルーツ追加 */
     public function get(string $path, $handler)
     {
         $this->addRoute('GET', $path, $handler);
     }
 
+    /** POSTメソッドルーツ追加 */
     public function post(string $path, $handler)
     {
         $this->addRoute('POST', $path, $handler);
     }
 
+    /** 共通ルート追加処理 */
     private function addRoute(string $method, string $path, $handler)
     {
-        // {param} を正規表現に変換
+        // {param} を名前付きキャプチャのある正規表現に変換
         $pattern = preg_replace('#\{([a-zA-Z0-9_]+)\}#', '(?P<$1>[^/]+)', $path);
         $pattern = '#^' . $pattern . '$#';
 
@@ -31,6 +40,7 @@ class Router
         ];
     }
 
+    /** 実行 */
     public function dispatch()
     {
         $method = $_SERVER['REQUEST_METHOD'];
@@ -53,6 +63,7 @@ class Router
         echo "404 Not Found";
     }
 
+    /** ハンドラーを実行 */
     private function runHandler($handler, $params)
     {
         [$class, $method] = $handler;
