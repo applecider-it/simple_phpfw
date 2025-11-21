@@ -14,7 +14,7 @@ class HomeController extends ApplicationController
     {
         $view = new View();
         return $view->render('layouts.app', [
-            'CONTENT' => $view->render('home.index'),
+            'content' => $view->render('home.index'),
         ]);
     }
 }

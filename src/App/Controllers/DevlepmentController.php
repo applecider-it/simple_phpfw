@@ -22,7 +22,7 @@ class DevlepmentController extends ApplicationController
     {
         $view = new View();
         return $view->render('layouts.app', [
-            'CONTENT' => $view->render('devlepment.index'),
+            'content' => $view->render('devlepment.index'),
         ]);
     }
 
@@ -34,8 +34,10 @@ class DevlepmentController extends ApplicationController
         $view = new View();
         $view->data['id'] = 456;
         return $view->render('layouts.app', [
-            'CONTENT' => $view->render('devlepment.view_test', [
+            'title' => 'Viewのテスト',
+            'content' => $view->render('devlepment.view_test', [
                 'id' => $sampleService->sampleMethod(),
+                'content' => 'ページにcontentを指定した場合',
             ]),
         ]);
     }
@@ -45,7 +47,7 @@ class DevlepmentController extends ApplicationController
     {
         $view = new View();
         return $view->render('layouts.app', [
-            'CONTENT' => $view->render('devlepment.param_test', [
+            'content' => $view->render('devlepment.param_test', [
                 'id' => $id,
             ]),
         ]);
@@ -139,7 +141,7 @@ class DevlepmentController extends ApplicationController
 
         $view = new View();
         return $view->render('layouts.app', [
-            'CONTENT' => $view->render('devlepment.database_test'),
+            'content' => $view->render('devlepment.database_test'),
         ]);
     }
 }
