@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use SFW\Output\View;
+use SFW\Output\Log;
 use SFW\Core\App;
 use SFW\Core\Lang;
 use SFW\Database\Query;
@@ -60,8 +61,6 @@ class DevlepmentController extends ApplicationController
         /** @var DB */
         $db = App::get('db');
 
-        $db->tracable = true;
-
         // 挿入
         $newId = User::insert(
             [
@@ -70,7 +69,7 @@ class DevlepmentController extends ApplicationController
                 'age'  => 25
             ]
         );
-        var_dump($newId);
+        Log::info('After User Insert', [$newId]);
 
         $newIdTweet = Tweet::insert(
             [
@@ -78,67 +77,79 @@ class DevlepmentController extends ApplicationController
                 'content' => 'ツイートテキスト' . time(),
             ]
         );
-        var_dump($newIdTweet);
+        Log::info('After User/Tweet Insert', [$newIdTweet]);
 
         // データ取得
         $user = $db->one("SELECT * FROM users WHERE id = ?", $newId);
-        print_r($user);
+        Log::info('one', [$user]);
+
         // 失敗時
         $user = $db->one("SELECT * FROM users WHERE id = ?", $newId + 10);
-        var_dump($user);
+        Log::info('one 失敗', [$user]);
 
         // 複数取得
         $users = $db->all("SELECT * FROM users WHERE age > ?", 20);
-        print_r($users);
+        Log::info('all', [$users]);
 
         // クエリービルダーで取得
-        $ret = (new Query())
+        $query = (new Query())
+            ->table('users')
+            ->where("id > ?", 0)
+            ->where("age < ?", 100)
+            ->order("age desc")
+            ->order("email asc");
+
+        $ret = $query->build();
+        Log::info('クエリービルダーSQL', [$ret]);
+
+        $user = $query->one();
+        Log::info('クエリービルダーで取得 one', [$user]);
+
+        $users = (new Query())
             ->table('users')
             ->where("id > ?", 0)
             ->where("age < ?", 100)
             ->order("age desc")
             ->order("email asc")
-            ->build();
+            ->all();
 
-        print_r($ret);
-        $users = $db->all($ret['sql'], ...$ret['bindings']);
-        print_r($users);
+        Log::info('クエリービルダーで取得 all', [$users]);
 
         // モデルのクエリービルダーで取得
-        $ret = User::query()
+        $query = User::query()
             ->where("id > ?", 0)
             ->where("age < ?", 100)
             ->order("age desc")
-            ->order("email asc")
-            ->build();
+            ->order("email asc");
 
-        print_r($ret);
-        $users = $db->all($ret['sql'], ...$ret['bindings']);
-        print_r($users);
+        $ret = $query->build();
+        Log::info('モデルのクエリービルダーSQL', [$ret]);
+
+        $users = $query->all();
+        Log::info('モデルのクエリービルダーで取得 all', [$users]);
 
         // ツイート
-        $ret = User::tweets($newId)
+        $tweets = User::tweets($newId)
             ->order("id asc")
-            ->build();
+            ->all();
 
-        print_r($ret);
-        $tweets = $db->all($ret['sql'], ...$ret['bindings']);
-        print_r($tweets);
+        Log::info('ツイートをリレーションで取得 all', [$tweets]);
 
         // 更新
         $rows = User::update($newId, ['age' => 26]);
-        var_dump($rows);
+        Log::info('更新', [$rows]);
 
         // モデルでデータ取得
         $user = User::find($newId);
-        print_r($user);
+        Log::info('更新後再取得', [$user]);
+
         // 失敗時
         $user = User::find($newId + 100);
-        var_dump($user);
+        Log::info('find失敗時', [$user]);
 
         // 削除
         $rows = $db->delete('users', 'id = ?', $newId);
-        var_dump($rows);
+        Log::info('削除', [$rows]);
 
         $view = new View();
         return $view->render('layouts.app', [

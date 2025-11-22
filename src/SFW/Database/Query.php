@@ -1,5 +1,8 @@
 <?php
+
 namespace SFW\Database;
+
+use SFW\Core\App;
 
 /**
  * クエリービルダー
@@ -14,6 +17,9 @@ class Query
 
     /** ORDER文用データ配列 */
     private array $orders = [];
+
+    /** 上限 */
+    private int|null $limit = null;
 
     /** テーブル指定 */
     public function table(string $table): self
@@ -39,6 +45,13 @@ class Query
         return $this;
     }
 
+    /** 上限指定 */
+    public function limit(int|null $limit): self
+    {
+        $this->limit = $limit;
+        return $this;
+    }
+
     /** SQLと値をビルドする */
     public function build()
     {
@@ -55,10 +68,35 @@ class Query
             $sql .= " ORDER BY " . implode(", ", $this->orders);
         }
 
+        if ($this->limit) $sql .= " LIMIT {$this->limit}";
+
         return [
             'sql' => $sql,
             'bindings' => $bindings,
         ];
+    }
+
+    /** １行だけ取得 */
+    public function one()
+    {
+        $this->limit(1);
+        $ret = $this->build();
+
+        return $this->db()->one($ret['sql'], ...$ret['bindings']);
+    }
+
+    /** 全件取得 */
+    public function all()
+    {
+        $ret = $this->build();
+
+        return $this->db()->all($ret['sql'], ...$ret['bindings']);
+    }
+
+    /** DBインスタンス */
+    private function db()
+    {
+        return App::get('db');
     }
 
     /** WHERE文のビルド */

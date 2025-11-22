@@ -23,9 +23,11 @@ $trace = [
     'メモリ使用量（MB）終了時' => $endMemory / 1024 / 1024,
     'opcache_get_status()' => opcache_get_status(),
 ];
+/*
 echo "<div>--------------- performance trace begin ---------------</div>\n";
 echo "<div>performance:</div>\n";
 echo "<pre>\n";
 echo SFW\Output\Html::esc(print_r($trace, true));
 echo "</pre>\n";
 echo "<div>--------------- performance trace end ---------------</div>\n";
+*/

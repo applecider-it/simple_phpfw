@@ -5,7 +5,7 @@ namespace SFW\Database;
 use PDO;
 use PDOException;
 
-use SFW\Output\Html;
+use SFW\Output\Log;
 
 /**
  * データベース管理
@@ -13,9 +13,6 @@ use SFW\Output\Html;
 class DB
 {
     protected PDO $pdo;
-
-    /** trueだと、sqlのトレースをする */
-    public $tracable = false;
 
     public function __construct(array $config)
     {
@@ -92,13 +89,6 @@ class DB
     /** トレース */
     private function trace(string $sql, array $bindings)
     {
-        if (! $this->tracable) return;
-
-        echo "<div>--------------- sql trace begin ---------------</div>\n";
-        echo "<div>SQL:</div>\n";
-        echo "<pre>\n";
-        echo Html::esc(print_r([$sql, $bindings], true));
-        echo "</pre>\n";
-        echo "<div>--------------- sql trace end ---------------</div>\n";
+        Log::sql($sql, $bindings);
     }
 }

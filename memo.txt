@@ -8,12 +8,15 @@ cd /home/owner/workspace/tmp/simple_phpfw/src
 
 php -S localhost:8000 -t public
 
+php ./bin/server
+
+foreman start
 
 -----------------------------------
 
 
 コマンド
 
-php ./bin/console.php app-samplecommand arg1 arg2
+php ./bin/console app-samplecommand arg1 arg2
 
 

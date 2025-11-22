@@ -1,0 +1,2 @@
+web: php ./bin/server
+log: tail -f ./storage/logs/*.log
