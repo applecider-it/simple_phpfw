@@ -3,6 +3,7 @@
 namespace SFW\Core;
 
 use SFW\Data\Arr;
+use SFW\Data\Str;
 
 /**
  * 言語ファイル管理
@@ -10,11 +11,11 @@ use SFW\Data\Arr;
 class Lang
 {
     /** 言語取得 */
-    public static function get($key)
+    public static function get($key, array $data = [])
     {
         $lang = App::get('lang');
-
-        return Arr::dotValue($lang, Config::get('lang') . '.' . $key);
+        $val = Arr::dotValue($lang, Config::get('lang') . '.' . $key);
+        return Str::template($val, $data);
     }
 
     /** 言語ファイル読み込み */

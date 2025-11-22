@@ -14,6 +14,8 @@ use App\Services\Sample\SampleService;
 use App\Models\User;
 use App\Models\User\Tweet;
 
+use App\Extends\Validator;
+
 /**
  * 開発者向けページ
  */
@@ -160,11 +162,37 @@ class DevlepmentController extends ApplicationController
     /** バリデーションテスト */
     public function validation_test()
     {
-        echo Lang::get('aaa.bbb.ccc');
+        $data = [
+            'email' => 'test@example',
+            'age' => '',
+            'address' => '',
+        ];
+
+        $rules = [
+            'email' => ['required', 'email'],
+            'age' => ['numeric'],
+            'address' => ['required'],
+        ];
+
+        $labels = [
+            'email' => 'メールアドレス',
+            'age' => '年齢',
+            'address' => '住所',
+        ];
+
+        $v = Validator::make($data, $rules, $labels);
+
+        $errors = null;
+
+        if ($v->fails()) {
+            $errors = $v->errors();
+        }
 
         $view = new View();
         return $view->render('layouts.app', [
-            'content' => $view->render('devlepment.validation_test'),
+            'content' => $view->render('devlepment.validation_test', [
+                'errors' => $errors,
+            ]),
         ]);
     }
 }
