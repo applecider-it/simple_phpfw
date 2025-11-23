@@ -13,9 +13,9 @@ use SFW\Core\Lang;
 class Validator extends BaseValidator
 {
     /** 独自のチェックロジック */
-    protected function validate_original($field, $value, $param)
+    protected function validate_original($field, $value, $params)
     {
-        $validValue = $this->data[$param[0]] . $this->data[$param[1]];
+        $validValue = $this->data[$params[0]] . $this->data[$params[1]];
 
         if ($value !== $validValue) {
             $label = $this->getLabel($field);

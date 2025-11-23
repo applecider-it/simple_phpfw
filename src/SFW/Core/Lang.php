@@ -4,6 +4,7 @@ namespace SFW\Core;
 
 use SFW\Data\Arr;
 use SFW\Data\Str;
+use SFW\Data\Path;
 
 /**
  * 言語ファイル管理
@@ -24,8 +25,7 @@ class Lang
     {
         $path = SFW_PROJECT_ROOT . '/resources/lang';
 
-        // PHPファイルだけ取得
-        $phpFiles = array_filter(scandir($path), fn($f) => str_ends_with($f, '.php'));
+        $phpFiles = Path::scanPhpFiles($path);
 
         $lang = [];
         foreach ($phpFiles as $file) {

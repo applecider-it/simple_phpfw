@@ -51,18 +51,18 @@ class Validator
             $value = $this->data[$field] ?? null;
 
             foreach ($ruleArray as $rule) {
-                $param = null;
+                $params = null;
 
                 if (strpos($rule, ':') !== false) {
                     [$rule, $param] = explode(':', $rule, 2);
 
-                    $param = explode(',', $param);
+                    $params = explode(',', $param);
                 }
 
                 $method = "validate_" . $rule;
 
                 if (method_exists($this, $method)) {
-                    $this->$method($field, $value, $param);
+                    $this->$method($field, $value, $params);
                 } else {
                     throw new \Exception("Validation rule '{$rule}' not implemented");
                 }

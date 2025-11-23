@@ -2,6 +2,8 @@
 
 namespace SFW\Console;
 
+use SFW\Data\Path;
+
 /**
  * コンソール管理
  */
@@ -19,8 +21,7 @@ class Starter
 
         $path = SFW_PROJECT_ROOT . '/App/Commands';
 
-        // App/CommandsからPHPファイルだけ取得
-        $phpFiles = array_filter(scandir($path), fn($f) => str_ends_with($f, '.php'));
+        $phpFiles = Path::scanPhpFiles($path);
 
         foreach ($phpFiles as $file) {
             $name = pathinfo($file, PATHINFO_FILENAME);

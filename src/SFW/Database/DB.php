@@ -5,7 +5,6 @@ namespace SFW\Database;
 use PDO;
 use PDOException;
 
-use SFW\Output\Log;
 use SFW\Core\App;
 
 /**

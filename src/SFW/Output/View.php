@@ -12,11 +12,11 @@ class View
 
     /**
      * 描画して文字列を返す
-     * 
-     * $dataはインクルード先で利用している
      */
     public function render(string $view, array $data = [])
     {
+        // $dataはインクルード先で利用している
+
         $path = SFW_PROJECT_ROOT . '/resources/views/' . str_replace('.', '/', $view) . '.html.php';
 
         if (!file_exists($path)) {
