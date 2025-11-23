@@ -3,6 +3,7 @@
 namespace SFW\Boot;
 
 use SFW\Core\App;
+use SFW\Output\Error;
 
 /**
  * Webのブート時の処理
@@ -14,6 +15,11 @@ class Web
     {
         $router = App::get('router');
 
-        echo $router->dispatch();
+        try {
+            echo $router->dispatch();
+        }
+        catch (\Throwable $e) {
+            Error::error500($e);
+        }
     }
 }

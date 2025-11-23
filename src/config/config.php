@@ -8,7 +8,7 @@ use SFW\Core\App;
 $env = App::get('env');
 
 return [
-    'debug' => $env['SFW_DEBUG'],
+    'debug' => $env['SFW_DEBUG'] == 'true',
 
     // アプリケーション名
     'applicationName' => 'Simple PHPFW Project',
