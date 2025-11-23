@@ -53,6 +53,7 @@ class DevlepmentController extends ApplicationController
         return $view->render('layouts.app', [
             'content' => $view->render('devlepment.param_test', [
                 'id' => $id,
+                'val1' => $this->params['val1'],
             ]),
         ]);
     }
