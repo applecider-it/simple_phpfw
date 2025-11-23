@@ -10,6 +10,8 @@ use SFW\Core\Config;
 use SFW\Routing\Router;
 use SFW\Database\DB;
 
+use App\Core\Callback;
+
 /**
  * ブート時の共通処理
  */
@@ -25,6 +27,8 @@ class Common
         $this->setupService();
         $this->includeRoutes();
         $this->setupDatabase();
+
+        App::get('callback')->afterInit();
     }
 
     /** .env読み込み */
@@ -40,6 +44,7 @@ class Common
         App::getContainer()->setSingleton('router', new Router());
         App::getContainer()->setSingleton('config', Config::includeConfig());
         App::getContainer()->setSingleton('lang', Lang::includeLang());
+        App::getContainer()->setSingleton('callback', new Callback());
     }
 
     /** ルート読み込み */

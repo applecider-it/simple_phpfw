@@ -6,6 +6,7 @@ use PDO;
 use PDOException;
 
 use SFW\Output\Log;
+use SFW\Core\App;
 
 /**
  * データベース管理
@@ -79,16 +80,11 @@ class DB
     /** 実行の共通処理 */
     private function exec(string $sql, array $bindings)
     {
-        $this->trace($sql, $bindings);
-
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($bindings);
-        return $stmt;
-    }
 
-    /** トレース */
-    private function trace(string $sql, array $bindings)
-    {
-        Log::sql($sql, $bindings);
+        App::get('callback')->afterQuery($sql, $bindings);
+
+        return $stmt;
     }
 }

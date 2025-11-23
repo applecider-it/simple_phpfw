@@ -8,10 +8,6 @@ class Log
     {
         self::write('INFO',  $msg, $context);
     }
-    public static function sql(string $msg, array $context = [])
-    {
-        self::write('SQL', $msg, $context);
-    }
 
     private static function write(string $level, string $message, array $context = [])
     {
