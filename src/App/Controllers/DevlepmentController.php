@@ -199,4 +199,19 @@ class DevlepmentController extends ApplicationController
             ]),
         ]);
     }
+
+    /** jsonテスト */
+    public function json_test()
+    {
+        return json_encode(
+            [
+                'data' => [
+                    'user' => [
+                        'id' => 1,
+                        'name' => 'jsonテスト'
+                    ]
+                ]
+            ]
+        );
+    }
 }
