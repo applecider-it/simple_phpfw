@@ -2,13 +2,24 @@
 
 namespace SFW\Output;
 
+/**
+ * ログ管理
+ */
 class Log
 {
+    /** 情報ログ */
     public static function info(string $msg, array $context = [])
     {
         self::write('INFO',  $msg, $context);
     }
 
+    /** エラーログ */
+    public static function error(string $msg, array $context = [])
+    {
+        self::write('ERROR',  $msg, $context);
+    }
+
+    /** ログ出力共通 */
     private static function write(string $level, string $message, array $context = [])
     {
         $date = date('Y-m-d H:i:s');

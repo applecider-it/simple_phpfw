@@ -4,6 +4,7 @@ namespace SFW\Boot;
 
 use SFW\Core\App;
 use SFW\Output\Error;
+use SFW\Output\Log;
 
 /**
  * Webのブート時の処理
@@ -23,6 +24,7 @@ class Web
             Error::error404($e);
         }
         catch (\Throwable $e) {
+            Log::error((string) $e);
             Error::error500($e);
         }
     }
