@@ -5,7 +5,7 @@ namespace App\Controllers;
 use SFW\Output\View;
 use SFW\Output\Log;
 use SFW\Core\App;
-use SFW\Core\Lang;
+
 use SFW\Database\Query;
 use SFW\Database\DB;
 
@@ -14,7 +14,7 @@ use App\Services\Sample\SampleService;
 use App\Models\User;
 use App\Models\User\Tweet;
 
-use App\Extends\Validator;
+use App\Core\Validator;
 
 /**
  * 開発者向けページ
@@ -163,18 +163,21 @@ class DevlepmentController extends ApplicationController
     public function validation_test()
     {
         $data = [
+            'name' => 'abc',
             'email' => 'test@example',
-            'age' => '',
+            'age' => 'efd',
             'address' => '',
         ];
 
         $rules = [
+            'name' => ['original:age,email'],
             'email' => ['required', 'email'],
             'age' => ['numeric'],
             'address' => ['required'],
         ];
 
         $labels = [
+            'name' => '名前',
             'email' => 'メールアドレス',
             'age' => '年齢',
             'address' => '住所',

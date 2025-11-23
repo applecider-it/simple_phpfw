@@ -15,6 +15,7 @@ class Lang
     {
         $lang = App::get('lang');
         $val = Arr::dotValue($lang, Config::get('lang') . '.' . $key);
+        if ($val === null) $val = $key;
         return Str::template($val, $data);
     }
 

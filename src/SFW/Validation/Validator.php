@@ -15,9 +15,9 @@ class Validator
     protected array $errors = [];
 
     /** クラス生成と検査実行 */
-    public static function make(array $data, array $rules, array $labels = []): self
+    public static function make(array $data, array $rules, array $labels = []): static
     {
-        $v = new self();
+        $v = new static();
         $v->data = $data;
         $v->rules = $rules;
         $v->labels = $labels;
@@ -55,6 +55,8 @@ class Validator
 
                 if (strpos($rule, ':') !== false) {
                     [$rule, $param] = explode(':', $rule, 2);
+
+                    $param = explode(',', $param);
                 }
 
                 $method = "validate_" . $rule;
