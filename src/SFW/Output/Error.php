@@ -16,4 +16,14 @@ class Error
         ]);
         http_response_code(500);
     }
+
+    /** 404エラー表示 */
+    public static function error404(\Throwable $e)
+    {
+        $view = new View();
+        echo $view->render('errors.error404', [
+            'e' => $e,
+        ]);
+        http_response_code(404);
+    }
 }

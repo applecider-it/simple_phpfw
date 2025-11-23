@@ -13,8 +13,8 @@ use SFW\Core\Config;
     <?= $this->render('layouts.partials.nav') ?>
 
     <main>
-        <h2>500 Error</h2>
-        <?= Config::get('debug') ? ($data['e'] ?? '') : '何らかのエラーが発生しました。' ?>
+        <h2>404 Error</h2>
+        <?= Config::get('debug') ? ($data['e'] ?? '') : 'ページが見つかりません。' ?>
     </main>
 
     <footer>

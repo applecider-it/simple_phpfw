@@ -59,8 +59,7 @@ class Router
             }
         }
 
-        http_response_code(404);
-        echo "404 Not Found";
+        throw new \SFW\Exceptions\NotFound;
     }
 
     /** ハンドラーを実行 */
@@ -68,6 +67,7 @@ class Router
     {
         [$class, $method] = $handler;
         $obj = new $class();
+        $obj->params = $_GET + $_POST;
         return $obj->$method(...$params);
     }
 }
