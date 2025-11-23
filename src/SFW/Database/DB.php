@@ -80,10 +80,31 @@ class DB
     /** 実行の共通処理 */
     private function exec(string $sql, array $bindings)
     {
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute($bindings);
+        $meta = [
+            'executionTime' => null,
+            'valid' => false,
+        ];
 
-        App::get('callback')->afterQuery($sql, $bindings);
+        $startTime = microtime(true);
+
+        $stmt = null;
+
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute($bindings);
+        } catch (\Throwable $e) {
+            App::get('callback')->afterQuery($sql, $bindings, $meta);
+            throw $e;
+        }
+
+        $endTime = microtime(true);
+
+        $executionTime = $endTime - $startTime;
+
+        $meta['executionTime'] = $executionTime;
+        $meta['valid'] = true;
+
+        App::get('callback')->afterQuery($sql, $bindings, $meta);
 
         return $stmt;
     }

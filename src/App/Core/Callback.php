@@ -16,8 +16,11 @@ class Callback
     }
 
     /** クエリー後 */
-    public function afterQuery(string $sql, array $bindings)
+    public function afterQuery(string $sql, array $bindings, array $meta)
     {
-        Log::info($sql, $bindings);
+        $message = "SQL" . ($meta['valid'] ? '' : ' Error!!!') . ": ";
+        $message .= $sql;
+        $message .= " (" . bcdiv($meta['executionTime'], 1, 5) . ")";
+        Log::info($message, $bindings);
     }
 }
