@@ -10,7 +10,7 @@ class Error
     /** 500エラー表示 */
     public static function error500(\Throwable $e)
     {
-        $view = new View();
+        $view = View::errorView();
         echo $view->render('errors.error500', [
             'e' => $e,
         ]);
@@ -20,7 +20,7 @@ class Error
     /** 404エラー表示 */
     public static function error404(\Throwable $e)
     {
-        $view = new View();
+        $view = View::errorView();
         echo $view->render('errors.error404', [
             'e' => $e,
         ]);

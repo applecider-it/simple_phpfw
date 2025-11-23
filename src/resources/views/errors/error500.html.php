@@ -14,7 +14,7 @@ use SFW\Core\Config;
 
     <main>
         <h2>500 Error</h2>
-        <?= Config::get('debug') ? ($data['e'] ?? '') : '何らかのエラーが発生しました。' ?>
+        <div>何らかのエラーが発生しました</div>
     </main>
 
     <footer>

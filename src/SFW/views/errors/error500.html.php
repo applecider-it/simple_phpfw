@@ -13,8 +13,8 @@ use SFW\Core\Config;
     <?= $this->render('layouts.partials.nav') ?>
 
     <main>
-        <h2>404 Error</h2>
-        <div>ページが見つかりません。</div>
+        <h2>500 Error</h2>
+        <?= $data['e'] ?? '' ?>
     </main>
 
     <footer>

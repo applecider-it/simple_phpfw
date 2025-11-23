@@ -2,11 +2,16 @@
 
 namespace SFW\Output;
 
+use SFW\Core\Config;
+
 /**
  * View管理
  */
 class View
 {
+    /** 基準となるディレクトリパス。nullだとresources/viewsになる。 */
+    public ?string $baseDir = null;
+
     /** 共通変数 */
     public array $data = [];
 
@@ -17,7 +22,8 @@ class View
     {
         // $dataはインクルード先で利用している
 
-        $path = SFW_PROJECT_ROOT . '/resources/views/' . str_replace('.', '/', $view) . '.html.php';
+        $baseDir = $this->baseDir ?? SFW_PROJECT_ROOT . '/resources/views';
+        $path = $baseDir . '/' . str_replace('.', '/', $view) . '.html.php';
 
         if (!file_exists($path)) {
             throw new \Exception("View not found: $view. path: $path.");
@@ -26,5 +32,21 @@ class View
         ob_start();
         include $path;
         return ob_get_clean();
+    }
+
+    /** フレームワークで使うview */
+    public static function fwView() {
+        $view = new self();
+
+        $view->baseDir = dirname(dirname(__DIR__)) . '/views';
+
+        return $view;
+    }
+
+    /** エラー画面で使うview */
+    public static function errorView() {
+        $view = Config::get('debug') ? self::fwView() : new self();
+
+        return $view;
     }
 }

@@ -1,5 +1,24 @@
-body { font-family: sans-serif; line-height: 1.6; margin: 0; padding: 0; }
-header { background: #333; color: #fff; padding: 1rem; }
-header a { color: #fff; margin-right: 1rem; text-decoration: none; }
-main { padding: 3rem 5rem; }
-footer { background: #eee; text-align: center; padding: 1rem; }
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+header {
+    background: #333;
+    color: #fff;
+    padding: 1rem;
+}
+header a {
+    color: #fff;
+    margin-right: 1rem;
+    text-decoration: none;
+}
+main {
+    padding: 3rem 5rem;
+}
+footer {
+    background: #eee;
+    text-align: center;
+    padding: 1rem;
+}

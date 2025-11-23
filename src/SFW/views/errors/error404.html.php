@@ -14,7 +14,7 @@ use SFW\Core\Config;
 
     <main>
         <h2>404 Error</h2>
-        <div>ページが見つかりません。</div>
+        <?= $data['e'] ?? '' ?>
     </main>
 
     <footer>
