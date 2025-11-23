@@ -1,4 +1,5 @@
 <?php
+
 namespace SFW\Core;
 
 /**
@@ -23,9 +24,21 @@ class Env
             if ($line === '' || str_starts_with($line, '#')) continue;
 
             [$name, $value] = explode('=', $line, 2);
-            $data[trim($name)] = trim($value);
+            $data[trim($name)] = self::strToValue($value);
         }
 
         return $data;
+    }
+
+    /** 文字列を変数に変換 */
+    private static function strToValue(string $value)
+    {
+        $value = trim($value);
+
+        return match ($value) {
+            'true' => true,
+            'false' => false,
+            default => $value,
+        };
     }
 }
