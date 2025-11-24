@@ -1,9 +1,5 @@
-<?php
-
-use SFW\Core\Config;
-?>
 <meta charset="UTF-8">
-<title><?= $data['title'] ?? Config::get('applicationName') ?></title>
+<title>Simple PHPFW</title>
 <style>
     body {
         font-family: sans-serif;

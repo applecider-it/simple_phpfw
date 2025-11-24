@@ -1,7 +1,3 @@
-<?php
-
-use SFW\Core\Config;
-?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -17,9 +13,7 @@ use SFW\Core\Config;
         <?= $data['e'] ?? '' ?>
     </main>
 
-    <footer>
-        <p>&copy; <?= date('Y') ?> <?= Config::get('applicationName') ?></p>
-    </footer>
+    <?= $this->render('layouts.partials.footer') ?>
 </body>
 
 </html>
