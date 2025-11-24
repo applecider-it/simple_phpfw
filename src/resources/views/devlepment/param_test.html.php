@@ -7,3 +7,9 @@ use SFW\Output\Html;
     <div>$data['id'] <?= Html::esc($data['id']) ?></div>
     <div>$data['val1'] <?= Html::esc($data['val1']) ?></div>
 </div>
+<div style="margin-top: 5rem;">
+    <form method="POST" action="/devlepment/param_test/xyz">
+        <input type="text" name="val1" value="バリュー１">
+        <button type="submit">送信</button>
+    </form>
+</div>
