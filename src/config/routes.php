@@ -16,4 +16,5 @@ $router->get('/devlepment/param_test/{id}', [DevlepmentController::class, 'param
 $router->get('/devlepment/database_test', [DevlepmentController::class, 'database_test']);
 $router->get('/devlepment/validation_test', [DevlepmentController::class, 'validation_test']);
 $router->get('/devlepment/json_test', [DevlepmentController::class, 'json_test']);
+$router->get('/devlepment/redirect_test', [DevlepmentController::class, 'redirect_test'], ['name' => 'redirect_test']);
 

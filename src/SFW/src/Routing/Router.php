@@ -15,20 +15,23 @@ class Router
         'POST' => [],
     ];
 
+    /** カレントのルート */
+    public $currentRoute = null;
+
     /** GETメソッドルーツ追加 */
-    public function get(string $path, $handler)
+    public function get(string $path, $handler, array $options = [])
     {
-        $this->addRoute('GET', $path, $handler);
+        $this->addRoute('GET', $path, $handler, $options);
     }
 
     /** POSTメソッドルーツ追加 */
-    public function post(string $path, $handler)
+    public function post(string $path, $handler, array $options = [])
     {
-        $this->addRoute('POST', $path, $handler);
+        $this->addRoute('POST', $path, $handler, $options);
     }
 
     /** 共通ルート追加処理 */
-    private function addRoute(string $method, string $path, $handler)
+    private function addRoute(string $method, string $path, $handler, array $options = [])
     {
         // {param} を名前付きキャプチャのある正規表現に変換
         $pattern = preg_replace('#\{([a-zA-Z0-9_]+)\}#', '(?P<$1>[^/]+)', $path);
@@ -37,6 +40,7 @@ class Router
         $this->routes[$method][] = [
             'pattern' => $pattern,
             'handler' => $handler,
+            'options' => $options,
         ];
     }
 
@@ -55,7 +59,7 @@ class Router
                     ARRAY_FILTER_USE_KEY
                 );
 
-                return $this->runHandler($route['handler'], $params);
+                return $this->runHandler($route, $params);
             }
         }
 
@@ -63,9 +67,13 @@ class Router
     }
 
     /** ハンドラーを実行 */
-    private function runHandler($handler, $params)
+    private function runHandler(array $route, array $params)
     {
+        $handler = $route['handler'];
         [$class, $method] = $handler;
+
+        $this->currentRoute = $route;
+
         $obj = new $class();
 
         // 一番左が優先される

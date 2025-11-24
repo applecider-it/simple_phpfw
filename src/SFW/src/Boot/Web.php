@@ -5,6 +5,7 @@ namespace SFW\Boot;
 use SFW\Core\App;
 use SFW\Output\Error;
 use SFW\Output\Log;
+use SFW\Exceptions;
 
 /**
  * Webのブート時の処理
@@ -20,8 +21,10 @@ class Web
         try {
             echo $router->dispatch();
         }
-        catch (\SFW\Exceptions\NotFound $e) {
+        catch (Exceptions\NotFound $e) {
             Error::error404($e);
+        }
+        catch (Exceptions\Interruption $e) {
         }
         catch (\Throwable $e) {
             Log::error((string) $e);
