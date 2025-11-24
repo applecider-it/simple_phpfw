@@ -47,12 +47,12 @@ class DevlepmentController extends ApplicationController
     }
 
     /** パラメーターテスト */
-    public function param_test($id)
+    public function param_test()
     {
         $view = new View();
         return $view->render('layouts.app', [
             'content' => $view->render('devlepment.param_test', [
-                'id' => $id,
+                'id' => $this->params['id'],
                 'val1' => $this->params['val1'],
             ]),
         ]);

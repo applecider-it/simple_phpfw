@@ -67,7 +67,10 @@ class Router
     {
         [$class, $method] = $handler;
         $obj = new $class();
-        $obj->params = $_GET + $_POST;
-        return $obj->$method(...$params);
+
+        // 一番左が優先される
+        $obj->params = $params + $_GET + $_POST;
+
+        return $obj->$method();
     }
 }
