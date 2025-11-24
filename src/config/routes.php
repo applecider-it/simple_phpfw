@@ -4,18 +4,18 @@
  */
 
 use App\Controllers\HomeController;
-use App\Controllers\DevlepmentController;
+use App\Controllers\DevelopmentController;
 
 // トップページ
 $router->get('/', [HomeController::class, 'index']);
 
 // 開発者向けページ
-$router->get('/devlepment', [DevlepmentController::class, 'index']);
-$router->get('/devlepment/view_test', [DevlepmentController::class, 'view_test']);
-$router->get('/devlepment/param_test/{id}', [DevlepmentController::class, 'param_test']);
-$router->post('/devlepment/param_test/{id}', [DevlepmentController::class, 'param_test']);
-$router->get('/devlepment/database_test', [DevlepmentController::class, 'database_test']);
-$router->get('/devlepment/validation_test', [DevlepmentController::class, 'validation_test']);
-$router->get('/devlepment/json_test', [DevlepmentController::class, 'json_test']);
-$router->get('/devlepment/redirect_test', [DevlepmentController::class, 'redirect_test'], ['name' => 'redirect_test']);
+$router->get('/development', [DevelopmentController::class, 'index']);
+$router->get('/development/view_test', [DevelopmentController::class, 'view_test']);
+$router->get('/development/param_test/{id}', [DevelopmentController::class, 'param_test']);
+$router->post('/development/param_test/{id}', [DevelopmentController::class, 'param_test']);
+$router->get('/development/database_test', [DevelopmentController::class, 'database_test']);
+$router->get('/development/validation_test', [DevelopmentController::class, 'validation_test']);
+$router->get('/development/json_test', [DevelopmentController::class, 'json_test']);
+$router->get('/development/redirect_test', [DevelopmentController::class, 'redirect_test'], ['name' => 'redirect_test']);
 

@@ -19,14 +19,14 @@ use App\Core\Validator;
 /**
  * 開発者向けページ
  */
-class DevlepmentController extends ApplicationController
+class DevelopmentController extends ApplicationController
 {
     /** トップ画面 */
     public function index()
     {
         $view = new View();
         return $view->render('layouts.app', [
-            'content' => $view->render('devlepment.index'),
+            'content' => $view->render('development.index'),
         ]);
     }
 
@@ -39,7 +39,7 @@ class DevlepmentController extends ApplicationController
         $view->data['id'] = 456;
         return $view->render('layouts.app', [
             'title' => 'Viewのテスト',
-            'content' => $view->render('devlepment.view_test', [
+            'content' => $view->render('development.view_test', [
                 'id' => $sampleService->sampleMethod(),
                 'content' => 'ページにcontentを指定した場合',
             ]),
@@ -51,7 +51,7 @@ class DevlepmentController extends ApplicationController
     {
         $view = new View();
         return $view->render('layouts.app', [
-            'content' => $view->render('devlepment.param_test', [
+            'content' => $view->render('development.param_test', [
                 'id' => $this->params['id'],
                 'val1' => $this->params['val1'],
             ]),
@@ -156,7 +156,7 @@ class DevlepmentController extends ApplicationController
 
         $view = new View();
         return $view->render('layouts.app', [
-            'content' => $view->render('devlepment.database_test'),
+            'content' => $view->render('development.database_test'),
         ]);
     }
 
@@ -194,7 +194,7 @@ class DevlepmentController extends ApplicationController
 
         $view = new View();
         return $view->render('layouts.app', [
-            'content' => $view->render('devlepment.validation_test', [
+            'content' => $view->render('development.validation_test', [
                 'errors' => $errors,
             ]),
         ]);

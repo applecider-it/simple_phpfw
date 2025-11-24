@@ -1,5 +1,5 @@
 <h2>home.index</h2>
 
 <div>
-    <a href="/devlepment">devlepment</a>
+    <a href="/development">development</a>
 </div>
