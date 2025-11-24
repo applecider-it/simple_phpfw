@@ -71,6 +71,8 @@ class Router
         // 一番左が優先される
         $obj->params = $params + $_GET + $_POST;
 
+        $obj->beforeAction();
+
         return $obj->$method();
     }
 }
