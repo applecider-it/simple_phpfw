@@ -37,33 +37,48 @@ class Starter
     /** コマンド情報取得 */
     private function getCommandData(?string $commandName)
     {
-        $path = SFW_PROJECT_ROOT . '/App/Commands';
-
-        $phpFiles = Path::scanPhpFiles($path);
+        $conf = [
+            [
+                'path' => SFW_PROJECT_ROOT . '/App/Commands',
+                'prefix' => "App\\Commands",
+            ],
+            [
+                'path' => __DIR__ . '/Commands',
+                'prefix' => "SFW\\Console\\Commands",
+            ],
+            
+        ];
 
         $commandInfos = [];
         $currentCommandInfo = null;
-        foreach ($phpFiles as $file) {
-            $name = pathinfo($file, PATHINFO_FILENAME);
-            $class = "App\\Commands\\{$name}";
 
-            // クラス変数からコマンド名と説明文を取得
-            $command = $class::$name;
-            $desc = $class::$desc;
+        foreach ($conf as $row) {
+            $path = $row['path'];
+            $prefix = $row['prefix'];
+            
+            $phpFiles = Path::scanPhpFiles($path);
+            foreach ($phpFiles as $file) {
+                $name = pathinfo($file, PATHINFO_FILENAME);
+                $class = "{$prefix}\\{$name}";
 
-            // ApplicationCommandなどは、コマンドがないのでスキップ
-            if (empty($command)) continue;
+                // クラス変数からコマンド名と説明文を取得
+                $command = $class::$name;
+                $desc = $class::$desc;
 
-            $commandInfo = [
-                'class' => $class,
-                'command' => $command,
-                'desc' => $desc,
-            ];
+                // ApplicationCommandなどは、コマンドがないのでスキップ
+                if (empty($command)) continue;
 
-            $commandInfos[] = $commandInfo;
+                $commandInfo = [
+                    'class' => $class,
+                    'command' => $command,
+                    'desc' => $desc,
+                ];
 
-            if ($commandName === $command) {
-                $currentCommandInfo = $commandInfo;
+                $commandInfos[] = $commandInfo;
+
+                if ($commandName === $command) {
+                    $currentCommandInfo = $commandInfo;
+                }
             }
         }
 

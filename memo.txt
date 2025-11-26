@@ -8,7 +8,7 @@ cd /home/owner/workspace/tmp/simple_phpfw/src
 
 php -S localhost:8000 -t public
 
-php ./bin/server
+php ./bin/console server
 
 foreman start
 

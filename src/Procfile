@@ -1,2 +1,2 @@
-web: php ./bin/server
+web: php ./bin/console server
 log: tail -f ./storage/logs/*.log
