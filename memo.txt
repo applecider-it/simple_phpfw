@@ -14,9 +14,15 @@ foreman start
 
 -----------------------------------
 
-
 コマンド
 
-php ./bin/console app-samplecommand arg1 arg2
+
+一覧
+
+php ./bin/console
+
+サンプルコマンド
+
+php ./bin/console app-samplecommand arg1 --opt1 arg2 --opt2=val2 arg3
 
 
