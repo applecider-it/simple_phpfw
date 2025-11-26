@@ -18,4 +18,5 @@ $router->get('/development/database_test', [DevelopmentController::class, 'datab
 $router->get('/development/validation_test', [DevelopmentController::class, 'validation_test']);
 $router->get('/development/json_test', [DevelopmentController::class, 'json_test']);
 $router->get('/development/redirect_test', [DevelopmentController::class, 'redirect_test'], ['name' => 'redirect_test']);
+$router->get('/development/exeption_test', [DevelopmentController::class, 'exeption_test']);
 

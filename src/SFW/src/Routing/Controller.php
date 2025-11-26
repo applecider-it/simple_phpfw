@@ -5,7 +5,7 @@ namespace SFW\Routing;
 /**
  * ベースコントローラー
  */
-class Controller
+abstract class Controller
 {
     /** URIの値、GET、POSTの順番で優先的に保管される */
     public array $params = [];

@@ -7,7 +7,7 @@ use SFW\Core\Lang;
 /**
  * 値検査
  */
-class Validator
+abstract class Validator
 {
     protected array $data;
     protected array $rules;
@@ -70,12 +70,18 @@ class Validator
         }
     }
 
+    /** 空白チェック */
+    protected function isBlank($value)
+    {
+        return ($value === null || $value === '' || (is_array($value) && empty($value)));
+    }
+
     /* ===== rule implementations ===== */
 
     /** 必須項目チェック */
     protected function validate_required($field, $value)
     {
-        if ($value === null || $value === '' || (is_array($value) && empty($value))) {
+        if ($this->isBlank($value)) {
             $label = $this->getLabel($field);
             $this->errors[$field][] = Lang::get('validation.errors.required', ['label' => $label]);
         }
@@ -84,7 +90,7 @@ class Validator
     /** メール検査 */
     protected function validate_email($field, $value)
     {
-        if ($value !== null && !filter_var($value, FILTER_VALIDATE_EMAIL)) {
+        if (!$this->isBlank($value) && !filter_var($value, FILTER_VALIDATE_EMAIL)) {
             $label = $this->getLabel($field);
             $this->errors[$field][] = Lang::get('validation.errors.email', ['label' => $label]);
         }
@@ -93,9 +99,40 @@ class Validator
     /** 数値検査 */
     protected function validate_numeric($field, $value)
     {
-        if ($value !== null && !is_numeric($value)) {
+        if (!$this->isBlank($value) && !is_numeric($value)) {
             $label = $this->getLabel($field);
             $this->errors[$field][] = Lang::get('validation.errors.numeric', ['label' => $label]);
+        }
+    }
+
+    /** 最小値検査 */
+    protected function validate_min($field, $value, $params)
+    {
+        $min = $params[0];
+        if (!$this->isBlank($value) && is_numeric($value) && $value < $min) {
+            $label = $this->getLabel($field);
+            $this->errors[$field][] = Lang::get('validation.errors.min', ['label' => $label, 'min' => $min]);
+        }
+    }
+
+    /** 最大値検査 */
+    protected function validate_max($field, $value, $params)
+    {
+        $max = $params[0];
+        if (!$this->isBlank($value) && is_numeric($value) && $value > $max) {
+            $label = $this->getLabel($field);
+            $this->errors[$field][] = Lang::get('validation.errors.max', ['label' => $label, 'max' => $max]);
+        }
+    }
+
+    /** 値の確認の検査 */
+    protected function validate_confirm($field, $value)
+    {
+        $confirmValue = $this->data[$field . '_confirm'];
+
+        if (!$this->isBlank($value) && $value !== $confirmValue) {
+            $label = $this->getLabel($field);
+            $this->errors[$field][] = Lang::get('validation.errors.confirm', ['label' => $label]);
         }
     }
 }

@@ -74,6 +74,7 @@ class Router
 
         $this->currentRoute = $route;
 
+        /** @var \SFW\Routing\Controller */
         $obj = new $class();
 
         // 一番左が優先される

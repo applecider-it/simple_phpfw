@@ -11,7 +11,7 @@ use SFW\Routing\Location;
 /**
  * アプリケーションベースコントローラー
  */
-class ApplicationController extends Controller
+abstract class ApplicationController extends Controller
 {
     /** アクション前処理 */
     public function beforeAction()
@@ -25,6 +25,8 @@ class ApplicationController extends Controller
             Log::info('redirect_test');
 
             Location::redirect('/');
+
+            Log::info('after redirect');
         }
     }
 }

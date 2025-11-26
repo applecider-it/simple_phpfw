@@ -208,24 +208,34 @@ class DevelopmentController extends ApplicationController
     public function validation_test()
     {
         $data = [
-            'name' => 'abc',
-            'email' => 'test@example',
-            'age' => 'efd',
-            'address' => '',
+            'originaltest' => 'a',
+            'emailtest' => 'testexample.com',
+            'numerictest' => '1a23',
+            'requiredtest' => '',
+            'mintest' => '12',
+            'maxtest' => '11',
+            'confirmtest' => 'abcd',
+            'confirmtest_confirm' => 'abxcd',
         ];
 
         $rules = [
-            'name' => ['original:age,email'],
-            'email' => ['required', 'email'],
-            'age' => ['numeric'],
-            'address' => ['required'],
+            'originaltest' => ['original:emailtest,numerictest'],
+            'emailtest' => ['required', 'email'],
+            'numerictest' => ['numeric'],
+            'requiredtest' => ['required'],
+            'mintest' => ['required', 'numeric', 'min:10'],
+            'maxtest' => ['max:10'],
+            'confirmtest' => ['confirm'],
         ];
 
         $labels = [
-            'name' => '名前',
-            'email' => 'メールアドレス',
-            'age' => '年齢',
-            'address' => '住所',
+            'originaltest' => 'オリジナルテスト',
+            'emailtest' => 'メールアドレステスト',
+            'numerictest' => '数値テスト',
+            'requiredtest' => '空白テスト',
+            'mintest' => '最小値テスト',
+            'maxtest' => '最大値テスト',
+            'confirmtest' => '確認テスト',
         ];
 
         $v = Validator::make($data, $rules, $labels);
@@ -257,5 +267,13 @@ class DevelopmentController extends ApplicationController
                 ]
             ]
         );
+    }
+
+    /** 例外テスト */
+    public function exeption_test()
+    {
+        Log::info('このログは出力される。');
+        throw new \Exception("例外テスト");
+        Log::info('このログは出力されない。');
     }
 }

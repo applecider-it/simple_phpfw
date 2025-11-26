@@ -17,7 +17,7 @@ class Validator extends BaseValidator
     {
         $validValue = $this->data[$params[0]] . $this->data[$params[1]];
 
-        if ($value !== $validValue) {
+        if (!$this->isBlank($value) && $value !== $validValue) {
             $label = $this->getLabel($field);
             $this->errors[$field][] = Lang::get('validation.errors.original', ['label' => $label, 'validValue' => $validValue]);
         }

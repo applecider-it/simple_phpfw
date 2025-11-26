@@ -7,7 +7,7 @@ use SFW\Core\App;
 /**
  * モデルベースクラス
  */
-class Model
+abstract class Model
 {
     /** プライマリIDカラム名 */
     protected static $primary = 'id';

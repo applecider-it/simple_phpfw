@@ -7,4 +7,5 @@
     <div><a href="/development/validation_test">validation_test</a></div>
     <div><a href="/development/json_test">json_test</a></div>
     <div><a href="/development/redirect_test">redirect_test</a></div>
+    <div><a href="/development/exeption_test">exeption_test</a></div>
 </div>
