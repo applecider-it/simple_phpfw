@@ -64,6 +64,8 @@ class DevelopmentController extends ApplicationController
         /** @var DB */
         $db = App::get('db');
 
+        $db->startTransaction();
+
         // 挿入
         $newId = User::insert(
             [
@@ -81,6 +83,9 @@ class DevelopmentController extends ApplicationController
             ]
         );
         Log::info('After User/Tweet Insert', [$newIdTweet]);
+
+        $db->commitTransaction();
+        //$db->rollbackTransaction();
 
         // データ取得
         $user = $db->one("SELECT * FROM users WHERE id = ?", $newId);

@@ -76,6 +76,24 @@ class DB
         return $stmt->rowCount();
     }
 
+    /** トランザクション開始 */
+    public function startTransaction()
+    {
+        $this->exec("START TRANSACTION", []);
+    }
+
+    /** トランザクションコミット */
+    public function commitTransaction()
+    {
+        $this->exec("COMMIT", []);
+    }
+
+    /** トランザクションロールバック */
+    public function rollbackTransaction()
+    {
+        $this->exec("ROLLBACK", []);
+    }
+
     /** 実行の共通処理 */
     private function exec(string $sql, array $bindings)
     {
