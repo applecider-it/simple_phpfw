@@ -56,4 +56,24 @@ class StdOut
 
         $drawLine();
     }
+
+    /**
+     * 色を付ける
+     */
+    public static function color(string $color)
+    {
+        $colors = [
+            'red' => "\e[31m",
+        ];
+
+        echo $colors[$color];
+    }
+
+    /**
+     * 色をリセット
+     */
+    public static function reset()
+    {
+        echo "\e[0m";
+    }
 }

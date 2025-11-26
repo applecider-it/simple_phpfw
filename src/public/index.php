@@ -4,9 +4,10 @@
 $startTime = microtime(true);
 $startMemory = memory_get_usage();
 
-require dirname(__DIR__) . '/boot/start.php';
+require_once dirname(__DIR__) . '/vendor/autoload.php';
 
-(new SFW\Boot\Common)->init();
+require_once dirname(__DIR__) . '/boot/start.php';
+
 (new SFW\Boot\Web)->dispatch();
 
 // 終了時

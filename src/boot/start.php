@@ -14,4 +14,4 @@ error_reporting(E_ALL);
 /** プロジェクトルート（SFWで必要な定数） */
 define('SFW_PROJECT_ROOT', dirname(__DIR__));
 
-require SFW_PROJECT_ROOT . '/vendor/autoload.php';
+(new SFW\Boot\Common)->init();

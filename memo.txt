@@ -25,4 +25,17 @@ php ./bin/console
 
 php ./bin/console app-samplecommand arg1 --opt1 arg2 --opt2=val2 arg3
 
+-----------------------------------
+
+テスト
+
+
+アプリケーション
+
+php ./bin/console test
+
+フレームワーク
+
+php ./bin/console test --framework
+
 
