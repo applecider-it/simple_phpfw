@@ -9,22 +9,54 @@ use SFW\Core\App;
  */
 class Query
 {
-    /** テーブル名 */
-    private string $table;
+    /** テーブル用データ配列 */
+    private array $tables = [];
+
+    /** Distinctフラグ */
+    private bool $distinct = false;
+
+    /** COLUMNS用データ配列 */
+    private array $columns = [];
 
     /** WHERE文用データ配列 */
     private array $wheres = [];
 
+    /** HAVING文用データ配列 */
+    private array $havings = [];
+
     /** ORDER文用データ配列 */
     private array $orders = [];
+
+    /** GROUP文用データ配列 */
+    private array $groups = [];
 
     /** 上限 */
     private int|null $limit = null;
 
+    /** 初期位置 */
+    private int|null $offset = null;
+
     /** テーブル指定 */
     public function table(string $table): self
     {
-        $this->table = $table;
+        $this->tables[] = $table;
+        return $this;
+    }
+
+    /** Distinctを有効にする */
+    public function distinct(): self
+    {
+        $this->distinct = true;
+        return $this;
+    }
+
+    /** COLUMN追加 */
+    public function column(string $sql, ...$value): self
+    {
+        $this->columns[] = [
+            'sql' => $sql,
+            'bindings' => $value,
+        ];
         return $this;
     }
 
@@ -38,10 +70,27 @@ class Query
         return $this;
     }
 
+    /** Having追加 */
+    public function having(string $sql, ...$value): self
+    {
+        $this->havings[] = [
+            'sql' => $sql,
+            'bindings' => $value,
+        ];
+        return $this;
+    }
+
     /** order追加 */
     public function order(string $sql): self
     {
         $this->orders[] = $sql;
+        return $this;
+    }
+
+    /** group追加 */
+    public function group(string $sql): self
+    {
+        $this->groups[] = $sql;
         return $this;
     }
 
@@ -52,15 +101,46 @@ class Query
         return $this;
     }
 
+    /** 初期位置指定 */
+    public function offset(int|null $offset): self
+    {
+        $this->offset = $offset;
+        return $this;
+    }
+
     /** SQLと値をビルドする */
     public function build()
     {
-        $sql = "SELECT * FROM {$this->table}";
+        $sql = "SELECT";
         $bindings = [];
+
+        if ($this->distinct) {
+            $sql .= " DISTINCT";
+        }
+
+        if ($this->columns) {
+            $ret = $this->buildColumns();
+            $sql .= " " . $ret['sql'];
+            $bindings = array_merge($bindings, $ret['bindings']);
+        } else  {
+            $sql .= " *";
+        }
+        
+        $sql .= " FROM " . implode(" ", $this->tables);
 
         if ($this->wheres) {
             $ret = $this->buildWhere();
             $sql .= " WHERE " . $ret['sql'];
+            $bindings = array_merge($bindings, $ret['bindings']);
+        }
+
+        if ($this->groups) {
+            $sql .= " GROUP BY " . implode(", ", $this->groups);
+        }
+
+        if ($this->havings) {
+            $ret = $this->buildHaving();
+            $sql .= " HAVING " . $ret['sql'];
             $bindings = array_merge($bindings, $ret['bindings']);
         }
 
@@ -69,6 +149,7 @@ class Query
         }
 
         if ($this->limit) $sql .= " LIMIT {$this->limit}";
+        if ($this->offset) $sql .= " OFFSET {$this->offset}";
 
         return [
             'sql' => $sql,
@@ -99,18 +180,36 @@ class Query
         return App::get('db');
     }
 
+    /** カラムのビルド */
+    private function buildColumns()
+    {
+        return $this->buildCommon($this->columns, ', ');
+    }
+
     /** WHERE文のビルド */
     private function buildWhere()
+    {
+        return $this->buildCommon($this->wheres, ' AND ');
+    }
+
+    /** HAVING文のビルド */
+    private function buildHaving()
+    {
+        return $this->buildCommon($this->havings, ' AND ');
+    }
+
+    /** 共通のビルド */
+    private function buildCommon(array $conf, string $connector)
     {
         $sqls = [];
         $bindings = [];
 
-        foreach ($this->wheres as $where) {
+        foreach ($conf as $where) {
             $sqls[] = $where['sql'];
             $bindings = array_merge($bindings, $where['bindings']);
         }
 
-        $sql = implode(' AND ', $sqls);
+        $sql = implode($connector, $sqls);
 
         return [
             'sql' => $sql,

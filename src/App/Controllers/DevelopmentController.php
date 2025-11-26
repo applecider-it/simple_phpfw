@@ -131,13 +131,6 @@ class DevelopmentController extends ApplicationController
         $users = $query->all();
         Log::info('モデルのクエリービルダーで取得 all', [$users]);
 
-        // ツイート
-        $tweets = User::tweets($newId)
-            ->order("id asc")
-            ->all();
-
-        Log::info('ツイートをリレーションで取得 all', [$tweets]);
-
         // 更新
         $rows = User::update($newId, ['age' => 26]);
         Log::info('更新', [$rows]);
@@ -150,9 +143,55 @@ class DevelopmentController extends ApplicationController
         $user = User::find($newId + 100);
         Log::info('find失敗時', [$user]);
 
+        // サブクエリー用
+        $query = (new Query)
+            ->table("users users2")
+            ->column("COUNT(*)")
+            ->where("users2.id = user_tweets.user_id")
+            ->where("users2.id > ?", 0)
+            ->where("users2.id < ?", 10000);
+        $ret = $query->build();
+        Log::info('サブクエリー用', $ret);
+
+        // 複雑なクエリーの動作確認
+        $tweets = User::tweets($newId)
+            ->table("INNER JOIN users ON user_tweets.user_id = users.id")
+            ->order("user_tweets.id asc")
+            ->column("user_tweets.*")
+            ->column("users.name as user_name")
+            ->column("(" . $ret['sql'] . ") as cnt", ...$ret['bindings'])
+            ->limit(100)
+            //->offset(10)
+            ->all();
+
+        Log::info('複雑なクエリーの動作確認 all', [$tweets]);
+
+        // Group Having動作確認
+        $tweets = Tweet::query()
+            ->column("user_id")
+            ->column("count(*) as cnt")
+            ->group("user_id")
+            //->having("cnt > ?", 1)
+            ->having("cnt < ?", 1000)
+            ->order("cnt")
+            ->order("user_id")
+            ->all();
+
+        Log::info('Group Having動作確認 all', [$tweets]);
+
+        // Distinct動作確認
+        $tweets = Tweet::query()
+            ->distinct()
+            ->column("user_id")
+            ->all();
+
+        Log::info('Distinct動作確認 all', [$tweets]);
+
         // 削除
         $rows = $db->delete('users', 'id = ?', $newId);
-        Log::info('削除', [$rows]);
+        Log::info('users 削除', [$rows]);
+        //$rows = $db->delete('user_tweets', 'user_id = ?', $newId);
+        //Log::info('user_tweets 削除', [$rows]);
 
         $view = new View();
         return $view->render('layouts.app', [
