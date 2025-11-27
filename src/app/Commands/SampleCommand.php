@@ -2,7 +2,7 @@
 
 namespace App\Commands;
 
-use SFW\Core\App;
+use App\Services\Commands\SampleCommandService;
 
 /**
  * サンプルのコマンド
@@ -18,28 +18,8 @@ class SampleCommand extends Command
     /** ハンドル */
     public function handle()
     {
-        echo "params\n";
-        print_r($this->params);
+        $sampleCommandService = new SampleCommandService;
 
-        $param0 = $this->params[0] ?? null;
-        echo "param0: $param0\n";
-
-        echo "options\n";
-        print_r($this->options);
-
-        if (isset($this->options['opt1'])) {
-            echo "opt1!!!!\n";
-        }
-
-        $opt2 = $this->options['opt2'] ?? null;
-        echo "opt2: $opt2\n";
-
-        /** @var DB */
-        $db = App::get('db');
-
-        $user = $db->one("SELECT * FROM users WHERE id > ? LIMIT 1", 0);
-
-        echo "user\n";
-        print_r($user);
+        $sampleCommandService->exec($this->params, $this->options);
     }
 }
