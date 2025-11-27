@@ -34,6 +34,10 @@ php ./bin/console app-samplecommand arg1 --opt1 arg2 --opt2=val2 arg3
 
 php ./bin/console test
 
+DB切り替え
+
+SFW_DATABASE_DATABASE=simple_phpfw_test php ./bin/console test
+
 フレームワーク
 
 php ./bin/console test --framework

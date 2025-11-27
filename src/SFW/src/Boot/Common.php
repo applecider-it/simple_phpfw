@@ -23,19 +23,11 @@ class Common
         $container = new Container();
         App::setContainer($container);
 
-        $this->includeEnv();
         $this->setupService();
         $this->includeRoutes();
         $this->setupDatabase();
 
         App::get('callback')->afterInit();
-    }
-
-    /** .env読み込み */
-    private function includeEnv()
-    {
-        $env = Env::load(SFW_PROJECT_ROOT . '/.env');
-        App::getContainer()->setSingleton('env', $env);
     }
 
     /** サービス設定 */

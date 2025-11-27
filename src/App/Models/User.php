@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-use SFW\Database\Model;
-
 /**
  * ユーザーモデル
  */
-class User extends Model
+class User extends ApplicationModel
 {
     protected static $table = 'users';
 

@@ -3,10 +3,6 @@
  * アプリケーション設定
  */
 
-use SFW\Core\App;
-
-$env = App::get('env');
-
 return [
     'debug' => $env['SFW_DEBUG'],
 

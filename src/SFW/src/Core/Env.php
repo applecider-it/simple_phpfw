@@ -4,12 +4,15 @@ namespace SFW\Core;
 
 /**
  * 環境変数管理
- * 
- * 先頭に#がある行はコメント扱い
  */
 class Env
 {
-    /** .envをロード */
+    /**
+     * .envをロード
+     * 
+     * 先頭に#がある行はコメント扱い。
+     * 環境変数を優先。
+     */
     public static function load(string $path)
     {
         if (!file_exists($path)) {
@@ -24,13 +27,20 @@ class Env
             if ($line === '' || str_starts_with($line, '#')) continue;
 
             [$name, $value] = explode('=', $line, 2);
-            $data[trim($name)] = self::strToValue($value);
+            $key = trim($name);
+
+            // 環境変数を優先する
+            $data[$key] = (getenv($key)) ? getenv($key) : self::strToValue($value);
         }
 
         return $data;
     }
 
-    /** 文字列を変数に変換 */
+    /**
+     * 文字列を変数に変換
+     * 
+     * true, falseはboolに変換される。
+     */
     private static function strToValue(string $value)
     {
         $value = trim($value);

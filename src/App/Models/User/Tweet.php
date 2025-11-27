@@ -2,13 +2,14 @@
 
 namespace App\Models\User;
 
-use SFW\Database\Model;
 use SFW\Database\Query;
+
+use App\Models\ApplicationModel;
 
 /**
  * ツイートモデル
  */
-class Tweet extends Model
+class Tweet extends ApplicationModel
 {
     protected static $table = 'user_tweets';
 
