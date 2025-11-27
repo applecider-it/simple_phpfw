@@ -2,7 +2,7 @@
 
 use SFW\Data\Arr;
 
-// dotValueTest
+// dotValue Test
 (function () {
     $checkList = [
         [
@@ -20,6 +20,6 @@ use SFW\Data\Arr;
         $array = $row[0];
         $key = $row[1];
         $result = $row[2];
-        $this->check('dotValueTest ' . $idx, Arr::dotValue($array, $key) == $result);
+        $this->check("dotValue Test {$idx} {$key}", Arr::dotValue($array, $key) === $result);
     }
 })();
