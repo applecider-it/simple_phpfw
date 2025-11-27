@@ -4,12 +4,12 @@ namespace App\Models\User;
 
 use SFW\Database\Query;
 
-use App\Models\ApplicationModel;
+use App\Models\Model;
 
 /**
  * ツイートモデル
  */
-class Tweet extends ApplicationModel
+class Tweet extends Model
 {
     protected static $table = 'user_tweets';
 

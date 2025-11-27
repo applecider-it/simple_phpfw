@@ -19,7 +19,7 @@ use App\Core\Validator;
 /**
  * 開発者向けページ
  */
-class DevelopmentController extends ApplicationController
+class DevelopmentController extends Controller
 {
     /** トップ画面 */
     public function index()

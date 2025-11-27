@@ -5,7 +5,7 @@ namespace App\Commands;
 /**
  * サンプルのコマンド2
  */
-class SampleCommand2 extends ApplicationCommand
+class SampleCommand2 extends Command
 {
     /** コマンド名 */
     public static string $name = 'app-samplecommand2';

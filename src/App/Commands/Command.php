@@ -2,9 +2,9 @@
 
 namespace App\Commands;
 
-use SFW\Console\Command;
+use SFW\Console\Command as BaseCommand;
 
 /**
  * アプリケーションベースコマンド
  */
-class ApplicationCommand extends Command {}
+abstract class Command extends BaseCommand {}

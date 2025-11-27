@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use SFW\Database\Model;
+use SFW\Database\Model as BaseModel;
 
 /**
  * アプリケーションベースモデル
  */
-abstract class ApplicationModel extends Model {}
+abstract class Model extends BaseModel {}

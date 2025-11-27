@@ -7,7 +7,7 @@ use SFW\Core\App;
 /**
  * サンプルのコマンド
  */
-class SampleCommand extends ApplicationCommand
+class SampleCommand extends Command
 {
     /** コマンド名 */
     public static string $name = 'app-samplecommand';

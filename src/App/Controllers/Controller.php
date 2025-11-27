@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use SFW\Routing\Controller;
+use SFW\Routing\Controller as BaseController;
 use SFW\Output\Log;
 use SFW\Core\Config;
 use SFW\Core\App;
@@ -11,7 +11,7 @@ use SFW\Routing\Location;
 /**
  * アプリケーションベースコントローラー
  */
-abstract class ApplicationController extends Controller
+abstract class Controller extends BaseController
 {
     /** アクション前処理 */
     public function beforeAction()

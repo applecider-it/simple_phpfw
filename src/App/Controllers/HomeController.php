@@ -7,7 +7,7 @@ use SFW\Output\View;
 /**
  * ホームコントローラー
  */
-class HomeController extends ApplicationController
+class HomeController extends Controller
 {
     /** トップ画面 */
     public function index()

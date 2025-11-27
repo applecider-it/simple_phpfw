@@ -65,7 +65,7 @@ class Starter
                 $command = $class::$name;
                 $desc = $class::$desc;
 
-                // ApplicationCommandなどは、コマンドがないのでスキップ
+                // アプリケーションベースコマンドなどは、コマンドがないのでスキップ
                 if (empty($command)) continue;
 
                 $commandInfo = [

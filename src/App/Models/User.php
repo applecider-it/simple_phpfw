@@ -5,7 +5,7 @@ namespace App\Models;
 /**
  * ユーザーモデル
  */
-class User extends ApplicationModel
+class User extends Model
 {
     protected static $table = 'users';
 
