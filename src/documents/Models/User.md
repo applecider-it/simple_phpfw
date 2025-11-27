@@ -6,6 +6,6 @@
 |--------|--------|--------|--------|
 | name | 名前 | string |  |
 | email | メールアドレス | string |  |
-| age | 年齢 | int |  |
+| password | パスワード | string |  |
 
 
