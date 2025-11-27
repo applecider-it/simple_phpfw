@@ -44,11 +44,12 @@ class DB
     /** 追加 */
     public function insert(string $table, array $data): int
     {
-        $columns = implode(',', array_keys($data));
-        $placeholders = implode(',', array_fill(0, count($data), '?'));
+        $sqlData = $this->dataToSqlData($data);
+        $columns = implode(', ', $sqlData['columnsForInsert']);
+        $placeholders = implode(',', $sqlData['placeholdersForInsert']);
         $sql = "INSERT INTO {$table} ($columns) VALUES ($placeholders)";
 
-        $this->exec($sql, array_values($data));
+        $this->exec($sql, $sqlData['bindings']);
 
         return $this->pdo->lastInsertId();
     }
@@ -56,13 +57,42 @@ class DB
     /** 更新 */
     public function update(string $table, array $data, string $whereSql, ...$whereBindings): int
     {
-        $set = implode(',', array_map(fn($col) => "$col = ?", array_keys($data)));
+        $sqlData = $this->dataToSqlData($data);
+        $set = implode(', ', $sqlData['columnsForUpdate']);
         $sql = "UPDATE {$table} SET $set";
         $sql .= " WHERE {$whereSql}";
 
-        $stmt = $this->exec($sql, array_merge(array_values($data), $whereBindings));
+        $stmt = $this->exec($sql, array_merge($sqlData['bindings'], $whereBindings));
 
         return $stmt->rowCount();
+    }
+
+    /** 登録更新データをSQL用データに変換 */
+    private function dataToSqlData(array $data): array
+    {
+        $columnsForInsert = [];
+        $columnsForUpdate = [];
+        $placeholdersForInsert = [];
+        $bindings = [];
+        foreach ($data as $column => $val) {
+            $columnsForInsert[] = $column;
+            if (is_array($val)) {
+                // 配列の時は、プレースホルダーを使わない
+                // これは、NOW()などを指定するときに使う
+                $columnsForUpdate[] = "$column = {$val[0]}";
+                $placeholdersForInsert[] = $val[0];
+            } else {
+                $columnsForUpdate[] = "$column = ?";
+                $placeholdersForInsert[] = "?";
+                $bindings[] = $val;
+            }
+        }
+        return [
+            'columnsForInsert' => $columnsForInsert,
+            'columnsForUpdate' => $columnsForUpdate,
+            'placeholdersForInsert' => $placeholdersForInsert,
+            'bindings' => $bindings,
+        ];
     }
 
     /** 削除 */

@@ -81,6 +81,7 @@ class DevelopmentController extends ApplicationController
         $newIdTweet = Tweet::insert(
             [
                 'user_id' => $newId,
+                'created_at' => ['NOW()'],
                 'content' => 'ツイートテキスト' . time(),
             ]
         );
@@ -145,7 +146,11 @@ class DevelopmentController extends ApplicationController
         Log::info('モデルのクエリービルダーで取得 all', [$users]);
 
         // 更新
-        $rows = User::update($newId, ['name' => 'テスト2']);
+        $rows = User::update($newId, [
+            'name' => 'テスト2',
+            'updated_at' => ['NOW()'],
+            'password' => password_hash('aaaaaa', PASSWORD_DEFAULT),
+        ]);
         Log::info('更新', [$rows]);
 
         // モデルでデータ取得
@@ -192,19 +197,35 @@ class DevelopmentController extends ApplicationController
 
         Log::info('Group Having動作確認 all', [$tweets]);
 
-        // Distinct動作確認
+        // Distinct、when、scope動作確認
+        $min = 0;
+        $max = 9000;
         $tweets = Tweet::query()
             ->distinct()
             ->column("user_id")
+            ->when(true, function (Query $query) use ($min, $max) {
+                Tweet::scopeSample($query, $min, $max);
+            })
+            ->scope([Tweet::class, 'scopeSample'], 0, 8000)
+            ->when(false, function (Query $query) {
+                Tweet::scopeSample($query, 10000, 0);
+            })
             ->all();
 
-        Log::info('Distinct動作確認 all', [$tweets]);
+        Log::info('Distinct、when、scope動作確認 all', [$tweets]);
+
+        // 論理削除
+        $rows = User::softDelete($newId);
+        Log::info('users 論理削除', [$rows]);
+        $user = User::find($newId);
+        Log::info('論理削除後再取得', [$user]);
+        $user = User::findKept($newId);
+        Log::info('論理削除後再取得（論理削除されたのを除外）', [$user]);
 
         // 削除
-        $rows = $db->delete('users', 'id = ?', $newId);
+        // CREATE文に、ON DELETE CASCADEがあるので、関連するuser_tweetsも削除される
+        $rows = User::delete($newId);
         Log::info('users 削除', [$rows]);
-        //$rows = $db->delete('user_tweets', 'user_id = ?', $newId);
-        //Log::info('user_tweets 削除', [$rows]);
 
         $view = new View();
         return $view->render('layouts.app', [

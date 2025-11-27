@@ -108,6 +108,27 @@ class Query
         return $this;
     }
 
+    /** $conditionがtrueの時だけクロージャー適用 */
+    public function when($condition, \Closure $func): self
+    {
+        if ($condition) {
+            $func($this);
+        }
+        return $this;
+    }
+
+    /**
+     * スコープ適用
+     * 
+     * $scopeが配列の時は、クラス関数扱い
+     */
+    public function scope(string|array $scope, ...$params): self
+    {
+        if (is_array($scope)) $scope = implode('::', $scope);
+        $scope($this, ...$params);
+        return $this;
+    }
+
     /** SQLと値をビルドする */
     public function build()
     {
@@ -122,10 +143,10 @@ class Query
             $ret = $this->buildColumns();
             $sql .= " " . $ret['sql'];
             $bindings = array_merge($bindings, $ret['bindings']);
-        } else  {
+        } else {
             $sql .= " *";
         }
-        
+
         $sql .= " FROM " . implode(" ", $this->tables);
 
         if ($this->wheres) {
