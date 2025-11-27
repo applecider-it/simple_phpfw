@@ -66,12 +66,14 @@ class DevelopmentController extends ApplicationController
 
         $db->startTransaction();
 
+        $password = "passwordpassword";
+
         // 挿入
         $newId = User::insert(
             [
-                'name' => 'Alice',
-                'email' => 'alice' . time() . '@example.com',
-                'age'  => 25
+                'name' => 'テスト',
+                'email' => 'test' . time() . '@example.com',
+                'password'  => password_hash($password, PASSWORD_DEFAULT)
             ]
         );
         Log::info('After User Insert', [$newId]);
@@ -91,20 +93,26 @@ class DevelopmentController extends ApplicationController
         $user = $db->one("SELECT * FROM users WHERE id = ?", $newId);
         Log::info('one', [$user]);
 
+        if (password_verify($password, $user['password'])) {
+            Log::info('パスワード認証成功');
+        } else {
+            Log::info('パスワード認証失敗');
+        }
+
         // 失敗時
         $user = $db->one("SELECT * FROM users WHERE id = ?", $newId + 10);
         Log::info('one 失敗', [$user]);
 
         // 複数取得
-        $users = $db->all("SELECT * FROM users WHERE age > ?", 20);
+        $users = $db->all("SELECT * FROM users WHERE id > ?", 0);
         Log::info('all', [$users]);
 
         // クエリービルダーで取得
         $query = (new Query())
             ->table('users')
             ->where("id > ?", 0)
-            ->where("age < ?", 100)
-            ->order("age desc")
+            ->where("id < ?", 10000)
+            ->order("id desc")
             ->order("email asc");
 
         $ret = $query->build();
@@ -116,8 +124,8 @@ class DevelopmentController extends ApplicationController
         $users = (new Query())
             ->table('users')
             ->where("id > ?", 0)
-            ->where("age < ?", 100)
-            ->order("age desc")
+            ->where("id < ?", 10000)
+            ->order("id desc")
             ->order("email asc")
             ->all();
 
@@ -126,8 +134,8 @@ class DevelopmentController extends ApplicationController
         // モデルのクエリービルダーで取得
         $query = User::query()
             ->where("id > ?", 0)
-            ->where("age < ?", 100)
-            ->order("age desc")
+            ->where("id < ?", 10000)
+            ->order("id desc")
             ->order("email asc");
 
         $ret = $query->build();
@@ -137,7 +145,7 @@ class DevelopmentController extends ApplicationController
         Log::info('モデルのクエリービルダーで取得 all', [$users]);
 
         // 更新
-        $rows = User::update($newId, ['age' => 26]);
+        $rows = User::update($newId, ['name' => 'テスト2']);
         Log::info('更新', [$rows]);
 
         // モデルでデータ取得

@@ -26,6 +26,10 @@ resources/
   views/ <- Viewファイル
   lang/ <- 言語ファイル
 SFW/ <- フレームワーク部分（本来ならvendor内にあるべき部分）
+  src/ <- PHPクラス
+  views/ <- フレームワークで使うview
+  tests/ <- フレームワーク用のユニットテスト
 storage/ <- 各種出力用
+tests/ <- ユニットテスト
 .env <- 環境変数
 ```
