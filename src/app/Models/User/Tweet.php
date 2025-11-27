@@ -13,6 +13,12 @@ class Tweet extends Model
 {
     protected static $table = 'user_tweets';
 
+    /** UserとのJoin用のScope */
+    public static function scopeUser(Query $query)
+    {
+        $query->table("INNER JOIN users ON user_tweets.user_id = users.id");
+    }
+
     /** 動作確認用Scope */
     public static function scopeSample(Query $query, $min, $max)
     {

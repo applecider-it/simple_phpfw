@@ -70,6 +70,13 @@ class Query
         return $this;
     }
 
+    /** INやNOT IN */
+    public function in(string $sql, array $data): self
+    {
+        $this->where($sql . ' (' . implode(', ', array_fill(0, count($data), '?')) . ')', ...$data);
+        return $this;
+    }
+
     /** Having追加 */
     public function having(string $sql, ...$value): self
     {
