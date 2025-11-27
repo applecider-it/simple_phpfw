@@ -37,8 +37,6 @@ class SampleCommand extends Command
         /** @var DB */
         $db = App::get('db');
 
-        $db->tracable = true;
-
         $user = $db->one("SELECT * FROM users WHERE id > ? LIMIT 1", 0);
 
         echo "user\n";

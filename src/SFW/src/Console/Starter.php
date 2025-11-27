@@ -39,7 +39,7 @@ class Starter
     {
         $conf = [
             [
-                'path' => SFW_PROJECT_ROOT . '/App/Commands',
+                'path' => SFW_PROJECT_ROOT . '/app/Commands',
                 'prefix' => "App\\Commands",
             ],
             [
