@@ -17,7 +17,7 @@ class Trace
         $routes = $router->routes();
 
         $header = [
-            'Method',
+            '',
             'Path',
             'Handler',
             'Options',

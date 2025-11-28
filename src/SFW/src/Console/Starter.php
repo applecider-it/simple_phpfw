@@ -51,6 +51,25 @@ class Starter
     /** コマンド情報取得 */
     private function getCommandData(?string $commandName)
     {
+        $commandInfos = $this->getCommandInfos();
+        $currentCommandInfo = null;
+
+        foreach ($commandInfos as $commandInfo) {
+            if ($commandInfo['command'] === $commandName) {
+                $currentCommandInfo = $commandInfo;
+                break;
+            }
+        }
+
+        return [
+            'commandInfos' => $commandInfos,
+            'currentCommandInfo' => $currentCommandInfo,
+        ];
+    }
+
+    /** コマンド一覧取得 */
+    private function getCommandInfos()
+    {
         $conf = [
             [
                 'path' => SFW_PROJECT_ROOT . '/app/Commands',
@@ -64,7 +83,6 @@ class Starter
         ];
 
         $commandInfos = [];
-        $currentCommandInfo = null;
 
         foreach ($conf as $row) {
             $path = $row['path'];
@@ -91,17 +109,10 @@ class Starter
                 ];
 
                 $commandInfos[] = $commandInfo;
-
-                if ($commandName === $command) {
-                    $currentCommandInfo = $commandInfo;
-                }
             }
         }
 
-        return [
-            'commandInfos' => $commandInfos,
-            'currentCommandInfo' => $currentCommandInfo,
-        ];
+        return $commandInfos;
     }
 
     /** ハンドラーを実行 */

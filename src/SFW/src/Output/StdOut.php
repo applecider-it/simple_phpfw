@@ -16,7 +16,7 @@ class StdOut
      */
     public static function table(array $argRows)
     {
-        $margin = 2;
+        $margin = 1;
         $separator = '|';
         $lineStr = '-';
 
