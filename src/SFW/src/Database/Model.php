@@ -95,6 +95,12 @@ abstract class Model
         $query->where(static::$table . '.' . static::$softDeleteColumn . ' IS NULL');
     }
 
+    /** 論理削除されているのだけに絞り込むScope */
+    public static function scopeDeleted(Query $query)
+    {
+        $query->where(static::$table . '.' . static::$softDeleteColumn . ' IS NOT NULL');
+    }
+
     /** WHEREのSQL文 */
     private static function whereSql($id)
     {
