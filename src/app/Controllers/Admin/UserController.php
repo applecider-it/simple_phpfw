@@ -93,4 +93,64 @@ class UserController extends Controller
 
         Location::redirect(Config::get('adminPrefix') . "/users/{$newId}/edit");
     }
+
+    /** 更新画面 */
+    public function edit()
+    {
+        $user = $this->user();
+
+        $user = Arr::choise($user, ['name', 'email']);
+
+        $view = new View();
+        return $view->render('layouts.app', [
+            'content' => $view->render('admin.user.edit', $user),
+        ]);
+    }
+
+    /** 更新 */
+    public function update()
+    {
+        $user = $this->user();
+        $id = $user['id'];
+
+        $user = Arr::choise($this->params, ['name', 'email']);
+
+        $rules = [
+            'name' => User::validationName(),
+            'email' => User::validationEmail(),
+        ];
+
+        $labels = [
+            'name' => Lang::get('models.user.attributes.name'),
+            'email' => Lang::get('models.user.attributes.email'),
+        ];
+
+        $v = Validator::make($user, $rules, $labels);
+
+        $errors = null;
+
+        if ($v->fails()) {
+            $errors = $v->errors();
+
+            $view = new View();
+            return $view->render('layouts.app', [
+                'content' => $view->render(
+                    'admin.user.edit',
+                    $user + ['errors' => $errors]
+                ),
+            ]);
+        }
+
+        User::update($id, $user);
+
+        Location::redirect(Config::get('adminPrefix') . "/users/{$id}/edit");
+    }
+
+    /** ユーザー取得 */
+    private function user()
+    {
+        $user = User::find($this->params['id']);
+        if (! $user) throw new \Exception('Not found.');
+        return $user;
+    }
 }

@@ -19,6 +19,7 @@ use SFW\Core\Config;
             <tr>
                 <td><?= Html::esc($user['name'] ?? '') ?></td>
                 <td><?= Html::esc($user['email'] ?? '') ?></td>
+                <td><a href="<?= Config::get('adminPrefix') ?>/users/<?= $user['id'] ?>/edit">更新</a></td>
             </tr>
         <?php } ?>
     </table>
