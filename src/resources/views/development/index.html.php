@@ -1,4 +1,4 @@
-<h2>development.index</h2>
+<h2 class="app-h2">development.index</h2>
 
 <div>
     <div><a href="/development/view_test">view_test</a></div>

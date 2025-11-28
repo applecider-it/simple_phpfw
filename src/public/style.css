@@ -22,3 +22,70 @@ footer {
     text-align: center;
     padding: 1rem;
 }
+
+/* ボタン */
+
+.app-btn-primary {
+    padding: 0.25rem 0.5rem;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    text-decoration: none;
+    border-radius: 6px;
+}
+.app-btn-orange {
+    padding: 0.25rem 0.5rem;
+    background-color: #f1c40f;
+    color: white;
+    border: none;
+    text-decoration: none;
+    border-radius: 4px;
+}
+.app-btn-danger {
+    padding: 0.25rem 0.5rem;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+/* テーブル */
+
+.app-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: sans-serif;
+}
+.app-table-cell {
+    padding: 0.5rem 1rem;
+}
+
+/* フォーム */
+
+.app-form-input {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+.app-form-label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* タイトル */
+
+.app-h2 {
+    font-family: "Segoe UI", Roboto, sans-serif;
+    font-size: 1.8rem;
+    color: #2c3e50;
+    border-left: 6px solid #3498db;
+    padding-left: 0.75rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
