@@ -111,7 +111,7 @@ class UserController extends Controller
     public function update()
     {
         $user = $this->user();
-        $id = $user['id'];
+        $userId = $user['id'];
 
         $user = Arr::choise($this->params, ['name', 'email']);
 
@@ -141,18 +141,18 @@ class UserController extends Controller
             ]);
         }
 
-        User::update($id, $user);
+        User::update($userId, $user);
 
-        Location::redirect(Config::get('adminPrefix') . "/users/{$id}/edit");
+        Location::redirect(Config::get('adminPrefix') . "/users/{$userId}/edit");
     }
 
     /** 削除 */
     public function destroy()
     {
         $user = $this->user();
-        $id = $user['id'];
+        $userId = $user['id'];
 
-        User::softDelete($id);
+        User::softDelete($userId);
 
         Location::redirect(Config::get('adminPrefix') . "/users");
     }
@@ -161,7 +161,7 @@ class UserController extends Controller
     private function user()
     {
         $user = User::find($this->params['id']);
-        if (! $user) throw new \Exception('Not found.');
+        if (! $user) throw new \SFW\Exceptions\NotFound;
         return $user;
     }
 }
