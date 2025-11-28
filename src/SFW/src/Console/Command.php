@@ -13,6 +13,9 @@ abstract class Command
     /** コマンド説明 */
     public static string $desc = '';
 
+    /** コマンド説明の詳細 */
+    public static string $descDetail = '';
+
     /** コマンドラインから渡された値 */
     public array $params = [];
 

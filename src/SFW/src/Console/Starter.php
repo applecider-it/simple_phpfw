@@ -3,13 +3,21 @@
 namespace SFW\Console;
 
 use SFW\Data\Path;
-use SFW\Output\StdOut;
 
 /**
  * コンソール管理
  */
 class Starter
 {
+    public const helpCommandName = 'help';
+
+    private Trace $trace;
+
+    public function __construct()
+    {
+        $this->trace = new Trace;
+    }
+
     /** 実行 */
     public function dispatch($argv)
     {
@@ -20,13 +28,19 @@ class Starter
 
         $commandData = $this->getCommandData($commandName);
 
+        if ($commandName == self::helpCommandName) {
+            $target = array_shift($argv);
+            $this->trace->outputCommandHelp($commandData['commandInfos'], $target);
+            return;
+        }
+
         // コマンドがないときはコマンド一覧表示
         if (! $commandData['currentCommandInfo']) {
             if ($commandName) {
                 echo "$commandName command is not found." . PHP_EOL;
             }
 
-            $this->outputCommandInfos($commandData['commandInfos']);
+            $this->trace->outputCommandInfos($commandData['commandInfos']);
             return;
         }
 
@@ -46,7 +60,7 @@ class Starter
                 'path' => __DIR__ . '/Commands',
                 'prefix' => "SFW\\Console\\Commands",
             ],
-            
+
         ];
 
         $commandInfos = [];
@@ -55,7 +69,7 @@ class Starter
         foreach ($conf as $row) {
             $path = $row['path'];
             $prefix = $row['prefix'];
-            
+
             $phpFiles = Path::scanPhpFiles($path);
             foreach ($phpFiles as $file) {
                 $name = pathinfo($file, PATHINFO_FILENAME);
@@ -64,6 +78,7 @@ class Starter
                 // クラス変数からコマンド名と説明文を取得
                 $command = $class::$name;
                 $desc = $class::$desc;
+                $descDetail = $class::$descDetail;
 
                 // アプリケーションベースコマンドなどは、コマンドがないのでスキップ
                 if (empty($command)) continue;
@@ -72,6 +87,7 @@ class Starter
                     'class' => $class,
                     'command' => $command,
                     'desc' => $desc,
+                    'descDetail' => $descDetail,
                 ];
 
                 $commandInfos[] = $commandInfo;
@@ -86,26 +102,6 @@ class Starter
             'commandInfos' => $commandInfos,
             'currentCommandInfo' => $currentCommandInfo,
         ];
-    }
-
-    /** コマンド情報表示 */
-    private function outputCommandInfos(array $commandInfos)
-    {
-        $rows = [];
-        $rows[] = [
-            'Command',
-            'Description',
-            'Class',
-        ];
-        foreach ($commandInfos as $commandInfo) {
-            $rows[] = [
-                $commandInfo['command'],
-                $commandInfo['desc'],
-                $commandInfo['class'],
-            ];
-        }
-
-        StdOut::table($rows);
     }
 
     /** ハンドラーを実行 */

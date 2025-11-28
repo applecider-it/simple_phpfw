@@ -17,6 +17,9 @@ class Test extends Command
     /** コマンド説明 */
     public static string $desc = 'ユニットテスト';
 
+    /** コマンド説明の詳細 */
+    public static string $descDetail = '--framework をつけると、フレームワークのテスト。';
+
     /** ハンドル */
     public function handle()
     {
