@@ -1,3 +1,7 @@
+<?php
+
+use SFW\Output\Html;
+?>
 <?php if (!empty($data['errors'])): ?>
     <div style="
         border-left: 6px solid #e74c3c;
@@ -16,7 +20,7 @@
         <ul style="margin-top:0.5rem; padding-left: 1.2rem;">
             <?php foreach ($data['errors'] as $arr): ?>
                 <?php foreach ($arr as $val): ?>
-                    <li><?= htmlspecialchars($val, ENT_QUOTES, 'UTF-8') ?></li>
+                    <li><?= Html::esc($val) ?></li>
                 <?php endforeach; ?>
             <?php endforeach; ?>
         </ul>

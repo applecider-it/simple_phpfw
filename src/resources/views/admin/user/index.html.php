@@ -23,7 +23,7 @@ use SFW\Core\Config;
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($data['users'] as $user) { ?>
+            <?php foreach ($data['users'] as $user): ?>
                 <tr style="border-bottom: 1px solid #ddd;">
                     <td class="app-table-cell"><?= Html::esc($user['name'] ?? '') ?></td>
                     <td class="app-table-cell"><?= Html::esc($user['email'] ?? '') ?></td>
@@ -41,7 +41,7 @@ use SFW\Core\Config;
                         </form>
                     </td>
                 </tr>
-            <?php } ?>
+            <?php endforeach; ?>
         </tbody>
     </table>
 </div>
