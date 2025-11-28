@@ -16,13 +16,4 @@ class Config
 
         return Arr::dotValue($config, $key);
     }
-
-    /** 設定ファイルをinclude */
-    public static function includeConfig()
-    {
-        // $envはインクルード先で利用する
-        $env = Env::load(SFW_PROJECT_ROOT . '/.env');
-        
-        return include(SFW_PROJECT_ROOT . '/config/config.php');
-    }
 }
