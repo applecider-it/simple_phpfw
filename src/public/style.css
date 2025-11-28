@@ -26,28 +26,37 @@
 /* ボタン */
 
 .app-btn-primary {
+    all: unset;
+    cursor: pointer;
     padding: 0.25rem 0.5rem;
     background-color: #3498db;
     color: white;
     border: none;
     text-decoration: none;
-    border-radius: 6px;
+    border-radius: 4px;
+    line-height: normal;
 }
 .app-btn-orange {
+    all: unset;
+    cursor: pointer;
     padding: 0.25rem 0.5rem;
     background-color: #f1c40f;
     color: white;
     border: none;
     text-decoration: none;
     border-radius: 4px;
+    line-height: normal;
 }
 .app-btn-danger {
+    all: unset;
+    cursor: pointer;
     padding: 0.25rem 0.5rem;
     background-color: #e74c3c;
     color: white;
     border: none;
     text-decoration: none;
     border-radius: 4px;
+    line-height: normal;
 }
 
 /* 通常リンク */
