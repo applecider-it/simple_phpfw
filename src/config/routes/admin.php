@@ -16,3 +16,4 @@ $router->post(Config::get('adminPrefix') . '/users/create', [AdminUserController
 $router->get(Config::get('adminPrefix') . '/users/{id}/edit', [AdminUserController::class, 'edit']);
 $router->post(Config::get('adminPrefix') . '/users/{id}/edit', [AdminUserController::class, 'update']);
 $router->post(Config::get('adminPrefix') . '/users/{id}/destroy', [AdminUserController::class, 'destroy']);
+$router->post(Config::get('adminPrefix') . '/users/{id}/restore', [AdminUserController::class, 'restore']);

@@ -29,16 +29,24 @@ use SFW\Core\Config;
                     <td class="app-table-cell"><?= Html::esc($user['email'] ?? '') ?></td>
                     <td class="app-table-cell"><?= $user['deleted_at'] ?? '' ?></td>
                     <td class="app-table-cell" style="text-align:center;">
-                        <a href="<?= Config::get('adminPrefix') ?>/users/<?= $user['id'] ?>/edit" class="app-btn-orange">
+                        <a href="<?= Config::get('adminPrefix') ?>/users/<?= $user['id'] ?>/edit" class="app-btn-primary">
                             更新
                         </a>
                     </td>
                     <td class="app-table-cell" style="text-align:center;">
-                        <form method="POST" action="<?= Config::get('adminPrefix') ?>/users/<?= $user['id'] ?>/destroy" onsubmit="return confirm('削除しますか？')" style="margin:0;">
-                            <button type="submit" class="app-btn-danger">
-                                論理削除
-                            </button>
-                        </form>
+                        <?php if ($user['deleted_at']): ?>
+                            <form method="POST" action="<?= Config::get('adminPrefix') ?>/users/<?= $user['id'] ?>/restore" onsubmit="return confirm('復元しますか？')" style="margin:0;">
+                                <button type="submit" class="app-btn-orange">
+                                    復元
+                                </button>
+                            </form>
+                        <?php else: ?>
+                            <form method="POST" action="<?= Config::get('adminPrefix') ?>/users/<?= $user['id'] ?>/destroy" onsubmit="return confirm('削除しますか？')" style="margin:0;">
+                                <button type="submit" class="app-btn-danger">
+                                    論理削除
+                                </button>
+                            </form>
+                        <?php endif; ?>
                     </td>
                 </tr>
             <?php endforeach; ?>

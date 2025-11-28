@@ -240,7 +240,9 @@ class DatabaseService
         Log::info('users 論理削除', [$rows]);
         $user = User::find($newId);
         Log::info('論理削除後再取得', [$user]);
-        $user = User::findKept($newId);
+        $user = User::queryIncludeId($newId)
+            ->scope([User::class, 'scopeKept'])
+            ->one();
         Log::info('論理削除後再取得（論理削除されたのを除外）', [$user]);
 
         // 物理削除

@@ -155,6 +155,17 @@ class UserController extends Controller
         Location::redirect(Config::get('adminPrefix') . "/users");
     }
 
+    /** 復元 */
+    public function restore()
+    {
+        $user = $this->user();
+        $userId = $user['id'];
+
+        User::restore($userId);
+
+        Location::redirect(Config::get('adminPrefix') . "/users");
+    }
+
     /** ユーザー取得 */
     private function user()
     {
