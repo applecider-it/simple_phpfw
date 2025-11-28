@@ -21,6 +21,10 @@ foreman start
 
 php ./bin/console
 
+ルート一覧
+
+php ./bin/console routes
+
 サンプルコマンド
 
 php ./bin/console app-samplecommand arg1 --opt1 arg2 --opt2=val2 arg3

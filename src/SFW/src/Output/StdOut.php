@@ -14,11 +14,14 @@ class StdOut
      * 
      * 最初の行はヘッダー扱いされる
      */
-    public static function table(array $rows)
+    public static function table(array $argRows)
     {
         $margin = 2;
         $separator = '|';
         $lineStr = '-';
+
+        // カラムのキーをそろえる
+        $rows = array_map('array_values', $argRows);
 
         // 各列の最大値を取得
         $colWidths = [];

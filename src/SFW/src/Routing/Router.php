@@ -18,6 +18,12 @@ class Router
     /** カレントのルート */
     public $currentRoute = null;
 
+    /** ルート定義を返す */
+    public function routes()
+    {
+        return $this->routes;
+    }
+
     /** GETメソッドルーツ追加 */
     public function get(string $path, $handler, array $options = [])
     {
@@ -38,6 +44,7 @@ class Router
         $pattern = '#^' . $pattern . '$#';
 
         $this->routes[$method][] = [
+            'path' => $path,
             'pattern' => $pattern,
             'handler' => $handler,
             'options' => $options,
