@@ -12,7 +12,13 @@ use SFW\Core\Config;
         </a>
     </div>
 
-    <table class="app-table">
+    <div style="margin-top: 1rem;">
+        <a href="<?= Config::get('adminPrefix') ?>/users" class="app-link-normal">全て</a>
+        <a href="<?= Config::get('adminPrefix') ?>/users?soft_delete=kept" class="app-link-normal">論理削除を除外</a>
+        <a href="<?= Config::get('adminPrefix') ?>/users?soft_delete=deleted" class="app-link-normal">論理削除済み</a>
+    </div>
+
+    <table style="margin-top: 1rem;" class="app-table">
         <thead>
             <tr style="background-color: #ecf0f1;">
                 <th class="app-table-cell" style="text-align: left;">Name</th>

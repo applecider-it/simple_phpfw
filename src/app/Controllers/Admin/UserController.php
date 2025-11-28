@@ -23,9 +23,14 @@ class UserController extends Controller
     /** トップ画面 */
     public function index()
     {
-        $users = User::query()
-            ->order("id desc")
-            ->all();
+        $query = User::query()
+            ->order("id desc");
+        
+        $softDelete = $this->params['soft_delete'] ?? null;
+        if ($softDelete === 'kept') $query->scope([User::class, 'scopeKept']);
+        if ($softDelete === 'deleted') $query->scope([User::class, 'scopeDeleted']);
+
+        $users = $query->all();
 
         $view = new View();
         return $view->render('layouts.app', [
@@ -91,7 +96,7 @@ class UserController extends Controller
         $newId = User::insert($form);
         Log::info('New User', [$newId]);
 
-        Location::redirect(Config::get('adminPrefix') . "/users/{$newId}/edit");
+        Location::redirect(Config::get('adminPrefix') . "/users/{$newId}/edit?msg=登録しました。");
     }
 
     /** 更新画面 */
@@ -101,7 +106,7 @@ class UserController extends Controller
 
         $view = new View();
         return $view->render('layouts.app', [
-            'content' => $view->render('admin.user.edit', $user),
+            'content' => $view->render('admin.user.edit', $user + ['message' => $this->params['msg'] ?? null]),
         ]);
     }
 
@@ -141,7 +146,7 @@ class UserController extends Controller
 
         User::update($userId, $form);
 
-        Location::redirect(Config::get('adminPrefix') . "/users/{$userId}/edit");
+        Location::redirect(Config::get('adminPrefix') . "/users/{$userId}/edit?msg=更新しました。");
     }
 
     /** 削除 */

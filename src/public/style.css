@@ -51,11 +51,11 @@
 }
 
 /* 通常リンク */
-a.app-normal-link {
+a.app-link-normal {
     color: #3498db;
     text-decoration: none;
 }
-a.app-normal-link:hover {
+a.app-link-normal:hover {
     color: #2980b9;
     text-decoration: underline;
 }
