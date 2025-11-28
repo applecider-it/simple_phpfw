@@ -6,11 +6,15 @@ cd /home/owner/workspace/tmp/simple_phpfw/src
 
 サーバー起動
 
-php -S localhost:8000 -t public
+php -S localhost:9000 -t public
 
 php ./bin/console server
 
 foreman start
+
+-----------------------------------
+
+http://localhost:9000/
 
 -----------------------------------
 
