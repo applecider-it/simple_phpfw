@@ -25,6 +25,10 @@ http://localhost:9000/
 
 php ./bin/console
 
+ヘルプ
+
+php ./bin/console help test
+
 ルート一覧
 
 php ./bin/console routes
