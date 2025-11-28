@@ -1,23 +1,23 @@
-body {
+.app-body {
     font-family: sans-serif;
     line-height: 1.6;
     margin: 0;
     padding: 0;
 }
-header {
+.app-header {
     background: #333;
     color: #fff;
     padding: 1rem;
 }
-header a {
+.app-header a {
     color: #fff;
     margin-right: 1rem;
     text-decoration: none;
 }
-main {
+.app-main {
     padding: 3rem 5rem;
 }
-footer {
+.app-footer {
     background: #eee;
     text-align: center;
     padding: 1rem;
@@ -48,6 +48,16 @@ footer {
     border: none;
     text-decoration: none;
     border-radius: 4px;
+}
+
+/* 通常リンク */
+a.app-normal-link {
+    color: #3498db;
+    text-decoration: none;
+}
+a.app-normal-link:hover {
+    color: #2980b9;
+    text-decoration: underline;
 }
 
 /* テーブル */

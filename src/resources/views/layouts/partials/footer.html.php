@@ -2,6 +2,6 @@
 
 use SFW\Core\Config;
 ?>
-<footer>
+<footer class="app-footer">
     <p>&copy; <?= date('Y') ?> <?= Config::get('applicationName') ?></p>
 </footer>

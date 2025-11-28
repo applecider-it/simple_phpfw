@@ -7,7 +7,7 @@ use SFW\Core\Config;
 
 <div>
     <div style="margin-bottom: 1rem;">
-        <a href="<?= Config::get('adminPrefix') ?>/users">一覧</a>
+        <a href="<?= Config::get('adminPrefix') ?>/users" class="app-normal-link">一覧</a>
     </div>
 
     <?= $this->render('partials.validation.errors', ['errors' => $data['errors'] ?? null]) ?>
