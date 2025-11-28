@@ -146,6 +146,17 @@ class UserController extends Controller
         Location::redirect(Config::get('adminPrefix') . "/users/{$id}/edit");
     }
 
+    /** 削除 */
+    public function destroy()
+    {
+        $user = $this->user();
+        $id = $user['id'];
+
+        User::softDelete($id);
+
+        Location::redirect(Config::get('adminPrefix') . "/users");
+    }
+
     /** ユーザー取得 */
     private function user()
     {
