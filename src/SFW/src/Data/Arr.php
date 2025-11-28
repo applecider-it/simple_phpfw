@@ -25,4 +25,16 @@ class Arr
 
         return $array;
     }
+
+    /**
+     * 特定のキーだけ取得
+     */
+    public static function choise(array $array, array $keys)
+    {
+        return array_filter(
+            $array,
+            fn($value, $key) => in_array($key, $keys, true),
+            ARRAY_FILTER_USE_BOTH
+        );
+    }
 }

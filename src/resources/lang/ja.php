@@ -13,5 +13,14 @@ return [
 
             'original' => '{label}は{validValue}でなければなりません。',
         ],
-    ]
+    ],
+    'models' => [
+        'user' => [
+            'attributes' => [
+                'name' => '名前',
+                'email' => 'メールアドレス',
+                'password' => 'パスワード',    
+            ],
+        ],
+    ],
 ];

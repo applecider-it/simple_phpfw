@@ -1,14 +1,11 @@
 <?php
+
 /**
  * ルート設定
  */
 
-use SFW\Core\Config;
-
 use App\Controllers\HomeController;
 use App\Controllers\DevelopmentController;
-
-use App\Controllers\Admin\UserController as AdminUserController;
 
 // トップページ
 $router->get('/', [HomeController::class, 'index']);
@@ -24,5 +21,4 @@ $router->get('/development/json_test', [DevelopmentController::class, 'json_test
 $router->get('/development/redirect_test', [DevelopmentController::class, 'redirect_test'], ['name' => 'redirect_test']);
 $router->get('/development/exeption_test', [DevelopmentController::class, 'exeption_test']);
 
-// ユーザー管理画面
-$router->get(Config::get('adminPrefix') . '/users', [AdminUserController::class, 'index']);
+include(__DIR__ . '/routes/admin.php');

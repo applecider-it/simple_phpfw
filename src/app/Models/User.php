@@ -15,4 +15,22 @@ class User extends Model
         return User\Tweet::query()
             ->where("user_id = ?", $user_id);
     }
+
+    /** 名前のバリデーション */
+    public static function validationName()
+    {
+        return ['required'];
+    }
+
+    /** メールアドレスのバリデーション */
+    public static function validationEmail()
+    {
+        return ['required', 'email'];
+    }
+
+    /** パスワードのバリデーション */
+    public static function validationPassword()
+    {
+        return ['required', 'confirm'];
+    }
 }
