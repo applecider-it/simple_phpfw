@@ -19,4 +19,7 @@ return [
         'password' => $env['SFW_DATABASE_PASSWORD'],
         'charset'  => $env['SFW_DATABASE_CHARSET'],
     ],
+
+    // 管理画面のprefix
+    'adminPrefix' => '/admin_secret',
 ];
