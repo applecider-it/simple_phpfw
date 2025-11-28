@@ -18,13 +18,13 @@ class Test extends Command
     public static string $desc = 'ユニットテスト';
 
     /** コマンド説明の詳細 */
-    public static string $descDetail = '--framework をつけると、フレームワークのテスト。';
+    public static string $descDetail = '--fw をつけると、フレームワークのテスト。';
 
     /** ハンドル */
     public function handle()
     {
         $starter = new Starter();
 
-        $starter->exec($this->options['framework'] ?? false);
+        $starter->exec($this->options['fw'] ?? false);
     }
 }

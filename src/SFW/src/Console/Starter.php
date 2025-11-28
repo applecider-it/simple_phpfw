@@ -9,7 +9,7 @@ use SFW\Data\Path;
  */
 class Starter
 {
-    public const helpCommandName = 'help';
+    public const HELP_COMMAND_NAME = 'help';
 
     private Trace $trace;
 
@@ -26,32 +26,52 @@ class Starter
 
         $commandName = array_shift($argv);
 
-        $commandData = $this->getCommandData($commandName);
+        $commandInfos = $this->getCommandInfos();
+        $currentCommandInfo = $this->getCurrentCommandInfo($commandName, $commandInfos);
 
-        if ($commandName == self::helpCommandName) {
-            $target = array_shift($argv);
-            $this->trace->outputCommandHelp($commandData['commandInfos'], $target);
+        // ヘルプコマンドの時はヘルプ処理
+        if ($commandName == self::HELP_COMMAND_NAME) {
+            $this->helpProccess($argv, $commandInfos);
             return;
         }
 
         // コマンドがないときはコマンド一覧表示
-        if (! $commandData['currentCommandInfo']) {
+        if (! $currentCommandInfo) {
             if ($commandName) {
-                echo "$commandName command is not found." . PHP_EOL;
+                echo "$commandName command not found." . str_repeat(PHP_EOL, 2);
             }
 
-            $this->trace->outputCommandInfos($commandData['commandInfos']);
+            $this->trace->outputCommandInfos($commandInfos);
             return;
         }
 
-        $class = $commandData['currentCommandInfo']['class'];
+        $class = $currentCommandInfo['class'];
         $this->runHandler($class, $argv);
     }
 
-    /** コマンド情報取得 */
-    private function getCommandData(?string $commandName)
+    /** ヘルプ処理 */
+    private function helpProccess(array $argv, array $commandInfos)
     {
-        $commandInfos = $this->getCommandInfos();
+        $target = array_shift($argv);
+        if (! $target) {
+            echo "Select the command for which you want to view details." . str_repeat(PHP_EOL, 2);
+            $this->trace->outputCommandInfos($commandInfos);
+            return;
+        }
+
+        $tergetCommandInfo = $this->getCurrentCommandInfo($target, $commandInfos);
+        if (! $tergetCommandInfo) {
+            echo "Help cannot be displayed because there is no {$target} command." . str_repeat(PHP_EOL, 2);
+            $this->trace->outputCommandInfos($commandInfos);
+            return;
+        }
+
+        $this->trace->outputCommandDetail($tergetCommandInfo);
+    }
+
+    /** 対象のコマンド情報取得 */
+    private function getCurrentCommandInfo(?string $commandName, array $commandInfos)
+    {
         $currentCommandInfo = null;
 
         foreach ($commandInfos as $commandInfo) {
@@ -61,10 +81,7 @@ class Starter
             }
         }
 
-        return [
-            'commandInfos' => $commandInfos,
-            'currentCommandInfo' => $currentCommandInfo,
-        ];
+        return $currentCommandInfo;
     }
 
     /** コマンド一覧取得 */
@@ -79,7 +96,6 @@ class Starter
                 'path' => __DIR__ . '/Commands',
                 'prefix' => "SFW\\Console\\Commands",
             ],
-
         ];
 
         $commandInfos = [];

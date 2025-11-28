@@ -33,6 +33,10 @@ php ./bin/console help test
 
 php ./bin/console routes
 
+optionsも表示
+
+php ./bin/console routes --op
+
 サンプルコマンド
 
 php ./bin/console app-samplecommand arg1 --opt1 arg2 --opt2=val2 arg3
@@ -42,7 +46,7 @@ php ./bin/console app-samplecommand arg1 --opt1 arg2 --opt2=val2 arg3
 テスト
 
 
-アプリケーション
+アプリケーションテスト
 
 php ./bin/console test
 
@@ -50,8 +54,8 @@ DB切り替え
 
 SFW_DATABASE_DATABASE=simple_phpfw_test php ./bin/console test
 
-フレームワーク
+フレームワークテスト
 
-php ./bin/console test --framework
+php ./bin/console test --fw
 
 

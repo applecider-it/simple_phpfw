@@ -19,7 +19,7 @@ class Trace
             'Class',
         ];
         $rows[] = [
-            Starter::helpCommandName,
+            Starter::HELP_COMMAND_NAME,
             'ヘルプ表示',
             '',
         ];
@@ -34,26 +34,8 @@ class Trace
         StdOut::table($rows);
     }
 
-    /** コマンドヘルプ表示 */
-    public function outputCommandHelp(array $commandInfos, $target)
-    {
-        if (! $target) {
-            echo "Select the command for which you want to view details." . PHP_EOL;
-            return;
-        }
-
-        foreach ($commandInfos as $commandInfo) {
-            if ($commandInfo['command'] === $target) {
-                $this->outputCommandDetail($commandInfo);
-                return;
-            }
-        }
-
-        echo "{$target} command not found." . PHP_EOL;
-    }
-
     /** コマンド詳細表示 */
-    private function outputCommandDetail(array $commandInfo)
+    public function outputCommandDetail(array $commandInfo)
     {
         echo "Class:" . PHP_EOL;
         echo $commandInfo['class'] . PHP_EOL;

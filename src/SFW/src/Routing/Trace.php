@@ -11,7 +11,8 @@ use SFW\Output\StdOut;
 class Trace
 {
     /** ルート情報を標準出力 */
-    public static function outputRoutes() {
+    public static function outputRoutes(bool $includeOptions)
+    {
         $router = App::get('router');
 
         $routes = $router->routes();
@@ -20,18 +21,22 @@ class Trace
             '',
             'Path',
             'Handler',
-            'Options',
         ];
+
+        if ($includeOptions) $header[] = 'Options';
 
         $rows = [];
         foreach ($routes as $method => $methodRoutes) {
             foreach ($methodRoutes as $route) {
-                $rows[] = [
+                $row = [
                     'method' => $method,
                     'path' => $route['path'],
                     'handler' => implode('::', $route['handler']),
-                    'options' => json_encode($route['options'], JSON_UNESCAPED_UNICODE),
                 ];
+
+                if ($includeOptions) $row['options'] = json_encode($route['options'], JSON_UNESCAPED_UNICODE);
+
+                $rows[] = $row;
             }
         }
 
