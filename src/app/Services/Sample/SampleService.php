@@ -6,6 +6,7 @@ class SampleService
 {
     public function sampleMethod()
     {
-        return 123;
+        $subService = new SampleService\SubService();
+        return $subService->sampleSubMethod();
     }
 }
