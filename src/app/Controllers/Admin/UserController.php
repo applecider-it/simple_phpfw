@@ -54,7 +54,7 @@ class UserController extends Controller
     /** 新規作成 */
     public function store()
     {
-        $user = Arr::choise($this->params, ['name', 'email', 'password', 'password_confirm']);
+        $form = Arr::choise($this->params, ['name', 'email', 'password', 'password_confirm']);
 
         $rules = [
             'name' => User::validationName(),
@@ -68,7 +68,7 @@ class UserController extends Controller
             'password' => Lang::get('models.user.attributes.password'),
         ];
 
-        $v = Validator::make($user, $rules, $labels);
+        $v = Validator::make($form, $rules, $labels);
 
         $errors = null;
 
@@ -79,16 +79,16 @@ class UserController extends Controller
             return $view->render('layouts.app', [
                 'content' => $view->render(
                     'admin.user.create',
-                    $user + ['errors' => $errors]
+                    $form + ['errors' => $errors]
                 ),
             ]);
         }
 
-        unset($user['password_confirm']);
+        unset($form['password_confirm']);
 
-        $user['password'] = password_hash($user['password'], PASSWORD_DEFAULT);
+        $form['password'] = password_hash($form['password'], PASSWORD_DEFAULT);
 
-        $newId = User::insert($user);
+        $newId = User::insert($form);
         Log::info('New User', [$newId]);
 
         Location::redirect(Config::get('adminPrefix') . "/users/{$newId}/edit");
@@ -98,8 +98,6 @@ class UserController extends Controller
     public function edit()
     {
         $user = $this->user();
-
-        $user = Arr::choise($user, ['name', 'email']);
 
         $view = new View();
         return $view->render('layouts.app', [
@@ -113,7 +111,7 @@ class UserController extends Controller
         $user = $this->user();
         $userId = $user['id'];
 
-        $user = Arr::choise($this->params, ['name', 'email']);
+        $form = Arr::choise($this->params, ['name', 'email']);
 
         $rules = [
             'name' => User::validationName(),
@@ -125,7 +123,7 @@ class UserController extends Controller
             'email' => Lang::get('models.user.attributes.email'),
         ];
 
-        $v = Validator::make($user, $rules, $labels);
+        $v = Validator::make($form, $rules, $labels);
 
         $errors = null;
 
@@ -136,12 +134,12 @@ class UserController extends Controller
             return $view->render('layouts.app', [
                 'content' => $view->render(
                     'admin.user.edit',
-                    $user + ['errors' => $errors]
+                    $form + ['errors' => $errors] + $user
                 ),
             ]);
         }
 
-        User::update($userId, $user);
+        User::update($userId, $form);
 
         Location::redirect(Config::get('adminPrefix') . "/users/{$userId}/edit");
     }
