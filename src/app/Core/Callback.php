@@ -9,7 +9,7 @@ use SFW\Output\Log;
  */
 class Callback
 {
-    /** 初期化後 */
+    /** 初期化後。アプリケーションで利用するシングルトンの登録などをする。 */
     public function afterInit()
     {
         Log::info('afterInit !!!!');

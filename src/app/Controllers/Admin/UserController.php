@@ -33,7 +33,7 @@ class UserController extends Controller
         $users = $query->all();
 
         $view = new View();
-        return $view->render('layouts.app', [
+        return $view->render('admin.layouts.app', [
             'content' => $view->render('admin.user.index', [
                 'users' => $users,
             ]),
@@ -51,7 +51,7 @@ class UserController extends Controller
         ];
 
         $view = new View();
-        return $view->render('layouts.app', [
+        return $view->render('admin.layouts.app', [
             'content' => $view->render('admin.user.create', $initialData),
         ]);
     }
@@ -81,7 +81,7 @@ class UserController extends Controller
             $errors = $v->errors();
 
             $view = new View();
-            return $view->render('layouts.app', [
+            return $view->render('admin.layouts.app', [
                 'content' => $view->render(
                     'admin.user.create',
                     $form + ['errors' => $errors]
@@ -105,7 +105,7 @@ class UserController extends Controller
         $user = $this->user();
 
         $view = new View();
-        return $view->render('layouts.app', [
+        return $view->render('admin.layouts.app', [
             'content' => $view->render('admin.user.edit', $user + ['message' => $this->params['msg'] ?? null]),
         ]);
     }
@@ -136,7 +136,7 @@ class UserController extends Controller
             $errors = $v->errors();
 
             $view = new View();
-            return $view->render('layouts.app', [
+            return $view->render('admin.layouts.app', [
                 'content' => $view->render(
                     'admin.user.edit',
                     $form + ['errors' => $errors] + $user

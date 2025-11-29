@@ -79,6 +79,12 @@ a.app-link-normal:hover {
 .app-table-cell {
     padding: 0.5rem 1rem;
 }
+.app-table-row-header {
+    background-color: #ecf0f1;
+}
+.app-table-row-data {
+    border-bottom: 1px solid #ddd;
+}
 
 /* フォーム */
 

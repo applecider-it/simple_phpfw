@@ -2,6 +2,8 @@
 
 return [
     'hellow' => 'こんにちは',
+
+    // バリデーション用
     'validation' => [
         'errors' => [
             'required' => '{label}は必須です。',
@@ -14,12 +16,14 @@ return [
             'original' => '{label}は{validValue}でなければなりません。',
         ],
     ],
+
+    // モデル用
     'models' => [
         'user' => [
             'attributes' => [
                 'name' => '名前',
                 'email' => 'メールアドレス',
-                'password' => 'パスワード',    
+                'password' => 'パスワード',
             ],
         ],
     ],

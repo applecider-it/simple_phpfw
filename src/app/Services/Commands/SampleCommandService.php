@@ -4,6 +4,9 @@ namespace App\Services\Commands;
 
 use SFW\Core\App;
 
+/**
+ * サンプルコマンド用サービス
+ */
 class SampleCommandService
 {
     public function exec(array $params, array $options)
