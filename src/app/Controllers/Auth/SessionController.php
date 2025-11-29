@@ -40,8 +40,6 @@ class SessionController extends Controller
             ->where('email = ?', $email)
             ->one();
 
-        Log::info('user', [$user]);
-
         if ($user) {
             if (password_verify($password, $user['password'])) {
                 Log::info('パスワード認証成功');
@@ -54,14 +52,14 @@ class SessionController extends Controller
             }
         }
 
-        $initialData = [
+        $form = [
             'email' => $email,
             'password' => '',
         ];
 
         $view = new View();
         return $view->render('layouts.app', [
-            'content' => $view->render('auth.session.login', $initialData),
+            'content' => $view->render('auth.session.login', $form),
         ]);
     }
 

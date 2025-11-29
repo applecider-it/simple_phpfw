@@ -3,6 +3,7 @@
 namespace App\Core;
 
 use SFW\Output\Log;
+use SFW\Core\App;
 
 /**
  * フレームワークからのコールバックを受け取る
@@ -13,6 +14,9 @@ class Callback
     public function afterInit()
     {
         Log::info('afterInit !!!!');
+
+        // ログインユーザー情報の入れ物を作る
+        App::getContainer()->setSingleton('user', null);
     }
 
     /** クエリー後 */

@@ -18,7 +18,7 @@ class Container
     /** シングルトン取得 */
     public function getSingleton(string $key)
     {
-        if (isset($this->singleton[$key])) {
+        if (array_key_exists($key, $this->singleton)) {
             return $this->singleton[$key];
         }
 

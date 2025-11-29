@@ -8,6 +8,8 @@ use SFW\Core\Config;
 use SFW\Core\App;
 use SFW\Routing\Location;
 
+use App\Models\User;
+
 /**
  * アプリケーションベースコントローラー
  */
@@ -22,7 +24,7 @@ abstract class Controller extends BaseController
             Log::info('Controller: params: ', $this->params);
         }
 
-        // リダイレクト処理のサンプル
+        // beforeActionでの、リダイレクト処理のサンプル
         if ((App::get('router')->currentRoute['options']['name'] ?? null) === 'redirect_test') {
             Log::info('redirect_test');
 
@@ -31,9 +33,20 @@ abstract class Controller extends BaseController
             Log::info('このログは出力されない。');
         }
 
+        // ログインユーザー取得
+        if (isset($_SESSION["user_id"])) {
+            $user = User::queryIncludeId($_SESSION["user_id"])
+                ->scope([User::class, 'kept'])
+                ->one();
+
+            if ($user) {
+                App::getContainer()->setSingleton('user', $user);
+            }
+        }
+
         // 認証処理
         if ((App::get('router')->currentRoute['options']['auth'] ?? null) === 'user') {
-            if (! isset($_SESSION["user_id"])) {
+            if (! App::get('user')) {
                 Location::redirect('/');
             }
         }
