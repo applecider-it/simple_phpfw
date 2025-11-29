@@ -9,8 +9,6 @@ use SFW\Core\Config;
 use SFW\Routing\Location;
 use SFW\Output\Log;
 
-use App\Controllers\Controller;
-
 use App\Models\User;
 
 use App\Core\Validator;

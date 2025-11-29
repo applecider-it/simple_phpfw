@@ -20,5 +20,8 @@ $router->get('/development/validation_test', [DevelopmentController::class, 'val
 $router->get('/development/json_test', [DevelopmentController::class, 'json_test']);
 $router->get('/development/redirect_test', [DevelopmentController::class, 'redirect_test'], ['name' => 'redirect_test']);
 $router->get('/development/exeption_test', [DevelopmentController::class, 'exeption_test']);
+$router->get('/development/auth_test', [DevelopmentController::class, 'auth_test'], ['auth' => 'user']);
 
+// 別ファイルにしているルート読み込み
+include(__DIR__ . '/routes/auth.php');
 include(__DIR__ . '/routes/admin.php');

@@ -28,5 +28,11 @@ abstract class Controller extends BaseController
 
             Log::info('after redirect');
         }
+
+        if ((App::get('router')->currentRoute['options']['auth'] ?? null) === 'user') {
+            if (! isset($_SESSION["user_id"])) {
+                Location::redirect('/');
+            }
+        }
     }
 }

@@ -7,5 +7,10 @@ use SFW\Core\Config;
     <nav>
         <a href="/">Home</a>
         <a href="/about">About</a>
+        <?php if (isset($_SESSION["user_id"])): ?>
+            <a href="/logout">Logout</a>
+        <?php else: ?>
+            <a href="/login">Login</a>
+        <?php endif ?>
     </nav>
 </header>

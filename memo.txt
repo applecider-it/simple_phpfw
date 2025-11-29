@@ -16,6 +16,8 @@ foreman start
 
 http://localhost:9000/
 
+test@localhost.com / testtest
+
 http://localhost:9000/admin_secret
 
 -----------------------------------

@@ -4,8 +4,6 @@ namespace App\Controllers\Admin;
 
 use SFW\Output\View;
 
-use App\Controllers\Controller;
-
 /**
  * ホームコントローラー
  */
