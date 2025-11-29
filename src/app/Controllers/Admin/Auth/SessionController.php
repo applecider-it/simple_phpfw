@@ -1,0 +1,74 @@
+<?php
+
+namespace App\Controllers\Admin\Auth;
+
+use SFW\Output\View;
+use SFW\Output\Log;
+use SFW\Routing\Location;
+use SFW\Core\Config;
+
+use App\Controllers\Admin\Controller;
+
+use App\Models\AdminUser;
+
+/**
+ * 管理者ログイン管理コントローラー
+ */
+class SessionController extends Controller
+{
+    /** ログイン画面 */
+    public function login()
+    {
+        $initialData = [
+            'email' => '',
+            'password' => '',
+        ];
+
+        $view = new View();
+        return $view->render('admin.layouts.app', [
+            'content' => $view->render('admin.auth.session.login', $initialData),
+        ]);
+    }
+
+    /** ログイン */
+    public function post()
+    {
+        $email = $this->params['email'];
+        $password = $this->params['password'];
+
+        $adminUser = AdminUser::query()
+            ->where('email = ?', $email)
+            ->one();
+
+        if ($adminUser) {
+            if (password_verify($password, $adminUser['password'])) {
+                Log::info('パスワード認証成功');
+
+                session_regenerate_id(true);
+
+                $_SESSION["admin_user_id"] = $adminUser["id"];
+
+                Location::redirect(Config::get('adminPrefix'));
+            }
+        }
+
+        $form = [
+            'email' => $email,
+            'password' => '',
+        ];
+
+        $view = new View();
+        return $view->render('admin.layouts.app', [
+            'content' => $view->render('admin.auth.session.login', $form),
+        ]);
+    }
+
+    /** ログアウト */
+    public function logout()
+    {
+        session_unset();
+        session_destroy();
+
+        Location::redirect(Config::get('adminPrefix') . "/login");
+    }
+}

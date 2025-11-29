@@ -17,6 +17,9 @@ class Callback
 
         // ログインユーザー情報の入れ物を作る
         App::getContainer()->setSingleton('user', null);
+
+        // 管理画面のログインユーザー情報の入れ物を作る
+        App::getContainer()->setSingleton('adminUser', null);
     }
 
     /** クエリー後 */

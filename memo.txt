@@ -20,6 +20,13 @@ test@localhost.com / testtest
 
 http://localhost:9000/admin_secret
 
+admin@localhost.com / adminadmin
+
+
+管理者作成
+
+php ./bin/console runner "echo App\Models\AdminUser::insert(['name' => 'admin', 'email' => 'admin@localhost.com', 'password' => password_hash('adminadmin', PASSWORD_DEFAULT)]);"
+
 -----------------------------------
 
 コマンド
@@ -40,6 +47,11 @@ php ./bin/console routes
 optionsも表示
 
 php ./bin/console routes --op
+
+ランナー
+
+php ./bin/console runner "print_r(App\Models\User::query()->one());"
+
 
 サンプルコマンド
 

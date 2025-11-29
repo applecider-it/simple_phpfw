@@ -25,3 +25,4 @@ $router->get('/development/auth_test', [DevelopmentController::class, 'auth_test
 // 別ファイルにしているルート読み込み
 include(__DIR__ . '/routes/auth.php');
 include(__DIR__ . '/routes/admin.php');
+include(__DIR__ . '/routes/admin_auth.php');
