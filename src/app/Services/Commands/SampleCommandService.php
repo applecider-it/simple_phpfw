@@ -3,6 +3,7 @@
 namespace App\Services\Commands;
 
 use SFW\Core\App;
+use SFW\Data\Json;
 
 /**
  * サンプルコマンド用サービス
@@ -12,13 +13,13 @@ class SampleCommandService
     public function exec(array $params, array $options)
     {
         echo "params\n";
-        print_r($params);
+        Json::trace($params);
 
         $param0 = $params[0] ?? null;
         echo "param0: $param0\n";
 
         echo "options\n";
-        print_r($options);
+        Json::trace($options);
 
         if (isset($options['opt1'])) {
             echo "opt1!!!!\n";
@@ -33,6 +34,6 @@ class SampleCommandService
         $user = $db->one("SELECT * FROM users WHERE id > ? LIMIT 1", 0);
 
         echo "user\n";
-        print_r($user);
+        Json::trace($user);
     }
 }
