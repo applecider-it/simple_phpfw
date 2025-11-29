@@ -127,12 +127,15 @@ class Query
     /**
      * スコープ適用
      * 
-     * $scopeが配列の時は、クラス関数扱い
+     * 例：
+     * $scopeが[User::class, 'exampleScope']の場合、User::scopeExampleScopeというクラスメソッドを使う。
      */
-    public function scope(string|array $scope, ...$params): self
+    public function scope(array $scope, ...$params): self
     {
-        if (is_array($scope)) $scope = implode('::', $scope);
-        $scope($this, ...$params);
+        [$class, $name] = $scope;
+        $method = 'scope' . ucfirst($name);
+        $classMethod = $class . '::' . $method;
+        $classMethod($this, ...$params);
         return $this;
     }
 

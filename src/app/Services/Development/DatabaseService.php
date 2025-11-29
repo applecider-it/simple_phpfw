@@ -186,7 +186,7 @@ class DatabaseService
 
         // 複雑なクエリーの動作確認
         $tweets = User::tweets($newId)
-            ->scope([Tweet::class, 'scopeUser'])
+            ->scope([Tweet::class, 'user'])
             ->order("user_tweets.id asc")
             ->column("user_tweets.*")
             ->column("users.name as user_name")
@@ -218,14 +218,14 @@ class DatabaseService
             ->distinct()
             ->column("user_id")
             ->when(true, function (Query $query) use ($min, $max) {
-                Tweet::scopeSample($query, $min, $max);
+                Tweet::scopeSampleScope($query, $min, $max);
             })
             ->where('content NOT LIKE ?', '%aaaa%')
             //->in('user_id IN', [1, 2, 3, 4])
             ->in('user_id NOT IN', [1000, 2000, 3000, 4000])
-            ->scope([Tweet::class, 'scopeSample'], 0, 8000)
-            ->when(false, function (Query $query) {
-                Tweet::scopeSample($query, 10000, 0);
+            ->scope([Tweet::class, 'sampleScope'], 0, 8000)
+            ->when(false, function (Query $query) { // whenの$conditionがfalseの時
+                Tweet::scopeSampleScope($query, 10000, 0);
             })
             ->all();
 
@@ -241,7 +241,7 @@ class DatabaseService
         $user = User::find($newId);
         Log::info('論理削除後再取得', [$user]);
         $user = User::queryIncludeId($newId)
-            ->scope([User::class, 'scopeKept'])
+            ->scope([User::class, 'kept'])
             ->one();
         Log::info('論理削除後再取得（論理削除されたのを除外）', [$user]);
 

@@ -27,8 +27,8 @@ class UserController extends Controller
             ->order("id desc");
         
         $softDelete = $this->params['soft_delete'] ?? null;
-        if ($softDelete === 'kept') $query->scope([User::class, 'scopeKept']);
-        if ($softDelete === 'deleted') $query->scope([User::class, 'scopeDeleted']);
+        if ($softDelete === 'kept') $query->scope([User::class, 'kept']);
+        if ($softDelete === 'deleted') $query->scope([User::class, 'deleted']);
 
         $users = $query->all();
 
