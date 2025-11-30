@@ -12,6 +12,7 @@ return [
             'min' => '{label}は{min}以上でなければなりません。',
             'max' => '{label}は{max}以下でなければなりません。',
             'confirm' => '{label}と{label}の確認の値が一致しません。',
+            'unique' => '{label}がすでに利用されています。',
 
             'original' => '{label}は{validValue}でなければなりません。',
         ],

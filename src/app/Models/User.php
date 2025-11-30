@@ -26,9 +26,14 @@ class User extends Model
     }
 
     /** メールアドレスのバリデーション */
-    public static function validationEmail()
+    public static function validationEmail(?array $user = null)
     {
-        return ['required', 'email'];
+        $id = $user['id'] ?? null;
+
+        $query = self::query();
+        if ($id) $query->where('id != ?', $id); 
+
+        return ['required', 'email', ['unique', 'email', $query]];
     }
 
     /** パスワードのバリデーション */

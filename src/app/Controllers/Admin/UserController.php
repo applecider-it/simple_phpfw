@@ -118,7 +118,7 @@ class UserController extends Controller
 
         $rules = [
             'name' => User::validationName(),
-            'email' => User::validationEmail(),
+            'email' => User::validationEmail($user),
         ];
 
         $labels = [
