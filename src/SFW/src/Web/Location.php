@@ -1,6 +1,6 @@
 <?php
 
-namespace SFW\Routing;
+namespace SFW\Web;
 
 /**
  * ロケーション管理

@@ -4,7 +4,8 @@ namespace App\Controllers\Auth;
 
 use SFW\Output\View;
 use SFW\Output\Log;
-use SFW\Routing\Location;
+use SFW\Web\Location;
+use SFW\Web\Session;
 
 use App\Controllers\Controller;
 
@@ -44,9 +45,9 @@ class SessionController extends Controller
             if (password_verify($password, $user['password'])) {
                 Log::info('パスワード認証成功');
 
-                session_regenerate_id(true);
+                Session::reflesh();
 
-                $_SESSION["user_id"] = $user["id"];
+                Session::set(User::AUTH_SESSION_KEY, $user["id"]);
 
                 Location::redirect("/");
             }
@@ -66,8 +67,7 @@ class SessionController extends Controller
     /** ログアウト */
     public function logout()
     {
-        session_unset();
-        session_destroy();
+        Session::clear(User::AUTH_SESSION_KEY);
 
         Location::redirect("/");
     }

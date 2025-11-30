@@ -1,6 +1,6 @@
 <?php
 
-namespace SFW\Routing;
+namespace SFW\Web;
 
 /**
  * ルート管理
@@ -81,13 +81,13 @@ class Router
 
         $this->currentRoute = $route;
 
-        /** @var \SFW\Routing\Controller */
+        /** @var \SFW\Web\Controller */
         $obj = new $class();
 
         // 一番左が優先される
         $obj->params = $params + $_GET + $_POST;
 
-        session_start();
+        Session::start();
 
         $obj->beforeAction();
 

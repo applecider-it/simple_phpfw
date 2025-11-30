@@ -15,7 +15,7 @@ class Web
     /** 実行 */
     public function dispatch()
     {
-        /** @var \SFW\Routing\Router */
+        /** @var \SFW\Web\Router */
         $router = App::get('router');
 
         try {

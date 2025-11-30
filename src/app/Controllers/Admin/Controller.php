@@ -6,7 +6,8 @@ use App\Controllers\Controller as BaseController;
 
 use SFW\Core\App;
 use SFW\Core\Config;
-use SFW\Routing\Location;
+use SFW\Web\Location;
+use SFW\Web\Session;
 
 use App\Models\AdminUser;
 
@@ -21,8 +22,9 @@ abstract class Controller extends BaseController
         parent::beforeAction();
 
         // ログインユーザー取得
-        if (isset($_SESSION["admin_user_id"])) {
-            $adminUser = AdminUser::queryIncludeId($_SESSION["admin_user_id"])
+        $adminUserId = Session::get(AdminUser::AUTH_SESSION_KEY);
+        if ($adminUserId) {
+            $adminUser = AdminUser::queryIncludeId($adminUserId)
                 ->one();
 
             if ($adminUser) {

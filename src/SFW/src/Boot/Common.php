@@ -7,7 +7,7 @@ use SFW\Core\Container;
 use SFW\Core\Env;
 use SFW\Core\Lang;
 use SFW\Core\Config;
-use SFW\Routing\Router;
+use SFW\Web\Router;
 use SFW\Database\DB;
 use SFW\Data\Path;
 

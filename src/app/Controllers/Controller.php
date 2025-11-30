@@ -2,11 +2,12 @@
 
 namespace App\Controllers;
 
-use SFW\Routing\Controller as BaseController;
+use SFW\Web\Controller as BaseController;
 use SFW\Output\Log;
 use SFW\Core\Config;
 use SFW\Core\App;
-use SFW\Routing\Location;
+use SFW\Web\Location;
+use SFW\Web\Session;
 
 use App\Models\User;
 
@@ -34,8 +35,9 @@ abstract class Controller extends BaseController
         }
 
         // ログインユーザー取得
-        if (isset($_SESSION["user_id"])) {
-            $user = User::queryIncludeId($_SESSION["user_id"])
+        $userId = Session::get(User::AUTH_SESSION_KEY);
+        if ($userId) {
+            $user = User::queryIncludeId($userId)
                 ->scope([User::class, 'kept'])
                 ->one();
 

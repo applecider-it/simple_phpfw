@@ -1,6 +1,6 @@
 <?php
 
-namespace SFW\Routing;
+namespace SFW\Web;
 
 use SFW\Core\App;
 use SFW\Output\StdOut;

@@ -7,6 +7,9 @@ namespace App\Models;
  */
 class User extends Model
 {
+    /** 認証で使うセッションのキー */
+    const AUTH_SESSION_KEY = "user_id";
+
     protected static $table = 'users';
 
     /** ツイートのクエリービルダー */

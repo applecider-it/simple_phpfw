@@ -4,7 +4,7 @@ namespace SFW\Console\Commands;
 
 use SFW\Console\Command;
 
-use SFW\Routing\Trace;
+use SFW\Web\Trace;
 
 /**
  * ルート一覧

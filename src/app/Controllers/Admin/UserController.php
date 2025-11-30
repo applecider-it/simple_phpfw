@@ -6,7 +6,7 @@ use SFW\Output\View;
 use SFW\Data\Arr;
 use SFW\Core\Lang;
 use SFW\Core\Config;
-use SFW\Routing\Location;
+use SFW\Web\Location;
 use SFW\Output\Log;
 
 use App\Models\User;

@@ -4,7 +4,8 @@ namespace App\Controllers\Admin\Auth;
 
 use SFW\Output\View;
 use SFW\Output\Log;
-use SFW\Routing\Location;
+use SFW\Web\Location;
+use SFW\Web\Session;
 use SFW\Core\Config;
 
 use App\Controllers\Admin\Controller;
@@ -44,9 +45,9 @@ class SessionController extends Controller
             if (password_verify($password, $adminUser['password'])) {
                 Log::info('パスワード認証成功');
 
-                session_regenerate_id(true);
+                Session::reflesh();
 
-                $_SESSION["admin_user_id"] = $adminUser["id"];
+                Session::set(AdminUser::AUTH_SESSION_KEY, $adminUser["id"]);
 
                 Location::redirect(Config::get('adminPrefix'));
             }
@@ -66,8 +67,7 @@ class SessionController extends Controller
     /** ログアウト */
     public function logout()
     {
-        session_unset();
-        session_destroy();
+        Session::clear(AdminUser::AUTH_SESSION_KEY);
 
         Location::redirect(Config::get('adminPrefix') . "/login");
     }
