@@ -19,7 +19,9 @@ class Web
         $router = App::get('router');
 
         try {
-            echo $router->dispatch();
+            $val = $router->dispatch();
+
+            echo $val;
         }
         catch (Exceptions\NotFound $e) {
             Error::error404($e);

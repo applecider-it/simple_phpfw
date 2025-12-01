@@ -91,6 +91,10 @@ class Router
 
         $obj->beforeAction();
 
-        return $obj->$method();
+        $val =  $obj->$method();
+
+        Flash::clear();
+
+        return $val;
     }
 }

@@ -7,6 +7,7 @@ use SFW\Data\Arr;
 use SFW\Core\Lang;
 use SFW\Core\Config;
 use SFW\Web\Location;
+use SFW\Web\Flash;
 use SFW\Output\Log;
 
 use App\Models\User;
@@ -94,7 +95,9 @@ class UserController extends Controller
         $newId = User::insert($form);
         Log::info('New User', [$newId]);
 
-        Location::redirect(Config::get('adminPrefix') . "/users/{$newId}/edit?msg=登録しました。");
+        Flash::set('notice', '登録しました。');
+
+        Location::redirect(Config::get('adminPrefix') . "/users/{$newId}/edit");
     }
 
     /** 更新画面 */
@@ -144,7 +147,9 @@ class UserController extends Controller
 
         User::update($userId, $form);
 
-        Location::redirect(Config::get('adminPrefix') . "/users/{$userId}/edit?msg=更新しました。");
+        Flash::set('notice', '更新しました。');
+
+        Location::redirect(Config::get('adminPrefix') . "/users/{$userId}/edit");
     }
 
     /** 削除 */
