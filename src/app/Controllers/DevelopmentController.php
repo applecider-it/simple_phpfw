@@ -122,4 +122,13 @@ class DevelopmentController extends Controller
             'content' => $view->render('development.auth_test'),
         ]);
     }
+
+    /** frontendテスト */
+    public function frontend_test()
+    {
+        $view = new View();
+        return $view->render('layouts.app', [
+            'content' => $view->render('development.frontend_test'),
+        ]);
+    }
 }

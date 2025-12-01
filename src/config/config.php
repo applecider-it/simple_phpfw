@@ -3,6 +3,9 @@
  * アプリケーション設定
  */
 
+ /** @var ブラウザキャッシュ対応 */
+$importmapUpdate = '20251202_0000';
+
 return [
     'debug' => $env['SFW_DEBUG'],
 
@@ -22,4 +25,12 @@ return [
 
     // 管理画面のprefix
     'adminPrefix' => '/admin_secret',
+
+    // インポートマップ
+    'importmap' => [
+        'imports' => [
+            '@/app' => "/js/app.js?update={$importmapUpdate}",
+            '@/services/development/frontend_test' => "/js/services/development/frontend_test.js?update={$importmapUpdate}",
+        ],
+    ]
 ];
