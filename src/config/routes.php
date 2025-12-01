@@ -2,6 +2,8 @@
 
 /**
  * ルート設定
+ * 
+ * クロージャーで囲うことで、ローカル変数を保護している。
  */
 
 use App\Controllers\HomeController;
@@ -11,18 +13,31 @@ use App\Controllers\DevelopmentController;
 $router->get('/', [HomeController::class, 'index']);
 
 // 開発者向けページ
-$router->get('/development', [DevelopmentController::class, 'index']);
-$router->get('/development/view_test', [DevelopmentController::class, 'view_test']);
-$router->get('/development/param_test/{id}', [DevelopmentController::class, 'param_test']);
-$router->post('/development/param_test/{id}', [DevelopmentController::class, 'param_test']);
-$router->get('/development/database_test', [DevelopmentController::class, 'database_test']);
-$router->get('/development/validation_test', [DevelopmentController::class, 'validation_test']);
-$router->get('/development/json_test', [DevelopmentController::class, 'json_test']);
-$router->get('/development/redirect_test', [DevelopmentController::class, 'redirect_test'], ['name' => 'redirect_test']);
-$router->get('/development/exeption_test', [DevelopmentController::class, 'exeption_test']);
-$router->get('/development/auth_test', [DevelopmentController::class, 'auth_test'], ['auth' => 'user']);
+(function ($router) {
+    $prefix = '/development';
+    $controller = DevelopmentController::class;
+
+    $router->get($prefix, [$controller, 'index']);
+    $router->get($prefix . '/view_test', [$controller, 'view_test']);
+    $router->get($prefix . '/param_test/{id}', [$controller, 'param_test']);
+    $router->post($prefix . '/param_test/{id}', [$controller, 'param_test']);
+    $router->get($prefix . '/database_test', [$controller, 'database_test']);
+    $router->get($prefix . '/validation_test', [$controller, 'validation_test']);
+    $router->get($prefix . '/json_test', [$controller, 'json_test']);
+    $router->get($prefix . '/redirect_test', [$controller, 'redirect_test'], ['name' => 'redirect_test']);
+    $router->get($prefix . '/exeption_test', [$controller, 'exeption_test']);
+    $router->get($prefix . '/auth_test', [$controller, 'auth_test'], ['auth' => 'user']);
+})($router);
 
 // 別ファイルにしているルート読み込み
-include(__DIR__ . '/routes/auth.php');
-include(__DIR__ . '/routes/admin.php');
-include(__DIR__ . '/routes/admin_auth.php');
+(function ($router) {
+    include(__DIR__ . '/routes/auth.php');
+})($router);
+
+(function ($router) {
+    include(__DIR__ . '/routes/admin.php');
+})($router);
+
+(function ($router) {
+    include(__DIR__ . '/routes/admin_auth.php');
+})($router);
