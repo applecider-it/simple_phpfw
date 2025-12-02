@@ -251,8 +251,10 @@ class Query
     /** １行だけ取得 */
     public function one()
     {
-        $this->limit(1);
+        $limit = $this->limit;
+        $this->limit = 1;
         $ret = $this->build();
+        $this->limit = $limit;
 
         return $this->db()->one($ret['sql'], ...$ret['bindings']);
     }
