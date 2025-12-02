@@ -73,14 +73,17 @@ class DatabaseService
         );
         Log::info('After User Insert', [$newId]);
 
-        $newIdTweet = Tweet::insert(
-            [
-                'user_id' => $newId,
-                'created_at' => ['NOW()'],
-                'content' => 'ツイートテキスト' . time(),
-            ]
-        );
-        Log::info('After User/Tweet Insert', [$newIdTweet]);
+        $tweetCount = 2;
+        foreach (range(1, $tweetCount) as $number) {
+            $newIdTweet = Tweet::insert(
+                [
+                    'user_id' => $newId,
+                    'created_at' => ['NOW()'],
+                    'content' => 'ツイートテキスト No.' . $number,
+                ]
+            );
+            Log::info('After User/Tweet Insert', [$newIdTweet]);    
+        }
 
         $db->commitTransaction();
         //$db->rollbackTransaction();
@@ -174,15 +177,24 @@ class DatabaseService
     /** 複雑なクエリー確認 */
     private function query2(int $newId)
     {
-        // サブクエリー用
-        $query = (new Query)
+        // columnサブクエリー用
+        $columnSubquery = (new Query)
             ->table("users users2")
             ->column("COUNT(*)")
             ->where("users2.id = user_tweets.user_id")
             ->where("users2.id > ?", 0)
-            ->where("users2.id < ?", 40000);
-        $ret = $query->build();
-        Log::info('サブクエリー用', $ret);
+            ->where("users2.id < ?", 40000)
+            ->build();
+        Log::info('columnサブクエリー用', $columnSubquery);
+
+        // whereサブクエリー用
+        $whereSubquery = (new Query)
+            ->table("users users3")
+            ->column("users3.id")
+            ->where("users3.id > ?", 0)
+            ->where("users3.id < ?", 45000)
+            ->build();
+        Log::info('whereサブクエリー用', $whereSubquery);
 
         // 複雑なクエリーの動作確認
         $tweets = User::tweets($newId)
@@ -190,10 +202,11 @@ class DatabaseService
             ->order("user_tweets.id asc")
             ->column("user_tweets.*")
             ->column("users.name as user_name")
-            ->column("(" . $ret['sql'] . ") as cnt", ...$ret['bindings'])
+            ->column("(" . $columnSubquery['sql'] . ") as cnt", ...$columnSubquery['bindings'])
             ->where("user_tweets.id < ?", 50000)
+            ->where("user_tweets.user_id in (" . $whereSubquery['sql'] . ")", ...$whereSubquery['bindings'])
             ->limit(100)
-            //->offset(10)
+            ->offset(1)
             ->all();
 
         Log::info('複雑なクエリーの動作確認 all', [$tweets]);
