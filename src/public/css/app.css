@@ -27,36 +27,48 @@
 
 .app-btn-primary {
     all: unset;
+
     cursor: pointer;
-    padding: 0.25rem 0.5rem;
+    padding: 0.1rem 0.5rem;
+    text-decoration: none;
+    border-style: solid;
+    border-width: 0.1rem;
+    border-radius: 4px;
+    display: inline-block;
+    
+    border-color: #204a66;
     background-color: #3498db;
     color: white;
-    border: none;
-    text-decoration: none;
-    border-radius: 4px;
-    line-height: normal;
 }
 .app-btn-orange {
     all: unset;
+
     cursor: pointer;
-    padding: 0.25rem 0.5rem;
+    padding: 0.1rem 0.5rem;
+    text-decoration: none;
+    border-style: solid;
+    border-width: 0.1rem;
+    border-radius: 4px;
+    display: inline-block;
+    
+    border-color: #c2a42d;
     background-color: #f1c40f;
     color: white;
-    border: none;
-    text-decoration: none;
-    border-radius: 4px;
-    line-height: normal;
 }
 .app-btn-danger {
     all: unset;
+
     cursor: pointer;
-    padding: 0.25rem 0.5rem;
+    padding: 0.1rem 0.5rem;
+    text-decoration: none;
+    border-style: solid;
+    border-width: 0.1rem;
+    border-radius: 4px;
+    display: inline-block;
+    
+    border-color: #b72a1a;
     background-color: #e74c3c;
     color: white;
-    border: none;
-    text-decoration: none;
-    border-radius: 4px;
-    line-height: normal;
 }
 
 /* 通常リンク */

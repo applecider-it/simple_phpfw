@@ -30,6 +30,7 @@ $router->get('/', [HomeController::class, 'index']);
     $router->post($prefix . '/api_post', [$controller, 'api_post'], ['auth' => 'user']);
     $router->get($prefix . '/api_get', [$controller, 'api_get'], ['auth' => 'user']);
     $router->post($prefix . '/api_post_nosession', [$controller, 'api_post_nosession'], ['nosession' => true]);
+    $router->get($prefix . '/design', [$controller, 'design']);
 })($router);
 
 // 別ファイルにしているルート読み込み

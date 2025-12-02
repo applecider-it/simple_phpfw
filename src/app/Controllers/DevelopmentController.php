@@ -168,4 +168,13 @@ class DevelopmentController extends Controller
             ]
         );
     }
+
+    /** デザイン確認画面 */
+    public function design()
+    {
+        $view = new View();
+        return $view->render('layouts.app', [
+            'content' => $view->render('development.design'),
+        ]);
+    }
 }
