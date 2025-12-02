@@ -8,10 +8,13 @@ namespace SFW\Data;
 class Json
 {
     /**
-     * 型がわかるprint_rみたいな関数
+     * オブジェクト以外は、型がわかるprint_rみたいな関数
      */
-    public static function trace(array $array)
+    public static function trace(mixed $array, bool $return = false)
     {
-        echo json_encode($array, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) . PHP_EOL;
+        $val = json_encode($array, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) . PHP_EOL;
+        if ($return) return $val;
+
+        echo $val;
     }
 }

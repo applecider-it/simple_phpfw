@@ -31,17 +31,18 @@ $router->get('/', [HomeController::class, 'index']);
     $router->get($prefix . '/api_get', [$controller, 'api_get'], ['auth' => 'user']);
     $router->post($prefix . '/api_post_nosession', [$controller, 'api_post_nosession'], ['nosession' => true]);
     $router->get($prefix . '/design', [$controller, 'design']);
+    $router->get($prefix . '/backend_test', [$controller, 'backend_test']);
 })($router);
 
 // 別ファイルにしているルート読み込み
 (function ($router) {
-    include(__DIR__ . '/routes/auth.php');
+    include(__DIR__ . '/_auth.php');
 })($router);
 
 (function ($router) {
-    include(__DIR__ . '/routes/admin.php');
+    include(__DIR__ . '/_admin.php');
 })($router);
 
 (function ($router) {
-    include(__DIR__ . '/routes/admin_auth.php');
+    include(__DIR__ . '/_admin_auth.php');
 })($router);

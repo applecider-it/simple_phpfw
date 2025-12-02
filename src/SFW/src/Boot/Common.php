@@ -34,10 +34,10 @@ class Common
     /** サービス設定 */
     private function setupService()
     {
-        App::getContainer()->setSingleton('router', new Router());
-        App::getContainer()->setSingleton('config', $this->includeConfig());
-        App::getContainer()->setSingleton('lang', $this->includeLang());
-        App::getContainer()->setSingleton('callback', new Callback());
+        App::getContainer()->setSingleton('router', new Router(), 'Router');
+        App::getContainer()->setSingleton('config', $this->includeConfig(), 'Config');
+        App::getContainer()->setSingleton('lang', $this->includeLang(), 'Language Data');
+        App::getContainer()->setSingleton('callback', new Callback(), 'Callback class');
     }
 
     /** ルート読み込み */
@@ -46,14 +46,14 @@ class Common
         // include先で、$routerが使われている
         $router = App::get('router');
 
-        include(SFW_PROJECT_ROOT . '/config/routes.php');
+        include(SFW_PROJECT_ROOT . '/routes/web.php');
     }
 
     /** データベースセットアップ */
     private function setupDatabase()
     {
         $db = new DB(Config::get('database'));
-        App::getContainer()->setSingleton('db', $db);
+        App::getContainer()->setSingleton('db', $db, 'Main database');
     }
 
     /** 設定ファイルをinclude */

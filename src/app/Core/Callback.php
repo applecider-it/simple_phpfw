@@ -18,14 +18,14 @@ class Callback
         Log::info('afterInit !!!!');
 
         // ログインユーザー情報の入れ物を作る
-        App::getContainer()->setSingleton('user', null);
+        App::getContainer()->setSingleton('user', null, 'ログインユーザー');
 
         // 管理画面のログインユーザー情報の入れ物を作る
-        App::getContainer()->setSingleton('adminUser', null);
+        App::getContainer()->setSingleton('adminUser', null, '管理画面のログインユーザー');
 
         // 複数DB実装例
         $db_another = new DB(Config::get('database_another'));
-        App::getContainer()->setSingleton('db_another', $db_another);
+        App::getContainer()->setSingleton('db_another', $db_another, '複数DB実装例');
     }
 
     /** クエリー後 */

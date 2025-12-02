@@ -10,9 +10,12 @@ class Container
     protected array $singleton = [];
 
     /** シングルトン設定 */
-    public function setSingleton(string $key, $value)
+    public function setSingleton(string $key, $value, $name = '')
     {
-        $this->singleton[$key] = $value;
+        $this->singleton[$key] = [
+            'name' => $name,
+            'value' => $value,
+        ];
     }
 
     /** シングルトン取得 */
@@ -23,5 +26,11 @@ class Container
         }
 
         throw new \Exception("No binding found for key: {$key}");
+    }
+
+    /** シングルトン全てを返す */
+    public function getAll()
+    {
+        return $this->singleton;
     }
 }

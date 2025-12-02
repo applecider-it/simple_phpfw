@@ -5,6 +5,7 @@ namespace App\Controllers;
 use SFW\Core\App;
 use SFW\Output\View;
 use SFW\Output\Log;
+use SFW\Data\Json;
 
 use App\Services\Sample\SampleService;
 use App\Services\Development\DatabaseService;
@@ -175,6 +176,18 @@ class DevelopmentController extends Controller
         $view = new View();
         return $view->render('layouts.app', [
             'content' => $view->render('development.design'),
+        ]);
+    }
+
+    /** backendテスト */
+    public function backend_test()
+    {
+        $all = App::getContainer()->getAll();
+        Log::info('コンテナデータ' . Json::trace($all, true));
+
+        $view = new View();
+        return $view->render('layouts.app', [
+            'content' => $view->render('development.complate'),
         ]);
     }
 }

@@ -9,5 +9,6 @@
     <div><a href="/development/exeption_test" class="app-link-normal">exeption_test</a></div>
     <div><a href="/development/auth_test" class="app-link-normal">auth_test</a></div>
     <div><a href="/development/frontend_test" class="app-link-normal">frontend_test</a></div>
+    <div><a href="/development/backend_test" class="app-link-normal">backend_test</a></div>
     <div><a href="/development/design" class="app-link-normal">design</a></div>
 </div>

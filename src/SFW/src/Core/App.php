@@ -24,6 +24,6 @@ class App
     /** シングルトン取得ショートカット */
     public static function get(string $key)
     {
-        return self::$container->getSingleton($key);
+        return self::$container->getSingleton($key)['value'];
     }
 }

@@ -52,6 +52,11 @@ optionsも表示
 
 php ./bin/console routes --op
 
+コンテナデータ一覧
+
+php ./bin/console container
+
+
 ランナー
 
 php ./bin/console runner "print_r(App\Models\User::query()->one());"
