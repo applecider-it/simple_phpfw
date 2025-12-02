@@ -82,7 +82,7 @@ class Router
      * ・セッションありなしの分岐。
      * ・GET、それ以外の分岐。
      */
-    private function runHandler($requestMethod, array $route, array $params)
+    private function runHandler($requestMethod, array $route, array $urlParams)
     {
         $options = $route['options'];
 
@@ -105,7 +105,7 @@ class Router
         }
 
         // 一番左が優先される
-        $params = $_GET + $_POST + $jsonData;
+        $params = $urlParams + $_GET + $_POST + $jsonData;
 
         Trace::traceRequest($params);
 
