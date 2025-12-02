@@ -4,4 +4,5 @@
 <div>
     <button type="submit" class="app-btn-primary" id="json_test_post">Jsonテスト (POST)</button>
     <button type="submit" class="app-btn-primary" id="json_test_get">Jsonテスト (GET)</button>
+    <button type="submit" class="app-btn-primary" id="json_test_post_nosession">Jsonテスト (POST nosession)</button>
 </div>

@@ -58,4 +58,12 @@ class Trace
         Log::info('Controller: route: ', App::get('router')->currentRoute);
         Log::info('Controller: params: ', $params);
     }
+
+    /** セッションをログに出力 */
+    public static function traceSession()
+    {
+        if (! Config::get('debug')) return;
+
+        Log::info('Controller: $_SESSION: ', $_SESSION);
+    }
 }

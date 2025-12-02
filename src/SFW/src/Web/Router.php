@@ -73,9 +73,22 @@ class Router
         throw new \SFW\Exceptions\NotFound;
     }
 
-    /** ハンドラーを実行 */
+    /**
+     * ハンドラーを実行
+     * 
+     * 下記の分岐が複雑に絡んでいる。
+     * 
+     * ・HTMLとJSONの分岐。
+     * ・セッションありなしの分岐。
+     * ・GET、それ以外の分岐。
+     */
     private function runHandler($requestMethod, array $route, array $params)
     {
+        $options = $route['options'];
+
+        /** @var boolean セッションを利用しないときはtrue */
+        $nosession = $options['nosession'] ?? false;
+
         $handler = $route['handler'];
         [$class, $method] = $handler;
 
@@ -96,22 +109,36 @@ class Router
 
         Trace::traceRequest($params);
 
-        Session::start();
+        if (! $nosession) {
+            // セッションを利用する時
 
-        // CSRF処理
-        if ($requestMethod === 'GET') {
-            // GETメソッドの時
+            Session::start();
 
-            Csrf::create();
-        } else {
-            // POSTメソッドの時
+            Trace::traceSession();
 
-            Csrf::check($params['csrf_token'] ?? '');
+            // CSRF処理
+            if ($requestMethod === 'GET') {
+                // GETメソッドの時
+
+                if (! $isJsonRequest) {
+                    // JSONリクエストじゃない時
+
+                    Csrf::create();
+                }
+            } else {
+                // POSTメソッドの時
+
+                Csrf::check($params['csrf_token'] ?? '');
+            }
         }
 
         $val =  $this->execController($class, $method, $params);
 
-        Flash::clear();
+        if (! $nosession) {
+            // セッションを利用する時
+
+            Flash::clear();
+        }
 
         if ($isJsonRequest) {
             // JSONリクエストの時

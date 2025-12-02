@@ -152,4 +152,20 @@ class DevelopmentController extends Controller
             ]
         );
     }
+
+    /** frontendテスト(セッションがないPOST API部分) */
+    public function frontend_test_api_post_nosession()
+    {
+        $user = App::get('user');
+
+        return json_encode(
+            [
+                'data' => [
+                    'type' => 'nosession',
+                    'user' => $user,
+                    'params.aaa' => $this->params['aaa'],
+                ]
+            ]
+        );
+    }
 }
