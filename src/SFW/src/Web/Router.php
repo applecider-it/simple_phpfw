@@ -84,8 +84,13 @@ class Router
         /** @var \SFW\Web\Controller */
         $obj = new $class();
 
+        $jsonData = [];
+        $isJsonRequest = Json::isJsonRequest();
+
+        if ($isJsonRequest) $jsonData = Json::getJsonRequestData();
+
         // 一番左が優先される
-        $obj->params = $params + $_GET + $_POST;
+        $obj->params = $params + $_GET + $_POST + $jsonData;
 
         Session::start();
 
@@ -94,6 +99,8 @@ class Router
         $val =  $obj->$method();
 
         Flash::clear();
+
+        if ($isJsonRequest) Json::sendJsonHeader();
 
         return $val;
     }

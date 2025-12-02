@@ -23,11 +23,11 @@ $router->get('/', [HomeController::class, 'index']);
     $router->post($prefix . '/param_test/{id}', [$controller, 'param_test']);
     $router->get($prefix . '/database_test', [$controller, 'database_test']);
     $router->get($prefix . '/validation_test', [$controller, 'validation_test']);
-    $router->get($prefix . '/json_test', [$controller, 'json_test']);
     $router->get($prefix . '/redirect_test', [$controller, 'redirect_test'], ['name' => 'redirect_test']);
     $router->get($prefix . '/exeption_test', [$controller, 'exeption_test']);
     $router->get($prefix . '/auth_test', [$controller, 'auth_test'], ['auth' => 'user']);
     $router->get($prefix . '/frontend_test', [$controller, 'frontend_test']);
+    $router->post($prefix . '/frontend_test_api', [$controller, 'frontend_test_api']);
 })($router);
 
 // 別ファイルにしているルート読み込み

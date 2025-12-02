@@ -89,21 +89,6 @@ class DevelopmentController extends Controller
         ]);
     }
 
-    /** jsonテスト */
-    public function json_test()
-    {
-        return json_encode(
-            [
-                'data' => [
-                    'user' => [
-                        'id' => 1,
-                        'name' => 'jsonテスト'
-                    ]
-                ]
-            ]
-        );
-    }
-
     /** 例外テスト */
     public function exeption_test()
     {
@@ -130,5 +115,20 @@ class DevelopmentController extends Controller
         return $view->render('layouts.app', [
             'content' => $view->render('development.frontend_test'),
         ]);
+    }
+
+    /** frontendテスト(API部分) */
+    public function frontend_test_api()
+    {
+        return json_encode(
+            [
+                'data' => [
+                    'user' => [
+                        'id' => 1,
+                        'name' => 'jsonテスト'
+                    ]
+                ]
+            ]
+        );
     }
 }

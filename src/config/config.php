@@ -30,6 +30,11 @@ return [
     'importmap' => [
         'imports' => [
             '@/app' => "/js/app.js?update={$importmapUpdate}",
+
+            '@/services/data/json' => "/js/services/data/json.js?update={$importmapUpdate}",
+
+            // 開発者向けページ用
+            '@/services/development/setup_development' => "/js/services/development/setup_development.js?update={$importmapUpdate}",
             '@/services/development/frontend_test' => "/js/services/development/frontend_test.js?update={$importmapUpdate}",
         ],
     ]
