@@ -140,7 +140,7 @@ class Query
     }
 
     /** SQLと値をビルドする */
-    public function build()
+    public function build($buildForCount = false)
     {
         $sql = "SELECT";
         $bindings = [];
@@ -149,12 +149,16 @@ class Query
             $sql .= " DISTINCT";
         }
 
-        if ($this->columns) {
-            $ret = $this->buildColumns();
-            $sql .= " " . $ret['sql'];
-            $bindings = array_merge($bindings, $ret['bindings']);
+        if ($buildForCount) {
+            $sql .= " count(*) as cnt";
         } else {
-            $sql .= " *";
+            if ($this->columns) {
+                $ret = $this->buildColumns();
+                $sql .= " " . $ret['sql'];
+                $bindings = array_merge($bindings, $ret['bindings']);
+            } else {
+                $sql .= " *";
+            }
         }
 
         $sql .= " FROM " . implode(" ", $this->tables);
@@ -179,13 +183,25 @@ class Query
             $sql .= " ORDER BY " . implode(", ", $this->orders);
         }
 
-        if ($this->limit) $sql .= " LIMIT {$this->limit}";
-        if ($this->offset) $sql .= " OFFSET {$this->offset}";
+        if (! $buildForCount) {
+            if ($this->limit) $sql .= " LIMIT {$this->limit}";
+            if ($this->offset) $sql .= " OFFSET {$this->offset}";
+        }
 
         return [
             'sql' => $sql,
             'bindings' => $bindings,
         ];
+    }
+
+    /** カウントする */
+    public function count()
+    {
+        $ret = $this->build(true);
+
+        $row = $this->db()->one($ret['sql'], ...$ret['bindings']);
+
+        return $row['cnt'];
     }
 
     /** １行だけ取得 */

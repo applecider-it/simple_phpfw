@@ -3,7 +3,7 @@
 use SFW\Output\Html;
 use SFW\Core\Config;
 ?>
-<h2 class="app-h2">Admin Users</h2>
+<h2 class="app-h2">admin.user.index</h2>
 
 <div>
     <div>
@@ -13,12 +13,10 @@ use SFW\Core\Config;
     </div>
 
     <div style="margin-top: 1rem;">
-        <a href="<?= Config::get('adminPrefix') ?>/users" class="app-link-normal">全て</a>
-        <span style="margin: 0 0.5rem;">|</span>
-        <a href="<?= Config::get('adminPrefix') ?>/users?soft_delete=kept" class="app-link-normal">論理削除を除外</a>
-        <span style="margin: 0 0.5rem;">|</span>
-        <a href="<?= Config::get('adminPrefix') ?>/users?soft_delete=deleted" class="app-link-normal">論理削除済み</a>
+        <?= $this->render('admin.user.partials.search', $data['params']) ?>
     </div>
+
+    <?= $this->render('partials.pagination.paginator', ['paginator' => $data['paginator']]) ?>
 
     <table style="margin-top: 1rem;" class="app-table">
         <thead>
@@ -70,4 +68,6 @@ use SFW\Core\Config;
             <?php endforeach; ?>
         </tbody>
     </table>
+
+    <?= $this->render('partials.pagination.paginator', ['paginator' => $data['paginator']]) ?>
 </div>

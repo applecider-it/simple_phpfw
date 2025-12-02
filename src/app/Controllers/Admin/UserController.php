@@ -9,6 +9,7 @@ use SFW\Core\Config;
 use SFW\Web\Location;
 use SFW\Web\Flash;
 use SFW\Output\Log;
+use SFW\Pagination\Paginator;
 
 use App\Models\User;
 
@@ -25,9 +26,13 @@ class UserController extends Controller
         $query = User::query()
             ->order("id desc");
         
-        $softDelete = $this->params['soft_delete'] ?? null;
+        $softDelete = $this->params['soft_delete'] ?? 'all';
         if ($softDelete === 'kept') $query->scope([User::class, 'kept']);
         if ($softDelete === 'deleted') $query->scope([User::class, 'deleted']);
+
+        $paginator = new Paginator($this->params, 8, 'page');
+
+        $paginator->query($query);
 
         $users = $query->all();
 
@@ -35,6 +40,8 @@ class UserController extends Controller
         return $view->render('admin.layouts.app', [
             'content' => $view->render('admin.user.index', [
                 'users' => $users,
+                'params' => $this->params,
+                'paginator' => $paginator,
             ]),
         ]);
     }
