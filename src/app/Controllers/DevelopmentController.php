@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use SFW\Core\App;
 use SFW\Output\View;
 use SFW\Output\Log;
 
@@ -120,13 +121,13 @@ class DevelopmentController extends Controller
     /** frontendテスト(API部分) */
     public function frontend_test_api()
     {
+        $user = App::get('user');
+
         return json_encode(
             [
                 'data' => [
-                    'user' => [
-                        'id' => 1,
-                        'name' => 'jsonテスト'
-                    ]
+                    'user' => $user,
+                    'params.aaa' => $this->params['aaa'],
                 ]
             ]
         );

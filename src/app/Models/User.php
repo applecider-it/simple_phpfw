@@ -41,4 +41,11 @@ class User extends Model
     {
         return ['required', 'confirm'];
     }
+
+    /** Jsonに混ざってはいけないカラムを隠す */
+    public static function hidden(array &$user)
+    {
+        unset($user['password']);
+        unset($user['deleted_at']);
+    }
 }

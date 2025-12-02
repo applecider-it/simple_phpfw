@@ -1,4 +1,4 @@
-import { toQueryString } from "@/services/data/json";
+import { toQueryString, sendData } from "@/services/data/json";
 
 /**
  * フロントエンドテスト用クラス
@@ -16,30 +16,25 @@ export default class FrontendTest {
   }
 
   /** Jsonの送受信の動作確認 */
-  jsonTest() {
-    async function sendData() {
-      const method = "POST";
-      const data = {
-        post_val: "Post!!",
-      };
+  async jsonTest() {
+    const method = "POST";
+    const data = {
+      post_val: "Post!!",
+      aaa: {
+        bbb: {
+          ccc: {
+            ddd: 'eee',
+          }
+        }
+      }
+    };
 
-      const url =
-        "/development/frontend_test_api?" + toQueryString({ get_val: "Get!!" });
-      console.log("url", url);
+    const url =
+      "/development/frontend_test_api?" + toQueryString({ get_val: "Get!!" });
+    console.log("url", url);
 
-      const res = await fetch(url, {
-        method: method,
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+    const result = await sendData(method, url, data);
 
-      // JSONとして受け取る
-      const json = await res.json();
-      console.log(json);
-    }
-
-    sendData();
+    console.log('result', result);
   }
 }

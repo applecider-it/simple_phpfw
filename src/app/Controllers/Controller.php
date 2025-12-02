@@ -42,6 +42,7 @@ abstract class Controller extends BaseController
                 ->one();
 
             if ($user) {
+                User::hidden($user);
                 App::getContainer()->setSingleton('user', $user);
             }
         }
