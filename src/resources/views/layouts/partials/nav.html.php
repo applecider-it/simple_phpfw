@@ -13,7 +13,10 @@ $user = App::get('user');
         <a href="/about">About</a>
         <?php if ($user): ?>
             (Name: <?= Html::esc($user['name']) ?>)
-            <a href="/logout">Logout</a>
+            <a href="/logout" onclick="if (confirm('ログアウトしますか？')) document.getElementById('app_nav_logout_form').submit(); return false; ">Logout</a>
+            <form method="POST" action="/logout" id="app_nav_logout_form">
+                <?= $this->render('partials.form.csrf') ?>
+            </form>
         <?php else: ?>
             <a href="/login">Login</a>
         <?php endif ?>

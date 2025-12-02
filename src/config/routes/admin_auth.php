@@ -12,4 +12,4 @@ $basePrefix = Config::get('adminPrefix');
 
 $router->get($basePrefix . '/login', [SessionController::class, 'login']);
 $router->post($basePrefix . '/login', [SessionController::class, 'post']);
-$router->get($basePrefix . '/logout', [SessionController::class, 'logout']);
+$router->post($basePrefix . '/logout', [SessionController::class, 'logout']);

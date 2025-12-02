@@ -8,4 +8,4 @@ use App\Controllers\Auth\SessionController;
 
 $router->get('/login', [SessionController::class, 'login']);
 $router->post('/login', [SessionController::class, 'post']);
-$router->get('/logout', [SessionController::class, 'logout']);
+$router->post('/logout', [SessionController::class, 'logout']);

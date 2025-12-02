@@ -3,11 +3,14 @@
 namespace App\Controllers;
 
 use SFW\Web\Controller as BaseController;
-use SFW\Output\Log;
-use SFW\Core\Config;
+
 use SFW\Core\App;
+use SFW\Core\Config;
+use SFW\Core\Lang;
+use SFW\Output\Log;
 use SFW\Web\Location;
 use SFW\Web\Session;
+use SFW\Web\Flash;
 
 use App\Models\User;
 
@@ -44,7 +47,8 @@ abstract class Controller extends BaseController
         // 認証処理
         if ((App::get('router')->currentRoute['options']['auth'] ?? null) === 'user') {
             if (! App::get('user')) {
-                Location::redirect('/');
+                Flash::set('alert', Lang::get('errors.loginRequired'));
+                Location::redirect('/login');
             }
         }
     }

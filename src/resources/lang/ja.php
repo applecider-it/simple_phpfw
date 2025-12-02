@@ -1,7 +1,10 @@
 <?php
 
 return [
-    'hellow' => 'こんにちは',
+    'errors' => [
+        'loginRequired' => 'ログインしてください。',
+        'LoginFailed' => 'ログインに失敗しました。',
+    ],
 
     // バリデーション用
     'validation' => [

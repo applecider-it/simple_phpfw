@@ -14,7 +14,10 @@ $adminUser = App::get('adminUser');
         <a href="<?= Config::get('adminPrefix') ?>/users">ユーザー</a>
         <?php if ($adminUser): ?>
             (Name: <?= Html::esc($adminUser['name']) ?>)
-            <a href="<?= Config::get('adminPrefix') ?>/logout">Logout</a>
+            <a href="<?= Config::get('adminPrefix') ?>/logout" onclick="if (confirm('ログアウトしますか？')) document.getElementById('app_nav_logout_form').submit(); return false; ">Logout</a>
+            <form method="POST" action="<?= Config::get('adminPrefix') ?>/logout" id="app_nav_logout_form">
+                <?= $this->render('partials.form.csrf') ?>
+            </form>
         <?php else: ?>
             <a href="<?= Config::get('adminPrefix') ?>/login">Login</a>
         <?php endif ?>

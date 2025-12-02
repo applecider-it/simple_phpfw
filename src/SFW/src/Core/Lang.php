@@ -11,11 +11,11 @@ use SFW\Data\Str;
 class Lang
 {
     /** 言語取得 */
-    public static function get($key, array $data = [])
+    public static function get($key, array $templateData = [])
     {
         $lang = App::get('lang');
         $val = Arr::dotValue($lang, Config::get('lang') . '.' . $key);
         if ($val === null) $val = $key;
-        return Str::template($val, $data);
+        return Str::template($val, $templateData);
     }
 }

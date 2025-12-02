@@ -2,6 +2,7 @@
 
 namespace App\Controllers\Auth;
 
+use SFW\Core\Lang;
 use SFW\Output\View;
 use SFW\Output\Log;
 use SFW\Web\Location;
@@ -59,7 +60,7 @@ class SessionController extends Controller
             'password' => '',
         ];
 
-        Flash::set('alert', 'ログイン失敗。');
+        Flash::set('alert', Lang::get('errors.LoginFailed'));
 
         $view = new View();
         return $view->render('layouts.app', [

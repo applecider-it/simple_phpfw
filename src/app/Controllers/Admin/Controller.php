@@ -6,8 +6,10 @@ use App\Controllers\Controller as BaseController;
 
 use SFW\Core\App;
 use SFW\Core\Config;
+use SFW\Core\Lang;
 use SFW\Web\Location;
 use SFW\Web\Session;
+use SFW\Web\Flash;
 
 use App\Models\AdminUser;
 
@@ -35,6 +37,7 @@ abstract class Controller extends BaseController
         // 認証処理
         if ((App::get('router')->currentRoute['options']['auth'] ?? null) === 'admin_user') {
             if (! App::get('adminUser')) {
+                Flash::set('alert', Lang::get('errors.loginRequired'));
                 Location::redirect(Config::get('adminPrefix') . "/login");
             }
         }
