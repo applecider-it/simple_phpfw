@@ -23,4 +23,8 @@ use SFW\Core\Config;
             </div>
         </form>
     </div>
+
+    <div style="margin-top: 3rem;">
+        <?= $this->render('admin.user.partials.update_ctrl', $data) ?>
+    </div>
 </div>

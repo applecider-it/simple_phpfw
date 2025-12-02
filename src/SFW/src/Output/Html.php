@@ -10,7 +10,7 @@ use SFW\Core\Config;
 class Html
 {
     /** エスケープ */
-    public static function esc(string $value)
+    public static function esc(?string $value)
     {
         return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
     }

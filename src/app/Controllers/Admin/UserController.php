@@ -159,7 +159,7 @@ class UserController extends Controller
         Location::redirect(Config::get('adminPrefix') . "/users/{$userId}/edit");
     }
 
-    /** 削除 */
+    /** 論理削除 */
     public function destroy()
     {
         $user = $this->user();
@@ -167,7 +167,9 @@ class UserController extends Controller
 
         User::softDelete($userId);
 
-        Location::redirect(Config::get('adminPrefix') . "/users");
+        Flash::set('notice', '論理削除しました。');
+
+        Location::redirect(Config::get('adminPrefix') . "/users/{$userId}/edit");
     }
 
     /** 復元 */
@@ -178,7 +180,9 @@ class UserController extends Controller
 
         User::restore($userId);
 
-        Location::redirect(Config::get('adminPrefix') . "/users");
+        Flash::set('notice', '復元しました。');
+
+        Location::redirect(Config::get('adminPrefix') . "/users/{$userId}/edit");
     }
 
     /** ユーザー取得 */
