@@ -27,7 +27,8 @@ $router->get('/', [HomeController::class, 'index']);
     $router->get($prefix . '/exeption_test', [$controller, 'exeption_test']);
     $router->get($prefix . '/auth_test', [$controller, 'auth_test'], ['auth' => 'user']);
     $router->get($prefix . '/frontend_test', [$controller, 'frontend_test'], ['auth' => 'user']);
-    $router->post($prefix . '/frontend_test_api', [$controller, 'frontend_test_api'], ['auth' => 'user']);
+    $router->post($prefix . '/frontend_test_api_post', [$controller, 'frontend_test_api_post'], ['auth' => 'user']);
+    $router->get($prefix . '/frontend_test_api_get', [$controller, 'frontend_test_api_get'], ['auth' => 'user']);
 })($router);
 
 // 別ファイルにしているルート読み込み

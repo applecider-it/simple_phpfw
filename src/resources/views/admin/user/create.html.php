@@ -14,6 +14,7 @@ use SFW\Core\Config;
 
     <div style="margin-top: 1rem;">
         <form method="POST" action="<?= Config::get('adminPrefix') ?>/users/create">
+            <?= $this->render('partials.form.csrf') ?>
             <?= $this->render('admin.user.partials.form', $data) ?>
             <div style="margin-top: 1rem;">
                 <button type="submit" class="app-btn-primary">登録</button>

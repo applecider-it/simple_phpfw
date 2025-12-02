@@ -10,13 +10,16 @@ export default class FrontendTest {
 
   /** イベント設定 */
   setupEvent() {
-    document.getElementById("json_test").addEventListener("click", () => {
-      this.jsonTest();
+    document.getElementById("json_test_post").addEventListener("click", () => {
+      this.postJsonTest();
+    });
+    document.getElementById("json_test_get").addEventListener("click", () => {
+      this.getJsonTest();
     });
   }
 
-  /** Jsonの送受信の動作確認 */
-  async jsonTest() {
+  /** POST Jsonの送受信の動作確認 */
+  async postJsonTest() {
     const method = "POST";
     const data = {
       post_val: "Post!!",
@@ -30,10 +33,23 @@ export default class FrontendTest {
     };
 
     const url =
-      "/development/frontend_test_api?" + toQueryString({ get_val: "Get!!" });
+      "/development/frontend_test_api_post?" + toQueryString({ get_val: "Get!!" });
     console.log("url", url);
 
     const result = await sendData(method, url, data);
+
+    console.log('result', result);
+  }
+
+  /** GET Jsonの送受信の動作確認 */
+  async getJsonTest() {
+    const method = "GET";
+
+    const url =
+      "/development/frontend_test_api_get?" + toQueryString({ get_val: "Get!!" });
+    console.log("url", url);
+
+    const result = await sendData(method, url);
 
     console.log('result', result);
   }

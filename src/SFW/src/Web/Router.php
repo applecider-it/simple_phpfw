@@ -66,7 +66,7 @@ class Router
                     ARRAY_FILTER_USE_KEY
                 );
 
-                return $this->runHandler($route, $params);
+                return $this->runHandler($method, $route, $params);
             }
         }
 
@@ -74,33 +74,65 @@ class Router
     }
 
     /** ハンドラーを実行 */
-    private function runHandler(array $route, array $params)
+    private function runHandler($requestMethod, array $route, array $params)
     {
         $handler = $route['handler'];
         [$class, $method] = $handler;
 
         $this->currentRoute = $route;
 
-        /** @var \SFW\Web\Controller */
-        $obj = new $class();
-
         $jsonData = [];
         $isJsonRequest = Json::isJsonRequest();
 
-        if ($isJsonRequest) $jsonData = Json::getJsonRequestData();
+        // JSONパラメーターの処理
+        if ($isJsonRequest && $requestMethod !== 'GET') {
+            // JSONリクエストでGET以外の時
+
+            $jsonData = Json::getJsonRequestData();
+        }
 
         // 一番左が優先される
-        $obj->params = $params + $_GET + $_POST + $jsonData;
+        $params = $_GET + $_POST + $jsonData;
+
+        Trace::traceRequest($params);
 
         Session::start();
+
+        // CSRF処理
+        if ($requestMethod === 'GET') {
+            // GETメソッドの時
+
+            Csrf::create();
+        } else {
+            // POSTメソッドの時
+
+            Csrf::check($params['csrf_token'] ?? '');
+        }
+
+        $val =  $this->execController($class, $method, $params);
+
+        Flash::clear();
+
+        if ($isJsonRequest) {
+            // JSONリクエストの時
+
+            Json::sendJsonHeader();
+        }
+
+        return $val;
+    }
+
+    /** コントローラーを実行 */
+    private function execController($class, $method, array $params)
+    {
+        /** @var \SFW\Web\Controller */
+        $obj = new $class();
+
+        $obj->params = $params;
 
         $obj->beforeAction();
 
         $val =  $obj->$method();
-
-        Flash::clear();
-
-        if ($isJsonRequest) Json::sendJsonHeader();
 
         return $val;
     }

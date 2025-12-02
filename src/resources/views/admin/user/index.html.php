@@ -48,6 +48,7 @@ use SFW\Core\Config;
                                 action="<?= Config::get('adminPrefix') ?>/users/<?= $user['id'] ?>/restore"
                                 onsubmit="return confirm('復元しますか？')"
                                 style="margin:0;">
+                                <?= $this->render('partials.form.csrf') ?>
                                 <button type="submit" class="app-btn-orange">
                                     復元
                                 </button>
@@ -58,6 +59,7 @@ use SFW\Core\Config;
                                 action="<?= Config::get('adminPrefix') ?>/users/<?= $user['id'] ?>/destroy"
                                 onsubmit="return confirm('論理削除しますか？')"
                                 style="margin:0;">
+                                <?= $this->render('partials.form.csrf') ?>
                                 <button type="submit" class="app-btn-danger">
                                     論理削除
                                 </button>

@@ -4,7 +4,7 @@
  */
 
  /** @var ブラウザキャッシュ対応 */
-$importmapUpdate = '20251202_0000';
+$importmapUpdate = '20251202_0001';
 
 return [
     'debug' => $env['SFW_DEBUG'],

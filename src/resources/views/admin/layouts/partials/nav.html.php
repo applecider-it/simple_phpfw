@@ -8,7 +8,7 @@ $adminUser = App::get('adminUser');
 
 ?>
 <header class="app-header" style="background: #633;">
-    <h1><?= Config::get('applicationName') ?></h1>
+    <h1><?= Config::get('applicationName') ?> Admin</h1>
     <nav>
         <a href="<?= Config::get('adminPrefix') ?>">ダッシュボード</a>
         <a href="<?= Config::get('adminPrefix') ?>/users">ユーザー</a>

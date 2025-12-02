@@ -6,6 +6,7 @@ use SFW\Output\View;
 use SFW\Output\Log;
 use SFW\Web\Location;
 use SFW\Web\Session;
+use SFW\Web\Flash;
 
 use App\Controllers\Controller;
 
@@ -57,6 +58,8 @@ class SessionController extends Controller
             'email' => $email,
             'password' => '',
         ];
+
+        Flash::set('alert', 'ログイン失敗。');
 
         $view = new View();
         return $view->render('layouts.app', [

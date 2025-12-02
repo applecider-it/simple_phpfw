@@ -8,3 +8,9 @@ use SFW\Web\Flash;
         <li><?= Html::esc(Flash::get('notice')) ?></li>
     </ul>
 <?php endif; ?>
+
+<?php if (Flash::get('alert')): ?>
+    <ul style="margin:1rem 0; padding-left: 1.2rem; color: #ff3333;">
+        <li><?= Html::esc(Flash::get('alert')) ?></li>
+    </ul>
+<?php endif; ?>

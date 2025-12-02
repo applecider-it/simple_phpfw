@@ -5,9 +5,12 @@ use SFW\Core\Config;
 ?>
 <h2 class="app-h2">auth.session.login</h2>
 
+<?= $this->render('partials.message.flash') ?>
+
 <div>
     <div style="margin-top: 1rem;">
         <form method="POST" action="/login">
+            <?= $this->render('partials.form.csrf') ?>
             <div style="margin-top: 1rem;">
                 <label class="app-form-label">Email</label>
                 <input type="text" name="email" value="<?= Html::esc($data['email']) ?>" class="app-form-input">

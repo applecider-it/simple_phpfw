@@ -19,12 +19,6 @@ abstract class Controller extends BaseController
     /** アクション前処理 */
     public function beforeAction()
     {
-        // トレース
-        if (Config::get('debug')) {
-            Log::info('Controller: route: ', App::get('router')->currentRoute);
-            Log::info('Controller: params: ', $this->params);
-        }
-
         // beforeActionでの、リダイレクト処理のサンプル
         if ((App::get('router')->currentRoute['options']['name'] ?? null) === 'redirect_test') {
             Log::info('redirect_test');

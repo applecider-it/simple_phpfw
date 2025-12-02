@@ -107,7 +107,7 @@ class UserController extends Controller
 
         $view = new View();
         return $view->render('admin.layouts.app', [
-            'content' => $view->render('admin.user.edit', $user + ['message' => $this->params['msg'] ?? null]),
+            'content' => $view->render('admin.user.edit', $user),
         ]);
     }
 

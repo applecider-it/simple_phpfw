@@ -118,8 +118,8 @@ class DevelopmentController extends Controller
         ]);
     }
 
-    /** frontendテスト(API部分) */
-    public function frontend_test_api()
+    /** frontendテスト(POST API部分) */
+    public function frontend_test_api_post()
     {
         $user = App::get('user');
 
@@ -128,6 +128,26 @@ class DevelopmentController extends Controller
                 'data' => [
                     'user' => $user,
                     'params.aaa' => $this->params['aaa'],
+                ]
+            ]
+        );
+    }
+
+    /** frontendテスト(GET API部分) */
+    public function frontend_test_api_get()
+    {
+        $user = App::get('user');
+
+        return json_encode(
+            [
+                'data' => [
+                    'user' => $user,
+                    'params.val1' => $this->params['get_val'],
+                    '111' => [
+                        '222' => [
+                            '333' => '444',
+                        ]
+                    ]
                 ]
             ]
         );

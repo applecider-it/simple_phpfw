@@ -26,6 +26,10 @@ class Web
         catch (Exceptions\NotFound $e) {
             Error::error404($e);
         }
+        catch (Exceptions\Csrf $e) {
+            Log::error((string) $e);
+            Error::error500($e);
+        }
         catch (Exceptions\Interruption $e) {
         }
         catch (\Throwable $e) {

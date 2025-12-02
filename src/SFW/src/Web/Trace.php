@@ -3,7 +3,9 @@
 namespace SFW\Web;
 
 use SFW\Core\App;
+use SFW\Core\Config;
 use SFW\Output\StdOut;
+use SFW\Output\Log;
 
 /**
  * トレース管理
@@ -46,5 +48,14 @@ class Trace
         array_multisort($paths, SORT_ASC, $methods, SORT_ASC, $rows);
 
         StdOut::table([$header, ...$rows]);
+    }
+
+    /** リクエスト情報などをログに出力 */
+    public static function traceRequest(array $params)
+    {
+        if (! Config::get('debug')) return;
+
+        Log::info('Controller: route: ', App::get('router')->currentRoute);
+        Log::info('Controller: params: ', $params);
     }
 }

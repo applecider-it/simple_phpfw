@@ -10,6 +10,8 @@ class Session
     /** セッション開始 */
     public static function start() {
         $lifetime = 60 * 60 * 24 * 30;
+        ini_set('session.gc_maxlifetime', $lifetime);
+        session_save_path(SFW_PROJECT_ROOT . '/storage/session');
         session_set_cookie_params($lifetime);
         session_start();
     }

@@ -12,10 +12,11 @@ use SFW\Core\Config;
 
     <?= $this->render('partials.validation.errors', ['errors' => $data['errors'] ?? null]) ?>
 
-    <?= $this->render('partials.message.notice', ['message' => $data['message'] ?? null]) ?>
+    <?= $this->render('partials.message.flash') ?>
 
     <div style="margin-top: 1rem;">
         <form method="POST" action="<?= Config::get('adminPrefix') ?>/users/<?= $data['id'] ?>/edit">
+            <?= $this->render('partials.form.csrf') ?>
             <?= $this->render('admin.user.partials.update_form', $data) ?>
             <div style="margin-top: 1rem;">
                 <button type="submit" class="app-btn-primary">更新</button>
