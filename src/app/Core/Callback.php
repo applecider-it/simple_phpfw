@@ -4,6 +4,8 @@ namespace App\Core;
 
 use SFW\Output\Log;
 use SFW\Core\App;
+use SFW\Core\Config;
+use SFW\Database\DB;
 
 /**
  * フレームワークからのコールバックを受け取る
@@ -20,6 +22,10 @@ class Callback
 
         // 管理画面のログインユーザー情報の入れ物を作る
         App::getContainer()->setSingleton('adminUser', null);
+
+        // 複数DB実装例
+        $db_another = new DB(Config::get('database_another'));
+        App::getContainer()->setSingleton('db_another', $db_another);
     }
 
     /** クエリー後 */

@@ -78,4 +78,15 @@ SFW_DATABASE_DATABASE=simple_phpfw_test php ./bin/console test
 
 php ./bin/console test --fw
 
+-----------------------------------
+
+セットアップ
+
+.env.exampleを.envにコピー
+
+.envの情報のDBテーブル作成
+
+/database/sqls/をSFW_DATABASE_DATABASEのDBで実行
+
+/database/sqls_another/をSFW_DATABASE_DATABASE_ANOTHERのDBで実行
 

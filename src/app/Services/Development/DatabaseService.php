@@ -12,6 +12,8 @@ use SFW\Database\DB;
 use App\Models\User;
 use App\Models\User\Tweet;
 
+use App\ModelsAnother\Another;
+
 /**
  * 開発者向けのデータベース関連のサービス
  */
@@ -48,6 +50,10 @@ class DatabaseService
         $this->drawLine();
 
         $this->model2($newId);
+
+        $this->drawLine();
+
+        $this->modelAnother();
 
         $this->drawLine();
     }
@@ -271,5 +277,38 @@ class DatabaseService
         // CREATE文に、ON DELETE CASCADEがあるので、関連するuser_tweetsも削除される
         $rows = User::delete($newId);
         Log::info('users 物理削除', [$rows]);
+    }
+
+    /** 外部DBのモデル確認 */
+    private function modelAnother()
+    {
+        // 挿入
+        $newId = Another::insert(
+            [
+                'name' => '外部テスト',
+            ]
+        );
+        Log::info('外部DBのモデル After Insert', [$newId]);
+
+        // モデルのクエリービルダーで取得
+        $anothers = Another::query()
+            ->where("id > ?", 0)
+            ->order("name asc")
+            ->all();
+
+        Log::info('外部DBのモデル all', [$anothers]);
+
+        // 更新
+        $rows = Another::update($newId, [
+            'name' => '外部テスト2',
+        ]);
+        Log::info('外部DBのモデル 更新', [$rows]);
+
+        // モデルでデータ取得
+        $another = Another::find($newId);
+        Log::info('外部DBのモデル 更新後再取得', [$another]);
+
+        $rows = Another::delete($newId);
+        Log::info('外部DBのモデル 物理削除', [$rows]);
     }
 }
