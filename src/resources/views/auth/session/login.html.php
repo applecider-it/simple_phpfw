@@ -18,7 +18,7 @@ use SFW\Core\Config;
 
             <div style="margin-top: 1rem;">
                 <label class="app-form-label">Password</label>
-                <input type="text" name="password" value="<?= Html::esc($data['password']) ?>" class="app-form-input">
+                <input type="password" name="password" value="<?= Html::esc($data['password']) ?>" class="app-form-input">
             </div>
             <div style="margin-top: 1rem;">
                 <button type="submit" class="app-btn-primary">ログイン</button>
