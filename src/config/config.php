@@ -4,7 +4,7 @@
  */
 
 /** @var string ブラウザキャッシュ対応 */
-$importmapUpdate = '20251202_0001';
+$filePostfix = '20251202_0002';
 
 return [
     'debug' => $env['SFW_DEBUG'],
@@ -26,16 +26,19 @@ return [
     // 管理画面のprefix
     'adminPrefix' => '/admin_secret',
 
+    // ブラウザキャッシュ対応
+    'filePostfix' => $filePostfix,
+
     // インポートマップ
     'importmap' => [
         'imports' => [
-            '@/app' => "/js/app.js?update={$importmapUpdate}",
+            '@/app' => "/js/app.js?{$filePostfix}",
 
-            '@/services/data/json' => "/js/services/data/json.js?update={$importmapUpdate}",
+            '@/services/data/json' => "/js/services/data/json.js?{$filePostfix}",
 
             // 開発者向けページ用
-            '@/services/development/setup_development' => "/js/services/development/setup_development.js?update={$importmapUpdate}",
-            '@/services/development/frontend_test' => "/js/services/development/frontend_test.js?update={$importmapUpdate}",
+            '@/services/development/setup_development' => "/js/services/development/setup_development.js?{$filePostfix}",
+            '@/services/development/frontend_test' => "/js/services/development/frontend_test.js?{$filePostfix}",
         ],
     ]
 ];
