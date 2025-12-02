@@ -38,7 +38,7 @@ export default class FrontendTest {
     };
 
     const url =
-      "/development/frontend_test_api_post?" +
+      "/development/api_post?" +
       toQueryString({ get_val: "Get!!" });
     console.log("url", url);
 
@@ -52,7 +52,7 @@ export default class FrontendTest {
     const method = "GET";
 
     const url =
-      "/development/frontend_test_api_get?" +
+      "/development/api_get?" +
       toQueryString({ get_val: "Get!!" });
     console.log("url", url);
 
@@ -76,7 +76,7 @@ export default class FrontendTest {
     };
 
     const url =
-      "/development/frontend_test_api_post_nosession?" +
+      "/development/api_post_nosession?" +
       toQueryString({ get_val: "Get!!" });
     console.log("url", url);
 

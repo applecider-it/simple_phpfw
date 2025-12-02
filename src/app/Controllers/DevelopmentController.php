@@ -119,7 +119,7 @@ class DevelopmentController extends Controller
     }
 
     /** frontendテスト(POST API部分) */
-    public function frontend_test_api_post()
+    public function api_post()
     {
         $user = App::get('user');
 
@@ -134,7 +134,7 @@ class DevelopmentController extends Controller
     }
 
     /** frontendテスト(GET API部分) */
-    public function frontend_test_api_get()
+    public function api_get()
     {
         $user = App::get('user');
 
@@ -154,7 +154,7 @@ class DevelopmentController extends Controller
     }
 
     /** frontendテスト(セッションがないPOST API部分) */
-    public function frontend_test_api_post_nosession()
+    public function api_post_nosession()
     {
         $user = App::get('user');
 
