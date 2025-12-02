@@ -10,7 +10,7 @@ class User extends Model
     /** 認証で使うセッションのキー */
     const AUTH_SESSION_KEY = "user_id";
 
-    protected static $table = 'users';
+    protected static string $table = 'users';
 
     /** ツイートのクエリービルダー */
     public static function tweets($user_id)

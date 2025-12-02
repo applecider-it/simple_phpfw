@@ -11,7 +11,7 @@ use App\Models\Model;
  */
 class Tweet extends Model
 {
-    protected static $table = 'user_tweets';
+    protected static string $table = 'user_tweets';
 
     /** UserとのJoin用のScope */
     public static function scopeUser(Query $query)

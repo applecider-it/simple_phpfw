@@ -12,6 +12,10 @@ php ./bin/console server
 
 foreman start
 
+ログクリア
+
+echo "" > ./storage/logs/simple_framework.log
+
 -----------------------------------
 
 http://localhost:9000/

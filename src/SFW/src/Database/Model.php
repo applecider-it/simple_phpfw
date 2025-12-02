@@ -10,18 +10,21 @@ use SFW\Core\App;
 abstract class Model
 {
     /** 論理削除用カラム */
-    protected static $softDeleteColumn = 'deleted_at';
+    protected static string $softDeleteColumn = 'deleted_at';
 
     /** プライマリIDカラム名 */
-    protected static $primary = 'id';
+    protected static string $primary = 'id';
 
     /** テーブル名 */
-    protected static $table = '';
+    protected static string $table = '';
+
+    /** データベースシングルトン名 */
+    protected static string $database = 'db';
 
     /** クエリービルダーを返す */
     public static function query(): Query
     {
-        return (new Query())->table(static::$table);
+        return (new Query(static::$database))->table(static::$table);
     }
 
     /** ID情報を追加したクエリービルダーを返す */
@@ -115,6 +118,6 @@ abstract class Model
     /** DB */
     private static function db()
     {
-        return App::get('db');
+        return App::get(static::$database);
     }
 }

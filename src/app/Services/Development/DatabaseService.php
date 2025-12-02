@@ -82,7 +82,7 @@ class DatabaseService
                     'content' => 'ツイートテキスト No.' . $number,
                 ]
             );
-            Log::info('After User/Tweet Insert', [$newIdTweet]);    
+            Log::info('After User/Tweet Insert', [$newIdTweet]);
         }
 
         $db->commitTransaction();
@@ -180,11 +180,10 @@ class DatabaseService
         // columnサブクエリー用
         $columnSubquery = (new Query)
             ->table("users users2")
-            ->column("COUNT(*)")
             ->where("users2.id = user_tweets.user_id")
             ->where("users2.id > ?", 0)
             ->where("users2.id < ?", 40000)
-            ->build();
+            ->build(true);
         Log::info('columnサブクエリー用', $columnSubquery);
 
         // whereサブクエリー用
@@ -212,22 +211,27 @@ class DatabaseService
         Log::info('複雑なクエリーの動作確認 all', [$tweets]);
 
         // Group Having動作確認
-        $tweets = Tweet::query()
+        $query = Tweet::query()
             ->column("user_id")
             ->column("count(*) as cnt")
             ->group("user_id")
             //->having("cnt > ?", 1)
             ->having("cnt < ?", 1000)
             ->order("cnt")
-            ->order("user_id")
-            ->all();
+            ->order("user_id");
+
+        $tweets = $query->all();
 
         Log::info('Group Having動作確認 all', [$tweets]);
+
+        $cnt = $query->count();
+
+        Log::info('Group Having動作確認 count', [$cnt]);
 
         // Distinct、when、scope、in動作確認
         $min = 0;
         $max = 9000;
-        $tweets = Tweet::query()
+        $query = Tweet::query()
             ->distinct()
             ->column("user_id")
             ->when(true, function (Query $query) use ($min, $max) {
@@ -239,10 +243,15 @@ class DatabaseService
             ->scope([Tweet::class, 'sampleScope'], 0, 8000)
             ->when(false, function (Query $query) { // whenの$conditionがfalseの時
                 Tweet::scopeSampleScope($query, 10000, 0);
-            })
-            ->all();
+            });
+
+        $tweets = $query->all();
 
         Log::info('Distinct、when、scope、in動作確認 all', [$tweets]);
+
+        $cnt = $query->count();
+
+        Log::info('Distinct、when、scope、in動作確認 count', [$cnt]);
     }
 
     /** モデルの削除確認 */

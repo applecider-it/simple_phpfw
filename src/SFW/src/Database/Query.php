@@ -9,6 +9,12 @@ use SFW\Core\App;
  */
 class Query
 {
+    /** カウント取得時の作業用カラム */
+    private const WORK_COUNT_COLUMN = 'app_work_cnt';
+
+    /** テーブルラップ時の作業用カラム */
+    private const WORK_WRAP_TABLE = 'app_work_tbl';
+
     /** テーブル用データ配列 */
     private array $tables = [];
 
@@ -36,10 +42,18 @@ class Query
     /** 初期位置 */
     private int|null $offset = null;
 
+    /**
+     * @param string $database データベースシングルトン名
+     */
+    public function __construct(private string $database = 'db') {}
+
     /** テーブル指定 */
-    public function table(string $table): self
+    public function table(string $sql, ...$value): self
     {
-        $this->tables[] = $table;
+        $this->tables[] = [
+            'sql' => $sql,
+            'bindings' => $value,
+        ];
         return $this;
     }
 
@@ -142,6 +156,32 @@ class Query
     /** SQLと値をビルドする */
     public function build($buildForCount = false)
     {
+        // カウント取得じゃないときはそのまま返す
+        if (! $buildForCount) return $this->buildSelect($buildForCount);
+
+        /** @var string 作業テーブルでラップする必要があるときはtrue */
+        $needWrap = ($this->distinct || $this->groups);
+
+        // 作業テーブルでラップする必要がないときはそのまま返す
+        if (! $needWrap) return $this->buildSelect($buildForCount);
+
+        // 作業テーブルでラップする必要があるカウント取得時
+
+        $tableSubquery = $this->buildSelect(false);
+
+        $query = new self($this->database);
+
+        return $query
+            ->table(
+                "(" . $tableSubquery['sql'] . ") as " . self::WORK_WRAP_TABLE,
+                ...$tableSubquery['bindings']
+            )
+            ->buildSelect(true);
+    }
+
+    /** SELECT文をビルドする */
+    private function buildSelect($buildForCount)
+    {
         $sql = "SELECT";
         $bindings = [];
 
@@ -150,7 +190,7 @@ class Query
         }
 
         if ($buildForCount) {
-            $sql .= " count(*) as cnt";
+            $sql .= " count(*) as " . self::WORK_COUNT_COLUMN;
         } else {
             if ($this->columns) {
                 $ret = $this->buildColumns();
@@ -161,7 +201,11 @@ class Query
             }
         }
 
-        $sql .= " FROM " . implode(" ", $this->tables);
+        if ($this->tables) {
+            $ret = $this->buildTable();
+            $sql .= " FROM " . $ret['sql'];
+            $bindings = array_merge($bindings, $ret['bindings']);
+        }
 
         if ($this->wheres) {
             $ret = $this->buildWhere();
@@ -201,7 +245,7 @@ class Query
 
         $row = $this->db()->one($ret['sql'], ...$ret['bindings']);
 
-        return $row['cnt'];
+        return $row[self::WORK_COUNT_COLUMN];
     }
 
     /** １行だけ取得 */
@@ -224,7 +268,13 @@ class Query
     /** DBインスタンス */
     private function db()
     {
-        return App::get('db');
+        return App::get($this->database);
+    }
+
+    /** テーブルのビルド */
+    private function buildTable()
+    {
+        return $this->buildCommon($this->tables, ' ');
     }
 
     /** カラムのビルド */
