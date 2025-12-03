@@ -18,15 +18,15 @@ class View
     /**
      * 描画して文字列を返す
      */
-    public function render(string $view, array $data = [])
+    public function render(string $name, array $data = [])
     {
         // $dataはインクルード先で利用している
 
         $baseDir = $this->baseDir ?? SFW_PROJECT_ROOT . '/resources/views';
-        $path = $baseDir . '/' . str_replace('.', '/', $view) . '.html.php';
+        $path = $baseDir . '/' . str_replace('.', '/', $name) . '.html.php';
 
         if (!file_exists($path)) {
-            throw new \Exception("View not found: $view. path: $path.");
+            throw new \Exception("View not found: $name. path: $path.");
         }
 
         ob_start();

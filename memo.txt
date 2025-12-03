@@ -62,6 +62,16 @@ php ./bin/console container
 php ./bin/console runner "print_r(App\Models\User::query()->one());"
 
 
+コントローラージェネレーター
+
+php ./bin/console app-generator controller Shop index show
+
+ドライラン
+
+php ./bin/console app-generator --dryrun controller Shop index show
+
+
+
 サンプルコマンド
 
 php ./bin/console app-samplecommand arg1 --opt1 arg2 --opt2=val2 arg3
