@@ -62,19 +62,38 @@ php ./bin/console container
 php ./bin/console runner "print_r(App\Models\User::query()->one());"
 
 
-コントローラージェネレーター
-
-php ./bin/console app-generator controller Shop index show
-
-ドライラン
-
-php ./bin/console app-generator --dryrun controller Shop index show
-
 
 
 サンプルコマンド
 
 php ./bin/console app-samplecommand arg1 --opt1 arg2 --opt2=val2 arg3
+
+-----------------------------------
+
+ジェネレーター
+
+
+help
+
+php ./bin/console help generator
+
+php ./bin/console generator help controller
+
+ジェネレーター一覧
+
+php ./bin/console generator
+
+コントローラージェネレーター
+
+php ./bin/console generator controller Shop index show
+
+ドライラン
+
+php ./bin/console generator --dryrun controller Shop index show
+
+複雑な構造  ドライラン
+
+php ./bin/console generator --dryrun controller CtrlLevel1/CtrlLevel2 action_name1 action_name2
 
 -----------------------------------
 

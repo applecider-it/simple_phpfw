@@ -1,16 +1,26 @@
 <?php
 
-namespace App\Services\Commands\GeneratorService;
+namespace App\Generators;
 
 use SFW\Data\Str;
 
 /**
  * コントローラージェネレーター
  */
-class ControllerGenerator
+class ControllerGenerator extends Generator
 {
-    /** コントローラージェネレーター */
-    public function exec(array $params)
+    /** ジェネレーターコマンド名 */
+    public static string $name = 'controller';
+
+    /** ジェネレーターコマンド説明 */
+    public static string $desc = 'コントローラー生成';
+
+    /** ジェネレーターコマンド説明の詳細 */
+    public static string $descDetail = 'パラメーター
+controller action action ...';
+
+    /** 生成情報を作成 */
+    public function conf(array $params, array $options)
     {
         $controller = array_shift($params);
         $controllerSnake = Str::pascalToSnake($controller);

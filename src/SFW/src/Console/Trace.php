@@ -19,7 +19,7 @@ class Trace
             'Class',
         ];
         $rows[] = [
-            Starter::HELP_COMMAND_NAME,
+            Process::HELP_COMMAND_NAME,
             'ヘルプ表示',
             '',
         ];

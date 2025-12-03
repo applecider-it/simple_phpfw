@@ -1,14 +1,14 @@
 <?php
 
-namespace SFW\Output;
+namespace SFW\Generator;
 
 use SFW\Data\Json;
 use SFW\Output\View;
 
 /**
- * ジェネレーター共通
+ * ジェネレーターの作成部分管理
  */
-class Generator
+class Creator
 {
     /** 出力 */
     public static function output(string $viewName, string $path, array $viewData, bool $dryrun)
