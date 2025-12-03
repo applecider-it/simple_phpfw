@@ -49,6 +49,10 @@ class DatabaseService
 
         $this->drawLine();
 
+        $this->query3($db);
+
+        $this->drawLine();
+
         $this->model2($newId);
 
         $this->drawLine();
@@ -258,6 +262,61 @@ class DatabaseService
         $cnt = $query->count();
 
         Log::info('Distinct、when、scope、in動作確認 count', [$cnt]);
+    }
+
+    /** 複雑なクエリー確認 union */
+    private function query3(DB $db)
+    {
+        // Unionテーブル１
+        $table1Query = (new Query)
+            ->column('id')
+            ->column('name')
+            ->table("users users1")
+            ->where("users1.id > ?", 0)
+            ->where("users1.id < ?", 100000)
+            ->build();
+
+        Log::info('Unionテーブル１', $table1Query);
+
+        // Unionテーブル２
+        $table2Query = (new Query)
+            ->column('id')
+            ->column('name')
+            ->table("users users2")
+            ->where("users2.id > ?", 0)
+            ->where("users2.id < ?", 200000)
+            ->build();
+
+        Log::info('Unionテーブル２', $table2Query);
+
+        $unionSql =
+            $table1Query['sql']
+            . ' UNION '
+            . $table2Query['sql'];
+
+        $unionBindings = [
+            ...$table1Query['bindings'],
+            ...$table2Query['bindings'],
+        ];
+
+        $rows = $db->all(
+            $unionSql
+                . ' ORDER BY id'
+                . ' LIMIT 3',
+            ...$unionBindings
+        );
+
+        Log::info('Union動作確認 all', $rows);
+
+        $rows = (new Query)
+            ->table('(' . $unionSql . ') tbl', ...$unionBindings)
+            ->order('tbl.name ASC')
+            ->where('tbl.id < ?', 300000)
+            ->where('tbl.id > ?', 0)
+            ->limit(3)
+            ->all();
+
+        Log::info('Unionのラップ動作確認 all', $rows);
     }
 
     /** モデルの削除確認 */
