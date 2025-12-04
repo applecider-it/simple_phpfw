@@ -3,6 +3,10 @@
 namespace App\Controllers<?= $data['controllerNamespace'] ? '\\' . $data['controllerNamespace'] : '' ?>;
 
 use SFW\Output\View;
+<?php if ($data['controllerNamespace']): ?>
+
+use App\Controllers\Controller;
+<?php endif; ?>
 
 /**
  * <?= $data['controllerName'] . "\n" ?>

@@ -91,9 +91,26 @@ php ./bin/console generator controller Shop index show
 
 php ./bin/console generator --dryrun controller Shop index show
 
+複雑な構造
+
+php ./bin/console generator controller CtrlLevel1/CtrlLevel2 action_name1 action_name2
+
 複雑な構造  ドライラン
 
 php ./bin/console generator --dryrun controller CtrlLevel1/CtrlLevel2 action_name1 action_name2
+
+
+--
+
+動作確認
+
+/routes/web.php
+
+$router->get('/generator_test', [App\Controllers\ShopController::class, 'index']);
+$router->get('/generator_test2', [App\Controllers\CtrlLevel1\CtrlLevel2Controller::class, 'action_name2']);
+
+http://localhost:9000/generator_test
+http://localhost:9000/generator_test2
 
 -----------------------------------
 
