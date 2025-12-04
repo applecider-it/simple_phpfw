@@ -71,6 +71,6 @@ class Str
 
     /** パスカルケースをスネークケースに変換 */
     public static function pascalToSnake(string $text): string {
-        return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $text));
+        return ltrim(strtolower(preg_replace('/[A-Z]/', '_$0', $text)), '_');
     }
 }

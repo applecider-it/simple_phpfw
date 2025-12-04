@@ -1,13 +1,13 @@
 <#php
 
-namespace App\Controllers;
+namespace App\Controllers<?= $data['controllerNamespace'] ? '\\' . $data['controllerNamespace'] : '' ?>;
 
 use SFW\Output\View;
 
 /**
- * <?= $data['controller'] . "\n" ?>
+ * <?= $data['controllerName'] . "\n" ?>
  */
-class <?= $data['controller'] ?>Controller extends Controller
+class <?= $data['controllerName'] ?>Controller extends Controller
 {
 <?php foreach ($data['actions'] as $idx => $action): ?>
 <?= $idx == 0 ? '' : "\n" ?>
@@ -16,7 +16,7 @@ class <?= $data['controller'] ?>Controller extends Controller
     {
         $view = new View();
         return $view->render('layouts.app', [
-            'content' => $view->render('<?= $data['controllerSnake'] ?>.<?= $action ?>'),
+            'content' => $view->render('<?= $data['viewPrefix'] ?>.<?= $action ?>'),
         ]);
     }
 <?php endforeach; ?>

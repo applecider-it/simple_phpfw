@@ -17,15 +17,20 @@ class ControllerGenerator extends Generator
 
     /** ジェネレーターコマンド説明の詳細 */
     public static string $descDetail = 'パラメーター
-controller action action ...';
+controller action action ...
+
+controllerはパスカルケース
+ディレクトリの区切りは /
+
+actionはスネークケース
+';
 
     /** 生成情報を作成 */
     public function conf(array $params, array $options)
     {
         $controller = array_shift($params);
-        $controllerSnake = Str::pascalToSnake($controller);
+
         echo "controller: $controller\n";
-        echo "controllerSnake: $controllerSnake\n";
         if (! $controller) {
             echo "controller is blank.\n";
             return;
@@ -33,27 +38,56 @@ controller action action ...';
 
         $actions = $params;
 
+        $info = $this->createInfo($controller);
+        $controllerName = $info['controllerName'];
+        $controllerNamespace = $info['controllerNamespace'];
+        $viewPrefix = $info['viewPrefix'];
+        $viewSubPath = $info['viewSubPath'];
+
         $conf = [];
 
         $data = [
-            'controller' => $controller,
-            'controllerSnake' => $controllerSnake,
+            'actions' => $actions,
+            'controllerName' => $controllerName,
+            'controllerNamespace' => $controllerNamespace,
+            'viewPrefix' => $viewPrefix,
         ];
 
         $conf[] = [
             'name' => 'generators.controller.controller',
             'path' => SFW_PROJECT_ROOT . "/app/Controllers/" . $controller . "Controller.php",
-            'data' => $data + ['actions' => $actions],
+            'data' => $data,
         ];
 
         foreach ($actions as $action) {
             $conf[] = [
                 'name' => 'generators.controller.view',
-                'path' => SFW_PROJECT_ROOT . "/resources/views/{$controllerSnake}/{$action}.html.php",
+                'path' => SFW_PROJECT_ROOT . "/resources/views/{$viewSubPath}/{$action}.html.php",
                 'data' => $data + ['action' => $action],
             ];
         }
 
         return $conf;
+    }
+
+    /** 基本情報を生成 */
+    private function createInfo(string $controller)
+    {
+        $arr = explode('/', $controller);
+
+        $arrSnake = array_map(fn($v) => Str::pascalToSnake($v), $arr);
+
+        $viewPrefix = implode('.', $arrSnake);
+        $viewSubPath = implode('/', $arrSnake);
+
+        $name = array_pop($arr);
+        $namespace = implode('\\', $arr);
+
+        return [
+            'controllerName' => $name,
+            'controllerNamespace' => $namespace,
+            'viewPrefix' => $viewPrefix,
+            'viewSubPath' => $viewSubPath,
+        ];
     }
 }
