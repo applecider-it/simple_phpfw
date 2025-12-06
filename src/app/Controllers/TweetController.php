@@ -107,12 +107,13 @@ class TweetController extends Controller
     /** 関連情報 */
     private function getRelationInfo()
     {
-        $user = App::get('user');
-        $tweets = User::tweets($user['id'])
+        $tweets = Tweet::query()
             ->scope([Tweet::class, 'kept'])
             ->order("id desc")
             ->limit(10)
             ->all();
+
+        Tweet::withUser($tweets); 
 
         return [
             'tweets' => $tweets,

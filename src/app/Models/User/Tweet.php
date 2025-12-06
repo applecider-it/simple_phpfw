@@ -5,6 +5,7 @@ namespace App\Models\User;
 use SFW\Database\Query;
 
 use App\Models\Model;
+use App\Models\User;
 
 /**
  * ツイートモデル
@@ -30,5 +31,11 @@ class Tweet extends Model
     public static function validationContent()
     {
         return ['required'];
+    }
+
+    /** ユーザーを含める */
+    public static function withUser(array &$tweets)
+    {
+        self::with($tweets, 'user_id', User::query(), 'id', 'user');
     }
 }

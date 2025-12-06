@@ -22,11 +22,14 @@ use SFW\Core\Config;
 <div style="display:flex; flex-direction:column; gap:16px;">
     <?php foreach ($data['tweets'] as $tweet): ?>
         <div class="tweet-card">
-            <div style="font-size:15px; color:#222; line-height:1.6; white-space:pre-line;">
+            <div style="font-size:15px; color:#222; line-height:1.6;">
                 <?= Html::esc($tweet['content']) ?>
             </div>
             <div style="margin-top:8px; font-size:13px; color:#777;">
                 <?= Html::esc($tweet['created_at']) ?>
+            </div>
+            <div style="margin-top:8px; font-size:13px; color:#777;">
+                send by <?= Html::esc($tweet['user']['name']) ?>
             </div>
         </div>
     <?php endforeach; ?>
