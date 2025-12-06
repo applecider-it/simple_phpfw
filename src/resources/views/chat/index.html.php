@@ -8,7 +8,7 @@
             padding: 5px;
         }
     </style>
-    <div id="log"></div>
+    
     <div style="margin-top: 2rem;">
         <input
             id="msg" type="text" placeholder="メッセージ"
@@ -16,13 +16,14 @@
             class="app-form-input" style="width: auto;">
         <button onclick="send()" class="app-btn-primary">送信</button>
     </div>
+    <div id="log"></div>
 
     <script>
-        let ws = new WebSocket("ws://127.0.0.1:8080");
+        let ws = new WebSocket("ws://127.0.0.1:8080?token=abcde");
         let log = document.getElementById("log");
 
         ws.onmessage = (e) => {
-            log.innerHTML += `<div>${e.data}</div>`;
+            log.innerHTML = `<div>${e.data}</div>` + log.innerHTML;
             log.scrollTop = log.scrollHeight;
         };
 

@@ -2,7 +2,7 @@
 
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
-use App\Services\WebSocket\WebSocketServer;
+use App\Services\WebSocket\Server;
 
-$ws = new WebSocketServer("0.0.0.0", 8080);
-$ws->start();
+$server = new Server();
+$server->start();

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\WebSocket;
+namespace App\Services\WebSocketCore;
 
 /**
  * WebSocketサーバー
@@ -9,8 +9,21 @@ class WebSocketServer
 {
     private $address;
     private $port;
+
+    /** サーバーresource */
     private $server;
+
+    /** クライアントresource配列 */
     private $clients = [];
+
+    /** 接続時のコールバック */
+    public \Closure $onConnected;
+
+    /** 切断時のコールバック */
+    public \Closure $onClose;
+
+    /** メッセージ受信時のコールバック */
+    public \Closure $onMessage;
 
     /**
      * コンストラクタ
@@ -42,14 +55,15 @@ class WebSocketServer
             $timeout = 1;
             stream_select($read, $write, $except, $timeout);
 
-            echo "stream_select" . count($read) . "\n";
-            print_r($read);
+            //echo "stream_select: read count: " . count($read) . "\n";
+            //print_r($read);
 
             // 新規接続を検出
             if (in_array($this->server, $read)) {
                 echo "new connection\n";
                 $this->acceptClient();
                 unset($read[array_search($this->server, $read)]);
+                echo "after new connection read count: " . count($read) . "\n";
             }
 
             // 既に接続中のクライアントを処理
@@ -86,84 +100,30 @@ class WebSocketServer
         }
 
         // 初回はハンドシェイク処理
-        if ($this->isHandshakeRequest($data)) {
-            $this->handshake($client, $data);
+        if (WebSocketServer\Handshake::isHandshakeRequest($data)) {
+            echo "Handshake: " . (int)$client . "\n";
+            $params = WebSocketServer\Handshake::handshake($client, $data);
+
+            ($this->onConnected)($this, $client, $params);
             return;
         }
 
         // 通常のWebSocketデータフレームとしてデコード
-        $msg = $this->decode($data);
+        $msg = WebSocketServer\Decode::decode($data);
         echo "Received: $msg\n";
 
         // 全員にブロードキャスト
-        $this->broadcast($msg);
+        ($this->onMessage)($this, $client, $msg);
     }
 
     /**
      * クライアント切断処理
      */
-    private function disconnectClient($client)
+    public function disconnectClient($client)
     {
+        echo "Disconnect: " . (int)$client . "\n";
         fclose($client);
         unset($this->clients[array_search($client, $this->clients)]);
-    }
-
-    /**
-     * ハンドシェイクデータかチェック
-     */
-    private function isHandshakeRequest(string $data): bool
-    {
-        return preg_match("/Sec-WebSocket-Key: (.*)\r\n/", $data);
-    }
-
-    /**
-     * クライアントとWebSocketハンドシェイク
-     */
-    private function handshake($client, string $data)
-    {
-        preg_match("/Sec-WebSocket-Key: (.*)\r\n/", $data, $matches);
-        $key = trim($matches[1]);
-
-        // Acceptキーの計算 (WebSocket規格)
-        $accept = base64_encode(
-            sha1($key . "258EAFA5-E914-47DA-95CA-C5AB0DC85B11", true)
-        );
-
-        $response =
-            "HTTP/1.1 101 Switching Protocols\r\n" .
-            "Upgrade: websocket\r\n" .
-            "Connection: Upgrade\r\n" .
-            "Sec-WebSocket-Accept: $accept\r\n\r\n";
-
-        fwrite($client, $response);
-    }
-
-    /**
-     * 受信データフレームのデコード
-     */
-    private function decode(string $data): string
-    {
-        $len = ord($data[1]) & 127;
-        $mask = substr($data, 2, 4); // マスクキー
-        $msg = '';
-
-        // マスク解除
-        for ($i = 0; $i < $len; $i++) {
-            $msg .= $data[$i + 6] ^ $mask[$i % 4];
-        }
-
-        return $msg;
-    }
-
-    /**
-     * 全クライアントに送信
-     */
-    private function broadcast(string $msg)
-    {
-        $send = "\x81" . chr(strlen($msg)) . $msg; // 送信用のWebSocketフレーム形成
-
-        foreach ($this->clients as $client) {
-            @fwrite($client, $send);
-        }
+        ($this->onClose)($this, $client);
     }
 }
