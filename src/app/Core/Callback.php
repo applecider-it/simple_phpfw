@@ -36,4 +36,10 @@ class Callback
         $message .= " (" . bcdiv($meta['executionTime'], 1, 5) . ")";
         Log::info($message, $bindings);
     }
+
+    /** ルーター処理後 */
+    public function afterRouter(mixed $val)
+    {
+        echo $val;
+    }
 }

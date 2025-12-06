@@ -21,18 +21,21 @@ class Web
         try {
             $val = $router->dispatch();
 
-            echo $val;
-        }
-        catch (Exceptions\NotFound $e) {
+            App::get('callback')->afterRouter($val);
+        } catch (Exceptions\NotFound $e) {
+            // ページが見つからないとき
+
             Error::error404($e);
-        }
-        catch (Exceptions\Csrf $e) {
+        } catch (Exceptions\Csrf $e) {
+            // CSRFエラー発生時
+
             Log::error((string) $e);
             Error::error500($e);
-        }
-        catch (Exceptions\Interruption $e) {
-        }
-        catch (\Throwable $e) {
+        } catch (Exceptions\Interruption $e) {
+            // 中断時
+        } catch (\Throwable $e) {
+            // そのほかのエラーの時
+
             Log::error((string) $e);
             Error::error500($e);
         }
