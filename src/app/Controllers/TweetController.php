@@ -38,6 +38,9 @@ class TweetController extends Controller
     {
         $form = Arr::choise($this->params, ['content']);
 
+        $commit = $this->params['commit'] ?? null;
+        $confirm = $this->params['confirm'] ?? null;
+
         $rules = [
             'content' => Tweet::validationContent(),
         ];
@@ -51,15 +54,45 @@ class TweetController extends Controller
         $errors = null;
 
         if ($v->fails()) {
+            // エラーがあるとき
+
             $errors = $v->errors();
 
             $view = new View();
             return $view->render('layouts.app', [
                 'content' => $view->render(
                     'tweet.index',
-                     $form + ['errors' => $errors] + $this->getRelationInfo()
+                    $form + ['errors' => $errors] + $this->getRelationInfo()
                 ),
             ]);
+        } else {
+            // エラーがないとき
+
+            if (! $commit) {
+                // 確定以外
+
+                if ($confirm) {
+                    // 確認へ遷移するとき
+
+                    $view = new View();
+                    return $view->render('layouts.app', [
+                        'content' => $view->render(
+                            'tweet.confirm',
+                            $form + $this->getRelationInfo()
+                        ),
+                    ]);
+                } else {
+                    // フォームに戻るとき
+
+                    $view = new View();
+                    return $view->render('layouts.app', [
+                        'content' => $view->render(
+                            'tweet.index',
+                            $form + $this->getRelationInfo()
+                        ),
+                    ]);
+                }
+            }
         }
 
         $user = App::get('user');
