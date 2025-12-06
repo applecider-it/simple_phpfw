@@ -10,9 +10,11 @@
     </style>
     <div id="log"></div>
     <div style="margin-top: 2rem;">
-    <input id="msg" type="text" placeholder="メッセージ" autofocus class="app-form-input" style="width: auto;">
-    <button onclick="send()" class="app-btn-primary">送信</button>
-
+        <input
+            id="msg" type="text" placeholder="メッセージ"
+            autofocus autocomplete="off"
+            class="app-form-input" style="width: auto;">
+        <button onclick="send()" class="app-btn-primary">送信</button>
     </div>
 
     <script>

@@ -1,5 +1,10 @@
 <?php
 
+namespace App\Services\WebSocket;
+
+/**
+ * WebSocketサーバー
+ */
 class WebSocketServer
 {
     private $address;
@@ -162,6 +167,3 @@ class WebSocketServer
         }
     }
 }
-
-$ws = new WebSocketServer("0.0.0.0", 8080);
-$ws->start();
