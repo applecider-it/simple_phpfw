@@ -10,6 +10,7 @@ $user = App::get('user');
     <h1><?= Config::get('applicationName') ?></h1>
     <nav>
         <a href="/">Home</a>
+        <a href="/tweets">Tweet</a>
         <?php if ($user): ?>
             (Name: <?= Html::esc($user['name']) ?>)
             <a href="/logout" onclick="if (confirm('ログアウトしますか？')) document.getElementById('app_nav_logout_form').submit(); return false; ">Logout</a>

@@ -3,3 +3,10 @@ composer install
 
 composer dump-autoload
 
+
+-----------------------------------
+
+
+php ./bin/console generator controller Tweet index store
+
+

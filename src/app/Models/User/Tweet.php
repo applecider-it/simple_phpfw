@@ -25,4 +25,10 @@ class Tweet extends Model
         $query->where(static::$table . '.id > ?', $min);
         $query->where(static::$table . '.id < ?', $max);
     }
+
+    /** 投稿内容のバリデーション */
+    public static function validationContent()
+    {
+        return ['required'];
+    }
 }

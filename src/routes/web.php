@@ -7,10 +7,22 @@
  */
 
 use App\Controllers\HomeController;
+use App\Controllers\TweetController;
 use App\Controllers\DevelopmentController;
 
 // トップページ
 $router->get('/', [HomeController::class, 'index']);
+
+// ユーザー管理画面
+(function ($router) {
+    $options = ['auth' => 'user'];
+
+    $prefix = '/tweets';
+    $controller = TweetController::class;
+
+    $router->get($prefix, [$controller, 'index'], $options);
+    $router->post($prefix, [$controller, 'store'], $options);
+})($router);
 
 // 開発者向けページ
 (function ($router) {

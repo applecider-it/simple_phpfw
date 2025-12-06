@@ -30,5 +30,10 @@ return [
                 'password' => 'パスワード',
             ],
         ],
+        'user/tweet' => [
+            'attributes' => [
+                'content' => '投稿内容',
+            ],
+        ],
     ],
 ];
