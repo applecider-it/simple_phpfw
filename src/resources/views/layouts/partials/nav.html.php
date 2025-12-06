@@ -11,6 +11,7 @@ $user = App::get('user');
     <nav>
         <a href="/">Home</a>
         <a href="/tweets">Tweet</a>
+        <a href="/chat">Chat</a>
         <?php if ($user): ?>
             (Name: <?= Html::esc($user['name']) ?>)
             <a href="/logout" onclick="if (confirm('ログアウトしますか？')) document.getElementById('app_nav_logout_form').submit(); return false; ">Logout</a>

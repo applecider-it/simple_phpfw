@@ -16,6 +16,16 @@ foreman start
 
 echo "" > ./storage/logs/simple_framework.log
 
+----------
+
+WebSocketサーバー
+
+
+cd /home/owner/workspace/tmp/simple_phpfw/ws
+
+php server.php
+
+
 -----------------------------------
 
 http://localhost:9000/

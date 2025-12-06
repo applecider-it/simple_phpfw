@@ -8,12 +8,16 @@
 
 use App\Controllers\HomeController;
 use App\Controllers\TweetController;
+use App\Controllers\ChatController;
 use App\Controllers\DevelopmentController;
 
 // トップページ
 $router->get('/', [HomeController::class, 'index']);
 
-// ユーザー管理画面
+// チャット
+$router->get('/chat', [ChatController::class, 'index']);
+
+// ツイート
 (function ($router) {
     $options = ['auth' => 'user'];
 
