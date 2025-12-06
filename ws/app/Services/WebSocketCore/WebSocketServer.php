@@ -99,6 +99,29 @@ class WebSocketServer
             return;
         }
 
+        $op = ord($data[0]) & 0x0F;
+
+        if ($op === 0x8) {
+            // Close frame
+            echo "Close frame\n";
+            $this->disconnectClient($client);
+            return;
+        }
+
+        if ($op === 0x9) {
+            // Ping frame
+            // → Pong を返す
+            echo "Ping frame\n";
+            fwrite($client, "\x8A\x00");
+            return;
+        }
+
+        if ($op === 0xA) {
+            // Pong frame
+            echo "Pong frame\n";
+            return;
+        }
+
         // 初回はハンドシェイク処理
         if (WebSocketServer\Handshake::isHandshakeRequest($data)) {
             echo "Handshake: " . (int)$client . "\n";

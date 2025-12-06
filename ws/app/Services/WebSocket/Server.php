@@ -24,11 +24,15 @@ class Server
                 'socket' => $clientSocket,
                 'params' => $params,
             ];
+
+            echo "client cnt: " . count($this->clientInfos) . "\n";
         };
         $ws->onClose = function ($wss, $clientSocket) {
             echo "onClose: " . (int)$clientSocket ."\n";
 
             unset($this->clientInfos[(int)$clientSocket]);
+
+            echo "client cnt: " . count($this->clientInfos) . "\n";
         };
         $ws->onMessage = function ($wss, $senderSocket, $msg) {
             echo "onMessage: " . (int)$senderSocket ." {$msg}\n";
