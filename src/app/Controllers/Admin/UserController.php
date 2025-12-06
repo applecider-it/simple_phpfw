@@ -4,6 +4,7 @@ namespace App\Controllers\Admin;
 
 use SFW\Output\View;
 use SFW\Data\Arr;
+use SFW\Core\App;
 use SFW\Core\Lang;
 use SFW\Core\Config;
 use SFW\Web\Location;
@@ -25,7 +26,7 @@ class UserController extends Controller
     {
         $query = User::query()
             ->order("id desc");
-        
+
         $softDelete = $this->params['soft_delete'] ?? 'all';
         if ($softDelete === 'kept') $query->scope([User::class, 'kept']);
         if ($softDelete === 'deleted') $query->scope([User::class, 'deleted']);
@@ -114,7 +115,7 @@ class UserController extends Controller
 
         $view = new View();
         return $view->render('admin.layouts.app', [
-            'content' => $view->render('admin.user.edit', $user),
+            'content' => $view->render('admin.user.edit', $user + $this->getRelationInfo($user)),
         ]);
     }
 
@@ -147,7 +148,7 @@ class UserController extends Controller
             return $view->render('admin.layouts.app', [
                 'content' => $view->render(
                     'admin.user.edit',
-                    $form + ['errors' => $errors] + $user
+                    $form + ['errors' => $errors] + $user + $this->getRelationInfo($user)
                 ),
             ]);
         }
@@ -159,13 +160,31 @@ class UserController extends Controller
         Location::redirect(Config::get('adminPrefix') . "/users/{$userId}/edit");
     }
 
+    /** 関連情報 */
+    private function getRelationInfo($user)
+    {
+        $tweets = User::tweets($user['id'])
+            ->order("id desc")
+            ->limit(5)
+            ->all();
+
+        return [
+            'tweets' => $tweets,
+        ];
+    }
+
     /** 論理削除 */
     public function destroy()
     {
         $user = $this->user();
         $userId = $user['id'];
 
+        $db = App::get('db');
+
+        $db->startTransaction();
+        User::deleteRelations($userId);
         User::softDelete($userId);
+        $db->commitTransaction();
 
         Flash::set('notice', '論理削除しました。');
 

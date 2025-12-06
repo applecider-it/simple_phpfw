@@ -115,8 +115,12 @@ abstract class Model
         ];
     }
 
-    /** DB */
-    private static function db()
+    /**
+     * DB
+     * 
+     * @return DB;
+     */
+    public static function db()
     {
         return App::get(static::$database);
     }

@@ -48,4 +48,16 @@ class User extends Model
         unset($user['password']);
         unset($user['deleted_at']);
     }
+
+    /** 関連テーブル削除 */
+    public static function deleteRelations(int $id)
+    {
+        $data = [
+            static::$softDeleteColumn => ['NOW()'],
+        ];
+
+        $db = User\Tweet::db();
+        
+        $db->update('user_tweets', $data, 'user_id = ?', $id);
+    }
 }

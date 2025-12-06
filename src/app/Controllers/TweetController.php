@@ -76,6 +76,7 @@ class TweetController extends Controller
     {
         $user = App::get('user');
         $tweets = User::tweets($user['id'])
+            ->scope([Tweet::class, 'kept'])
             ->order("id desc")
             ->limit(10)
             ->all();
