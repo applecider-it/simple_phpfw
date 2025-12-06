@@ -19,7 +19,7 @@
     <div id="log"></div>
 
     <script>
-        let ws = new WebSocket("ws://127.0.0.1:8080?token=abcde");
+        let ws = new WebSocket("ws://127.0.0.1:8080?token=<?= $data['token'] ?>");
         let log = document.getElementById("log");
 
         ws.onmessage = (e) => {
