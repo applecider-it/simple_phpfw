@@ -5,7 +5,7 @@
  */
 
 /** @var string ブラウザキャッシュ対応。多分、コンフリクトしやすいと思う。 */
-$filePostfix = '20251207_0000';
+$filePostfix = '20251207_0001';
 
 return [
     'debug' => $env['SFW_DEBUG'],
@@ -44,6 +44,7 @@ return [
     'importmap' => [
         'imports' => [
             '@/app' => "/js/app.js?{$filePostfix}",
+            '@/services/app/setup_app' => "/js/services/app/setup_app.js?{$filePostfix}",
 
             // 共通部分
             '@/services/data/json' => "/js/services/data/json.js?{$filePostfix}",

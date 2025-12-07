@@ -6,9 +6,9 @@ use SFW\Output\Html;
 
 $user = App::get('user');
 ?>
-<div class="app-header-responsive">
+<div class="app-nav-responsive">
     <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div><?= Config::get('applicationName') ?></div>
+        <div><a href="/"><?= Config::get('applicationName') ?></a></div>
         <div>
             <div id="app-nav-mobile-menu-button" style="cursor: pointer;">
                 <!-- Heroicons: Menu -->
@@ -18,12 +18,12 @@ $user = App::get('user');
             </div>
         </div>
     </div>
-    <div class="app-header-responsive-links" id="app-nav-mobile-menu-area">
+    <div class="app-nav-responsive-links" id="app-nav-mobile-menu-area" style="margin-top: 1rem;">
         <a href="/">Home</a>
         <a href="/tweets">Tweet</a>
         <a href="/chat">Chat</a>
         <?php if ($user): ?>
-            (Name: <?= Html::esc($user['name']) ?>)
+            <div style="margin: 1rem 0;">(Name: <?= Html::esc($user['name']) ?>)</div>
             <a href="/logout" onclick="if (confirm('ログアウトしますか？')) document.getElementById('app_nav_logout_form').submit(); return false; ">Logout</a>
             <form method="POST" action="/logout" id="app_nav_logout_form">
                 <?= $this->render('partials.form.csrf') ?>

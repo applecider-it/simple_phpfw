@@ -5,50 +5,50 @@
   padding: 0;
 }
 
-.app-header {
+.app-nav {
   background: #333;
   color: #fff;
   padding: 1rem;
 }
 
-.app-header a {
+.app-nav a {
   color: #fff;
   margin-right: 1rem;
   text-decoration: none;
 }
 
-.app-header-responsive-links {
+.app-nav-responsive-links {
   display: none;
 }
 
-.app-header-responsive-links > a {
+.app-nav-responsive-links > a {
   display: block;
   padding: 1rem 0.5rem;
   margin: 0.3rem 0;
   border: 1px solid #fff;
 }
 
-.app-header-responsive-links.app-header-responsive-links-open {
+.app-nav-responsive-links.app-nav-responsive-links-open {
   display: block;
 }
 
 .app-main {
   padding: 3rem 5rem;
 }
-.app-header-responsive {
+.app-nav-responsive {
   display: none;
 }
-.app-header-primary {
+.app-nav-primary {
   display: block;
 }
 @media (max-width: 768px) {
   .app-main {
     padding: 1rem 1rem;
   }
-  .app-header-responsive {
+  .app-nav-responsive {
     display: block;
   }
-  .app-header-primary {
+  .app-nav-primary {
     display: none;
   }
 }
