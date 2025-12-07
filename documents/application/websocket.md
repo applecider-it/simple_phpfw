@@ -22,7 +22,7 @@ websocketはphpで連携する。
 |--------|--------|--------|--------|
 | id | ID | integer |  |
 | name | 表示名 | string |  |
-| channel | 接続するチャンネル | string | 実装していない |
+| channel | 接続するチャンネル | string |  |
 | iat | 現在日時 | integer |  |
 | exp | 有効期限 | integer |  |
 
@@ -46,9 +46,9 @@ websocketはphpで連携する。
 }
 ```
 
-## Redis Pub/Sub連携（実際にはrpushを使っている）
+## Redis Pub/Sub連携（WebSocketサーバーがPHPなので、実際にはrpushを使っている）
 
-Pub/Subのチャンネル名: `websocket_publish`
+Pub/Subのチャンネル名（実際はrpushの時のキー）: `websocket_publish`
 
 ```
 {
