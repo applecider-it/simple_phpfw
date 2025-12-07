@@ -6,9 +6,9 @@
 
 ## フレームワーク詳細
 
-- [設計](./documents/design.md)
-- [/SFW/src/](./documents/sfw_src.md)
-- [フロントエンド](./documents/fontend.md)
+- [設計](./documents/framework/design.md)
+- [/SFW/src/](./documents/framework/sfw_src.md)
+- [フロントエンド](./documents/framework/fontend.md)
 
 ## アプリケーション詳細
 
