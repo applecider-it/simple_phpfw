@@ -5,7 +5,8 @@ namespace App\Services\WebSocketCore;
 /**
  * WebSocketサーバー
  * 
- * NodeのWebSocketサーバーみたいに使えるけど、同期処理なので注意。
+ * ドキュメント
+ * /documents/websocket.md
  */
 class WebSocketServer
 {
@@ -18,7 +19,7 @@ class WebSocketServer
     /** クライアントresource配列 */
     private $clients = [];
 
-    /** 接続時のコールバック */
+    /** 接続時のコールバック（正確には、ハンドシェイク処理の時） */
     public \Closure $onConnected;
 
     /** 切断時のコールバック */

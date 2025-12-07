@@ -1,6 +1,12 @@
 # WebSocket
 
-## 時系列図
+`App\Services\WebSocketCore\WebSocketServer`
+
+PHPでWebSocketサーバーを試作。
+
+NodeのWebSocketサーバーみたいに使えるけど、同期処理なので注意。
+
+## 接続時の時系列図
 
 ```
  Client                                Server

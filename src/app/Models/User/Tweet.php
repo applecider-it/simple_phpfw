@@ -9,6 +9,9 @@ use App\Models\User;
 
 /**
  * ツイートモデル
+ * 
+ * ドキュメント
+ * /documents/Models/User/Tweet.md
  */
 class Tweet extends Model
 {

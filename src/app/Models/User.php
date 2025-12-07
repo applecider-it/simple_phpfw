@@ -4,6 +4,9 @@ namespace App\Models;
 
 /**
  * ユーザーモデル
+ * 
+ * ドキュメント
+ * /documents/Models/User.md
  */
 class User extends Model
 {
