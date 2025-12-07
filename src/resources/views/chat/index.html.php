@@ -13,8 +13,20 @@ use SFW\Output\Html;
                     'host' => '127.0.0.1:9090',
                 ])) ?>">データ連携用タグ</div>
 
-<h2 class="app-h2">chat.index</h2>
+<h2 class="app-h2">
+    chat.index
+    <?php if ($data['room']): ?>
+        room: <?= $data['room'] ?>
+    <?php endif; ?>
+</h2>
+
 <div>
+    <div class="margin: 4rem 0;">
+        <?php foreach ($data['rooms'] as $r): ?>
+            <a href="/chat?room=<?= $r ?>" class="app-link-normal"><?= $r ? $r : 'default' ?></a>
+        <?php endforeach; ?>
+    </div>
+
     <style>
         #log {
             height: 300px;

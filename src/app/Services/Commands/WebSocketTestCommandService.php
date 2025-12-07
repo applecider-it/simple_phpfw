@@ -3,9 +3,9 @@
 namespace App\Services\Commands;
 
 use SFW\Core\App;
-use SFW\Data\Json;
 
 use App\Services\WebSocket\SystemService;
+use App\Services\Channels\ChatChannel;
 
 /**
  *  WebSocketの動作確認コマンド用サービス
@@ -17,7 +17,7 @@ class WebSocketTestCommandService
         echo "Begin WebSocketTestCommandService\n";
 
         $systemService = new SystemService;
-        $systemService->publish('chat:', [
+        $systemService->publish(ChatChannel::getChannel(), [
             'message' => 'From System (Redis) ' . date('Y/m/d H:i:s'),
         ]);
     }
