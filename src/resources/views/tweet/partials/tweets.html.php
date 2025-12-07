@@ -19,7 +19,7 @@ use SFW\Core\Config;
     }
 </style>
 
-<div style="display:flex; flex-direction:column; gap:16px;">
+<div style="display:flex; flex-direction:column; gap:1rem;">
     <?php foreach ($data['tweets'] as $tweet): ?>
         <div class="tweet-card">
             <div style="font-size:15px; color:#222; line-height:1.6;">

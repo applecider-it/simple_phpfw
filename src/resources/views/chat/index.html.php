@@ -21,7 +21,7 @@ use SFW\Output\Html;
 </h2>
 
 <div>
-    <div class="margin: 4rem 0;">
+    <div style="margin: 1rem 0; display:flex; flex-direction:row; gap:1rem;">
         <?php foreach ($data['rooms'] as $r): ?>
             <a href="/chat?room=<?= $r ?>" class="app-link-normal"><?= $r ? $r : 'default' ?></a>
         <?php endforeach; ?>
@@ -36,12 +36,12 @@ use SFW\Output\Html;
         }
     </style>
 
-    <div style="margin-top: 2rem;">
+    <div style="margin-top: 1rem;">
         <input
             id="msg" type="text" placeholder="メッセージ"
             autofocus autocomplete="off"
-            class="app-form-input" style="width: 30rem;">
-        <button id="sendBtn" class="app-btn-primary">送信</button>
+            class="app-form-input" style="max-width: 30rem;">
+        <button id="sendBtn" class="app-btn-primary" style="margin-top: 0.5rem;">送信</button>
     </div>
     <div id="log" style="margin-top: 2rem"></div>
 </div>
