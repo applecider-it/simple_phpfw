@@ -3,6 +3,9 @@
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
 use App\Services\WebSocket\Server;
+use App\Services\Core\Env;
 
-$server = new Server();
+$env = Env::load(dirname(__DIR__) . '/.env');
+
+$server = new Server($env);
 $server->start();

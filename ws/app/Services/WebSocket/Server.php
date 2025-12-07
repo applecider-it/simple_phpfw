@@ -11,24 +11,34 @@ use App\Services\JWT\Parce;
  */
 class Server
 {
+    /** 環境変数 */
+    private array $env;
+
     /** クライアント情報配列 */
-    private $clientInfos = [];
+    private array $clientInfos = [];
+
+    public function __construct($env)
+    {
+        $this->env = $env;
+    }
 
     public function start()
     {
         $ws = new WebSocketServer("0.0.0.0", 8080);
 
-        $ws->onConnected = function ($wss, $clientSocket, $params) {
+        $ws->onConnected = function (WebSocketServer $wss, $clientSocket, $params) {
             echo "onConnected: " . (int)$clientSocket . " " . json_encode($params) . "\n";
 
             $token = $params['token'];
 
-            $secret = 'your-secret-key';
+            $secret = $this->env['SFW_JWT_SECRET'];
             $result = Parce::verify_jwt($token, $secret);
             if ($result) {
                 print_r($result);
             } else {
                 echo "Invalid token\n";
+                $wss->disconnectClient($clientSocket);
+                return;
             }
 
             $this->clientInfos[(int)$clientSocket] = [

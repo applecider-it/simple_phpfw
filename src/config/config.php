@@ -50,5 +50,8 @@ return [
             '@/services/development/setup_development' => "/js/services/development/setup_development.js?{$filePostfix}",
             '@/services/development/frontend_test' => "/js/services/development/frontend_test.js?{$filePostfix}",
         ],
-    ]
+    ],
+
+    // JWTシークレット
+    'jwt_secret' => $env['SFW_JWT_SECRET'],
 ];

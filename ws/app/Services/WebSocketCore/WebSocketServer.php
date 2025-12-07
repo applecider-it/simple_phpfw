@@ -4,6 +4,8 @@ namespace App\Services\WebSocketCore;
 
 /**
  * WebSocketサーバー
+ * 
+ * NodeのWebSocketサーバーみたいに使えるけど、同期処理なので注意。
  */
 class WebSocketServer
 {
@@ -51,29 +53,44 @@ class WebSocketServer
 
         // 無限ループで接続と通信処理
         while (true) {
-            $read = array_merge([$this->server], $this->clients);
-            $timeout = 1;
-            stream_select($read, $write, $except, $timeout);
-
-            //echo "stream_select: read count: " . count($read) . "\n";
-            //print_r($read);
-
-            // 新規接続を検出
-            if (in_array($this->server, $read)) {
-                echo "new connection\n";
-                $this->acceptClient();
-                unset($read[array_search($this->server, $read)]);
-                echo "after new connection read count: " . count($read) . "\n";
-            }
-
-            // 既に接続中のクライアントを処理
-            foreach ($read as $client) {
-                echo "client\n";
-                $this->readFromClient($client);
-            }
+            $this->roopProcess();
 
             // 少しスリープして CPU 低減
             usleep(500000);
+        }
+    }
+
+    /**
+     * 無限ループで接続と通信処理
+     */
+    private function roopProcess()
+    {
+        // すべてのソケットをまとめる
+        $read = array_merge([$this->server], $this->clients);
+
+        // 受信するまで$timeout秒待機
+        // 接続リクエストとメッセージリクエストがまざって$readに返ってくる
+        $timeout = 1;
+        stream_select($read, $write, $except, $timeout);
+
+        //echo "stream_select: read count: " . count($read) . "\n";
+        //print_r($read);
+
+        if (in_array($this->server, $read)) {
+            // 新規接続を検出したとき
+
+            $this->acceptClient();
+
+            // $readから接続情報を除外
+            unset($read[array_search($this->server, $read)]);
+            //echo "after new connection read count: " . count($read) . "\n";
+        }
+
+        // クライアントからのメッセージ送信の処理
+        foreach ($read as $client) {
+            echo "client: " . (int)$client . "\n";
+
+            $this->readFromClient($client);
         }
     }
 
@@ -83,6 +100,9 @@ class WebSocketServer
     private function acceptClient()
     {
         $conn = stream_socket_accept($this->server);
+
+        echo "new client" . (int)$conn . "\n";
+        
         $this->clients[] = $conn;
     }
 
@@ -102,14 +122,16 @@ class WebSocketServer
         $op = ord($data[0]) & 0x0F;
 
         if ($op === 0x8) {
-            // Close frame
+            // クローズフレームの時
+
             echo "Close frame\n";
             $this->disconnectClient($client);
             return;
         }
 
         if ($op === 0x9) {
-            // Ping frame
+            // Pingフレームの時
+
             // → Pong を返す
             echo "Ping frame\n";
             fwrite($client, "\x8A\x00");
@@ -117,13 +139,16 @@ class WebSocketServer
         }
 
         if ($op === 0xA) {
-            // Pong frame
+            // Pongフレームの時
+            
             echo "Pong frame\n";
             return;
         }
 
-        // 初回はハンドシェイク処理
         if (WebSocketServer\Handshake::isHandshakeRequest($data)) {
+            // ハンドシェイク処理の時
+            // accept直後に、初回だけ来る
+
             echo "Handshake: " . (int)$client . "\n";
             $params = WebSocketServer\Handshake::handshake($client, $data);
 
@@ -131,11 +156,11 @@ class WebSocketServer
             return;
         }
 
-        // 通常のWebSocketデータフレームとしてデコード
         $msg = WebSocketServer\Decode::decode($data);
+
         echo "Received: $msg\n";
 
-        // 全員にブロードキャスト
+        // コールバックに返す
         ($this->onMessage)($this, $client, $msg);
     }
 
