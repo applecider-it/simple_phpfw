@@ -15,7 +15,7 @@ use App\Controllers\DevelopmentController;
 $router->get('/', [HomeController::class, 'index']);
 
 // チャット
-$router->get('/chat', [ChatController::class, 'index']);
+$router->get('/chat', [ChatController::class, 'index'], ['auth' => 'user']);
 
 // ツイート
 (function ($router) {

@@ -3,8 +3,8 @@
  * アプリケーション設定
  */
 
-/** @var string ブラウザキャッシュ対応 */
-$filePostfix = '20251202_0002';
+/** @var string ブラウザキャッシュ対応。多分、コンフリクトしやすいと思う。 */
+$filePostfix = '20251207_0000';
 
 return [
     'debug' => $env['SFW_DEBUG'],
@@ -49,6 +49,7 @@ return [
             // 開発者向けページ用
             '@/services/development/setup_development' => "/js/services/development/setup_development.js?{$filePostfix}",
             '@/services/development/frontend_test' => "/js/services/development/frontend_test.js?{$filePostfix}",
+            '@/services/chat/setup_chat' => "/js/services/chat/setup_chat.js?{$filePostfix}",
         ],
     ],
 

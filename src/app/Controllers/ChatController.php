@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use SFW\Core\App;
 use SFW\Core\Config;
 use SFW\Output\View;
 use SFW\JWT\Create;
@@ -14,9 +15,13 @@ class ChatController extends Controller
     /** チャット画面 */
     public function index()
     {
+        $user = App::get('user');
         $secret = Config::get('jwt_secret');
+
         $payload = [
-            'user_id' => 123,
+            'channel' => 'chat:',
+            'id' => $user['id'],
+            'name' => $user['name'],
             'exp' => time() + 3600  // 有効期限（1時間）
         ];
 
