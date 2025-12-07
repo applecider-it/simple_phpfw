@@ -90,17 +90,32 @@ class Server
     {
         echo "onMessage: " . (int)$senderSocket . " {$msg}\n";
 
-        $this->broadcast($msg);
+        $sender = $this->clientInfos[(int)$senderSocket]['user'];
+
+        echo "sender: " . (int)$senderSocket . " " . json_encode($sender) . "\n";
+
+        $this->broadcast($msg, $sender);
     }
 
     /**
      * 全クライアントに送信
      */
-    private function broadcast(string $msg)
+    private function broadcast(string $msg, array $sender)
     {
         foreach ($this->clientInfos as $socketNumber => $clientInfo) {
             $client = $clientInfo['socket'];
-            Broadcast::send($client, $msg);
+
+            $data = json_decode($msg, true);
+
+            $sendStr = json_encode([
+                'data' => $data['data'],
+                'sender' => [
+                    'id' => $sender['id'],
+                    'name' => $sender['name'],
+                ]
+            ]);
+
+            Broadcast::send($client, $sendStr);
         }
     }
 }

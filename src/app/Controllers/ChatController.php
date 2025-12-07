@@ -5,7 +5,8 @@ namespace App\Controllers;
 use SFW\Core\App;
 use SFW\Core\Config;
 use SFW\Output\View;
-use SFW\JWT\Create;
+
+use App\Services\WebSocket\AuthService;
 
 /**
  * チャットコントローラー
@@ -16,16 +17,10 @@ class ChatController extends Controller
     public function index()
     {
         $user = App::get('user');
-        $secret = Config::get('jwt_secret');
 
-        $payload = [
-            'channel' => 'chat:',
-            'id' => $user['id'],
-            'name' => $user['name'],
-            'exp' => time() + 3600  // 有効期限（1時間）
-        ];
+        $authService = new AuthService;
 
-        $token = Create::createJwt($payload, $secret);
+        $token = $authService->createUserJwt($user, 'chat:');
 
         $view = new View();
         return $view->render('layouts.app', [

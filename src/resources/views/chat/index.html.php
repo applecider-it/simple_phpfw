@@ -3,7 +3,15 @@
 use SFW\Core\Config;
 use SFW\Output\Html;
 ?>
-<script type="module">import "@/services/chat/setup_chat";</script>
+<script type="module">
+    import "@/services/chat/setup_chat";
+</script>
+
+<div style="display: none;" id="chat"
+    data-all="<?= Html::esc(json_encode([
+                    'token' => $data['token'],
+                    'host' => '127.0.0.1:8080',
+                ])) ?>">データ連携用タグ</div>
 
 <h2 class="app-h2">chat.index</h2>
 <div>
@@ -16,10 +24,6 @@ use SFW\Output\Html;
         }
     </style>
 
-    <div style="display: none;" id="chat" data-all="<?= Html::esc(json_encode([
-        'token' => $data['token'],
-    ])) ?>">データ連携用タグ</div>
-    
     <div style="margin-top: 2rem;">
         <input
             id="msg" type="text" placeholder="メッセージ"

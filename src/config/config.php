@@ -1,4 +1,5 @@
 <?php
+
 /**
  * アプリケーション設定
  */
@@ -44,11 +45,16 @@ return [
         'imports' => [
             '@/app' => "/js/app.js?{$filePostfix}",
 
+            // 共通部分
             '@/services/data/json' => "/js/services/data/json.js?{$filePostfix}",
+            '@/services/data/html' => "/js/services/data/html.js?{$filePostfix}",
 
             // 開発者向けページ用
             '@/services/development/setup_development' => "/js/services/development/setup_development.js?{$filePostfix}",
             '@/services/development/frontend_test' => "/js/services/development/frontend_test.js?{$filePostfix}",
+
+            // チャットページ用
+            '@/services/chat/chat_client' => "/js/services/chat/chat_client.js?{$filePostfix}",
             '@/services/chat/setup_chat' => "/js/services/chat/setup_chat.js?{$filePostfix}",
         ],
     ],
