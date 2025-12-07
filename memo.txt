@@ -23,7 +23,7 @@ WebSocketサーバー
 
 cd /home/owner/workspace/tmp/simple_phpfw/ws
 
-php ./entrypoints/server.php
+php ./app/entrypoints/server.php
 
 
 -----------------------------------
