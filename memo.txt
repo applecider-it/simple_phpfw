@@ -80,6 +80,22 @@ php ./bin/console runner "print_r(App\Models\User::query()->one());"
 
 php ./bin/console app-samplecommand arg1 --opt1 arg2 --opt2=val2 arg3
 
+
+WebSocketの動作確認
+
+php ./bin/console app-web-socket-test
+
+
+-------
+
+Redis確認
+
+
+redis-cli
+
+LRANGE websocket_publish 0 -1
+
+
 -----------------------------------
 
 ジェネレーター

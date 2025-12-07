@@ -46,6 +46,18 @@ websocketはphpで連携する。
 }
 ```
 
+## Redis Pub/Sub連携（実際にはrpushを使っている）
+
+Pub/Subのチャンネル名: `websocket_publish`
+
+```
+{
+  channel: string, <- WebSocketチャンネル名
+  data: hash, <- 上記の、「メッセージ送信時」のdataの部分
+
+}
+```
+
 ## ブロードキャスト時のレスポンス
 
 ```

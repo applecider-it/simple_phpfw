@@ -17,6 +17,9 @@ class Server
     /** クライアント情報配列 */
     private array $clientInfos = [];
 
+    /** Redis */
+    private $redis;
+
     public function __construct($env)
     {
         $this->env = $env;
@@ -24,7 +27,10 @@ class Server
 
     public function start()
     {
-        $ws = new WebSocketServer("0.0.0.0", 8080);
+        $this->redis = new \Redis();
+        $this->redis->connect('127.0.0.1', 6379);
+
+        $ws = new WebSocketServer("0.0.0.0", 9090);
 
         $ws->onConnected = function (WebSocketServer $wss, $clientSocket, $requestParams) {
             $this->onConnected($wss, $clientSocket, $requestParams);
@@ -36,6 +42,10 @@ class Server
 
         $ws->onMessage = function (WebSocketServer $wss, $senderSocket, $msg) {
             $this->onMessage($wss, $senderSocket, $msg);
+        };
+
+        $ws->onLoop = function (WebSocketServer $wss) {
+            $this->onLoop($wss);
         };
 
         $ws->start();
@@ -94,18 +104,57 @@ class Server
 
         echo "sender: " . (int)$senderSocket . " " . json_encode($sender) . "\n";
 
-        $this->broadcast($msg, $sender);
+        $data = json_decode($msg, true);
+
+        $this->sendCommon($data, $sender);
     }
 
     /**
-     * 全クライアントに送信
+     * ループ時
      */
-    private function broadcast(string $msg, array $sender)
+    private function onLoop(WebSocketServer $wss)
+    {
+        //echo "onLoop: \n";
+
+        $this->redisProcess($wss);
+    }
+
+    /**
+     * Redis連携
+     */
+    private function redisProcess(WebSocketServer $wss)
+    {
+        foreach (range(1, 100) as $number) {
+            $item = $this->redis->lPop('websocket_publish');
+            if (! $item) return;
+
+            $data = json_decode($item, true);
+
+            echo "redis:\n";
+            print_r($data);
+
+            $sendData = [
+                'data' => $data['data'],
+            ];
+            $sender = [
+                'id' => 0,
+                'name' => 'System',
+                'channel' => $data['channel'],
+            ];
+
+            $this->sendCommon($sendData, $sender);
+        }
+    }
+
+    /**
+     * WebSocket、Redis共通の送信処理
+     */
+    private function sendCommon(array $data, array $sender)
     {
         foreach ($this->clientInfos as $socketNumber => $clientInfo) {
             $client = $clientInfo['socket'];
 
-            $data = json_decode($msg, true);
+            if ($sender['channel'] !== $clientInfo['user']['channel']) continue;
 
             $sendStr = json_encode([
                 'data' => $data['data'],

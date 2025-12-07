@@ -10,7 +10,7 @@ use SFW\Output\Html;
 <div style="display: none;" id="chat"
     data-all="<?= Html::esc(json_encode([
                     'token' => $data['token'],
-                    'host' => '127.0.0.1:8080',
+                    'host' => '127.0.0.1:9090',
                 ])) ?>">データ連携用タグ</div>
 
 <h2 class="app-h2">chat.index</h2>
@@ -28,7 +28,7 @@ use SFW\Output\Html;
         <input
             id="msg" type="text" placeholder="メッセージ"
             autofocus autocomplete="off"
-            class="app-form-input" style="width: auto;">
+            class="app-form-input" style="width: 30rem;">
         <button id="sendBtn" class="app-btn-primary">送信</button>
     </div>
     <div id="log" style="margin-top: 2rem"></div>

@@ -27,12 +27,15 @@ class WebSocketServer
     /** メッセージ受信時のコールバック */
     public \Closure $onMessage;
 
+    /** ループ時のコールバック */
+    public \Closure $onLoop;
+
     /**
      * コンストラクタ
      * @param string $address 接続受付アドレス (0.0.0.0 = 全てのホストから)
      * @param int $port ポート番号
      */
-    public function __construct(string $address = "0.0.0.0", int $port = 8080)
+    public function __construct(string $address, int $port)
     {
         $this->address = $address;
         $this->port = $port;
@@ -54,6 +57,8 @@ class WebSocketServer
         // 無限ループで接続と通信処理
         while (true) {
             $this->roopProcess();
+
+            ($this->onLoop)($this);
 
             // 少しスリープして CPU 低減
             usleep(500000);
