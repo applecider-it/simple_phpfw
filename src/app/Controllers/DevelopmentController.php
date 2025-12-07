@@ -99,17 +99,6 @@ class DevelopmentController extends Controller
         Log::info('このログは出力されない。');
     }
 
-    /** 認証テスト */
-    public function auth_test()
-    {
-        Log::info('認証が通ったときだけ、このログは出力される。');
-
-        $view = new View();
-        return $view->render('layouts.app', [
-            'content' => $view->render('development.auth_test'),
-        ]);
-    }
-
     /** frontendテスト */
     public function frontend_test()
     {
