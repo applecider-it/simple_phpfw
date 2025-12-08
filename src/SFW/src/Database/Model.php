@@ -76,7 +76,7 @@ abstract class Model
     public static function softDelete(int $id): int
     {
         $data = [
-            static::$softDeleteColumn => ['NOW()'],
+            static::$softDeleteColumn => new Raw('NOW()'),
         ];
 
         return self::update($id, $data);

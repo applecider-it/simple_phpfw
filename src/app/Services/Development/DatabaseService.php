@@ -8,6 +8,7 @@ use SFW\Output\Log;
 
 use SFW\Database\Query;
 use SFW\Database\DB;
+use SFW\Database\Raw;
 
 use App\Models\User;
 use App\Models\User\Tweet;
@@ -88,7 +89,7 @@ class DatabaseService
             $newIdTweet = Tweet::insert(
                 [
                     'user_id' => $newId,
-                    'created_at' => ['NOW()'],
+                    'created_at' => new Raw('NOW()'),
                     'content' => 'ツイートテキスト No.' . $number,
                 ]
             );
@@ -170,7 +171,7 @@ class DatabaseService
         // 更新
         $rows = User::update($newId, [
             'name' => 'テスト2',
-            'updated_at' => ['NOW()'],
+            'updated_at' => new Raw('NOW()'),
             'password' => password_hash('aaaaaa', PASSWORD_DEFAULT),
         ]);
         Log::info('更新', [$rows]);

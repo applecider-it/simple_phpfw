@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use SFW\Database\Raw;
+
 /**
  * ユーザーモデル
  * 
@@ -56,7 +58,7 @@ class User extends Model
     public static function deleteRelations(int $id)
     {
         $data = [
-            static::$softDeleteColumn => ['NOW()'],
+            static::$softDeleteColumn => new Raw('NOW()'),
         ];
 
         $db = User\Tweet::db();

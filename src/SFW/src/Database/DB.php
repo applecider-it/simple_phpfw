@@ -76,11 +76,11 @@ class DB
         $bindings = [];
         foreach ($data as $column => $val) {
             $columnsForInsert[] = $column;
-            if (is_array($val)) {
-                // 配列の時は、プレースホルダーを使わない
+            if ($val instanceof Raw) {
+                // Rawオブジェクトの時は、プレースホルダーを使わない
                 // これは、NOW()などを指定するときに使う
-                $columnsForUpdate[] = "$column = {$val[0]}";
-                $placeholdersForInsert[] = $val[0];
+                $columnsForUpdate[] = "$column = {$val->value}";
+                $placeholdersForInsert[] = $val->value;
             } else {
                 $columnsForUpdate[] = "$column = ?";
                 $placeholdersForInsert[] = "?";
