@@ -43,6 +43,7 @@ return [
     // インポートマップ
     'importmap' => [
         'imports' => [
+            // アプリケーションメイン
             '@/app' => "/js/app.js?{$filePostfix}",
             '@/services/app/setup_app' => "/js/services/app/setup_app.js?{$filePostfix}",
 
@@ -57,6 +58,7 @@ return [
             // チャットページ用
             '@/services/chat/chat_client' => "/js/services/chat/chat_client.js?{$filePostfix}",
             '@/services/chat/setup_chat' => "/js/services/chat/setup_chat.js?{$filePostfix}",
+            '@/services/chat/vue/chat_area' => "/js/services/chat/vue/chat_area.js?{$filePostfix}",
         ],
     ],
 
