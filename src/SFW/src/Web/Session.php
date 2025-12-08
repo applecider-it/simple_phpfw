@@ -13,6 +13,7 @@ class Session
         ini_set('session.gc_maxlifetime', $lifetime);
         session_save_path(SFW_PROJECT_ROOT . '/storage/session');
         session_set_cookie_params($lifetime);
+        session_name("SFWSESSIONID");
         session_start();
     }
 
