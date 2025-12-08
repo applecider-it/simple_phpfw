@@ -1,11 +1,10 @@
 # フロントエンド
 
-このフレームワークのコンセプトは、依存なしで、どの程度まで実装できるかという思索的なもののため、フロントエンドは、viteとかはつかわないで、バニラJSで、importmapを使っている。
+viteとかはつかわないで、バニラJSで、importmapを使っている。
 
 CSSも同様にviteなどは利用していない。
 
-Javascriptはmoduleのみ利用している。
-
+Javascriptは、外部ライブラリ以外は、moduleのみ利用している。
 
 ## 構成
 
@@ -26,3 +25,8 @@ config.phpにimportmapの追記が必要。
 ## ブラウザキャッシュ対応
 
 更新時にconfig.phpの$filePostfixを変更することで可能。
+
+## 外部ライブラリ
+
+- Vue 3（CDN版）
+
