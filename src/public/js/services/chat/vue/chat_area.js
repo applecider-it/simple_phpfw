@@ -16,14 +16,14 @@ export default {
       <button
         @click="onClick"
         class="app-btn-primary"
-        style="margin-top: 0.5rem; margin-left: 1rem;"
+        style="margin-left: 1rem;"
         >
         送信
       </button>
     </div>
 
     <!-- ログ一覧 -->
-    <div style="margin-top: 2rem">
+    <div style="margin-top: 2rem" class="chat-log">
       <div v-for="(item, index) in reversedList" :key="index">
         <span>{{ item.data.message }}</span>
 

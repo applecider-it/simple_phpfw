@@ -14,5 +14,5 @@ if (el) {
 
   const chatClient = new ChatClient(all.host, all.token);
 
-  createApp(ChatArea, { chatClient }).mount("#chat");
+  createApp(ChatArea, { chatClient }).mount(el);
 }

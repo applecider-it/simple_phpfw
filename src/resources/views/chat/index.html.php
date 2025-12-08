@@ -8,7 +8,7 @@ use SFW\Output\Html;
 </script>
 
 <style>
-    #log {
+    .chat-log {
         height: 300px;
         border: 1px solid #aaa;
         overflow-y: scroll;
