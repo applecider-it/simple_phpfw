@@ -1,32 +1,4 @@
-/** フォームテスト */
-const FormComponent = {
-  template: `
-  <div>
-    <h4>FormComponent</h4>
-    <div>
-      <input
-        type="text"
-        class="app-form-input"
-        style="max-width: 30rem;"
-        v-model="localVal1"
-      >
-    </div>
-    <div>
-      val1: {{ val1 }}
-    </div>
-  </div>
-  `,
-
-  props: ["val1"],
-  emits: ["update:val1"],
-
-  computed: {
-    localVal1: {
-      get() { return this.val1 },
-      set(value) { this.$emit("update:val1", value) }
-    }
-  }
-};
+import FormComponent from "@/services/development/vue/frontend_test_area/form_component";
 
 /**
  * フロントエンドテストエリア
@@ -53,6 +25,7 @@ const FrontendTestArea = {
 
     <div>
       <h3>フォームテスト</h3>
+
       <div>
         <input
           type="text"
@@ -61,9 +34,11 @@ const FrontendTestArea = {
           v-model="val1"
         >
       </div>
+
       <div>
         val1: {{ val1 }}
       </div>
+
       <div>
         <FormComponent
           v-model:val1="val1"

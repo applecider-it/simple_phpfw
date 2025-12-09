@@ -5,7 +5,7 @@
  */
 
 /** @var string ブラウザキャッシュ対応。多分、コンフリクトしやすいと思う。 */
-$filePostfix = '20251209_0000';
+$filePostfix = '20251209_0001';
 
 return [
     'debug' => $env['SFW_DEBUG'],
@@ -55,6 +55,7 @@ return [
             '@/services/development/setup_development' => "/js/services/development/setup_development.js?{$filePostfix}",
             '@/services/development/frontend_test' => "/js/services/development/frontend_test.js?{$filePostfix}",
             '@/services/development/vue/frontend_test_area' => "/js/services/development/vue/frontend_test_area.js?{$filePostfix}",
+            '@/services/development/vue/frontend_test_area/form_component' => "/js/services/development/vue/frontend_test_area/form_component.js?{$filePostfix}",
 
             // チャットページ用
             '@/services/chat/chat_client' => "/js/services/chat/chat_client.js?{$filePostfix}",
