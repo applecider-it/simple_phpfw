@@ -1,3 +1,33 @@
+/** フォームテスト */
+const FormComponent = {
+  template: `
+  <div>
+    <h4>FormComponent</h4>
+    <div>
+      <input
+        type="text"
+        class="app-form-input"
+        style="max-width: 30rem;"
+        v-model="localVal1"
+      >
+    </div>
+    <div>
+      val1: {{ val1 }}
+    </div>
+  </div>
+  `,
+
+  props: ["val1"],
+  emits: ["update:val1"],
+
+  computed: {
+    localVal1: {
+      get() { return this.val1 },
+      set(value) { this.$emit("update:val1", value) }
+    }
+  }
+};
+
 /**
  * フロントエンドテストエリア
  */
@@ -34,9 +64,17 @@ const FrontendTestArea = {
       <div>
         val1: {{ val1 }}
       </div>
+      <div>
+        <FormComponent
+          v-model:val1="val1"
+          >
+        </FormComponent>
+      </div>
     </div>
   </div>
   `,
+
+  components: { FormComponent },
 
   props: ["frontendTest"],
 
@@ -49,15 +87,13 @@ const FrontendTestArea = {
   methods: {
     /** クリック時 */
     execTest(type) {
-      console.log('Test type', type)
+      console.log("Test type", type);
 
-      if (type === 'postJsonTest') {
+      if (type === "postJsonTest") {
         this.frontendTest.postJsonTest();
-
-      } else if (type === 'getJsonTest') {
+      } else if (type === "getJsonTest") {
         this.frontendTest.getJsonTest();
-
-      } else if (type === 'postNosessionJsonTest') {
+      } else if (type === "postNosessionJsonTest") {
         this.frontendTest.postNosessionJsonTest();
       }
     },
