@@ -70,7 +70,9 @@ const ChatArea = {
 
   /** マウント時 */
   mounted() {
-    this.chatClient.setVueObject(this.list);
+    this.chatClient.addMessage = (row) => {
+      this.list.push(row);
+    };
   },
 };
 

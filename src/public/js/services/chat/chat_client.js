@@ -14,13 +14,8 @@ export default class ChatClient {
     this.ws.onclose = () => console.log("❌ Disconnected");
 
     this.ws.onmessage = (e) => this.#handleMessage(e);
-  }
 
-  /**
-   * vueオブジェクトを設定
-   */
-  setVueObject(list) {
-    this.list = list;
+    this.addMessage = null;
   }
 
   /**
@@ -35,7 +30,7 @@ export default class ChatClient {
       return;
     }
 
-    this.list.push(data);
+    this.addMessage(data);
   }
 
   /**
