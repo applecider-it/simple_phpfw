@@ -1,4 +1,4 @@
-export default {
+const ChatArea = {
   template: `
     <!-- 送信フォーム -->
     <div style="margin-top: 1rem;">
@@ -73,3 +73,5 @@ export default {
     this.chatClient.setVueObject(this.list);
   },
 };
+
+export default ChatArea;
