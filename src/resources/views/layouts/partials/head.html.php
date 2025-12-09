@@ -9,6 +9,8 @@ use SFW\Output\Html;
 
 <title><?= $data['title'] ?? Config::get('applicationName') ?></title>
 
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
 <link rel="stylesheet" href="<?= Html::file('/css/app.css') ?>">
 
 <script type="importmap"><?= json_encode(Config::get('importmap')) ?></script>
