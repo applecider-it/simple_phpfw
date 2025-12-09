@@ -1,4 +1,4 @@
-import { vueLocalModel } from "@/services/data/html";
+import { vuePropModel } from "@/services/data/html";
 
 /** フォームテスト */
 const FormComponent = {
@@ -11,22 +11,22 @@ const FormComponent = {
         type="text"
         class="app-form-input"
         style="max-width: 30rem;"
-        v-model="localVal1"
+        v-model="val1"
       >
     </div>
 
     <div>
+      <div>FormComponent: propVal1: {{ propVal1 }}</div>
       <div>FormComponent: val1: {{ val1 }}</div>
-      <div>FormComponent: localVal1: {{ localVal1 }}</div>
     </div>
   </div>
   `,
 
-  props: ["val1"],
-  emits: ["update:val1"],
+  props: ["propVal1"],
+  emits: ["update:propVal1"],
 
   computed: {
-    localVal1: vueLocalModel("val1"),
+    val1: vuePropModel("propVal1"),
   },
 };
 

@@ -14,7 +14,7 @@ export function escapeHtml(str) {
 }
 
 /** (vueの補助機能) 別コンポーネントでv-modelを使えるようにする */
-export function vueLocalModel(key) {
+export function vuePropModel(key) {
   return {
     get() {
       return this[key];

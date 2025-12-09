@@ -41,7 +41,7 @@ const FrontendTestArea = {
 
       <div>
         <FormComponent
-          v-model:val1="val1"
+          v-model:propVal1="val1"
           >
         </FormComponent>
       </div>
