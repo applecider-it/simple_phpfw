@@ -2,7 +2,7 @@
  * チャットページのセットアップ
  */
 
-const { createApp } = Vue;
+import { createApp } from "@/outer/vue3"
 
 import ChatClient from "@/services/chat/chat_client";
 import ChatArea from "@/services/chat/vue/chat_area";

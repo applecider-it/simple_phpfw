@@ -5,7 +5,7 @@
  */
 
 /** @var string ブラウザキャッシュ対応。多分、コンフリクトしやすいと思う。 */
-$filePostfix = '20251208_0000';
+$filePostfix = '20251209_0000';
 
 return [
     'debug' => $env['SFW_DEBUG'],
@@ -59,6 +59,9 @@ return [
             '@/services/chat/chat_client' => "/js/services/chat/chat_client.js?{$filePostfix}",
             '@/services/chat/setup_chat' => "/js/services/chat/setup_chat.js?{$filePostfix}",
             '@/services/chat/vue/chat_area' => "/js/services/chat/vue/chat_area.js?{$filePostfix}",
+
+            // 外部ライブラリ
+            '@/outer/vue3' => "https://unpkg.com/vue@3/dist/vue.esm-browser.js?{$filePostfix}",
         ],
     ],
 

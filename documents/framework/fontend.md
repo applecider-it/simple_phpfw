@@ -4,7 +4,7 @@ viteとかはつかわないで、バニラJSで、importmapを使っている�
 
 CSSも同様にviteなどは利用していない。
 
-Javascriptは、外部ライブラリ以外は、moduleのみ利用している。
+Javascriptは、moduleのみ利用している。
 
 ## 構成
 

@@ -11,7 +11,5 @@ use SFW\Output\Html;
 
 <link rel="stylesheet" href="<?= Html::file('/css/app.css') ?>">
 
-<script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
-
 <script type="importmap"><?= json_encode(Config::get('importmap')) ?></script>
 <script type="module">import "@/app";</script>
