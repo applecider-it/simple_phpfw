@@ -35,6 +35,7 @@ use SFW\Output\Html;
                         'token' => $data['token'],
                         'host' => '127.0.0.1:9090',
                     ])) ?>">
+        <?= $this->render('partials.message.loading') ?>
     </div>
 
 </div>

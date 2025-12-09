@@ -13,5 +13,6 @@ use SFW\Output\Html;
         data-all="<?= Html::esc(json_encode([
                         'test' => 'test1',
                     ])) ?>">
+        <?= $this->render('partials.message.loading') ?>
     </div>
 </div>
