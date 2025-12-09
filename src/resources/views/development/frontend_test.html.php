@@ -1,8 +1,17 @@
-<script type="module">import "@/services/development/setup_development";</script>
+<?php
+
+use SFW\Core\Config;
+use SFW\Output\Html;
+?>
+<script type="module">
+    import "@/services/development/setup_development";
+</script>
 
 <h2 class="app-h2">development.frontend_test</h2>
 <div>
-    <button type="submit" class="app-btn-primary" id="json_test_post">Jsonテスト (POST)</button>
-    <button type="submit" class="app-btn-primary" id="json_test_get">Jsonテスト (GET)</button>
-    <button type="submit" class="app-btn-primary" id="json_test_post_nosession">Jsonテスト (POST nosession)</button>
+    <div id="dev"
+        data-all="<?= Html::esc(json_encode([
+                        'test' => 'test1',
+                    ])) ?>">
+    </div>
 </div>

@@ -4,24 +4,7 @@ import { toQueryString, sendData } from "@/services/data/json";
  * フロントエンドテスト用クラス
  */
 export default class FrontendTest {
-  constructor() {
-    this.setupEvent();
-  }
-
-  /** イベント設定 */
-  setupEvent() {
-    document.getElementById("json_test_post").addEventListener("click", () => {
-      this.postJsonTest();
-    });
-    document.getElementById("json_test_get").addEventListener("click", () => {
-      this.getJsonTest();
-    });
-    document
-      .getElementById("json_test_post_nosession")
-      .addEventListener("click", () => {
-        this.postNosessionJsonTest();
-      });
-  }
+  constructor() {}
 
   /** POST Jsonの送受信の動作確認 */
   async postJsonTest() {
@@ -37,9 +20,7 @@ export default class FrontendTest {
       },
     };
 
-    const url =
-      "/development/api_post?" +
-      toQueryString({ get_val: "Get!!" });
+    const url = "/development/api_post?" + toQueryString({ get_val: "Get!!" });
     console.log("url", url);
 
     const result = await sendData(method, url, data);
@@ -51,9 +32,7 @@ export default class FrontendTest {
   async getJsonTest() {
     const method = "GET";
 
-    const url =
-      "/development/api_get?" +
-      toQueryString({ get_val: "Get!!" });
+    const url = "/development/api_get?" + toQueryString({ get_val: "Get!!" });
     console.log("url", url);
 
     const result = await sendData(method, url);
@@ -76,8 +55,7 @@ export default class FrontendTest {
     };
 
     const url =
-      "/development/api_post_nosession?" +
-      toQueryString({ get_val: "Get!!" });
+      "/development/api_post_nosession?" + toQueryString({ get_val: "Get!!" });
     console.log("url", url);
 
     const result = await this.sendDataNosession(method, url, data);
@@ -85,14 +63,18 @@ export default class FrontendTest {
     console.log("result", result);
   }
 
-  /** セッションのないJsonデータを送受信 */
+  /**
+   * セッションのないJsonデータを送受信
+   * 
+   * 動作確認のため、あえて、csrfトークンを除外している送信
+   */
   async sendDataNosession(method, url, data) {
     const params = {
       method: method,
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     };
 
     const res = await fetch(url, params);
