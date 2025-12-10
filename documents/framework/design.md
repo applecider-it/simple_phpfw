@@ -8,6 +8,8 @@ composerはオートロードのみ利用している。
 
 src/以下がプロジェクト。
 
+構成はLaravelに寄せているので、Laravelがわかる人は、比較的わかりやすいと思う。
+
 ```
 app/ <- アプリケーション部分
   Commands/ <- 独自コマンド
@@ -16,7 +18,9 @@ app/ <- アプリケーション部分
   Core/ <- フレームワークから呼び出すコアの部分を含む
     Callback.php <- フレームワークからのコールバックを受け取る
     Validator.php <- アプリケーションで利用するバリデーター
+  Generators/ <- ジェネレーター
   Models/ <- DBモデル
+  ModelsAnother/ <- 別DBを使う場合の実装例のDBモデル
   Services/ <- サービスクラス置き場
 bin/ <- 実行ファイル置き場
   console <- コンソールコマンドエントリーポイント
@@ -25,21 +29,21 @@ config/ <- 設定
   config.php <- 全般の設定
 database/ <- データベース関連
 public/ <- Webルート
+  css/
   js/ <- Javascript
     app.js <- アプリケーション全体の管理を想定している。
     services/ <- Javascriptのサービスクラス置き場
-  css/
   index.php <- Webのエントリーポイント
 resources/ 
+  lang/ <- 言語ファイル
   views/ <- Viewファイル
     admin/ <- 管理画面
-  lang/ <- 言語ファイル
 routes/
   web.php <- ルート設定
 SFW/ <- フレームワーク部分（本来ならvendor内にあるべき部分）
   src/ <- PHPクラス
-  views/ <- フレームワークで使うview
   tests/ <- フレームワーク用のユニットテスト
+  views/ <- フレームワークで使うview
 storage/ <- 各種出力用
   logs/ <- ログファイル出力場所
   session/ <- セッションファイル出力場所

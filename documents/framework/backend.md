@@ -26,8 +26,17 @@ Database/ <- データベース管理
 Exceptions/ <- フレームワークで利用する例外
   ・
   ・
+Generator/ <- ジェネレーター管理
+  ・
+  ・
+JWT/ <- JWT管理
+  ・
+  ・
 Output/ <- 出力関連
   View.php <- View管理
+  ・
+  ・
+Pagination/ <- 改ページ管理
   ・
   ・
 Test/ <- ユニットテスト処理

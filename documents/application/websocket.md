@@ -1,7 +1,5 @@
 # websocket連携
 
-PHPのWebSocketサーバーの試作。実務での利用は想定していません。
-
 websocketはphpで連携する。
 
 認証はJWTを使う。
@@ -46,9 +44,19 @@ websocketはphpで連携する。
 }
 ```
 
-## Redis Pub/Sub連携（WebSocketサーバーがPHPなので、実際にはrpushを使っている）
+### ツイートの場合のdata
 
-Pub/Subのチャンネル名（実際はrpushの時のキー）: `websocket_publish`
+```
+{
+  content: string,
+}
+```
+
+## Redis rpush連携
+
+WebSocketサーバーがPHPのため、Pub/Sub連携は難しいので、rpushを使っている
+
+rpushキー: `websocket_publish`
 
 ```
 {
@@ -75,6 +83,14 @@ Pub/Subのチャンネル名（実際はrpushの時のキー）: `websocket_publ
 ```
 {
   message: string,
+}
+```
+
+### ツイートの場合のdata
+
+```
+{
+  content: string,
 }
 ```
 
