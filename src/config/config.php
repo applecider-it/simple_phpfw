@@ -72,6 +72,7 @@ return [
             '@/services/ui/message' => "/js/services/ui/message.js?{$filePostfix}",
             '@/services/ui/vue/message/loading' => "/js/services/ui/vue/message/loading.js?{$filePostfix}",
             '@/services/ui/vue/message/toasts' => "/js/services/ui/vue/message/toasts.js?{$filePostfix}",
+            '@/services/ui/vue/popup/modal' => "/js/services/ui/vue/popup/modal.js?{$filePostfix}",
             '@/services/ui/vue_hook/use_toast' => "/js/services/ui/vue_hook/use_toast.js?{$filePostfix}",
 
             // 外部ライブラリ
