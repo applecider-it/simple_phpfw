@@ -1,3 +1,5 @@
+import { showToast } from "@/services/ui/message";
+
 /**
  * ツイートクライアント
  */
@@ -31,5 +33,7 @@ export default class TweetClient {
     }
 
     console.log('handleMessage', data);
+
+    showToast(`新しいツイートがあります。[ ${data.data.content} ]`)
   }
 }
