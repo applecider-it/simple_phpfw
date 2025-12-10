@@ -5,6 +5,7 @@
 import { createApp } from "@/outer/vue3"
 
 import AppCommon from "@/services/app/vue/app_common";
+import { getAuthUser } from "@/services/app/application";
 
 const el = document.getElementById("app-container-common");
 if (el) {
@@ -24,3 +25,5 @@ function setupMenu() {
 }
 
 setupMenu();
+
+console.log('getAuthUser', getAuthUser());

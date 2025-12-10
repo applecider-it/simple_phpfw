@@ -46,6 +46,7 @@ return [
             // アプリケーションメイン
             '@/app' => "/js/app.js?{$filePostfix}",
             '@/services/app/setup_app' => "/js/services/app/setup_app.js?{$filePostfix}",
+            '@/services/app/application' => "/js/services/app/application.js?{$filePostfix}",
             '@/services/app/vue/app_common' => "/js/services/app/vue/app_common.js?{$filePostfix}",
 
             // 共通部分
