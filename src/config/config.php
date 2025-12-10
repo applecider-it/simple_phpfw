@@ -62,6 +62,10 @@ return [
             '@/services/chat/setup_chat' => "/js/services/chat/setup_chat.js?{$filePostfix}",
             '@/services/chat/vue/chat_area' => "/js/services/chat/vue/chat_area.js?{$filePostfix}",
 
+            // ツイートページ用
+            '@/services/tweet/tweet_client' => "/js/services/tweet/tweet_client.js?{$filePostfix}",
+            '@/services/tweet/setup_tweet' => "/js/services/tweet/setup_tweet.js?{$filePostfix}",
+
             // 外部ライブラリ
             '@/outer/vue3' => "https://unpkg.com/vue@3/dist/vue.esm-browser.js?{$filePostfix}",
         ],
@@ -69,4 +73,7 @@ return [
 
     // JWTシークレット
     'jwt_secret' => $env['SFW_JWT_SECRET'],
+
+    // WebSocketサーバーのホスト名
+    'ws_server_host' => $env['SFW_WS_SERVER_HOST'],
 ];

@@ -33,7 +33,7 @@ use SFW\Output\Html;
     <div id="chat"
         data-all="<?= Html::esc(json_encode([
                         'token' => $data['token'],
-                        'host' => '127.0.0.1:9090',
+                        'host' => Config::get('ws_server_host'),
                     ])) ?>">
         <?= $this->render('partials.message.loading') ?>
     </div>

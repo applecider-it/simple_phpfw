@@ -16,6 +16,11 @@ use App\Models\User\Tweet;
 
 use App\Core\Validator;
 
+use App\Services\WebSocket\AuthService;
+use App\Services\Channels\TweetChannel;
+
+use App\Services\Tweet\WebScoketService;
+
 /**
  * ツイートコントローラー
  */
@@ -24,11 +29,17 @@ class TweetController extends Controller
     /** 一覧画面 */
     public function index()
     {
+        $user = App::get('user');
+
+        $authService = new AuthService;
+
+        $token = $authService->createUserJwt($user, TweetChannel::getChannel());
+
         $view = new View();
         return $view->render('layouts.app', [
             'content' => $view->render(
                 'tweet.index',
-                $this->getRelationInfo()
+                $this->getRelationInfo() + compact('token')
             ),
         ]);
     }
@@ -99,6 +110,9 @@ class TweetController extends Controller
         $newId = Tweet::insert(['user_id' => $user['id']] + $form);
         Log::info('New Tweet', [$newId]);
 
+        $webScoketService = new WebScoketService();
+        $webScoketService->broadcastTweet($form);
+
         Flash::set('notice', '投稿しました。');
 
         Location::redirect("/tweets");
@@ -113,7 +127,7 @@ class TweetController extends Controller
             ->limit(10)
             ->all();
 
-        Tweet::withUser($tweets); 
+        Tweet::withUser($tweets);
 
         return [
             'tweets' => $tweets,

@@ -102,8 +102,6 @@ class Server
 
         $sender = $this->clientInfos[(int)$senderSocket]['user'];
 
-        echo "sender: " . (int)$senderSocket . " " . json_encode($sender) . "\n";
-
         $data = json_decode($msg, true);
 
         $this->sendCommon($data, $sender);
@@ -151,10 +149,15 @@ class Server
      */
     private function sendCommon(array $data, array $sender)
     {
-        foreach ($this->clientInfos as $socketNumber => $clientInfo) {
-            $client = $clientInfo['socket'];
+        echo "sender: " . print_r($sender, true);
 
-            if ($sender['channel'] !== $clientInfo['user']['channel']) continue;
+        foreach ($this->clientInfos as $socketNumber => $clientInfo) {
+            $clientSocket = $clientInfo['socket'];
+            $clientUser = $clientInfo['user'];
+
+            echo "clientUser: " . print_r($clientUser, true);
+
+            if ($sender['channel'] !== $clientUser['channel']) continue;
 
             $sendStr = json_encode([
                 'data' => $data['data'],
@@ -164,7 +167,9 @@ class Server
                 ]
             ]);
 
-            Broadcast::send($client, $sendStr);
+            Broadcast::send($clientSocket, $sendStr);
+
+            echo "sended\n";
         }
     }
 }
