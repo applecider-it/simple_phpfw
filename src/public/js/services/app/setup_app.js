@@ -2,7 +2,14 @@
  * アプリケーションのセットアップ
  */
 
-console.log("app");
+import { createApp } from "@/outer/vue3"
+
+import AppCommon from "@/services/app/vue/app_common";
+
+const el = document.getElementById("app-container-common");
+if (el) {
+  createApp(AppCommon).mount(el);
+}
 
 /** メニューをセットアップする */
 function setupMenu() {

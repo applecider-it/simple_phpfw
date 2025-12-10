@@ -46,6 +46,7 @@ return [
             // アプリケーションメイン
             '@/app' => "/js/app.js?{$filePostfix}",
             '@/services/app/setup_app' => "/js/services/app/setup_app.js?{$filePostfix}",
+            '@/services/app/vue/app_common' => "/js/services/app/vue/app_common.js?{$filePostfix}",
 
             // 共通部分
             '@/services/data/json' => "/js/services/data/json.js?{$filePostfix}",
@@ -66,8 +67,14 @@ return [
             '@/services/tweet/tweet_client' => "/js/services/tweet/tweet_client.js?{$filePostfix}",
             '@/services/tweet/setup_tweet' => "/js/services/tweet/setup_tweet.js?{$filePostfix}",
 
+            // UI
+            '@/services/ui/message' => "/js/services/ui/message.js?{$filePostfix}",
+            '@/services/ui/vue/message/loading' => "/js/services/ui/vue/message/loading.js?{$filePostfix}",
+            '@/services/ui/vue/message/toasts' => "/js/services/ui/vue/message/toasts.js?{$filePostfix}",
+            '@/services/ui/vue_hook/use_toast' => "/js/services/ui/vue_hook/use_toast.js?{$filePostfix}",
+
             // 外部ライブラリ
-            '@/outer/vue3' => "https://unpkg.com/vue@3/dist/vue.esm-browser.js?{$filePostfix}",
+            '@/outer/vue3' => "https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js?{$filePostfix}",
         ],
     ],
 

@@ -1,3 +1,5 @@
+import { showToast, setIsLoading } from "@/services/ui/message";
+
 import FormComponent from "@/services/development/vue/frontend_test_area/form_component";
 
 /**
@@ -6,6 +8,27 @@ import FormComponent from "@/services/development/vue/frontend_test_area/form_co
 const FrontendTestArea = {
   template: `
   <div style="display:flex; flex-direction:column; gap:1rem;">
+    <div>
+      <h3>UIテスト</h3>
+      <div style="display:flex; flex-direction:row; gap:1rem;">
+        <button type="submit" class="app-btn-primary" @click="() => execTest('loading')">
+          Loading
+        </button>
+
+        <button type="submit" class="app-btn-primary" @click="() => execTest('toast')">
+          Toast
+        </button>
+        
+        <button type="submit" class="app-btn-primary" @click="() => execTest('toastAlert')">
+          Toast alert
+        </button>
+        
+        <button type="submit" class="app-btn-primary" @click="() => execTest('toast2')">
+          Toast 2
+        </button>
+      </div>
+    </div>
+
     <div>
       <h3>Jsonテスト</h3>
       <div style="display:flex; flex-direction:row; gap:1rem;">
@@ -66,6 +89,22 @@ const FrontendTestArea = {
     execTest(type) {
       console.log("Test type", type);
 
+      // UIテスト
+      if (type === "loading") {
+        setIsLoading(true);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 2000);
+      } else if (type === "toast") {
+        showToast("トーストテスト");
+      } else if (type === "toastAlert") {
+        showToast("トーストテスト", "alert");
+      } else if (type === "toast2") {
+        showToast("トーストテスト");
+        showToast("トーストテスト", "alert");
+      }
+
+      // JSONテスト
       if (type === "postJsonTest") {
         this.frontendTest.postJsonTest();
       } else if (type === "getJsonTest") {
