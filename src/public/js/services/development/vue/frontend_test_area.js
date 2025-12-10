@@ -50,16 +50,27 @@ const FrontendTestArea = {
       <h3>フォームテスト</h3>
 
       <div>
-        <input
+        val1: <input
           type="text"
           class="app-form-input"
           style="max-width: 30rem;"
           v-model="val1"
         >
       </div>
+      <div>
+        val2: <input
+          type="text"
+          class="app-form-input"
+          style="max-width: 30rem;"
+          v-model="val2"
+        >
+      </div>
 
       <div>
         val1: {{ val1 }}
+      </div>
+      <div>
+        val2: {{ val2 }}
       </div>
 
       <h3>別コンポーネントとのv-modelの連携の動作確認</h3>
@@ -67,6 +78,7 @@ const FrontendTestArea = {
       <div>
         <FormComponent
           v-model:propVal1="val1"
+          v-model:propVal2="val2"
           >
         </FormComponent>
       </div>
@@ -81,6 +93,7 @@ const FrontendTestArea = {
   data() {
     return {
       val1: "",
+      val2: "",
     };
   },
 
