@@ -25,3 +25,5 @@ use SFW\Core\Config;
 
     <?= $this->render('tweet.partials.tweets', ['tweets' => $data['tweets']]) ?>
 </div>
+
+<?= $this->render('tweet.partials.websocket', $data) ?>

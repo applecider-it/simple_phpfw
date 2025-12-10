@@ -29,17 +29,11 @@ class TweetController extends Controller
     /** 一覧画面 */
     public function index()
     {
-        $user = App::get('user');
-
-        $authService = new AuthService;
-
-        $token = $authService->createUserJwt($user, TweetChannel::getChannel());
-
         $view = new View();
         return $view->render('layouts.app', [
             'content' => $view->render(
                 'tweet.index',
-                $this->getRelationInfo() + compact('token')
+                $this->getRelationInfo() + $this->getWebSocketInfo()
             ),
         ]);
     }
@@ -73,7 +67,7 @@ class TweetController extends Controller
             return $view->render('layouts.app', [
                 'content' => $view->render(
                     'tweet.index',
-                    $form + ['errors' => $errors] + $this->getRelationInfo()
+                    $form + ['errors' => $errors] + $this->getRelationInfo() + $this->getWebSocketInfo()
                 ),
             ]);
         } else {
@@ -89,7 +83,7 @@ class TweetController extends Controller
                     return $view->render('layouts.app', [
                         'content' => $view->render(
                             'tweet.confirm',
-                            $form + $this->getRelationInfo()
+                            $form + $this->getRelationInfo() + $this->getWebSocketInfo()
                         ),
                     ]);
                 } else {
@@ -99,7 +93,7 @@ class TweetController extends Controller
                     return $view->render('layouts.app', [
                         'content' => $view->render(
                             'tweet.index',
-                            $form + $this->getRelationInfo()
+                            $form + $this->getRelationInfo() + $this->getWebSocketInfo()
                         ),
                     ]);
                 }
@@ -129,8 +123,18 @@ class TweetController extends Controller
 
         Tweet::withUser($tweets);
 
-        return [
-            'tweets' => $tweets,
-        ];
+        return compact('tweets');
+    }
+
+    /** WebSocketのデータ */
+    private function getWebSocketInfo()
+    {
+        $user = App::get('user');
+
+        $authService = new AuthService;
+
+        $token = $authService->createUserJwt($user, TweetChannel::getChannel());
+
+        return compact('token');
     }
 }

@@ -3,10 +3,6 @@
 use SFW\Output\Html;
 use SFW\Core\Config;
 ?>
-<script type="module">
-    import "@/services/tweet/setup_tweet";
-</script>
-
 <h2 class="app-h2">tweet.index</h2>
 
 <div style="display:flex; flex-direction:column; gap:16px;">
@@ -30,13 +26,6 @@ use SFW\Core\Config;
     </div>
 
     <?= $this->render('tweet.partials.tweets', ['tweets' => $data['tweets']]) ?>
-
-    <div id="tweet"
-        data-all="<?= Html::esc(json_encode([
-                        'token' => $data['token'],
-                        'host' => Config::get('ws_server_host'),
-                    ])) ?>">
-        <?= $this->render('partials.message.loading') ?>
-    </div>
-
 </div>
+
+<?= $this->render('tweet.partials.websocket', $data) ?>
