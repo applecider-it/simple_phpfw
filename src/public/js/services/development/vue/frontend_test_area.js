@@ -39,6 +39,8 @@ const FrontendTestArea = {
         val1: {{ val1 }}
       </div>
 
+      <h3>別コンポーネントとのv-modelの連携の動作確認</h3>
+
       <div>
         <FormComponent
           v-model:propVal1="val1"

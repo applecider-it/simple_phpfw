@@ -7,8 +7,8 @@ use SFW\Output\Html;
 $user = App::get('user');
 ?>
 <div class="app-nav-primary">
-    <h1><?= Config::get('applicationName') ?></h1>
-    <div style="display: flex; justify-content: space-between; align-items: center;">
+    <h1 class="app-h1"><?= Config::get('applicationName') ?></h1>
+    <div class="app-nav-menu-container">
         <div>
             <a href="/">Home</a>
             <a href="/tweets">Tweet</a>

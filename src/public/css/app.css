@@ -6,7 +6,7 @@
 }
 
 .app-nav {
-  background: #333;
+  background: #4657b2;
   color: #fff;
   padding: 1rem;
 }
@@ -15,6 +15,12 @@
   color: #fff;
   margin-right: 1rem;
   text-decoration: none;
+}
+
+.app-nav-menu-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .app-nav-responsive-links {
@@ -54,7 +60,7 @@
 }
 
 .app-footer {
-  background: #eee;
+  background: #f3f3f3;
   text-align: center;
   padding: 1rem;
 }
@@ -172,7 +178,19 @@ a.app-link-normal:hover {
 
 /* タイトル */
 
+.app-h1 {
+  all: unset;
+
+  font-family: "Segoe UI", Roboto, sans-serif;
+  font-size: 1.8rem;
+  padding-left: 0.75rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
 .app-h2 {
+  all: unset;
+
   font-family: "Segoe UI", Roboto, sans-serif;
   font-size: 1.8rem;
   color: #2c3e50;
