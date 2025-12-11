@@ -7,9 +7,9 @@ use SFW\Output\Html;
 $adminUser = App::get('adminUser');
 
 ?>
-<div class="app-nav" style="background: #633;">
+<div class="app-layout-nav" style="background: #633;">
     <h1 class="app-h1"><?= Config::get('applicationName') ?> Admin</h1>
-    <div class="app-nav-menu-container">
+    <div class="app-layout-nav-menu-container">
         <div>
             <a href="<?= Config::get('adminPrefix') ?>">ダッシュボード</a>
             <a href="<?= Config::get('adminPrefix') ?>/users">ユーザー</a>

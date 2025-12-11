@@ -5,10 +5,10 @@
     <?= $this->render('admin.layouts.partials.head', ['title' => $data['title'] ?? null]) ?>
 </head>
 
-<body class="app-body">
+<body class="app-layout-body">
     <?= $this->render('admin.layouts.partials.nav') ?>
 
-    <main class="app-main">
+    <main class="app-layout-main">
         <?= $data['content'] ?? '' ?>
     </main>
 
