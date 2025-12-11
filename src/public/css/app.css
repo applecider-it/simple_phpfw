@@ -212,38 +212,3 @@ a.app-link-normal:hover {
   align-items: center;
   gap: 0.5rem;
 }
-
-/* アニメーション */
-
-/* viewのローディング用アニメーション */
-@keyframes app-view-loading-spin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-/* トースト用アニメーション */
-@keyframes app-ui-toast-slide-in {
-  from {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* ローディング用アニメーション */
-@keyframes app-ui-loading-spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}

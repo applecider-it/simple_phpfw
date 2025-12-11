@@ -12,9 +12,21 @@ $styleSpinner = "width: 2rem;
                 border: 3px solid #ccc;
                 border-top-color: #333;
                 border-radius: 50%;
-                animation: app-view-loading-spin 1s linear infinite;
+                animation: app-local__views__partials__message__loading__loading-spin 1s linear infinite;
                 margin-right: 0.5rem;";
 ?>
+<style>
+/* viewのローディング用アニメーション */
+@keyframes app-local__views__partials__message__loading__loading-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+</style>
 <div style="<?= $style ?>">
     <div style="<?= $styleSpinner ?>"></div>
     <div>読み込み中…</div>

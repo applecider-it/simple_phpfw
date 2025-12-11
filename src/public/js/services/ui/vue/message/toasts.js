@@ -13,7 +13,7 @@ const Toasts = {
         padding: "0.25rem 0.75rem",
         borderRadius: "0.5rem",
         boxShadow: "0 2px 6px rgba(0,0,0,0.2)",
-        animation: "app-ui-toast-slide-in 0.3s ease-out",
+        animation: "app-local__js__services__ui__vue__message__toast__slide-in 0.3s ease-out",
       };
     },
 
@@ -42,5 +42,27 @@ const Toasts = {
     </div>
   `,
 };
+
+/** スタイルを一度だけ追加 */
+(function () {
+  const id = "app-local__js__services__ui__vue__message__toast__style";
+  if (document.getElementById(id)) return;
+
+  const style = document.createElement("style");
+  style.id = id;
+  style.textContent = `
+    @keyframes app-local__js__services__ui__vue__message__toast__slide-in {
+      from {
+        opacity: 0;
+        transform: translateX(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+  `;
+  document.head.appendChild(style);
+})();
 
 export default Toasts;
