@@ -1,3 +1,9 @@
+/*
+ * アプリケーション用CSS
+ */
+
+/* レイアウト */
+
 .app-layout-body {
   font-family: sans-serif;
   line-height: 1.6;
@@ -82,6 +88,7 @@
   background-color: #3498db;
   color: white;
 }
+
 .app-btn-secondary {
   all: unset;
 
@@ -97,6 +104,7 @@
   background-color: #5f5f5f;
   color: white;
 }
+
 .app-btn-orange {
   all: unset;
 
@@ -112,6 +120,7 @@
   background-color: #f1c40f;
   color: white;
 }
+
 .app-btn-danger {
   all: unset;
 
@@ -127,6 +136,8 @@
   background-color: #e74c3c;
   color: white;
 }
+
+/* リンク */
 
 /* 通常リンク */
 a.app-link-normal {
@@ -202,29 +213,10 @@ a.app-link-normal:hover {
   gap: 0.5rem;
 }
 
-/* ローディング */
+/* アニメーション */
 
-/* 中央に表示 */
-.app-loading-placeholder {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 30vh;
-  font-family: sans-serif;
-  font-size: 1.2rem;
-  color: #555;
-}
-/* ローディングアニメーション */
-.app-loading-spinner {
-  width: 2rem;
-  height: 2rem;
-  border: 3px solid #ccc;
-  border-top-color: #333;
-  border-radius: 50%;
-  animation: app-loading-spin 1s linear infinite;
-  margin-right: 0.5rem;
-}
-@keyframes app-loading-spin {
+/* viewのローディング用アニメーション */
+@keyframes app-view-loading-spin {
   0% {
     transform: rotate(0deg);
   }

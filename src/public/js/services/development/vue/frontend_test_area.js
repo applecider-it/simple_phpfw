@@ -142,8 +142,8 @@ const FrontendTestArea = {
   },
 
   methods: {
-    /** JSONテスト */
-    jsonTest(type) {
+    /** UIテスト */
+    uiTest(type) {
       console.log("Test type", type);
 
       // UIテスト
@@ -162,8 +162,8 @@ const FrontendTestArea = {
       }
     },
 
-    /** UIテスト */
-    uiTest(type) {
+    /** JSONテスト */
+    jsonTest(type) {
       console.log("Test type", type);
 
       // JSONテスト
