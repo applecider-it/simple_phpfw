@@ -6,14 +6,14 @@
 
 ## フレームワーク詳細
 
-- [フレームワーク設計](./documents/framework/design.md)
-- [バックエンド](./documents/framework/backend.md)
-- [フロントエンド](./documents/framework/fontend.md)
+- [フレームワーク設計](./documents_fw/design.md)
+- [バックエンド](./documents_fw/backend.md)
+- [フロントエンド](./documents_fw/fontend.md)
 
 ## アプリケーション詳細
 
-- [設計](./documents/application/design.md)
-- [websocket連携](./documents/application/websocket.md)
+- [設計](./documents/design.md)
+- [websocket連携](./documents/websocket.md)
 
 ## リンク
 
