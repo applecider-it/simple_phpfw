@@ -6,7 +6,7 @@ use SFW\Output\Html;
 
 $user = App::get('user');
 ?>
-<div class="app-nav">
+<div class="app-layout-nav">
     <?= $this->render('layouts.partials.nav.primary') ?>
     <?= $this->render('layouts.partials.nav.responsive') ?>
 </div>

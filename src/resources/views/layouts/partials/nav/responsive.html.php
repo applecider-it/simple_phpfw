@@ -6,7 +6,7 @@ use SFW\Output\Html;
 
 $user = App::get('user');
 ?>
-<div class="app-nav-responsive">
+<div class="app-layout-nav-responsive">
     <div style="display: flex; justify-content: space-between; align-items: center;">
         <div><a href="/"><?= Config::get('applicationName') ?></a></div>
         <div>
@@ -18,7 +18,7 @@ $user = App::get('user');
             </div>
         </div>
     </div>
-    <div class="app-nav-responsive-links" id="app-nav-mobile-menu-area" style="margin-top: 1rem;">
+    <div class="app-layout-nav-responsive-links" id="app-nav-mobile-menu-area" style="margin-top: 1rem;">
         <a href="/">Home</a>
         <a href="/tweets">Tweet</a>
         <a href="/chat">Chat</a>

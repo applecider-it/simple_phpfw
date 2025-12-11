@@ -19,7 +19,7 @@ function setupMenu() {
 
   if (btn && area) {
     btn.addEventListener("click", () => {
-      area.classList.toggle("app-nav-responsive-links-open");
+      area.classList.toggle("app-layout-nav-responsive-links__open");
     });
   }
 }

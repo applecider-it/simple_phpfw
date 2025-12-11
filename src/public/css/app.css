@@ -1,65 +1,65 @@
-.app-body {
+.app-layout-body {
   font-family: sans-serif;
   line-height: 1.6;
   margin: 0;
   padding: 0;
 }
 
-.app-nav {
+.app-layout-nav {
   background: #4657b2;
   color: #fff;
   padding: 1rem;
 }
 
-.app-nav a {
+.app-layout-nav a {
   color: #fff;
   margin-right: 1rem;
   text-decoration: none;
 }
 
-.app-nav-menu-container {
+.app-layout-nav-menu-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.app-nav-responsive-links {
+.app-layout-nav-responsive-links {
   display: none;
 }
 
-.app-nav-responsive-links > a {
+.app-layout-nav-responsive-links > a {
   display: block;
   padding: 1rem 0.5rem;
   margin: 0.3rem 0;
   border: 1px solid #fff;
 }
 
-.app-nav-responsive-links.app-nav-responsive-links-open {
+.app-layout-nav-responsive-links.app-layout-nav-responsive-links__open {
   display: block;
 }
 
-.app-main {
+.app-layout-main {
   padding: 3rem 5rem;
 }
-.app-nav-responsive {
+.app-layout-nav-responsive {
   display: none;
 }
-.app-nav-primary {
+.app-layout-nav-primary {
   display: block;
 }
 @media (max-width: 768px) {
-  .app-main {
+  .app-layout-main {
     padding: 1rem 1rem;
   }
-  .app-nav-responsive {
+  .app-layout-nav-responsive {
     display: block;
   }
-  .app-nav-primary {
+  .app-layout-nav-primary {
     display: none;
   }
 }
 
-.app-footer {
+.app-layout-footer {
   background: #f3f3f3;
   text-align: center;
   padding: 1rem;
