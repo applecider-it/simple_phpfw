@@ -3,6 +3,7 @@
 namespace App\Services\WebSocket;
 
 use SFW\Core\App;
+use SFW\Core\Config;
 
 /**
  * WebSocketのシステム管理
@@ -25,6 +26,6 @@ class SystemService
 
         $redis = App::get('redis');
 
-        $redis->rPush('websocket_publish', json_encode($sendData));
+        $redis->rPush(Config::get('ws_redis_relation_key'), json_encode($sendData));
     }
 }

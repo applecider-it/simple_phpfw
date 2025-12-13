@@ -2,6 +2,8 @@
 
 namespace App\Services\WebSocket;
 
+use App\Config\Config;
+
 use App\Services\WebSocketCore\WebSocketServer;
 use App\Services\WebSocketCore\Broadcast;
 use App\Services\JWT\Parce;
@@ -123,7 +125,7 @@ class Server
     private function redisProcess(WebSocketServer $wss)
     {
         foreach (range(1, 100) as $number) {
-            $item = $this->redis->lPop('websocket_publish');
+            $item = $this->redis->lPop(Config::WS_REDIS_RELATION_KEY);
             if (! $item) return;
 
             $data = json_decode($item, true);
