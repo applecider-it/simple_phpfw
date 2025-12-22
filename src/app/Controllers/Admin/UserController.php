@@ -158,9 +158,7 @@ class UserController extends Controller
             ->limit(5)
             ->all();
 
-        return [
-            'tweets' => $tweets,
-        ];
+        return compact('tweets');
     }
 
     /** 論理削除 */
