@@ -26,11 +26,6 @@ class Callback
         // 複数DB実装例
         $db_another = new DB(Config::get('database_another'));
         App::getContainer()->setSingleton('db_another', $db_another, '複数DB実装例');
-
-        // Redis
-        $redis = new \Redis();
-        $redis->connect('127.0.0.1', 6379);
-        App::getContainer()->setSingleton('redis', $redis);
     }
 
     /** クエリー後 */

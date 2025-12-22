@@ -27,6 +27,7 @@ class Common
         $this->setupService();
         $this->includeRoutes();
         $this->setupDatabase();
+        $this->setupRedis();
 
         App::get('callback')->afterInit();
     }
@@ -56,12 +57,21 @@ class Common
         App::getContainer()->setSingleton('db', $db, 'Main database');
     }
 
+
+    /** Redisセットアップ */
+    private function setupRedis()
+    {
+        $redis = new \Redis();
+        $redis->connect(Config::get('redis.host'), Config::get('redis.port'));
+        App::getContainer()->setSingleton('redis', $redis, 'Main redis');
+    }
+
     /** 設定ファイルをinclude */
     private function includeConfig()
     {
         // $envはインクルード先で利用する
         $env = Env::load(SFW_PROJECT_ROOT . '/.env');
-        
+
         return include(SFW_PROJECT_ROOT . '/config/config.php');
     }
 

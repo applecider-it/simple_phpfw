@@ -24,6 +24,11 @@ return [
         'charset'  => $env['SFW_DATABASE_CHARSET'],
     ],
 
+    'redis' => [
+        'host'     => $env['SFW_REDIS_HOST'],
+        'port'     => $env['SFW_REDIS_PORT'],
+    ],
+
     // 複数DB実装例
     'database_another' => [
         'driver'   => $env['SFW_DATABASE_DRIVER'],
