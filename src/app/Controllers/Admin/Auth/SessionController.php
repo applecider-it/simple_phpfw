@@ -3,7 +3,6 @@
 namespace App\Controllers\Admin\Auth;
 
 use SFW\Core\Lang;
-use SFW\Output\View;
 use SFW\Output\Log;
 use SFW\Web\Location;
 use SFW\Web\Session;
@@ -27,10 +26,7 @@ class SessionController extends Controller
             'password' => '',
         ];
 
-        $view = new View();
-        return $view->render('admin.layouts.app', [
-            'content' => $view->render('admin.auth.session.login', $initialData),
-        ]);
+        return $this->render('admin.auth.session.login', $initialData, layout: 'admin.layouts.app');
     }
 
     /** ログイン */
@@ -62,10 +58,7 @@ class SessionController extends Controller
 
         Flash::set('alert', Lang::get('errors.LoginFailed'));
 
-        $view = new View();
-        return $view->render('admin.layouts.app', [
-            'content' => $view->render('admin.auth.session.login', $form),
-        ]);
+        return $this->render('admin.auth.session.login', $form, layout: 'admin.layouts.app');
     }
 
     /** ログアウト */

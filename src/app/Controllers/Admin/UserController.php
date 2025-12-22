@@ -2,7 +2,6 @@
 
 namespace App\Controllers\Admin;
 
-use SFW\Output\View;
 use SFW\Data\Arr;
 use SFW\Core\App;
 use SFW\Core\Lang;
@@ -37,14 +36,11 @@ class UserController extends Controller
 
         $users = $query->all();
 
-        $view = new View();
-        return $view->render('admin.layouts.app', [
-            'content' => $view->render('admin.user.index', [
-                'users' => $users,
-                'params' => $this->params,
-                'paginator' => $paginator,
-            ]),
-        ]);
+        return $this->render('admin.user.index', [
+            'users' => $users,
+            'params' => $this->params,
+            'paginator' => $paginator,
+        ], layout: 'admin.layouts.app');
     }
 
     /** 新規作成画面 */
@@ -57,10 +53,7 @@ class UserController extends Controller
             'password_confirm' => '',
         ];
 
-        $view = new View();
-        return $view->render('admin.layouts.app', [
-            'content' => $view->render('admin.user.create', $initialData),
-        ]);
+        return $this->render('admin.user.create', $initialData, layout: 'admin.layouts.app');
     }
 
     /** 新規作成 */
@@ -87,13 +80,11 @@ class UserController extends Controller
         if ($v->fails()) {
             $errors = $v->errors();
 
-            $view = new View();
-            return $view->render('admin.layouts.app', [
-                'content' => $view->render(
-                    'admin.user.create',
-                    $form + ['errors' => $errors]
-                ),
-            ]);
+            return $this->render(
+                'admin.user.create',
+                $form + ['errors' => $errors],
+                layout: 'admin.layouts.app'
+            );
         }
 
         unset($form['password_confirm']);
@@ -113,10 +104,11 @@ class UserController extends Controller
     {
         $user = $this->user();
 
-        $view = new View();
-        return $view->render('admin.layouts.app', [
-            'content' => $view->render('admin.user.edit', $user + $this->getRelationInfo($user)),
-        ]);
+        return $this->render(
+            'admin.user.edit',
+            $user + $this->getRelationInfo($user),
+            layout: 'admin.layouts.app'
+        );
     }
 
     /** 更新 */
@@ -144,13 +136,11 @@ class UserController extends Controller
         if ($v->fails()) {
             $errors = $v->errors();
 
-            $view = new View();
-            return $view->render('admin.layouts.app', [
-                'content' => $view->render(
-                    'admin.user.edit',
-                    $form + ['errors' => $errors] + $user + $this->getRelationInfo($user)
-                ),
-            ]);
+            return $this->render(
+                'admin.user.edit',
+                $form + ['errors' => $errors] + $user + $this->getRelationInfo($user),
+                layout: 'admin.layouts.app'
+            );
         }
 
         User::update($userId, $form);
