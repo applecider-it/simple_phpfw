@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use SFW\Output\View;
 use SFW\Core\App;
 use SFW\Data\Arr;
 use SFW\Core\Lang;
@@ -29,13 +28,7 @@ class TweetController extends Controller
     /** 一覧画面 */
     public function index()
     {
-        $view = new View();
-        return $view->render('layouts.app', [
-            'content' => $view->render(
-                'tweet.index',
-                $this->getRelationInfo() + $this->getWebSocketInfo()
-            ),
-        ]);
+        return $this->render('tweet.index', $this->getCommonInfo());
     }
 
     /** 登録処理 */
@@ -63,13 +56,7 @@ class TweetController extends Controller
 
             $errors = $v->errors();
 
-            $view = new View();
-            return $view->render('layouts.app', [
-                'content' => $view->render(
-                    'tweet.index',
-                    $form + ['errors' => $errors] + $this->getRelationInfo() + $this->getWebSocketInfo()
-                ),
-            ]);
+            return $this->render('tweet.index', $form + ['errors' => $errors] + $this->getCommonInfo());
         } else {
             // エラーがないとき
 
@@ -79,23 +66,11 @@ class TweetController extends Controller
                 if ($confirm) {
                     // 確認へ遷移するとき
 
-                    $view = new View();
-                    return $view->render('layouts.app', [
-                        'content' => $view->render(
-                            'tweet.confirm',
-                            $form + $this->getRelationInfo() + $this->getWebSocketInfo()
-                        ),
-                    ]);
+                    return $this->render('tweet.confirm', $form + $this->getCommonInfo());
                 } else {
                     // フォームに戻るとき
 
-                    $view = new View();
-                    return $view->render('layouts.app', [
-                        'content' => $view->render(
-                            'tweet.index',
-                            $form + $this->getRelationInfo() + $this->getWebSocketInfo()
-                        ),
-                    ]);
+                    return $this->render('tweet.index', $form + $this->getCommonInfo());
                 }
             }
         }
@@ -110,6 +85,12 @@ class TweetController extends Controller
         Flash::set('notice', '投稿しました。');
 
         Location::redirect("/tweets");
+    }
+
+    /** 共通情報 */
+    private function getCommonInfo()
+    {
+        return $this->getRelationInfo() + $this->getWebSocketInfo();
     }
 
     /** 関連情報 */

@@ -8,6 +8,7 @@ use SFW\Core\App;
 use SFW\Core\Config;
 use SFW\Core\Lang;
 use SFW\Output\Log;
+use SFW\Output\View;
 use SFW\Web\Location;
 use SFW\Web\Session;
 use SFW\Web\Flash;
@@ -51,5 +52,22 @@ abstract class Controller extends BaseController
                 Location::redirect('/login');
             }
         }
+    }
+
+    /** HTML描画結果を返す */
+    protected function render(
+        string $name,
+        array $data = [],
+        string $layout = 'layouts.app',
+        array $layoutData = [],
+        array $globalData = []
+    ) {
+        $view = new View();
+
+        $view->data = $globalData;
+
+        return $view->render($layout, [
+            'content' => $view->render($name, $data),
+        ], $layoutData);
     }
 }

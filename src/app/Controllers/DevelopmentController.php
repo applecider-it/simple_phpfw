@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use SFW\Core\App;
-use SFW\Output\View;
 use SFW\Output\Log;
 use SFW\Data\Json;
 
@@ -21,10 +20,7 @@ class DevelopmentController extends Controller
     /** トップ画面 */
     public function index()
     {
-        $view = new View();
-        return $view->render('layouts.app', [
-            'content' => $view->render('development.index'),
-        ]);
+        return $this->render('development.index');
     }
 
     /** viewのテスト */
@@ -32,26 +28,23 @@ class DevelopmentController extends Controller
     {
         $sampleService = new SampleService();
 
-        $view = new View();
-        $view->data['id'] = 456;
-        return $view->render('layouts.app', [
-            'title' => 'Viewのテスト',
-            'content' => $view->render('development.view_test', [
+        return $this->render(
+            'development.view_test',
+            [
                 'id' => $sampleService->sampleMethod(),
                 'content' => 'ページにcontentを指定した場合',
-            ]),
-        ]);
+            ],
+            layoutData: ['title' => 'Viewのテスト'],
+            globalData: ['id' => 456],
+        );
     }
 
     /** パラメーターテスト */
     public function param_test()
     {
-        $view = new View();
-        return $view->render('layouts.app', [
-            'content' => $view->render('development.param_test', [
-                'id' => $this->params['id'],
-                'val1' => $this->params['val1'],
-            ]),
+        return $this->render('development.param_test', [
+            'id' => $this->params['id'],
+            'val1' => $this->params['val1'],
         ]);
     }
 
@@ -62,10 +55,7 @@ class DevelopmentController extends Controller
 
         $databaseService->operationCheck();
 
-        $view = new View();
-        return $view->render('layouts.app', [
-            'content' => $view->render('development.database_test'),
-        ]);
+        return $this->render('development.database_test');
     }
 
     /** バリデーションテスト */
@@ -83,12 +73,7 @@ class DevelopmentController extends Controller
             $errors = $v->errors();
         }
 
-        $view = new View();
-        return $view->render('layouts.app', [
-            'content' => $view->render('development.validation_test', [
-                'errors' => $errors,
-            ]),
-        ]);
+        return $this->render('development.validation_test', compact('errors'));
     }
 
     /** 例外テスト */
@@ -102,10 +87,7 @@ class DevelopmentController extends Controller
     /** frontendテスト */
     public function frontend_test()
     {
-        $view = new View();
-        return $view->render('layouts.app', [
-            'content' => $view->render('development.frontend_test'),
-        ]);
+        return $this->render('development.frontend_test');
     }
 
     /** frontendテスト(POST API部分) */
@@ -162,10 +144,7 @@ class DevelopmentController extends Controller
     /** デザイン確認画面 */
     public function design()
     {
-        $view = new View();
-        return $view->render('layouts.app', [
-            'content' => $view->render('development.design'),
-        ]);
+        return $this->render('development.design');
     }
 
     /** backendテスト */
@@ -174,9 +153,6 @@ class DevelopmentController extends Controller
         $all = App::getContainer()->getAll();
         Log::info('コンテナデータ' . Json::trace($all, true));
 
-        $view = new View();
-        return $view->render('layouts.app', [
-            'content' => $view->render('development.complate'),
-        ]);
+        return $this->render('development.complate');
     }
 }

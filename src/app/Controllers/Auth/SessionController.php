@@ -3,7 +3,6 @@
 namespace App\Controllers\Auth;
 
 use SFW\Core\Lang;
-use SFW\Output\View;
 use SFW\Output\Log;
 use SFW\Web\Location;
 use SFW\Web\Session;
@@ -26,10 +25,7 @@ class SessionController extends Controller
             'password' => '',
         ];
 
-        $view = new View();
-        return $view->render('layouts.app', [
-            'content' => $view->render('auth.session.login', $initialData),
-        ]);
+        return $this->render('auth.session.login', $initialData);
     }
 
     /** ログイン */
@@ -62,10 +58,7 @@ class SessionController extends Controller
 
         Flash::set('alert', Lang::get('errors.LoginFailed'));
 
-        $view = new View();
-        return $view->render('layouts.app', [
-            'content' => $view->render('auth.session.login', $form),
-        ]);
+        return $this->render('auth.session.login', $form);
     }
 
     /** ログアウト */

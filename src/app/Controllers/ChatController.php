@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use SFW\Core\App;
 use SFW\Core\Config;
-use SFW\Output\View;
 
 use App\Services\WebSocket\AuthService;
 use App\Services\Channels\ChatChannel;
@@ -31,9 +30,6 @@ class ChatController extends Controller
 
         $token = $authService->createUserJwt($user, ChatChannel::getChannel($room));
 
-        $view = new View();
-        return $view->render('layouts.app', [
-            'content' => $view->render('chat.index', compact('token', 'rooms', 'room')),
-        ]);
+        return $this->render('chat.index', compact('token', 'rooms', 'room'));
     }
 }
