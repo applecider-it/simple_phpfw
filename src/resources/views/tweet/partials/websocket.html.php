@@ -4,7 +4,7 @@ use SFW\Output\Html;
 use SFW\Core\Config;
 ?>
 <script type="module">
-    import "@/services/tweet/setup_tweet";
+    import "@/services/tweet/setup-tweet";
 </script>
 
 <div id="tweet"

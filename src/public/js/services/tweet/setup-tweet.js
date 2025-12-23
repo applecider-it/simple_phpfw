@@ -2,7 +2,7 @@
  * ツイートページのセットアップ
  */
 
-import TweetClient from "@/services/tweet/tweet_client";
+import TweetClient from "@/services/tweet/tweet-client";
 
 const el = document.getElementById("tweet");
 

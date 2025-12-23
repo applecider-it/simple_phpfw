@@ -1,1 +1,1 @@
-import "@/services/app/setup_app";
+import "@/services/app/setup-app";

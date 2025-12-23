@@ -50,35 +50,35 @@ return [
         'imports' => [
             // アプリケーションメイン
             '@/app' => "/js/app.js?{$filePostfix}",
-            '@/services/app/setup_app' => "/js/services/app/setup_app.js?{$filePostfix}",
+            '@/services/app/setup-app' => "/js/services/app/setup-app.js?{$filePostfix}",
             '@/services/app/application' => "/js/services/app/application.js?{$filePostfix}",
-            '@/services/app/vue/app_common' => "/js/services/app/vue/app_common.js?{$filePostfix}",
+            '@/services/app/vue/app-common' => "/js/services/app/vue/app-common.js?{$filePostfix}",
 
             // 共通部分
             '@/services/data/json' => "/js/services/data/json.js?{$filePostfix}",
             '@/services/data/html' => "/js/services/data/html.js?{$filePostfix}",
 
             // 開発者向けページ用
-            '@/services/development/setup_development' => "/js/services/development/setup_development.js?{$filePostfix}",
-            '@/services/development/frontend_test' => "/js/services/development/frontend_test.js?{$filePostfix}",
-            '@/services/development/vue/frontend_test_area' => "/js/services/development/vue/frontend_test_area.js?{$filePostfix}",
-            '@/services/development/vue/frontend_test_area/form_component' => "/js/services/development/vue/frontend_test_area/form_component.js?{$filePostfix}",
+            '@/services/development/setup-development' => "/js/services/development/setup-development.js?{$filePostfix}",
+            '@/services/development/frontend-test' => "/js/services/development/frontend-test.js?{$filePostfix}",
+            '@/services/development/vue/frontend-test-area' => "/js/services/development/vue/frontend-test-area.js?{$filePostfix}",
+            '@/services/development/vue/frontend-test-area/form-component' => "/js/services/development/vue/frontend-test-area/form-component.js?{$filePostfix}",
 
             // チャットページ用
-            '@/services/chat/chat_client' => "/js/services/chat/chat_client.js?{$filePostfix}",
-            '@/services/chat/setup_chat' => "/js/services/chat/setup_chat.js?{$filePostfix}",
-            '@/services/chat/vue/chat_area' => "/js/services/chat/vue/chat_area.js?{$filePostfix}",
+            '@/services/chat/chat-client' => "/js/services/chat/chat-client.js?{$filePostfix}",
+            '@/services/chat/setup-chat' => "/js/services/chat/setup-chat.js?{$filePostfix}",
+            '@/services/chat/vue/chat-area' => "/js/services/chat/vue/chat-area.js?{$filePostfix}",
 
             // ツイートページ用
-            '@/services/tweet/tweet_client' => "/js/services/tweet/tweet_client.js?{$filePostfix}",
-            '@/services/tweet/setup_tweet' => "/js/services/tweet/setup_tweet.js?{$filePostfix}",
+            '@/services/tweet/tweet-client' => "/js/services/tweet/tweet-client.js?{$filePostfix}",
+            '@/services/tweet/setup-tweet' => "/js/services/tweet/setup-tweet.js?{$filePostfix}",
 
             // UI
             '@/services/ui/message' => "/js/services/ui/message.js?{$filePostfix}",
             '@/services/ui/vue/message/loading' => "/js/services/ui/vue/message/loading.js?{$filePostfix}",
             '@/services/ui/vue/message/toasts' => "/js/services/ui/vue/message/toasts.js?{$filePostfix}",
             '@/services/ui/vue/popup/modal' => "/js/services/ui/vue/popup/modal.js?{$filePostfix}",
-            '@/services/ui/vue_hook/use_toast' => "/js/services/ui/vue_hook/use_toast.js?{$filePostfix}",
+            '@/services/ui/vue-hook/use-toast' => "/js/services/ui/vue-hook/use-toast.js?{$filePostfix}",
 
             // 外部ライブラリ
             '@/outer/vue3' => "https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js?{$filePostfix}",

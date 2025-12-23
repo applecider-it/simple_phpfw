@@ -2,6 +2,9 @@
 
 namespace App\Services\Channels;
 
+/**
+ * ツイートチャンネル
+ */
 class TweetChannel{
     private const CHANNEL_ID = 'tweet';
 

@@ -2,7 +2,7 @@ import { ref } from "@/outer/vue3";
 
 import Toasts from "@/services/ui/vue/message/toasts";
 import Loading from "@/services/ui/vue/message/loading";
-import useToast from "@/services/ui/vue_hook/use_toast";
+import useToast from "@/services/ui/vue-hook/use-toast";
 import { setupMessage } from "@/services/ui/message";
 
 /** アプリケーションの共通部分 */

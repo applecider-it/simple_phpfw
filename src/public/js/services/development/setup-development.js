@@ -4,10 +4,10 @@
 
 import { createApp } from "@/outer/vue3"
 
-import FrontendTest from "@/services/development/frontend_test";
-import FrontendTestArea from "@/services/development/vue/frontend_test_area";
+import FrontendTest from "@/services/development/frontend-test";
+import FrontendTestArea from "@/services/development/vue/frontend-test-area";
 
-console.log('frontend_test');
+console.log('frontend-test');
 
 
 const el = document.getElementById("dev");

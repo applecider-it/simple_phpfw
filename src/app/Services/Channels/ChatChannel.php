@@ -2,6 +2,9 @@
 
 namespace App\Services\Channels;
 
+/**
+ * チャットチャンネル
+ */
 class ChatChannel{
     private const CHANNEL_ID = 'chat';
 

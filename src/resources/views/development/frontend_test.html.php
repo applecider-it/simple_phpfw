@@ -4,7 +4,7 @@ use SFW\Core\Config;
 use SFW\Output\Html;
 ?>
 <script type="module">
-    import "@/services/development/setup_development";
+    import "@/services/development/setup-development";
 </script>
 
 <h2 class="app-h2">development.frontend_test</h2>

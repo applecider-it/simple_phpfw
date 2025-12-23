@@ -1,7 +1,7 @@
 import { showToast, setIsLoading } from "@/services/ui/message";
 import Modal from "@/services/ui/vue/popup/modal";
 
-import FormComponent from "@/services/development/vue/frontend_test_area/form_component";
+import FormComponent from "@/services/development/vue/frontend-test-area/form-component";
 
 /**
  * フロントエンドテストエリア

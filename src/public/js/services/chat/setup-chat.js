@@ -4,8 +4,8 @@
 
 import { createApp } from "@/outer/vue3"
 
-import ChatClient from "@/services/chat/chat_client";
-import ChatArea from "@/services/chat/vue/chat_area";
+import ChatClient from "@/services/chat/chat-client";
+import ChatArea from "@/services/chat/vue/chat-area";
 
 const el = document.getElementById("chat");
 

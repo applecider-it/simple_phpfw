@@ -4,7 +4,7 @@ use SFW\Core\Config;
 use SFW\Output\Html;
 ?>
 <script type="module">
-    import "@/services/chat/setup_chat";
+    import "@/services/chat/setup-chat";
 </script>
 
 <style>
