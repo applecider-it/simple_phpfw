@@ -13,8 +13,8 @@ use App\Services\JWT\Parce;
  */
 class Server
 {
-    /** 環境変数 */
-    private array $env;
+    /** 設定 */
+    private array $config;
 
     /** クライアント情報配列 */
     private array $clientInfos = [];
@@ -22,17 +22,17 @@ class Server
     /** Redis */
     private $redis;
 
-    public function __construct($env)
+    public function __construct($config)
     {
-        $this->env = $env;
+        $this->config = $config;
     }
 
     public function start()
     {
         $this->redis = new \Redis();
-        $this->redis->connect($this->env['SFW_REDIS_HOST'], $this->env['SFW_REDIS_PORT']);
+        $this->redis->connect($this->config['redis']['host'], $this->config['redis']['port']);
 
-        $ws = new WebSocketServer($this->env['SFW_WS_SERVER_HOST'], $this->env['SFW_WS_SERVER_PORT']);
+        $ws = new WebSocketServer($this->config['ws_server']['host'], $this->config['ws_server']['port']);
 
         $ws->onConnected = function (WebSocketServer $wss, $clientSocket, $requestParams) {
             $this->onConnected($wss, $clientSocket, $requestParams);
@@ -64,7 +64,7 @@ class Server
 
         $token = $requestParams['token'];
 
-        $secret = $this->env['SFW_JWT_SECRET'];
+        $secret = $this->config['jwt_secret'];
         $result = Parce::verify_jwt($token, $secret);
         if ($result) {
             echo "Valid token\n";
@@ -125,7 +125,7 @@ class Server
     private function redisProcess(WebSocketServer $wss)
     {
         foreach (range(1, 100) as $number) {
-            $item = $this->redis->lPop(Config::WS_REDIS_RELATION_KEY);
+            $item = $this->redis->lPop($this->config['ws_redis_relation_key']);
             if (! $item) return;
 
             $data = json_decode($item, true);
