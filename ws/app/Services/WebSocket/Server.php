@@ -30,9 +30,9 @@ class Server
     public function start()
     {
         $this->redis = new \Redis();
-        $this->redis->connect('127.0.0.1', 6379);
+        $this->redis->connect($this->env['SFW_REDIS_HOST'], $this->env['SFW_REDIS_PORT']);
 
-        $ws = new WebSocketServer("0.0.0.0", 9090);
+        $ws = new WebSocketServer($this->env['SFW_WS_SERVER_HOST'], $this->env['SFW_WS_SERVER_PORT']);
 
         $ws->onConnected = function (WebSocketServer $wss, $clientSocket, $requestParams) {
             $this->onConnected($wss, $clientSocket, $requestParams);
