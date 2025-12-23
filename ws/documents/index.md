@@ -6,11 +6,12 @@ websocket連携の仲介。
 
 ```
 app/
-  Config/ 設定
+  config/ 設定
   entrypoints/ エントリーポイント
   Services/ 実体
     カテゴリーごとのディレクトリ/
       サービスクラス実体
+.env 環境変数
 ```
 
 # 詳細
