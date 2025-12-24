@@ -40,7 +40,7 @@ resources/
     admin/ <- 管理画面
 routes/
   web.php <- ルート設定
-SFW/ <- フレームワーク部分（本来ならvendor内にあるべき部分）
+simple-phpfw/ <- フレームワーク部分（本来ならvendor内にあるべき部分）
   src/ <- PHPクラス
   tests/ <- フレームワーク用のユニットテスト
   views/ <- フレームワークで使うview

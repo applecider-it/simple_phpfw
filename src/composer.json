@@ -2,7 +2,7 @@
   "autoload": {
     "psr-4": {
       "App\\": "app/",
-      "SFW\\": "SFW/src/"
+      "SFW\\": "simple-phpfw/src/"
     }
   }
 }
