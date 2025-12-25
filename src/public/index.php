@@ -28,11 +28,14 @@ $trace = [
     'opcache_get_status()' => $opcacheStatus,
 ];
 
-/*
-echo "<div>--------------- performance trace begin ---------------</div>\n";
-echo "<div>performance:</div>\n";
-echo "<pre>\n";
-echo SFW\Output\Html::esc(SFW\Data\Json::trace($trace, true));
-echo "</pre>\n";
-echo "<div>--------------- performance trace end ---------------</div>\n";
-*/
+
+$out = '
+    <div style="font-size: 0.7rem;">
+        <div>--------------- performance trace begin ---------------</div>
+            <div>performance:</div>
+            <pre>' . SFW\Output\Html::esc(SFW\Data\Json::trace($trace, true)) . '</pre>
+        <div>--------------- performance trace end ---------------</div>
+    </div>
+';
+
+//echo $out;
