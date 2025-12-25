@@ -2,8 +2,6 @@
 
 namespace App\Services\WebSocket;
 
-use App\Config\Config;
-
 use App\Services\WebSocketCore\WebSocketServer;
 use App\Services\WebSocketCore\Broadcast;
 use App\Services\JWT\Parce;
