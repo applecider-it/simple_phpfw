@@ -84,6 +84,19 @@ class Query
         return $this;
     }
 
+    /** Where削除 */
+    public function removeWhere(string $sql, ...$value): self
+    {
+        $target = [
+            'sql' => $sql,
+            'bindings' => $value,
+        ];
+
+        $this->removeParts($this->wheres, $target);
+
+        return $this;
+    }
+
     /** INやNOT IN */
     public function in(string $sql, array $data): self
     {
@@ -271,6 +284,17 @@ class Query
     private function db()
     {
         return App::get($this->database);
+    }
+
+    /** 部品削除 */
+    private function removeParts(&$parts, $target)
+    {
+        $parts = array_values(
+            array_filter(
+                $parts,
+                fn ($where) => $where !== $target
+            )
+        );
     }
 
     /** テーブルのビルド */

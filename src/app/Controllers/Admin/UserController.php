@@ -12,6 +12,7 @@ use SFW\Output\Log;
 use SFW\Pagination\Paginator;
 
 use App\Models\User;
+use App\Models\User\Tweet;
 
 use App\Core\Validator;
 
@@ -24,6 +25,7 @@ class UserController extends Controller
     public function index()
     {
         $query = User::query()
+            ->scope([User::class, 'includeDeleted'])
             ->order("id desc");
 
         $softDelete = $this->params['soft_delete'] ?? 'all';
@@ -154,6 +156,7 @@ class UserController extends Controller
     private function getRelationInfo($user)
     {
         $tweets = User::tweets($user['id'])
+            ->scope([Tweet::class, 'includeDeleted'])
             ->order("id desc")
             ->limit(5)
             ->all();
@@ -195,7 +198,9 @@ class UserController extends Controller
     /** ユーザー取得 */
     private function user()
     {
-        $user = User::find($this->params['id']);
+        $user = User::queryIncludeId($this->params['id'])
+            ->scope([User::class, 'includeDeleted'])
+            ->one();
         if (! $user) throw new \SFW\Exceptions\NotFound;
         return $user;
     }

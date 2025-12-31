@@ -24,8 +24,13 @@ abstract class Model
     /** クエリービルダーを返す */
     public static function query(): Query
     {
-        return (new Query(static::$database))->table(static::$table);
+        $query = (new Query(static::$database))->table(static::$table);
+        static::defaultScope($query);
+        return $query;
     }
+
+    /** 共通に設定されるScope */
+    protected static function defaultScope(Query $query) {}
 
     /** ID情報を追加したクエリービルダーを返す */
     public static function queryIncludeId(int $id)
@@ -96,6 +101,12 @@ abstract class Model
     public static function scopeKept(Query $query)
     {
         $query->where(static::$table . '.' . static::$softDeleteColumn . ' IS NULL');
+    }
+
+    /** 論理削除を省くScopeを除去するScope */
+    public static function scopeIncludeDeleted(Query $query)
+    {
+        $query->removeWhere(static::$table . '.' . static::$softDeleteColumn . ' IS NULL');
     }
 
     /** 論理削除されているのだけに絞り込むScope */

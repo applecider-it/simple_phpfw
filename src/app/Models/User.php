@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use SFW\Database\Raw;
+use SFW\Database\Query;
 
 /**
  * ユーザーモデル
@@ -16,6 +17,10 @@ class User extends Model
     const AUTH_SESSION_KEY = "user_id";
 
     protected static string $table = 'users';
+
+    protected static function defaultScope(Query $query) {
+        $query->scope([self::class, 'kept']);
+    }
 
     /** ツイートのクエリービルダー */
     public static function tweets($user_id)

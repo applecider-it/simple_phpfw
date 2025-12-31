@@ -97,7 +97,6 @@ class TweetController extends Controller
     private function getRelationInfo()
     {
         $tweets = Tweet::query()
-            ->scope([Tweet::class, 'kept'])
             ->order("id desc")
             ->limit(10)
             ->all();

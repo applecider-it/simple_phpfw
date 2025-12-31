@@ -35,7 +35,6 @@ class SessionController extends Controller
         $password = $this->params['password'];
 
         $user = User::query()
-            ->scope([User::class, 'kept'])
             ->where('email = ?', $email)
             ->one();
 

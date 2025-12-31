@@ -17,6 +17,10 @@ class Tweet extends Model
 {
     protected static string $table = 'user_tweets';
 
+    protected static function defaultScope(Query $query) {
+        $query->scope([self::class, 'kept']);
+    }
+
     /** UserとのJoin用のScope */
     public static function scopeUser(Query $query)
     {

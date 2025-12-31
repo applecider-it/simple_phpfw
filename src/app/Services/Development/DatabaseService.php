@@ -329,9 +329,9 @@ class DatabaseService
         $user = User::find($newId);
         Log::info('論理削除後再取得', [$user]);
         $user = User::queryIncludeId($newId)
-            ->scope([User::class, 'kept'])
+            ->scope([User::class, 'includeDeleted'])
             ->one();
-        Log::info('論理削除後再取得（論理削除されたのを除外）', [$user]);
+        Log::info('論理削除後再取得（論理削除されたのを含める）', [$user]);
 
         // 物理削除
         // CREATE文に、ON DELETE CASCADEがあるので、関連するuser_tweetsも削除される

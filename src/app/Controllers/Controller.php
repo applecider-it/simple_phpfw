@@ -35,9 +35,7 @@ abstract class Controller extends BaseController
         // ログインユーザー取得
         $userId = Session::get(User::AUTH_SESSION_KEY);
         if ($userId) {
-            $user = User::queryIncludeId($userId)
-                ->scope([User::class, 'kept'])
-                ->one();
+            $user = User::find($userId);
 
             if ($user) {
                 User::hidden($user);
