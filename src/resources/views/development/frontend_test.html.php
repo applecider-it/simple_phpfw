@@ -21,5 +21,8 @@ use SFW\Output\Html;
         <div style="border: 1px solid #555; padding: 0;">
             <?= $this->render('partials.message.loading') ?>
         </div>
+        <div style="border: 1px solid #555; padding: 0; margin-top: 1rem;">
+            <?= $this->render('partials.message.loading') ?>
+        </div>
     </div>
 </div>

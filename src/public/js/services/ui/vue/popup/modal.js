@@ -9,7 +9,6 @@ const Modal = {
 
   template: `
     <div 
-      v-if="isOpen"
       :style="backdropStyle"
       @click="onClose"
     >
@@ -25,7 +24,7 @@ const Modal = {
   computed: {
     // 背景のインラインスタイル
     backdropStyle() {
-      return {
+      const style = {
         position: "fixed",
         top: 0,
         left: 0,
@@ -36,7 +35,20 @@ const Modal = {
         alignItems: "center",
         justifyContent: "center",
         zIndex: 9999,
+        transitionProperty: "opacity",
+        transitionTimingFunction: "cubic-bezier(0.4, 0, 1, 1)",
+        transitionDuration: "500ms",
       };
+
+      if (this.isOpen) {
+        style.pointerEvents = "auto";
+        style.opacity = 1;
+      } else {
+        style.pointerEvents = "none";
+        style.opacity = 0;
+      }
+
+      return style;
     },
 
     // モーダル本体のスタイル
