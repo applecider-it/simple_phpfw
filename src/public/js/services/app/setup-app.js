@@ -2,14 +2,17 @@
  * アプリケーションのセットアップ
  */
 
-import { createApp } from "@/outer/vue3"
+import { createApp } from "@/outer/vue3";
 
 import AppCommon from "@/services/app/vue/app-common";
 import { getAuthUser } from "@/services/app/application";
 
-const el = document.getElementById("app-container-common");
-if (el) {
-  createApp(AppCommon).mount(el);
+/** 共通コンテナをセットアップする */
+function setupContainerCommon() {
+  const el = document.getElementById("app-container-common");
+  if (el) {
+    createApp(AppCommon).mount(el);
+  }
 }
 
 /** メニューをセットアップする */
@@ -24,6 +27,7 @@ function setupMenu() {
   }
 }
 
+setupContainerCommon();
 setupMenu();
 
-console.log('getAuthUser', getAuthUser());
+console.log("getAuthUser", getAuthUser());
