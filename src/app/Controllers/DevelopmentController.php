@@ -95,14 +95,12 @@ class DevelopmentController extends Controller
     {
         $user = App::get('user');
 
-        return json_encode(
-            [
-                'data' => [
-                    'user' => $user,
-                    'params.aaa' => $this->params['aaa'],
-                ]
+        return [
+            'data' => [
+                'user' => $user,
+                'params.aaa' => $this->params['aaa'],
             ]
-        );
+        ];
     }
 
     /** frontendテスト(GET API部分) */
@@ -110,19 +108,17 @@ class DevelopmentController extends Controller
     {
         $user = App::get('user');
 
-        return json_encode(
-            [
-                'data' => [
-                    'user' => $user,
-                    'params.val1' => $this->params['get_val'],
-                    '111' => [
-                        '222' => [
-                            '333' => '444',
-                        ]
+        return [
+            'data' => [
+                'user' => $user,
+                'params.val1' => $this->params['get_val'],
+                '111' => [
+                    '222' => [
+                        '333' => '444',
                     ]
                 ]
             ]
-        );
+        ];
     }
 
     /** frontendテスト(セッションがないPOST API部分) */
@@ -130,15 +126,13 @@ class DevelopmentController extends Controller
     {
         $user = App::get('user');
 
-        return json_encode(
-            [
-                'data' => [
-                    'type' => 'nosession',
-                    'user' => $user,
-                    'params.aaa' => $this->params['aaa'],
-                ]
+        return [
+            'data' => [
+                'type' => 'nosession',
+                'user' => $user,
+                'params.aaa' => $this->params['aaa'],
             ]
-        );
+        ];
     }
 
     /** デザイン確認画面 */

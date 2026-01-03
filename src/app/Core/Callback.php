@@ -40,6 +40,14 @@ class Callback
     /** ルーター処理後 */
     public function afterRouter(mixed $val)
     {
+        // 連想配列の場合はJson
+        if (is_array($val)) {
+            echo json_encode($val);
+
+            return;
+        }
+
+        // HTMLやテキスト出力
         echo $val;
     }
 }
