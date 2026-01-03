@@ -26,11 +26,6 @@ class Web
             // ページが見つからないとき
 
             Error::error404($e);
-        } catch (Exceptions\Csrf $e) {
-            // CSRFエラー発生時
-
-            Log::error((string) $e);
-            Error::error500($e);
         } catch (Exceptions\Interruption $e) {
             // 中断時
         } catch (\Throwable $e) {
