@@ -1,4 +1,4 @@
-import FormComponent from "@/services/development/vue/frontend-test-area/form-component";
+import FormComponent from "@/services/development/vue/frontend-test-area/vue-model-area/form-component";
 
 /**
  * Vueモデル動作確認

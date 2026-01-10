@@ -5,7 +5,7 @@
  */
 
 /** @var string ブラウザキャッシュ対応。多分、コンフリクトしやすいと思う。 */
-$filePostfix = '20251212_0000';
+$filePostfix = '20260110_0000';
 
 return [
     'debug' => $env['SFW_DEBUG'],
@@ -64,9 +64,9 @@ return [
             '@/services/development/vue/frontend-test-area' => "/js/services/development/vue/frontend-test-area.js?{$filePostfix}",
             '@/services/development/vue/frontend-test-area/modal-area' => "/js/services/development/vue/frontend-test-area/modal-area.js?{$filePostfix}",
             '@/services/development/vue/frontend-test-area/vue-model-area' => "/js/services/development/vue/frontend-test-area/vue-model-area.js?{$filePostfix}",
+            '@/services/development/vue/frontend-test-area/vue-model-area/form-component' => "/js/services/development/vue/frontend-test-area/vue-model-area/form-component.js?{$filePostfix}",
             '@/services/development/vue/frontend-test-area/ui-area' => "/js/services/development/vue/frontend-test-area/ui-area.js?{$filePostfix}",
             '@/services/development/vue/frontend-test-area/json-area' => "/js/services/development/vue/frontend-test-area/json-area.js?{$filePostfix}",
-            '@/services/development/vue/frontend-test-area/form-component' => "/js/services/development/vue/frontend-test-area/form-component.js?{$filePostfix}",
 
             // チャットページ用
             '@/services/chat/chat-client' => "/js/services/chat/chat-client.js?{$filePostfix}",
