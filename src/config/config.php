@@ -62,6 +62,10 @@ return [
             '@/services/development/setup-development' => "/js/services/development/setup-development.js?{$filePostfix}",
             '@/services/development/frontend-test' => "/js/services/development/frontend-test.js?{$filePostfix}",
             '@/services/development/vue/frontend-test-area' => "/js/services/development/vue/frontend-test-area.js?{$filePostfix}",
+            '@/services/development/vue/frontend-test-area/modal-area' => "/js/services/development/vue/frontend-test-area/modal-area.js?{$filePostfix}",
+            '@/services/development/vue/frontend-test-area/vue-model-area' => "/js/services/development/vue/frontend-test-area/vue-model-area.js?{$filePostfix}",
+            '@/services/development/vue/frontend-test-area/ui-area' => "/js/services/development/vue/frontend-test-area/ui-area.js?{$filePostfix}",
+            '@/services/development/vue/frontend-test-area/json-area' => "/js/services/development/vue/frontend-test-area/json-area.js?{$filePostfix}",
             '@/services/development/vue/frontend-test-area/form-component' => "/js/services/development/vue/frontend-test-area/form-component.js?{$filePostfix}",
 
             // チャットページ用
