@@ -65,7 +65,7 @@ export default class FrontendTest {
 
   /**
    * セッションのないJsonデータを送受信
-   * 
+   *
    * 動作確認のため、あえて、csrfトークンを除外している送信
    */
   async sendDataNosession(method, url, data) {
