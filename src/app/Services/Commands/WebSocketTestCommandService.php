@@ -17,7 +17,7 @@ class WebSocketTestCommandService
         echo "Begin WebSocketTestCommandService\n";
 
         $systemService = new SystemService;
-        $systemService->publish(ChatChannel::getChannel(), [
+        $systemService->publish(ChatChannel::getChannel('default'), [
             'message' => 'From System (Redis) ' . date('Y/m/d H:i:s'),
         ]);
     }
