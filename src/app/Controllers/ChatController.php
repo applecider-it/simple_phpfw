@@ -19,12 +19,14 @@ class ChatController extends Controller
         $user = App::get('user');
 
         $rooms = [
-            null,
+            'default',
             'room1',
             'room2',
+            'room3',
         ];
 
         $room = $this->params['room'] ?? null;
+        if (! in_array($room, $rooms)) $room = 'default';
 
         $authService = new AuthService;
 
