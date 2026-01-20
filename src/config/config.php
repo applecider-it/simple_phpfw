@@ -29,6 +29,11 @@ return [
         'port'     => $env['SFW_REDIS_PORT'],
     ],
 
+    'logging' => [
+        //'file' => SFW_PROJECT_ROOT . '/storage/logs/simple_framework.log',
+        'file' => 'php://stderr',
+    ],
+
     // 複数DB実装例
     'database_another' => [
         'driver'   => $env['SFW_DATABASE_DRIVER'],

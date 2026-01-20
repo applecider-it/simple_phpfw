@@ -2,6 +2,8 @@
 
 namespace SFW\Output;
 
+use SFW\Core\Config;
+
 /**
  * ログ管理
  */
@@ -23,7 +25,7 @@ class Log
     private static function write(string $level, string $message, ?array $context = null)
     {
         $date = date('Y-m-d H:i:s');
-        $logFile = SFW_PROJECT_ROOT . '/storage/logs/simple_framework.log';
+        $logFile = Config::get('logging.file');
 
         if (! is_null($context)) {
             $message .= ' ' . json_encode($context, JSON_UNESCAPED_UNICODE);
