@@ -1,6 +1,6 @@
-# バックエンド
+# メイン
 
-## /SFW/src/
+## /simple-phpfw/src/
 
 ```
 Boot/ <- ブート時の処理管理

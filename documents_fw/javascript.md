@@ -1,4 +1,4 @@
-# フロントエンド
+# Javascript
 
 viteとかはつかわないで、バニラJSで、importmapを使っている。
 

@@ -6,9 +6,9 @@
 
 ## フレームワーク詳細
 
-- [フレームワーク設計](./documents_fw/design.md)
-- [バックエンド](./documents_fw/backend.md)
-- [フロントエンド](./documents_fw/fontend.md)
+- [設計](./documents_fw/design.md)
+- [メイン](./documents_fw/main.md)
+- [Javascriptなど](./documents_fw/javascript.md)
 
 ## アプリケーション詳細
 
