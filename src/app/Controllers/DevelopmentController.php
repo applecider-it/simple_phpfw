@@ -84,13 +84,13 @@ class DevelopmentController extends Controller
         Log::info('このログは出力されない。');
     }
 
-    /** frontendテスト */
-    public function frontend_test()
+    /** javascriptテスト */
+    public function javascript_test()
     {
-        return $this->render('development.frontend_test');
+        return $this->render('development.javascript_test');
     }
 
-    /** frontendテスト(POST API部分) */
+    /** javascriptテスト(POST API部分) */
     public function api_post()
     {
         $user = App::get('user');
@@ -103,7 +103,7 @@ class DevelopmentController extends Controller
         ];
     }
 
-    /** frontendテスト(GET API部分) */
+    /** javascriptテスト(GET API部分) */
     public function api_get()
     {
         $user = App::get('user');
@@ -121,7 +121,7 @@ class DevelopmentController extends Controller
         ];
     }
 
-    /** frontendテスト(セッションがないPOST API部分) */
+    /** javascriptテスト(セッションがないPOST API部分) */
     public function api_post_nosession()
     {
         $user = App::get('user');
@@ -141,8 +141,8 @@ class DevelopmentController extends Controller
         return $this->render('development.design');
     }
 
-    /** backendテスト */
-    public function backend_test()
+    /** phpテスト */
+    public function php_test()
     {
         $all = App::getContainer()->getAll();
         Log::info('コンテナデータ' . Json::trace($all, true));

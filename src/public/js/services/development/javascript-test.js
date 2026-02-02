@@ -1,9 +1,9 @@
 import { toQueryString, sendData } from "@/services/data/json";
 
 /**
- * フロントエンドテスト用クラス
+ * Javascriptテスト用クラス
  */
-export default class FrontendTest {
+export default class JavascriptTest {
   constructor() {}
 
   /** POST Jsonの送受信の動作確認 */

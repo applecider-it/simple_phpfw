@@ -41,12 +41,12 @@ $router->get('/chat', [ChatController::class, 'index'], ['auth' => 'user']);
     $router->get($prefix . '/validation_test', [$controller, 'validation_test']);
     $router->get($prefix . '/redirect_test', [$controller, 'redirect_test'], ['name' => 'redirect_test']);
     $router->get($prefix . '/exeption_test', [$controller, 'exeption_test']);
-    $router->get($prefix . '/frontend_test', [$controller, 'frontend_test'], ['auth' => 'user']);
+    $router->get($prefix . '/javascript_test', [$controller, 'javascript_test'], ['auth' => 'user']);
     $router->post($prefix . '/api_post', [$controller, 'api_post'], ['auth' => 'user']);
     $router->get($prefix . '/api_get', [$controller, 'api_get'], ['auth' => 'user']);
     $router->post($prefix . '/api_post_nosession', [$controller, 'api_post_nosession'], ['nosession' => true]);
     $router->get($prefix . '/design', [$controller, 'design']);
-    $router->get($prefix . '/backend_test', [$controller, 'backend_test']);
+    $router->get($prefix . '/php_test', [$controller, 'php_test']);
 })($router);
 
 // 別ファイルにしているルート読み込み

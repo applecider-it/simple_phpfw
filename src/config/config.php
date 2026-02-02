@@ -65,13 +65,13 @@ return [
 
             // 開発者向けページ用
             '@/services/development/setup-development' => "/js/services/development/setup-development.js?{$filePostfix}",
-            '@/services/development/frontend-test' => "/js/services/development/frontend-test.js?{$filePostfix}",
-            '@/services/development/vue/frontend-test-area' => "/js/services/development/vue/frontend-test-area.js?{$filePostfix}",
-            '@/services/development/vue/frontend-test-area/modal-area' => "/js/services/development/vue/frontend-test-area/modal-area.js?{$filePostfix}",
-            '@/services/development/vue/frontend-test-area/vue-model-area' => "/js/services/development/vue/frontend-test-area/vue-model-area.js?{$filePostfix}",
-            '@/services/development/vue/frontend-test-area/vue-model-area/form-component' => "/js/services/development/vue/frontend-test-area/vue-model-area/form-component.js?{$filePostfix}",
-            '@/services/development/vue/frontend-test-area/ui-area' => "/js/services/development/vue/frontend-test-area/ui-area.js?{$filePostfix}",
-            '@/services/development/vue/frontend-test-area/json-area' => "/js/services/development/vue/frontend-test-area/json-area.js?{$filePostfix}",
+            '@/services/development/javascript-test' => "/js/services/development/javascript-test.js?{$filePostfix}",
+            '@/services/development/vue/javascript-test-area' => "/js/services/development/vue/javascript-test-area.js?{$filePostfix}",
+            '@/services/development/vue/javascript-test-area/modal-area' => "/js/services/development/vue/javascript-test-area/modal-area.js?{$filePostfix}",
+            '@/services/development/vue/javascript-test-area/vue-model-area' => "/js/services/development/vue/javascript-test-area/vue-model-area.js?{$filePostfix}",
+            '@/services/development/vue/javascript-test-area/vue-model-area/form-component' => "/js/services/development/vue/javascript-test-area/vue-model-area/form-component.js?{$filePostfix}",
+            '@/services/development/vue/javascript-test-area/ui-area' => "/js/services/development/vue/javascript-test-area/ui-area.js?{$filePostfix}",
+            '@/services/development/vue/javascript-test-area/json-area' => "/js/services/development/vue/javascript-test-area/json-area.js?{$filePostfix}",
 
             // チャットページ用
             '@/services/chat/chat-client' => "/js/services/chat/chat-client.js?{$filePostfix}",

@@ -4,10 +4,10 @@
 
 import { createApp } from "@/outer/vue3";
 
-import FrontendTest from "@/services/development/frontend-test";
-import FrontendTestArea from "@/services/development/vue/frontend-test-area";
+import JavascriptTest from "@/services/development/javascript-test";
+import JavascriptTestArea from "@/services/development/vue/javascript-test-area";
 
-console.log("frontend-test");
+console.log("javascript-test");
 
 const el = document.getElementById("dev");
 
@@ -16,7 +16,7 @@ if (el) {
 
   console.log(all);
 
-  const frontendTest = new FrontendTest();
+  const javascriptTest = new JavascriptTest();
 
-  createApp(FrontendTestArea, { frontendTest }).mount(el);
+  createApp(JavascriptTestArea, { javascriptTest }).mount(el);
 }

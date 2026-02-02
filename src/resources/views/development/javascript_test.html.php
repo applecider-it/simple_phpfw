@@ -7,7 +7,7 @@ use SFW\Output\Html;
     import "@/services/development/setup-development";
 </script>
 
-<h2 class="app-h2">development.frontend_test</h2>
+<h2 class="app-h2">development.javascript_test</h2>
 <div>
     <div id="dev"
         data-all="<?= Html::esc(json_encode([

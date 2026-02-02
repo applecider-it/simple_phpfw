@@ -22,7 +22,7 @@ const JsonArea = {
   </div>
   `,
 
-  props: ["frontendTest"],
+  props: ["javascriptTest"],
 
   methods: {
     /** JSONテスト */
@@ -31,11 +31,11 @@ const JsonArea = {
 
       // JSONテスト
       if (type === "postJsonTest") {
-        this.frontendTest.postJsonTest();
+        this.javascriptTest.postJsonTest();
       } else if (type === "getJsonTest") {
-        this.frontendTest.getJsonTest();
+        this.javascriptTest.getJsonTest();
       } else if (type === "postNosessionJsonTest") {
-        this.frontendTest.postNosessionJsonTest();
+        this.javascriptTest.postNosessionJsonTest();
       }
     },
   },
