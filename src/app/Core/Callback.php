@@ -28,6 +28,23 @@ class Callback
         App::getContainer()->setSingleton('db_another', $db_another, '複数DB実装例');
     }
 
+    /** リクエスト情報取得直後 */
+    public function afterRequest(array $params)
+    {
+        if (! Config::get('debug')) return;
+
+        Log::info('afterRequest: route: ', App::get('router')->currentRoute);
+        Log::info('afterRequest: params: ', $params);
+    }
+
+    /** セッションスタート直後 */
+    public function afterStartSession()
+    {
+        if (! Config::get('debug')) return;
+
+        Log::info('afterStartSession: $_SESSION: ', $_SESSION);
+    }
+
     /** クエリー後 */
     public function afterQuery(string $sql, array $bindings, array $meta)
     {

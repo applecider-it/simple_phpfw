@@ -7,7 +7,7 @@ namespace SFW\Web;
  */
 abstract class Controller
 {
-    /** URIの値、GET、POSTの順番で優先的に保管される */
+    /** URIの値、GET、POST、JSONデータの順番で優先的に保管される */
     public array $params = [];
 
     /** アクション前処理 */

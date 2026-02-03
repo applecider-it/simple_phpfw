@@ -2,6 +2,8 @@
 
 namespace SFW\Web;
 
+use SFW\Core\App;
+
 /**
  * ルート管理
  * 
@@ -107,14 +109,14 @@ class Router
         // 一番左が優先される
         $params = $urlParams + $_GET + $_POST + $jsonData;
 
-        Trace::traceRequest($params);
+        App::get('callback')->afterRequest($params);
 
         if (! $nosession) {
             // セッションを利用する時
 
             Session::start();
 
-            Trace::traceSession();
+            App::get('callback')->afterStartSession();
 
             // CSRF処理
             if ($requestMethod === 'GET') {
