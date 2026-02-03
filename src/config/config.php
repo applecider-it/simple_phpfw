@@ -30,8 +30,12 @@ return [
     ],
 
     'logging' => [
-        //'file' => SFW_PROJECT_ROOT . '/storage/logs/simple_framework.log',
-        'file' => 'php://stderr',
+        'web' => [
+            'file' => 'php://stderr',
+        ],
+        'console' => [
+            'file' => SFW_PROJECT_ROOT . '/storage/logs/simple_framework.log',
+        ],
     ],
 
     // 複数DB実装例

@@ -18,7 +18,7 @@ class Trace
         $header = [
             'Key',
             'Name',
-            'Value',
+            'Type',
         ];
 
         $rows = [];
@@ -28,7 +28,7 @@ class Trace
             $row = [
                 'key' => $key,
                 'name' => $name,
-                'value' => (is_object($value) ? get_class($value) : gettype($value)),
+                'type' => (is_object($value) ? get_class($value) : gettype($value)),
             ];
 
             $rows[] = $row;

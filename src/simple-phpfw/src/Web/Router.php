@@ -61,6 +61,8 @@ class Router
 
         foreach ($this->routes[$method] as $route) {
             if (preg_match($route['pattern'], $uri, $matches)) {
+                // ルートが一致したとき
+
                 // パラメータ（名前付きキャプチャのみ取り出す）
                 $params = array_filter(
                     $matches,
