@@ -10,6 +10,10 @@ php -S localhost:9000 -t public
 
 php ./bin/console server
 
+php ./bin/console server --port=9001
+
+php ./bin/console help server
+
 foreman start
 
 ログクリア

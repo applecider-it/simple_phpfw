@@ -2,6 +2,8 @@
 
 namespace SFW\Web;
 
+use SFW\Core\Config;
+
 /**
  * セッション管理
  */
@@ -9,11 +11,11 @@ class Session
 {
     /** セッション開始 */
     public static function start() {
-        $lifetime = 60 * 60 * 24 * 30;
+        $lifetime = Config::get('session.lifetime');
         ini_set('session.gc_maxlifetime', $lifetime);
-        session_save_path(SFW_PROJECT_ROOT . '/storage/session');
+        session_save_path(Config::get('session.save_path'));
         session_set_cookie_params($lifetime);
-        session_name("SFWSESSIONID");
+        session_name(Config::get('session.name'));
         session_start();
     }
 

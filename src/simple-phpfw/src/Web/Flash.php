@@ -28,7 +28,7 @@ class Flash
     }
 
     /** 初期化して現在値を返す */
-    public static function initAndGet() {
+    private static function initAndGet() {
         if (! Session::get(self::FLASH_SESSION_KEY)) {
             Session::set(self::FLASH_SESSION_KEY, []);
         }

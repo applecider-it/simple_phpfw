@@ -42,3 +42,20 @@ use SFW\Data\Str;
         $this->check("template test {$idx} [{$result}]", Str::template($input, $vars) === $result);
     }
 })();
+
+// snakeToPascal pascalToSnake test
+(function () {
+    $checkList = [
+        ['aaa', 'Aaa'],
+        ['aaa_bbb', 'AaaBbb'],
+        ['aaa_bbb_ccc', 'AaaBbbCcc'],
+    ];
+
+    foreach ($checkList as $idx => $row) {
+        $snakeStr = $row[0];
+        $pascalStr = $row[1];
+
+        $this->check("snakeToPascal test {$idx} [{$snakeStr}]", Str::snakeToPascal($snakeStr) === $pascalStr);
+        $this->check("pascalToSnake test {$idx} [{$pascalStr}]", Str::pascalToSnake($pascalStr) === $snakeStr);
+    }
+})();

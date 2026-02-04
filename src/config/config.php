@@ -38,6 +38,12 @@ return [
         ],
     ],
 
+    'session' => [
+        'lifetime' => 60 * 60 * 24 * 30,
+        'save_path' => SFW_PROJECT_ROOT . '/storage/session',
+        'name' => "SFWSESSIONID",
+    ],
+
     // 複数DB実装例
     'database_another' => [
         'driver'   => $env['SFW_DATABASE_DRIVER'],
