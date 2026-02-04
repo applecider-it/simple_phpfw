@@ -5,7 +5,7 @@
  */
 
 /** @var string ブラウザキャッシュ対応。多分、コンフリクトしやすいと思う。 */
-$filePostfix = '20260110_0000';
+$filePostfix = '20260204_0000';
 
 return [
     'debug' => $env['SFW_DEBUG'],

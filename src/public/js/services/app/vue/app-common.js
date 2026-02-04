@@ -19,7 +19,7 @@ const AppCommon = {
 
     setupMessage(showToast, setIsLoading);
 
-    return { toasts, showToast, isLoading };
+    return { toasts, isLoading };
   },
 
   template: `
