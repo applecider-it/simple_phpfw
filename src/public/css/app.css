@@ -208,7 +208,17 @@ a.app-link-normal:hover {
   border-left: 6px solid #3498db;
   padding-left: 0.75rem;
   margin-bottom: 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  display: block;
+}
+
+.app-h3 {
+  all: unset;
+
+  font-family: "Segoe UI", Roboto, sans-serif;
+  font-size: 1.3rem;
+  color: #2c3e50;
+  border-left: 3px solid #3498db;
+  padding-left: 0.4rem;
+  margin-bottom: 1.0rem;
+  display: block;
 }
