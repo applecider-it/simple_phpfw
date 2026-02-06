@@ -12,6 +12,7 @@ $user = App::get('user');
         <div>
             <a href="/">Home</a>
             <a href="/tweets">Tweet</a>
+            <a href="/tweets_js">Tweet(JS)</a>
             <a href="/chat">Chat</a>
         </div>
         <div>

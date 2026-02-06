@@ -3,6 +3,12 @@
 use SFW\Output\Html;
 use SFW\Core\Config;
 ?>
+<h2 class="app-h2">tweet_js.index</h2>
+
+<div>
+    受信のみ実装しています。
+</div>
+
 <script type="module">
     import "@/services/tweet/setup-tweet";
 </script>

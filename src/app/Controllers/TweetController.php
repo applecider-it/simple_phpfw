@@ -15,9 +15,6 @@ use App\Models\User\Tweet;
 
 use App\Core\Validator;
 
-use App\Services\WebSocket\AuthService;
-use App\Services\Channels\TweetChannel;
-
 use App\Services\Tweet\WebScoketService;
 
 /**
@@ -90,7 +87,7 @@ class TweetController extends Controller
     /** 共通情報 */
     private function getCommonInfo()
     {
-        return $this->getRelationInfo() + $this->getWebSocketInfo();
+        return $this->getRelationInfo();
     }
 
     /** 関連情報 */
@@ -104,17 +101,5 @@ class TweetController extends Controller
         Tweet::withUser($tweets);
 
         return compact('tweets');
-    }
-
-    /** WebSocketのデータ */
-    private function getWebSocketInfo()
-    {
-        $user = App::get('user');
-
-        $authService = new AuthService;
-
-        $token = $authService->createUserJwt($user, TweetChannel::getChannel());
-
-        return compact('token');
     }
 }

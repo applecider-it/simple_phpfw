@@ -8,6 +8,7 @@
 
 use App\Controllers\HomeController;
 use App\Controllers\TweetController;
+use App\Controllers\TweetJsController;
 use App\Controllers\ChatController;
 use App\Controllers\DevelopmentController;
 
@@ -26,6 +27,16 @@ $router->get('/chat', [ChatController::class, 'index'], ['auth' => 'user']);
 
     $router->get($prefix, [$controller, 'index'], $options);
     $router->post($prefix, [$controller, 'store'], $options);
+})($router);
+
+// ツイートJS
+(function ($router) {
+    $options = ['auth' => 'user'];
+
+    $prefix = '/tweets_js';
+    $controller = TweetJsController::class;
+
+    $router->get($prefix, [$controller, 'index'], $options);
 })($router);
 
 // 開発者向けページ
