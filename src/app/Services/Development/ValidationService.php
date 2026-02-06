@@ -15,19 +15,19 @@ class ValidationService
             'emailtest' => 'testexample.com',
             'numerictest' => '1a23',
             'requiredtest' => '',
-            'mintest' => '12',
+            'mintest' => '9',
             'maxtest' => '11',
             'confirmtest' => 'abcd',
             'confirmtest_confirm' => 'abxcd',
         ];
 
         $rules = [
-            'originaltest' => ['original:emailtest,numerictest'],
+            'originaltest' => [['original', 'emailtest', 'numerictest']],
             'emailtest' => ['required', 'email'],
             'numerictest' => ['numeric'],
             'requiredtest' => ['required'],
-            'mintest' => ['required', 'numeric', 'min:10'],
-            'maxtest' => ['max:10'],
+            'mintest' => ['required', 'numeric', ['min', 10]],
+            'maxtest' => [['max', 10]],
             'confirmtest' => ['confirm'],
         ];
 

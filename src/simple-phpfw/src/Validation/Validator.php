@@ -49,29 +49,11 @@ abstract class Validator
             $value = $this->data[$field] ?? null;
 
             foreach ($ruleArray as $ruleValue) {
-                $rule = null;
-                $params = null;
+                // [rule, param1, param2 ....]
+                $ruleValue = (array) $ruleValue;
 
-                if (is_array($ruleValue)) {
-                    // 配列指定のルール
-                    // [rule, param1, param2 ....]
-
-                    $rule = array_shift($ruleValue);
-                    $params = $ruleValue;
-                } else {
-                    // 文字列指定のルール
-                    // "rule:param1,param2,...."
-
-                    if (strpos($ruleValue, ':') !== false) {
-                        // パラメーターが指定されているとき
-
-                        [$rule, $param] = explode(':', $ruleValue, 2);
-
-                        $params = explode(',', $param);
-                    } else {
-                        $rule = $ruleValue;
-                    }
-                }
+                $rule = array_shift($ruleValue);
+                $params = $ruleValue;
 
                 $method = "validate_" . $rule;
 

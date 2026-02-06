@@ -68,7 +68,7 @@ class Starter
             }
         }
 
-        $this->outpuResults($okCount, $ngCount, $ngList);
+        $this->outputResults($okCount, $ngCount, $ngList);
     }
 
     /** 線を出力 */
@@ -78,7 +78,7 @@ class Starter
     }
 
     /** 結果表示 */
-    private function outpuResults(int $okCount, int $ngCount, array $ngList)
+    private function outputResults(int $okCount, int $ngCount, array $ngList)
     {
         $this->drawLine();
 
