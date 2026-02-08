@@ -22,7 +22,7 @@ class Log
     }
 
     /** ログ出力共通 */
-    private static function write(string $level, string $message, ?array $context = null)
+    private static function write(string $level, string $message, ?array $context)
     {
         $date = date('Y-m-d H:i:s');
         $logFile = Config::get('logging.' . SFW_BOOT_TYPE . '.file');

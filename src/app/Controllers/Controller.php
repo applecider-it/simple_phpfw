@@ -62,7 +62,7 @@ abstract class Controller extends BaseController
     ) {
         $view = new View();
 
-        $view->data = $globalData;
+        $view->appendData($globalData);
 
         return $view->render($layout, [
             'content' => $view->render($name, $data),

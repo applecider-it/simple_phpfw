@@ -7,7 +7,7 @@ namespace SFW\Core;
  */
 class Container
 {
-    protected array $singleton = [];
+    private array $singleton = [];
 
     /** シングルトン設定 */
     public function setSingleton(string $key, $value, $name = '')

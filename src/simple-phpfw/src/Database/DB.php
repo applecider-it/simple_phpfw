@@ -12,7 +12,7 @@ use SFW\Core\App;
  */
 class DB
 {
-    protected PDO $pdo;
+    private PDO $pdo;
 
     public function __construct(array $config)
     {

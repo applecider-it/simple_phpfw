@@ -10,13 +10,13 @@ use SFW\Database\Query;
 class Paginator
 {
     /** 現在ページ */
-    public int $currentPage;
+    private int $currentPage;
 
     /** トータル件数 */
-    public int $totalCount;
+    private int $totalCount;
 
     /** トータルページ数 */
-    public int $totalPages;
+    private int $totalPages;
 
     /** SQLのOFFSETの値 */
     private int $offset;
@@ -70,5 +70,23 @@ class Paginator
         $this->currentPage = max(1, min($this->currentPage, $this->totalPages));
 
         $this->offset = ($this->currentPage - 1) * $this->perPage;
+    }
+
+    /** 現在ページ */
+    public function currentPage()
+    {
+        return $this->currentPage;
+    }
+
+    /** トータル件数 */
+    public function totalCount()
+    {
+        return $this->totalCount;
+    }
+
+    /** トータルページ数 */
+    public function totalPages()
+    {
+        return $this->totalPages;
     }
 }

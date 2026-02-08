@@ -10,10 +10,10 @@ use SFW\Core\Config;
 class View
 {
     /** 基準となるディレクトリパス。nullだとresources/viewsになる。 */
-    public ?string $baseDir = null;
+    private ?string $baseDir = null;
 
     /** 共通変数 */
-    public array $data = [];
+    private array $data = [];
 
     /**
      * 描画して文字列を返す
@@ -34,17 +34,35 @@ class View
         return ob_get_clean();
     }
 
+    /**
+     * 基準となるディレクトリパスを設定
+     */
+    public function setBaseDir(string $baseDir)
+    {
+        $this->baseDir = $baseDir;
+    }
+
+    /**
+     * データ追加
+     */
+    public function appendData(array $data)
+    {
+        $this->data = $data + $this->data;
+    }
+
     /** フレームワークで使うview */
-    public static function fwView() {
+    public static function fwView()
+    {
         $view = new self();
 
-        $view->baseDir = dirname(dirname(__DIR__)) . '/views';
+        $view->setBaseDir(dirname(dirname(__DIR__)) . '/views');
 
         return $view;
     }
 
     /** エラー画面で使うview */
-    public static function errorView() {
+    public static function errorView()
+    {
         $view = Config::get('debug') ? self::fwView() : new self();
 
         return $view;
