@@ -12,10 +12,10 @@ class Tester
 {
     public $results = [];
 
-    private $currentPath;
+    private ?string $currentPath = null;
 
     /** 実行 */
-    public function exec(array $testFilePaths)
+    public function exec(array $testFilePaths): void
     {
         foreach ($testFilePaths as $path) {
             $this->test($path);
@@ -23,7 +23,7 @@ class Tester
     }
 
     /** 実行 */
-    private function test(string $path)
+    private function test(string $path): void
     {
         $this->currentPath = $path;
 
@@ -31,7 +31,7 @@ class Tester
     }
 
     /** チェック(include先で利用する) */
-    private function check(string $name, bool $status)
+    private function check(string $name, bool $status): void
     {
         if ($status) {
             echo ".";

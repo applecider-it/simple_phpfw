@@ -10,19 +10,19 @@ class App
     private static Container $container;
 
     /** コンテナ設定 */
-    public static function setContainer(Container $container)
+    public static function setContainer(Container $container): void
     {
         self::$container = $container;
     }
 
     /** コンテナ取得 */
-    public static function getContainer()
+    public static function getContainer(): Container
     {
         return self::$container;
     }
 
     /** シングルトン取得ショートカット */
-    public static function get(string $key)
+    public static function get(string $key): mixed
     {
         return self::$container->getSingleton($key)['value'];
     }

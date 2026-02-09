@@ -167,7 +167,7 @@ class Query
     }
 
     /** SQLと値をビルドする */
-    public function build($buildForCount = false)
+    public function build($buildForCount = false): array
     {
         // カウント取得じゃないときはそのまま返す
         if (! $buildForCount) return $this->buildSelect($buildForCount);
@@ -193,7 +193,7 @@ class Query
     }
 
     /** SELECT文をビルドする */
-    private function buildSelect($buildForCount)
+    private function buildSelect($buildForCount): array
     {
         $sql = "SELECT";
         $bindings = [];
@@ -252,17 +252,17 @@ class Query
     }
 
     /** カウントする */
-    public function count()
+    public function count(): int
     {
         $ret = $this->build(true);
 
         $row = $this->db()->one($ret['sql'], ...$ret['bindings']);
 
-        return $row[self::WORK_COUNT_COLUMN];
+        return (int) $row[self::WORK_COUNT_COLUMN];
     }
 
     /** １行だけ取得 */
-    public function one()
+    public function one(): array|false
     {
         $limit = $this->limit;
         $this->limit = 1;
@@ -273,7 +273,7 @@ class Query
     }
 
     /** 全件取得 */
-    public function all()
+    public function all(): array
     {
         $ret = $this->build();
 
@@ -281,13 +281,13 @@ class Query
     }
 
     /** DBインスタンス */
-    private function db()
+    private function db(): DB
     {
         return App::get($this->database);
     }
 
     /** 部品削除 */
-    private function removeParts(&$parts, $target)
+    private function removeParts(&$parts, $target): void
     {
         $parts = array_values(
             array_filter(
@@ -298,31 +298,31 @@ class Query
     }
 
     /** テーブルのビルド */
-    private function buildTable()
+    private function buildTable(): array
     {
         return $this->buildCommon($this->tables, ' ');
     }
 
     /** カラムのビルド */
-    private function buildColumns()
+    private function buildColumns(): array
     {
         return $this->buildCommon($this->columns, ', ');
     }
 
     /** WHERE文のビルド */
-    private function buildWhere()
+    private function buildWhere(): array
     {
         return $this->buildCommon($this->wheres, ' AND ');
     }
 
     /** HAVING文のビルド */
-    private function buildHaving()
+    private function buildHaving(): array
     {
         return $this->buildCommon($this->havings, ' AND ');
     }
 
     /** 共通のビルド */
-    private function buildCommon(array $conf, string $connector)
+    private function buildCommon(array $conf, string $connector): array
     {
         $sqls = [];
         $bindings = [];

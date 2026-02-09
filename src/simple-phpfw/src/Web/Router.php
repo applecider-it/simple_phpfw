@@ -18,28 +18,28 @@ class Router
     ];
 
     /** カレントのルート */
-    public $currentRoute = null;
+    private ?array $currentRoute = null;
 
     /** ルート定義を返す */
-    public function routes()
+    public function routes(): array
     {
         return $this->routes;
     }
 
     /** GETメソッドルーツ追加 */
-    public function get(string $path, $handler, array $options = [])
+    public function get(string $path, $handler, array $options = []): void
     {
         $this->addRoute('GET', $path, $handler, $options);
     }
 
     /** POSTメソッドルーツ追加 */
-    public function post(string $path, $handler, array $options = [])
+    public function post(string $path, $handler, array $options = []): void
     {
         $this->addRoute('POST', $path, $handler, $options);
     }
 
     /** 共通ルート追加処理 */
-    private function addRoute(string $method, string $path, $handler, array $options = [])
+    private function addRoute(string $method, string $path, $handler, array $options = []): void
     {
         // {param} を名前付きキャプチャのある正規表現に変換
         $pattern = preg_replace('#\{([a-zA-Z0-9_]+)\}#', '(?P<$1>[^/]+)', $path);
@@ -54,7 +54,7 @@ class Router
     }
 
     /** 実行 */
-    public function dispatch()
+    public function dispatch(): mixed
     {
         $method = $_SERVER['REQUEST_METHOD'];
         $uri    = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -86,7 +86,7 @@ class Router
      * ・セッションありなしの分岐。
      * ・GET、それ以外の分岐。
      */
-    private function runHandler($requestMethod, array $route, array $urlParams)
+    private function runHandler($requestMethod, array $route, array $urlParams): mixed
     {
         $options = $route['options'];
 
@@ -154,7 +154,7 @@ class Router
     }
 
     /** コントローラーを実行 */
-    private function execController($class, $method, array $params)
+    private function execController($class, $method, array $params): mixed
     {
         /** @var \SFW\Web\Controller */
         $obj = new $class();
@@ -166,5 +166,11 @@ class Router
         $val =  $obj->$method();
 
         return $val;
+    }
+
+    /** カレントのルート */
+    public function currentRoute(): ?array
+    {
+        return $this->currentRoute;
     }
 }

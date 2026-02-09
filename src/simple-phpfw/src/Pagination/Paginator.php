@@ -10,16 +10,16 @@ use SFW\Database\Query;
 class Paginator
 {
     /** 現在ページ */
-    private int $currentPage;
+    private int $currentPage = 0;
 
     /** トータル件数 */
-    private int $totalCount;
+    private int $totalCount = 0;
 
     /** トータルページ数 */
-    private int $totalPages;
+    private int $totalPages = 0;
 
     /** SQLのOFFSETの値 */
-    private int $offset;
+    private int $offset = 0;
 
     /** 
      * @param array $params リクエストパラメーター
@@ -35,7 +35,7 @@ class Paginator
     /** 
      * クエリービルダーからデータを生成
      */
-    public function query(Query $query)
+    public function query(Query $query): void
     {
         $this->totalCount = $query->count();
 
@@ -48,7 +48,7 @@ class Paginator
     /** 
      * ページURL生成
      */
-    public function pageUrl(int $page)
+    public function pageUrl(int $page): string
     {
         $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
@@ -62,7 +62,7 @@ class Paginator
     /** 
      * 各種情報生成
      */
-    private function createInfo()
+    private function createInfo(): void
     {
         $this->totalPages = ceil($this->totalCount / $this->perPage);
 
@@ -73,19 +73,19 @@ class Paginator
     }
 
     /** 現在ページ */
-    public function currentPage()
+    public function currentPage(): int
     {
         return $this->currentPage;
     }
 
     /** トータル件数 */
-    public function totalCount()
+    public function totalCount(): int
     {
         return $this->totalCount;
     }
 
     /** トータルページ数 */
-    public function totalPages()
+    public function totalPages(): int
     {
         return $this->totalPages;
     }

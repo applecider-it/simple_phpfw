@@ -2,7 +2,7 @@
 
 namespace SFW\Test;
 
-use SFW\Data\Path;
+use SFW\Data\File;
 use SFW\Output\StdOut;
 
 /**
@@ -11,7 +11,7 @@ use SFW\Output\StdOut;
 class Starter
 {
     /** 実行 */
-    public function exec(bool $targetIsFramework)
+    public function exec(bool $targetIsFramework): void
     {
         $targetDir = SFW_PROJECT_ROOT . '/tests';
 
@@ -28,13 +28,12 @@ class Starter
     }
 
     /** 対象ファイルパス取得 */
-    private function getTestFilePaths(string $targetDir)
+    private function getTestFilePaths(string $targetDir): array
     {
         $testFilePaths = [];
 
-        $iterator = new \RecursiveIteratorIterator(
-            new \RecursiveDirectoryIterator($targetDir, \RecursiveDirectoryIterator::SKIP_DOTS)
-        );
+        $iterator = File::getRecursiveIterator($targetDir);
+
         foreach ($iterator as $file) {
             if ($file->isFile() && str_ends_with($file->getFilename(), 'Test.php')) {
                 $testFilePaths[] = $file->getPathname();
@@ -45,10 +44,10 @@ class Starter
     }
 
     /** テスト実行 */
-    private function execTests(array $testFilePaths)
+    private function execTests(array $testFilePaths): void
     {
         $this->drawLine();
-        
+
         $tester = new Tester();
         $tester->exec($testFilePaths);
 
@@ -72,13 +71,13 @@ class Starter
     }
 
     /** 線を出力 */
-    private function drawLine()
+    private function drawLine(): void
     {
         echo str_repeat("-", 70) . PHP_EOL;
     }
 
     /** 結果表示 */
-    private function outputResults(int $okCount, int $ngCount, array $ngList)
+    private function outputResults(int $okCount, int $ngCount, array $ngList): void
     {
         $this->drawLine();
 

@@ -10,7 +10,7 @@ use SFW\Output\StdOut;
 class Trace
 {
     /** コマンド情報表示 */
-    public function outputCommandInfos(array $commandInfos)
+    public function outputCommandInfos(array $commandInfos): void
     {
         $rows = [];
         $rows[] = [
@@ -35,7 +35,7 @@ class Trace
     }
 
     /** コマンド詳細表示 */
-    public function outputCommandDetail(array $commandInfo)
+    public function outputCommandDetail(array $commandInfo): void
     {
         echo "Class:" . PHP_EOL;
         echo $commandInfo['class'] . PHP_EOL;

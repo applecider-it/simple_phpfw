@@ -15,7 +15,7 @@ class Starter
     }
 
     /** 実行 */
-    public function dispatch($argv)
+    public function dispatch(array $argv): void
     {
         $conf = [
             [
@@ -38,7 +38,7 @@ class Starter
     }
 
     /** ハンドラーを実行 */
-    private function runHandler(string $class, array $params)
+    private function runHandler(string $class, array $params): void
     {
         /** @var \SFW\Console\Command */
         $obj = new $class();

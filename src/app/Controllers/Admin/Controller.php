@@ -23,6 +23,8 @@ abstract class Controller extends BaseController
     {
         parent::beforeAction();
 
+        $currentRoute = App::get('router')->currentRoute();
+
         // ログインユーザー取得
         $adminUserId = Session::get(AdminUser::AUTH_SESSION_KEY);
         if ($adminUserId) {
@@ -35,7 +37,7 @@ abstract class Controller extends BaseController
         }
 
         // 認証処理
-        if ((App::get('router')->currentRoute['options']['auth'] ?? null) === 'admin_user') {
+        if (($currentRoute['options']['auth'] ?? null) === 'admin_user') {
             if (! App::get('adminUser')) {
                 Flash::set('alert', Lang::get('errors.loginRequired'));
                 Location::redirect(Config::get('adminPrefix') . "/login");

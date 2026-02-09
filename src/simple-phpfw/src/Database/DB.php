@@ -41,7 +41,10 @@ class DB
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    /** 追加 */
+    /**
+     * 追加
+     * @return int 新しく採番されたID
+     */
     public function insert(string $table, array $data): int
     {
         $sqlData = $this->dataToSqlData($data);
@@ -51,10 +54,13 @@ class DB
 
         $this->exec($sql, $sqlData['bindings']);
 
-        return $this->pdo->lastInsertId();
+        return (int) $this->pdo->lastInsertId();
     }
 
-    /** 更新 */
+    /**
+     * 更新
+     * @return int 影響を与えたレコード件数
+     */
     public function update(string $table, array $data, string $whereSql, ...$whereBindings): int
     {
         $sqlData = $this->dataToSqlData($data);
@@ -95,7 +101,10 @@ class DB
         ];
     }
 
-    /** 削除 */
+    /**
+     * 削除
+     * @return int 影響を与えたレコード件数
+     */
     public function delete($table, string $whereSql, ...$whereBindings): int
     {
         $sql = "DELETE FROM {$table}";
@@ -107,25 +116,25 @@ class DB
     }
 
     /** トランザクション開始 */
-    public function startTransaction()
+    public function startTransaction(): void
     {
         $this->exec("START TRANSACTION", []);
     }
 
     /** トランザクションコミット */
-    public function commitTransaction()
+    public function commitTransaction(): void
     {
         $this->exec("COMMIT", []);
     }
 
     /** トランザクションロールバック */
-    public function rollbackTransaction()
+    public function rollbackTransaction(): void
     {
         $this->exec("ROLLBACK", []);
     }
 
     /** 実行の共通処理 */
-    private function exec(string $sql, array $bindings)
+    private function exec(string $sql, array $bindings): \PDOStatement
     {
         $meta = [
             'executionTime' => null,

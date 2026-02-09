@@ -13,7 +13,7 @@ use SFW\Exceptions;
 class Web
 {
     /** 実行 */
-    public function dispatch()
+    public function dispatch(): void
     {
         /** @var \SFW\Web\Router */
         $router = App::get('router');

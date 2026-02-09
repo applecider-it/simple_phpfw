@@ -19,7 +19,7 @@ class Process
     }
 
     /** 実行 */
-    public function dispatch($argv, $conf)
+    public function dispatch(array $argv, array $conf): ?array
     {
         $commandName = array_shift($argv);
 
@@ -51,7 +51,7 @@ class Process
     }
 
     /** ヘルプ処理 */
-    private function helpProccess(array $argv, array $commandInfos)
+    private function helpProccess(array $argv, array $commandInfos): void
     {
         $target = array_shift($argv);
         if (! $target) {
@@ -71,14 +71,14 @@ class Process
     }
 
     /** 対象のコマンド情報取得 */
-    private function getCurrentCommandInfo(?string $commandName, array $commandInfos)
+    private function getCurrentCommandInfo(?string $commandName, array $commandInfos): ?array
     {
         $index = array_search($commandName, array_column($commandInfos, 'command'));
         return $index !== false ? $commandInfos[$index] : null;
     }
 
     /** コマンド一覧取得 */
-    private function getCommandInfos($conf)
+    private function getCommandInfos(array $conf): array
     {
         $commandInfos = [];
 

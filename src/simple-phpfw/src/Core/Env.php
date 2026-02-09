@@ -13,7 +13,7 @@ class Env
      * 先頭に#がある行はコメント扱い。
      * 環境変数を優先。
      */
-    public static function load(string $path)
+    public static function load(string $path): array
     {
         if (!file_exists($path)) {
             throw new \Exception(".env file not found at $path");
@@ -41,7 +41,7 @@ class Env
      * 
      * true, falseはboolに変換される。
      */
-    private static function strToValue(string $value)
+    private static function strToValue(string $value): mixed
     {
         $value = trim($value);
 

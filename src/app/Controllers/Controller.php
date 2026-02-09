@@ -23,8 +23,10 @@ abstract class Controller extends BaseController
     /** アクション前処理 */
     public function beforeAction()
     {
+        $currentRoute = App::get('router')->currentRoute();
+
         // beforeActionでの、リダイレクト処理のサンプル
-        if ((App::get('router')->currentRoute['options']['name'] ?? null) === 'redirect_test') {
+        if (($currentRoute['options']['name'] ?? null) === 'redirect_test') {
             Log::info('redirect_test');
 
             Location::redirect('/');
@@ -44,7 +46,7 @@ abstract class Controller extends BaseController
         }
 
         // 認証処理
-        if ((App::get('router')->currentRoute['options']['auth'] ?? null) === 'user') {
+        if (($currentRoute['options']['auth'] ?? null) === 'user') {
             if (! App::get('user')) {
                 Flash::set('alert', Lang::get('errors.loginRequired'));
                 Location::redirect('/login');

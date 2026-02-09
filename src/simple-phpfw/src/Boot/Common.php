@@ -19,7 +19,7 @@ use App\Core\Callback;
 class Common
 {
     /** 初期化 */
-    public function init()
+    public function init(): void
     {
         $container = new Container();
         App::setContainer($container);
@@ -33,7 +33,7 @@ class Common
     }
 
     /** サービス設定 */
-    private function setupService()
+    private function setupService(): void
     {
         App::getContainer()->setSingleton('router', new Router(), 'Router');
         App::getContainer()->setSingleton('config', $this->includeConfig(), 'Config');
@@ -42,7 +42,7 @@ class Common
     }
 
     /** ルート読み込み */
-    private function includeRoutes()
+    private function includeRoutes(): void
     {
         // include先で、$routerが使われている
         $router = App::get('router');
@@ -51,7 +51,7 @@ class Common
     }
 
     /** データベースセットアップ */
-    private function setupDatabase()
+    private function setupDatabase(): void
     {
         $db = new DB(Config::get('database'));
         App::getContainer()->setSingleton('db', $db, 'Main database');
@@ -59,7 +59,7 @@ class Common
 
 
     /** Redisセットアップ */
-    private function setupRedis()
+    private function setupRedis(): void
     {
         $redis = new \Redis();
         $redis->connect(Config::get('redis.host'), Config::get('redis.port'));
@@ -67,7 +67,7 @@ class Common
     }
 
     /** 設定ファイルをinclude */
-    private function includeConfig()
+    private function includeConfig(): array
     {
         // $envはインクルード先で利用する
         $env = Env::load(SFW_PROJECT_ROOT . '/.env');
@@ -76,7 +76,7 @@ class Common
     }
 
     /** 言語ファイル読み込み */
-    private function includeLang()
+    private function includeLang(): array
     {
         $path = SFW_PROJECT_ROOT . '/resources/lang';
 
@@ -92,7 +92,7 @@ class Common
     }
 
     /** ローカル変数を保護しながらinclude */
-    private function safeInclude($path)
+    private function safeInclude($path): array
     {
         return include($path);
     }

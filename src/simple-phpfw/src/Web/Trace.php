@@ -13,7 +13,7 @@ use SFW\Output\Log;
 class Trace
 {
     /** ルート情報を標準出力 */
-    public static function outputRoutes(bool $includeOptions)
+    public static function outputRoutes(bool $includeOptions): void
     {
         $router = App::get('router');
 

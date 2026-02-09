@@ -10,7 +10,7 @@ use SFW\Core\Config;
 class Session
 {
     /** セッション開始 */
-    public static function start() {
+    public static function start(): void {
         $lifetime = Config::get('session.lifetime');
         ini_set('session.gc_maxlifetime', $lifetime);
         session_save_path(Config::get('session.save_path'));
@@ -20,22 +20,22 @@ class Session
     }
 
     /** セッションを設定 */
-    public static function set(string $key, $val) {
+    public static function set(string $key, $val): void {
         $_SESSION[$key] = $val;
     }
 
     /** セッションを取得 */
-    public static function get(string $key) {
+    public static function get(string $key): mixed {
         return $_SESSION[$key] ?? null;
     }
 
     /** セッションを破棄 */
-    public static function clear(string $key) {
+    public static function clear(string $key): void {
         unset($_SESSION[$key]);
     }
 
     /** セッションIDを新しくする */
-    public static function reflesh() {
+    public static function reflesh(): void {
         session_regenerate_id(true);
     }
 }

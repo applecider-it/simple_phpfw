@@ -33,7 +33,7 @@ class Callback
     {
         if (! Config::get('debug')) return;
 
-        Log::info('afterRequest: route: ', App::get('router')->currentRoute);
+        Log::info('afterRequest: route: ', App::get('router')->currentRoute());
         Log::info('afterRequest: params: ', $params);
     }
 

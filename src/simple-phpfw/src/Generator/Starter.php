@@ -17,7 +17,7 @@ class Starter
     }
 
     /** 実行 */
-    public function exec(array $params, array $options)
+    public function exec(array $params, array $options): void
     {
         $conf = [
             [
@@ -33,7 +33,7 @@ class Starter
     }
 
     /** ハンドラーを実行 */
-    private function runHandler($class, array $params, array $options)
+    private function runHandler($class, array $params, array $options): void
     {
         $dryrun = $options['dryrun'] ?? false;
 

@@ -11,7 +11,7 @@ use SFW\Output\StdOut;
 class Trace
 {
     /** コンテナデータを標準出力 */
-    public static function traceContainer()
+    public static function traceContainer(): void
     {
         $all = App::getContainer()->getAll();
 

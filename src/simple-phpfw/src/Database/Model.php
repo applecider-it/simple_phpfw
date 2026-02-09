@@ -33,14 +33,14 @@ abstract class Model
     protected static function defaultScope(Query $query) {}
 
     /** ID情報を追加したクエリービルダーを返す */
-    public static function queryIncludeId(int $id)
+    public static function queryIncludeId(int $id): Query
     {
         $ret = self::whereSql($id);
         return self::query()->where($ret['sql'], ...$ret['bindings']);
     }
 
     /** 取得 */
-    public static function find(int $id)
+    public static function find(int $id): array|false
     {
         $queryRet = self::queryIncludeId($id)->build();
         $row = self::db()->one($queryRet['sql'], ...$queryRet['bindings']);
@@ -48,8 +48,11 @@ abstract class Model
         return $row;
     }
 
-    /** 追加 */
-    public static function insert(array $data)
+    /**
+     * 追加
+     * @return int 新しく採番されたID
+     */
+    public static function insert(array $data): int
     {
         $newId = self::db()->insert(
             static::$table,
@@ -59,8 +62,11 @@ abstract class Model
         return $newId;
     }
 
-    /** 更新 */
-    public static function update(int $id, array $data)
+    /**
+     * 更新
+     * @return int 影響を与えたレコード件数
+     */
+    public static function update(int $id, array $data): int
     {
         $ret = self::whereSql($id);
         $rows = self::db()->update(static::$table, $data, $ret['sql'], ...$ret['bindings']);
@@ -68,8 +74,11 @@ abstract class Model
         return $rows;
     }
 
-    /** 削除 */
-    public static function delete(int $id)
+    /**
+     * 削除
+     * @return int 影響を与えたレコード件数
+     */
+    public static function delete(int $id): int
     {
         $ret = self::whereSql($id);
         $rows = self::db()->delete(static::$table, $ret['sql'], ...$ret['bindings']);
@@ -77,7 +86,10 @@ abstract class Model
         return $rows;
     }
 
-    /** 論理削除 */
+    /**
+     * 論理削除
+     * @return int 影響を与えたレコード件数
+     */
     public static function softDelete(int $id): int
     {
         $data = [
@@ -98,25 +110,25 @@ abstract class Model
     }
 
     /** 論理削除を省くScope */
-    public static function scopeKept(Query $query)
+    public static function scopeKept(Query $query): void
     {
         $query->where(static::$table . '.' . static::$softDeleteColumn . ' IS NULL');
     }
 
     /** 論理削除を省くScopeを除去するScope */
-    public static function scopeIncludeDeleted(Query $query)
+    public static function scopeIncludeDeleted(Query $query): void
     {
         $query->removeWhere(static::$table . '.' . static::$softDeleteColumn . ' IS NULL');
     }
 
     /** 論理削除されているのだけに絞り込むScope */
-    public static function scopeDeleted(Query $query)
+    public static function scopeDeleted(Query $query): void
     {
         $query->where(static::$table . '.' . static::$softDeleteColumn . ' IS NOT NULL');
     }
 
     /** WHEREのSQL文 */
-    private static function whereSql($id)
+    private static function whereSql($id): array
     {
         $sql = static::$table . '.' . static::$primary . ' = ?';
         $bindings = [$id];
@@ -128,10 +140,8 @@ abstract class Model
 
     /**
      * DB
-     * 
-     * @return DB;
      */
-    public static function db()
+    public static function db(): DB
     {
         return App::get(static::$database);
     }
@@ -145,7 +155,7 @@ abstract class Model
         Query $relationTableQuery,
         string $relationTableIdColumn,
         string $hashKey
-    ) {
+    ): void {
         // 値がない状態でINのクエリーをするとDBエラーになるので終了する
         if (count($rows) === 0) return;
 

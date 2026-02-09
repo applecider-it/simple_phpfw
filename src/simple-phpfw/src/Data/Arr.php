@@ -10,7 +10,7 @@ class Arr
     /**
      * ドット記法で配列取得
      */
-    public static function dotValue(array $array, string $key, $default = null)
+    public static function dotValue(array $array, string $key, $default = null): mixed
     {
         if ($key === null) return $array;
 
@@ -29,7 +29,7 @@ class Arr
     /**
      * 特定のキーだけ取得
      */
-    public static function choise(array $array, array $keys)
+    public static function choise(array $array, array $keys): array
     {
         return array_filter(
             $array,

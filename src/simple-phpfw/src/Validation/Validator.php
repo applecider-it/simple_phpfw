@@ -39,7 +39,7 @@ abstract class Validator
     }
 
     /** 検査実行 */
-    protected function validate()
+    protected function validate(): void
     {
         foreach ($this->rules as $field => $ruleArray) {
             if (!is_array($ruleArray)) {
@@ -67,7 +67,7 @@ abstract class Validator
     }
 
     /** 空白チェック */
-    protected function isBlank($value)
+    protected function isBlank($value): bool
     {
         return ($value === null || $value === '' || (is_array($value) && empty($value)));
     }

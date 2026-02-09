@@ -10,7 +10,7 @@ use SFW\Core\Lang;
 trait BasicValidations
 {
     /** 必須項目チェック */
-    protected function validate_required($field, $value)
+    protected function validate_required($field, $value): void
     {
         if ($this->isBlank($value)) {
             $label = $this->getLabel($field);
@@ -19,7 +19,7 @@ trait BasicValidations
     }
 
     /** メール検査 */
-    protected function validate_email($field, $value)
+    protected function validate_email($field, $value): void
     {
         if ($this->isBlank($value)) return;
 
@@ -30,7 +30,7 @@ trait BasicValidations
     }
 
     /** 数値検査 */
-    protected function validate_numeric($field, $value)
+    protected function validate_numeric($field, $value): void
     {
         if ($this->isBlank($value)) return;
 
@@ -41,7 +41,7 @@ trait BasicValidations
     }
 
     /** 最小値検査 */
-    protected function validate_min($field, $value, $params)
+    protected function validate_min($field, $value, $params): void
     {
         if ($this->isBlank($value)) return;
 
@@ -53,7 +53,7 @@ trait BasicValidations
     }
 
     /** 最大値検査 */
-    protected function validate_max($field, $value, $params)
+    protected function validate_max($field, $value, $params): void
     {
         if ($this->isBlank($value)) return;
 
@@ -65,7 +65,7 @@ trait BasicValidations
     }
 
     /** 値の確認の検査 */
-    protected function validate_confirm($field, $value)
+    protected function validate_confirm($field, $value): void
     {
         if ($this->isBlank($value)) return;
 
@@ -78,7 +78,7 @@ trait BasicValidations
     }
 
     /** DBユニーク値の検査 */
-    protected function validate_unique($field, $value, $params)
+    protected function validate_unique($field, $value, $params): void
     {
         if ($this->isBlank($value)) return;
 

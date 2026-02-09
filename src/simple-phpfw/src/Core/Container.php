@@ -10,7 +10,7 @@ class Container
     private array $singleton = [];
 
     /** シングルトン設定 */
-    public function setSingleton(string $key, $value, $name = '')
+    public function setSingleton(string $key, $value, $name = ''): void
     {
         $this->singleton[$key] = [
             'name' => $name,
@@ -19,7 +19,7 @@ class Container
     }
 
     /** シングルトン取得 */
-    public function getSingleton(string $key)
+    public function getSingleton(string $key): mixed
     {
         if (array_key_exists($key, $this->singleton)) {
             return $this->singleton[$key];
@@ -29,7 +29,7 @@ class Container
     }
 
     /** シングルトン全てを返す */
-    public function getAll()
+    public function getAll(): array
     {
         return $this->singleton;
     }

@@ -8,7 +8,7 @@ namespace SFW\Web;
 class Location
 {
     /** リダイレクト */
-    public static function redirect($urlOrUri) {
+    public static function redirect($urlOrUri): void {
         header('Location: ' . $urlOrUri);
         throw new \SFW\Exceptions\Interruption;
     }

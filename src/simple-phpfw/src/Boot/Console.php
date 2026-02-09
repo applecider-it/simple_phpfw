@@ -10,7 +10,7 @@ use SFW\Console\Starter;
 class Console
 {
     /** 実行 */
-    public function dispatch($argv)
+    public function dispatch($argv): void
     {
         $starter = new Starter();
 

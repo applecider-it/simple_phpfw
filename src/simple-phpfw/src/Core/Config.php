@@ -10,7 +10,7 @@ use SFW\Data\Arr;
 class Config
 {
     /** 設定取得 */
-    public static function get($key)
+    public static function get($key): mixed
     {
         $config = App::get('config');
 

@@ -11,7 +11,7 @@ use SFW\Output\View;
 class Creator
 {
     /** 出力 */
-    public static function output(string $viewName, string $path, array $viewData, bool $dryrun)
+    public static function output(string $viewName, string $path, array $viewData, bool $dryrun): void
     {
         $line = str_repeat("-", 50) . PHP_EOL;
 

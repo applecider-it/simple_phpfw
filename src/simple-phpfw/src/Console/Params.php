@@ -15,7 +15,7 @@ class Params
      * --key=value  値指定
      * --key        フラグ扱い
      */
-    public static function makeParams(array $params)
+    public static function makeParams(array $params): array
     {
         $options = [];
         $positional = [];
