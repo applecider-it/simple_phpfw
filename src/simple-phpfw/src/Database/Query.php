@@ -292,7 +292,7 @@ class Query
         $parts = array_values(
             array_filter(
                 $parts,
-                fn ($where) => $where !== $target
+                fn ($value) => $value !== $target
             )
         );
     }
