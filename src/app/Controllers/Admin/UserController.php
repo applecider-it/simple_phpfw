@@ -42,7 +42,7 @@ class UserController extends Controller
             'users' => $users,
             'params' => $this->params,
             'paginator' => $paginator,
-        ], layout: 'admin.layouts.app');
+        ]);
     }
 
     /** 新規作成画面 */
@@ -55,7 +55,7 @@ class UserController extends Controller
             'password_confirm' => '',
         ];
 
-        return $this->render('admin.user.create', $initialData, layout: 'admin.layouts.app');
+        return $this->render('admin.user.create', $initialData);
     }
 
     /** 新規作成 */
@@ -84,8 +84,7 @@ class UserController extends Controller
 
             return $this->render(
                 'admin.user.create',
-                $form + ['errors' => $errors],
-                layout: 'admin.layouts.app'
+                $form + ['errors' => $errors]
             );
         }
 
@@ -108,8 +107,7 @@ class UserController extends Controller
 
         return $this->render(
             'admin.user.edit',
-            $user + $this->getRelationInfo($user),
-            layout: 'admin.layouts.app'
+            $user + $this->getRelationInfo($user)
         );
     }
 
@@ -140,8 +138,7 @@ class UserController extends Controller
 
             return $this->render(
                 'admin.user.edit',
-                $form + ['errors' => $errors] + $user + $this->getRelationInfo($user),
-                layout: 'admin.layouts.app'
+                $form + ['errors' => $errors] + $user + $this->getRelationInfo($user)
             );
         }
 

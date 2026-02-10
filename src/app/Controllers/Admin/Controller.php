@@ -13,6 +13,8 @@ use App\Services\AdminUser\AuthService;
  */
 abstract class Controller extends BaseController
 {
+    protected string $layout = 'admin.layouts.app';
+
     /** アクション前処理 */
     public function beforeAction()
     {

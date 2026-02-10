@@ -10,6 +10,6 @@ class HomeController extends Controller
     /** トップ画面 */
     public function index()
     {
-        return $this->render('admin.home.index', layout: 'admin.layouts.app');
+        return $this->render('admin.home.index');
     }
 }

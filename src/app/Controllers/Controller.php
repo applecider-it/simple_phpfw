@@ -16,6 +16,8 @@ use App\Services\User\AuthService;
  */
 abstract class Controller extends BaseController
 {
+    protected string $layout = 'layouts.app';
+
     /** アクション前処理 */
     public function beforeAction()
     {
@@ -41,11 +43,13 @@ abstract class Controller extends BaseController
     protected function render(
         string $name,
         array $data = [],
-        string $layout = 'layouts.app',
+        ?string $layout = 'controller-layout',
         array $layoutData = [],
         array $globalData = []
     ) {
         $view = new View();
+
+        if ($layout === 'controller-layout') $layout = $this->layout;
 
         return $view->renderWithLayout(
             $name,

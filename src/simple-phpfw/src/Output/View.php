@@ -56,15 +56,21 @@ class View
     public function renderWithLayout(
         string $name,
         array $data = [],
-        string $layout = 'layouts.app',
+        ?string $layout = null,
         array $layoutData = [],
         array $globalData = []
     ) {
         $this->appendData($globalData);
 
-        return $this->render($layout, [
-            'content' => $this->render($name, $data),
-        ], $layoutData);
+        $val = $this->render($name, $data);
+
+        if ($layout) {
+            $val = $this->render($layout, [
+                'content' => $val,
+            ] + $layoutData);
+        }
+
+        return $val;
     }
 
     /** フレームワークで使うview */
