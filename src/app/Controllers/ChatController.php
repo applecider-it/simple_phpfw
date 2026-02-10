@@ -7,6 +7,7 @@ use SFW\Core\Config;
 
 use App\Services\WebSocket\AuthService;
 use App\Services\Channels\ChatChannel;
+use App\Services\Chat\RoomService;
 
 /**
  * チャットコントローラー
@@ -16,19 +17,17 @@ class ChatController extends Controller
     /** チャット画面 */
     public function index()
     {
+        $authService = new AuthService;
+        $roomService = new RoomService;
+
         $user = App::get('user');
 
-        $rooms = [
-            'default',
-            'room1',
-            'room2',
-            'room3',
-        ];
-
         $room = $this->params['room'] ?? null;
-        if (! in_array($room, $rooms)) $room = 'default';
 
-        $authService = new AuthService;
+        $ret = $roomService->getRoomInfo($room);
+
+        $room = $ret['room'];
+        $rooms = $ret['rooms'];
 
         $token = $authService->createUserJwt($user, ChatChannel::getChannel($room));
 
