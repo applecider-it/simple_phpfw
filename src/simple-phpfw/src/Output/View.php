@@ -50,6 +50,23 @@ class View
         $this->data = $data + $this->data;
     }
 
+    /**
+     * レイアウト付きで描画して文字列を返す
+     */
+    public function renderWithLayout(
+        string $name,
+        array $data = [],
+        string $layout = 'layouts.app',
+        array $layoutData = [],
+        array $globalData = []
+    ) {
+        $this->appendData($globalData);
+
+        return $this->render($layout, [
+            'content' => $this->render($name, $data),
+        ], $layoutData);
+    }
+
     /** フレームワークで使うview */
     public static function fwView()
     {

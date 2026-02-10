@@ -5,15 +5,11 @@ namespace App\Controllers;
 use SFW\Web\Controller as BaseController;
 
 use SFW\Core\App;
-use SFW\Core\Config;
-use SFW\Core\Lang;
 use SFW\Output\Log;
 use SFW\Output\View;
 use SFW\Web\Location;
-use SFW\Web\Session;
-use SFW\Web\Flash;
 
-use App\Models\User;
+use App\Services\User\AuthService;
 
 /**
  * アプリケーションベースコントローラー
@@ -23,6 +19,8 @@ abstract class Controller extends BaseController
     /** アクション前処理 */
     public function beforeAction()
     {
+        $authService = new AuthService();
+
         $currentRoute = App::get('router')->currentRoute();
 
         // beforeActionでの、リダイレクト処理のサンプル
@@ -34,27 +32,12 @@ abstract class Controller extends BaseController
             Log::info('このログは出力されない。');
         }
 
-        // ログインユーザー取得
-        $userId = Session::get(User::AUTH_SESSION_KEY);
-        if ($userId) {
-            $user = User::find($userId);
-
-            if ($user) {
-                User::hidden($user);
-                App::getContainer()->setSingleton('user', $user);
-            }
-        }
-
-        // 認証処理
-        if (($currentRoute['options']['auth'] ?? null) === 'user') {
-            if (! App::get('user')) {
-                Flash::set('alert', Lang::get('errors.loginRequired'));
-                Location::redirect('/login');
-            }
-        }
+        $authService->execAuth($currentRoute);
     }
 
-    /** HTML描画結果を返す */
+    /**
+     * レイアウト付きで描画して文字列を返す
+     */
     protected function render(
         string $name,
         array $data = [],
@@ -64,10 +47,12 @@ abstract class Controller extends BaseController
     ) {
         $view = new View();
 
-        $view->appendData($globalData);
-
-        return $view->render($layout, [
-            'content' => $view->render($name, $data),
-        ], $layoutData);
+        return $view->renderWithLayout(
+            $name,
+            $data,
+            $layout,
+            $layoutData,
+            $globalData
+        );
     }
 }
