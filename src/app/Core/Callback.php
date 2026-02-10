@@ -31,6 +31,10 @@ class Callback
     /** リクエスト情報取得直後 */
     public function afterRequest(array &$params)
     {
+        array_walk_recursive($params, function (&$item, $key) {
+            $item = trim($item);
+        });
+
         if (! Config::get('debug')) return;
 
         Log::info('afterRequest: route: ', App::get('router')->currentRoute());
