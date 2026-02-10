@@ -26,7 +26,7 @@ class SessionController extends Controller
             'password' => '',
         ];
 
-        return $this->render('admin.auth.session.login', $initialData, layout: 'admin.layouts.app');
+        return $this->render('admin.auth.session.login', $initialData);
     }
 
     /** ログイン */
@@ -58,7 +58,7 @@ class SessionController extends Controller
 
         Flash::set('alert', Lang::get('errors.LoginFailed'));
 
-        return $this->render('admin.auth.session.login', $form, layout: 'admin.layouts.app');
+        return $this->render('admin.auth.session.login', $form);
     }
 
     /** ログアウト */
