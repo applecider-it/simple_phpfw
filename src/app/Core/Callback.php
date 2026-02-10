@@ -29,7 +29,7 @@ class Callback
     }
 
     /** リクエスト情報取得直後 */
-    public function afterRequest(array $params)
+    public function afterRequest(array &$params)
     {
         if (! Config::get('debug')) return;
 
