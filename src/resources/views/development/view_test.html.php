@@ -18,7 +18,7 @@ $radio_vals = [
 ?>
 <h2 class="app-h2">development.view_test</h2>
 <div>
-    <div style="margin-top: 1rem; border: 1px solid #aaa; padding: 1rem;">
+    <div style="border: 1px solid #aaa; padding: 1rem;">
         <div>
             フォーム動作確認
         </div>
