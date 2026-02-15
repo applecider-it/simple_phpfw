@@ -26,7 +26,41 @@ class DevelopmentController extends Controller
     /** viewのテスト */
     public function view_test()
     {
-        return $this->render('development.view_test');
+        return $this->render('development.view_test', $this->view_test_common());
+    }
+    public function view_test_post()
+    {
+        return $this->render(
+            'development.view_test',
+            [
+                'list_val' => $this->params['list_val'],
+                'radio_val' => $this->params['radio_val'],
+                'datetime_val' => $this->params['datetime_val'],
+            ]
+                + $this->view_test_common()
+        );
+    }
+    private function view_test_common()
+    {
+        $list_val = 2;
+        $radio_val = 'val2';
+        $datetime_val = '2026-02-15T14:30';
+        $list_vals = [
+            1 => 'No. 1',
+            2 => 'No. 2',
+            3 => 'No. 3',
+        ];
+        $radio_vals = [
+            'val1' => 'Value 1',
+            'val2' => 'Value 2',
+        ];
+        return compact(
+            'list_val',
+            'radio_val',
+            'datetime_val',
+            'list_vals',
+            'radio_vals'
+        );
     }
 
     /** renderのテスト */
