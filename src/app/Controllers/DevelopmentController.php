@@ -26,10 +26,16 @@ class DevelopmentController extends Controller
     /** viewのテスト */
     public function view_test()
     {
+        return $this->render('development.view_test');
+    }
+
+    /** renderのテスト */
+    public function render_test()
+    {
         $sampleService = new SampleService();
 
         return $this->render(
-            'development.view_test',
+            'development.render_test',
             [
                 'id' => $sampleService->sampleMethod(),
                 'content' => 'ページにcontentを指定した場合',
