@@ -1,12 +1,14 @@
 <?php
 
 use SFW\Core\Config;
+
+$adminPrefix = Config::get('adminPrefix');
 ?>
 <h2 class="app-h2">admin.user.index</h2>
 
 <div>
     <div>
-        <a href="<?= Config::get('adminPrefix') ?>/users/create" class="app-btn-primary">
+        <a href="<?= $adminPrefix ?>/users/create" class="app-btn-primary">
             新規作成
         </a>
     </div>

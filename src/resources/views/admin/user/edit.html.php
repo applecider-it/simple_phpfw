@@ -1,12 +1,14 @@
 <?php
 
 use SFW\Core\Config;
+
+$adminPrefix = Config::get('adminPrefix');
 ?>
 <h2 class="app-h2">📝 admin.user.edit</h2>
 
 <div>
     <div style="margin-top: 1rem;">
-        <a href="<?= Config::get('adminPrefix') ?>/users" class="app-link-normal">一覧</a>
+        <a href="<?= $adminPrefix ?>/users" class="app-link-normal">一覧</a>
     </div>
 
     <?= $this->render('partials.validation.errors', ['errors' => $data['errors'] ?? null]) ?>
@@ -14,7 +16,7 @@ use SFW\Core\Config;
     <?= $this->render('partials.message.flash') ?>
 
     <div style="margin-top: 1rem;">
-        <form method="POST" action="<?= Config::get('adminPrefix') ?>/users/<?= $data['id'] ?>/edit">
+        <form method="POST" action="<?= $adminPrefix ?>/users/<?= $data['id'] ?>/edit">
             <?= $this->render('partials.form.csrf') ?>
             <?= $this->render('admin.user.partials.update_form', $data) ?>
             <div style="margin-top: 1rem;">

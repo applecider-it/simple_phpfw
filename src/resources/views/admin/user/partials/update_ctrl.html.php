@@ -1,6 +1,8 @@
 <?php
 
 use SFW\Core\Config;
+
+$adminPrefix = Config::get('adminPrefix');
 ?>
 <div>
     <h3>操作</h3>
@@ -9,7 +11,7 @@ use SFW\Core\Config;
         <?php if ($data['deleted_at']): ?>
             <form
                 method="POST"
-                action="<?= Config::get('adminPrefix') ?>/users/<?= $data['id'] ?>/restore"
+                action="<?= $adminPrefix ?>/users/<?= $data['id'] ?>/restore"
                 onsubmit="return confirm('復元しますか？')"
                 style="margin:0;">
                 <?= $this->render('partials.form.csrf') ?>
@@ -20,7 +22,7 @@ use SFW\Core\Config;
         <?php else: ?>
             <form
                 method="POST"
-                action="<?= Config::get('adminPrefix') ?>/users/<?= $data['id'] ?>/destroy"
+                action="<?= $adminPrefix ?>/users/<?= $data['id'] ?>/destroy"
                 onsubmit="return confirm('論理削除しますか？')"
                 style="margin:0;">
                 <?= $this->render('partials.form.csrf') ?>
