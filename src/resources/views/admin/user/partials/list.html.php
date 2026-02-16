@@ -1,6 +1,6 @@
 <?php
 
-use SFW\Output\Html;
+use function SFW\Helpers\html_esc as h;
 use SFW\Core\Config;
 ?>
 <div class="app-table-wrap">
@@ -16,8 +16,8 @@ use SFW\Core\Config;
         <tbody>
             <?php foreach ($data['users'] as $user): ?>
                 <tr class="app-table-row-data">
-                    <td class="app-table-cell"><?= Html::esc($user['name'] ?? '') ?></td>
-                    <td class="app-table-cell"><?= Html::esc($user['email'] ?? '') ?></td>
+                    <td class="app-table-cell"><?= h($user['name'] ?? '') ?></td>
+                    <td class="app-table-cell"><?= h($user['email'] ?? '') ?></td>
                     <td class="app-table-cell"><?= $user['deleted_at'] ?? '' ?></td>
                     <td class="app-table-cell" style="text-align:center;">
                         <a href="<?= Config::get('adminPrefix') ?>/users/<?= $user['id'] ?>/edit" class="app-btn-primary">

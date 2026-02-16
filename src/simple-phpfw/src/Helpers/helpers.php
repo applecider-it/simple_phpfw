@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\Helpers;
+namespace SFW\Helpers;
 
 use SFW\Output\Html;
 

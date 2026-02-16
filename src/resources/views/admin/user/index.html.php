@@ -1,6 +1,5 @@
 <?php
 
-use SFW\Output\Html;
 use SFW\Core\Config;
 ?>
 <h2 class="app-h2">admin.user.index</h2>

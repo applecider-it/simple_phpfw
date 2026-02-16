@@ -1,6 +1,6 @@
 <?php
 
-use function App\Core\Helpers\html_esc as h;
+use function SFW\Helpers\html_esc as h;
 
 ?>
 <h2 class="app-h2">development.view_test</h2>

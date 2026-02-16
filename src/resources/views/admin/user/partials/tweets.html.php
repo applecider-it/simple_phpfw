@@ -1,7 +1,6 @@
 <?php
 
-use SFW\Output\Html;
-use SFW\Core\Config;
+use function SFW\Helpers\html_esc as h;
 ?>
 <h3 class="app-h3">tweets</h3>
 
@@ -18,7 +17,7 @@ use SFW\Core\Config;
             <tbody>
                 <?php foreach ($data['tweets'] as $tweet): ?>
                     <tr class="app-table-row-data">
-                        <td class="app-table-cell"><?= Html::esc($tweet['content']) ?></td>
+                        <td class="app-table-cell"><?= h($tweet['content']) ?></td>
                         <td class="app-table-cell"><?= $tweet['created_at'] ?? '' ?></td>
                         <td class="app-table-cell"><?= $tweet['deleted_at'] ?? '' ?></td>
                     </tr>

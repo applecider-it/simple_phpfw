@@ -21,6 +21,8 @@ class Common
     /** 初期化 */
     public function init(): void
     {
+        $this->loadHelpers();
+
         $container = new Container();
         App::setContainer($container);
 
@@ -30,6 +32,16 @@ class Common
         $this->setupRedis();
 
         App::get('callback')->afterInit();
+    }
+
+    /**
+     * ヘルパー読み込み
+     * 
+     * 関数はオートロードできないので、ここで手動読み込み
+     */
+    private function loadHelpers(): void
+    {
+        require_once dirname(__DIR__) . '/Helpers/helpers.php';
     }
 
     /** サービス設定 */

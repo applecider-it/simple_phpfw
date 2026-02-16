@@ -1,6 +1,5 @@
 <?php
 
-use SFW\Output\Html;
 use SFW\Core\Config;
 
 $softDeleteList = [
