@@ -1,6 +1,6 @@
 <?php
 
-use SFW\Output\Html;
+use function App\Core\Helpers\html_esc as h;
 
 ?>
 <h2 class="app-h2">development.view_test</h2>
@@ -17,9 +17,9 @@ use SFW\Output\Html;
                 <select name="list_val" id="list_val">
                     <option value="">選択してください</option>
                     <?php foreach ($data['list_vals'] as $key => $value): ?>
-                        <option value="<?= Html::esc($key) ?>"
+                        <option value="<?= h($key) ?>"
                             <?= $data['list_val'] == $key ? 'selected' : '' ?>>
-                            <?= Html::esc($value) ?>
+                            <?= h($value) ?>
                         </option>
                     <?php endforeach; ?>
                 </select>
@@ -31,9 +31,9 @@ use SFW\Output\Html;
                 <div class="space-x-3">
                     <?php foreach ($data['radio_vals'] as $key => $value): ?>
                         <label>
-                            <input type="radio" name="radio_val" value="<?= Html::esc($key) ?>"
+                            <input type="radio" name="radio_val" value="<?= h($key) ?>"
                                 <?= $data['radio_val'] == $key ? 'checked' : '' ?>>
-                            <?= Html::esc($value) ?>
+                            <?= h($value) ?>
                         </label>
                     <?php endforeach; ?>
                 </div>
@@ -41,7 +41,7 @@ use SFW\Output\Html;
 
             <div style="margin-top: 1rem">
                 <label for="datetime_val" class="app-form-label">日時動作確認</label>
-                <input type="datetime-local" name="datetime_val" value="<?= Html::esc($data['datetime_val']) ?>" id="datetime_val"
+                <input type="datetime-local" name="datetime_val" value="<?= h($data['datetime_val']) ?>" id="datetime_val"
                  class="app-form-input" style="width: auto;" />
             </div>
 

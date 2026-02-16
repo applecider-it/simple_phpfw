@@ -26,6 +26,10 @@ class Callback
         // 複数DB実装例
         $db_another = new DB(Config::get('database_another'));
         App::getContainer()->setSingleton('db_another', $db_another, '複数DB実装例');
+
+        // ヘルパー読み込み
+        // 関数はオートロードできないので、ここで読み込む
+        require_once __DIR__ . '/helpers.php';
     }
 
     /** リクエスト情報取得直後 */

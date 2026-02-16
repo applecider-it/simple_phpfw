@@ -10,13 +10,13 @@ use SFW\Core\Config;
 class Html
 {
     /** エスケープ */
-    public static function esc(?string $value)
+    public static function esc(mixed $value): string
     {
         return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
     }
 
     /** ファイル読み込みの際のキャッシュ対応 */
-    public static function file(string $url)
+    public static function file(string $url): string
     {
         $filePostfix = Config::get('filePostfix');
 
