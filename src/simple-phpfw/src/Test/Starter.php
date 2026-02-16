@@ -2,7 +2,7 @@
 
 namespace SFW\Test;
 
-use SFW\Data\File;
+use SFW\Data\Path;
 use SFW\Output\StdOut;
 
 /**
@@ -32,7 +32,7 @@ class Starter
     {
         $testFilePaths = [];
 
-        $iterator = File::getRecursiveIterator($targetDir);
+        $iterator = Path::getRecursiveIterator($targetDir);
 
         foreach ($iterator as $file) {
             if ($file->isFile() && str_ends_with($file->getFilename(), 'Test.php')) {
