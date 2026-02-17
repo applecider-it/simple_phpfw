@@ -74,9 +74,9 @@ class DevelopmentController extends Controller
                 'id' => $sampleService->sampleMethod(),
                 'content' => 'ページにcontentを指定した場合',
             ],
-            layoutData: ['title' => 'Viewのテスト'],
+            layoutData: ['title' => 'renderのテスト'],
             globalData: ['id' => 456],
-            layout: 'layouts.view_test',
+            layout: 'layouts.render_test',
             //layout: null,
         );
     }

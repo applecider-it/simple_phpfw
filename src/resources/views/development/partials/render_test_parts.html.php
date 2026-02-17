@@ -4,7 +4,7 @@ use SFW\Output\Html;
 
 $metaStyle = $data['metaStyle'];
 ?>
-<h3 class="app-h3" style="margin-top: 1rem;">development.partials.view_test_parts</h3>
+<h3 class="app-h3" style="margin-top: 1rem;">development.partials.render_test_parts</h3>
 
 <div style="<?= $metaStyle ?>">
     <div>$name <?= Html::esc($name) ?></div>

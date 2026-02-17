@@ -37,7 +37,7 @@ $metaStyle = "
 
     <div style="<?= $partialStyle ?>">
         <div>partial test</div>
-        <div><?= $this->render('development.partials.view_test_parts', [
+        <div><?= $this->render('development.partials.render_test_parts', [
                     'val1' => '部品用の値',
                     'metaStyle' => $metaStyle,
                 ]) ?></div>
@@ -45,7 +45,7 @@ $metaStyle = "
 
     <div style="<?= $partialStyle ?>">
         <div>partial test2</div>
-        <div><?= $this->render('development.partials.view_test_parts', [
+        <div><?= $this->render('development.partials.render_test_parts', [
                     'val1' => '部品用の値2',
                     'metaStyle' => $metaStyle,
                 ]) ?></div>

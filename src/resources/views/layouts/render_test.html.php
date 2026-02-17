@@ -9,7 +9,7 @@
     <?= $this->render('layouts.partials.common') ?>
     <?= $this->render('layouts.partials.nav') ?>
 
-    <div>layouts.view_test</div>
+    <div>layouts.render_test</div>
 
     <main class="app-layout-main">
         <?= $data['content'] ?? '' ?>
