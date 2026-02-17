@@ -107,7 +107,7 @@ class UserController extends Controller
 
         return $this->render(
             'admin.user.edit',
-            $user + $this->getRelationInfo($user)
+            $user + $this->getEditCommon($user)
         );
     }
 
@@ -138,7 +138,7 @@ class UserController extends Controller
 
             return $this->render(
                 'admin.user.edit',
-                $form + ['errors' => $errors] + $user + $this->getRelationInfo($user)
+                $form + ['errors' => $errors] + $user + $this->getEditCommon($user)
             );
         }
 
@@ -149,16 +149,20 @@ class UserController extends Controller
         Location::redirect(Config::get('adminPrefix') . "/users/{$userId}/edit");
     }
 
-    /** 関連情報 */
-    private function getRelationInfo($user)
+    /** 更新時共通情報 */
+    private function getEditCommon($user)
     {
-        $tweets = User::tweets($user['id'])
+        $query = User::tweets($user['id'])
             ->scope([Tweet::class, 'includeDeleted'])
-            ->order("id desc")
-            ->limit(5)
-            ->all();
+            ->order("id desc");
 
-        return compact('tweets');
+        $tweetsPaginator = new Paginator($this->params, 5, 'tweets_page');
+
+        $tweetsPaginator->query($query);
+
+        $tweets = $query->all();
+
+        return compact('tweets', 'tweetsPaginator');
     }
 
     /** 論理削除 */

@@ -31,5 +31,7 @@ $adminPrefix = Config::get('adminPrefix');
 
     <div style="margin-top: 3rem;">
         <?= $this->render('admin.user.partials.tweets', ['tweets' => $data['tweets']]) ?>
+
+        <?= $this->render('partials.pagination.paginator', ['paginator' => $data['tweetsPaginator']]) ?>
     </div>
 </div>
