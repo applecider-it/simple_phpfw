@@ -87,12 +87,6 @@ class TweetController extends Controller
     /** 共通情報 */
     private function getCommonInfo()
     {
-        return $this->getRelationInfo();
-    }
-
-    /** 関連情報 */
-    private function getRelationInfo()
-    {
         $tweets = Tweet::query()
             ->order("id desc")
             ->limit(10)
