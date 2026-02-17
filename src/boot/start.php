@@ -4,10 +4,10 @@
  * システム全般の最初のセットアップ
  */
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+// すべてのエラーが対象
 error_reporting(E_ALL);
 
+// エラーを例外にする
 set_error_handler(function ($severity, $message, $file, $line) {
     throw new ErrorException($message, 0, $severity, $file, $line);
 });

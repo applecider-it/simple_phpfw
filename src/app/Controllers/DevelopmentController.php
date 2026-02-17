@@ -122,7 +122,8 @@ class DevelopmentController extends Controller
     public function exeption_test()
     {
         Log::info('このログは出力される。');
-        throw new \Exception("例外テスト");
+        //throw new \Exception("例外テスト");
+        echo $val;
         Log::info('このログは出力されない。');
     }
 
