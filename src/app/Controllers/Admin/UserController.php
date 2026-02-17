@@ -105,9 +105,13 @@ class UserController extends Controller
     {
         $user = $this->user();
 
+        $form = $user;
+        $form['password'] = '';
+        $form['password_confirm'] = '';
+
         return $this->render(
             'admin.user.edit',
-            $user + $this->getEditCommon($user)
+            $form + $this->getEditCommon($user)
         );
     }
 
@@ -117,16 +121,18 @@ class UserController extends Controller
         $user = $this->user();
         $userId = $user['id'];
 
-        $form = Arr::choise($this->params, ['name', 'email']);
+        $form = Arr::choise($this->params, ['name', 'email', 'password', 'password_confirm']);
 
         $rules = [
             'name' => User::validationName(),
             'email' => User::validationEmail($user),
+            'password' => User::validationPassword(true),
         ];
 
         $labels = [
             'name' => Lang::get('models.user.attributes.name'),
             'email' => Lang::get('models.user.attributes.email'),
+            'password' => Lang::get('models.user.attributes.password'),
         ];
 
         $v = Validator::make($form, $rules, $labels);
@@ -140,6 +146,14 @@ class UserController extends Controller
                 'admin.user.edit',
                 $form + ['errors' => $errors] + $user + $this->getEditCommon($user)
             );
+        }
+
+        unset($form['password_confirm']);
+
+        if (!empty($form['password'])) {
+            $form['password'] = password_hash($form['password'], PASSWORD_DEFAULT);
+        } else {
+            unset($form['password']);
         }
 
         User::update($userId, $form);

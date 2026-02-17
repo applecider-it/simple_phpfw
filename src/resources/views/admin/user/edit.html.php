@@ -3,6 +3,8 @@
 use SFW\Core\Config;
 
 $adminPrefix = Config::get('adminPrefix');
+
+$data['exists'] = true;
 ?>
 <h2 class="app-h2">📝 admin.user.edit</h2>
 
@@ -18,7 +20,8 @@ $adminPrefix = Config::get('adminPrefix');
     <div style="margin-top: 1rem;">
         <form method="POST" action="<?= $adminPrefix ?>/users/<?= $data['id'] ?>/edit">
             <?= $this->render('partials.form.csrf') ?>
-            <?= $this->render('admin.user.partials.update_form', $data) ?>
+            <?= $this->render('admin.user.partials.form', $data) ?>
+            <?= $this->render('admin.user.partials.info', $data) ?>
             <div style="margin-top: 1rem;">
                 <button type="submit" class="app-btn-primary">更新</button>
             </div>

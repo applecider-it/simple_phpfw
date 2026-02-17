@@ -3,6 +3,8 @@
 use SFW\Core\Config;
 
 $adminPrefix = Config::get('adminPrefix');
+
+$data['exists'] = false;
 ?>
 <h2 class="app-h2">📝 admin.user.create</h2>
 

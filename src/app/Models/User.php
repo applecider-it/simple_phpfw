@@ -18,7 +18,8 @@ class User extends Model
 
     protected static string $table = 'users';
 
-    protected static function defaultScope(Query $query) {
+    protected static function defaultScope(Query $query)
+    {
         $query->scope([self::class, 'kept']);
     }
 
@@ -41,15 +42,22 @@ class User extends Model
         $id = $user['id'] ?? null;
 
         $query = self::query();
-        if ($id) $query->where('id != ?', $id); 
+        if ($id) $query->where('id != ?', $id);
 
         return ['required', 'email', ['unique', 'email', $query]];
     }
 
-    /** パスワードのバリデーション */
-    public static function validationPassword()
+    /**
+     * パスワードのバリデーション
+     * 
+     * 更新時にパスワードを変更しないときの空白を許可したいときは、$nullableをtrueにする。
+     */
+    public static function validationPassword(bool $nullable = false)
     {
-        return ['required', 'confirm'];
+        $arr = [];
+        if (!$nullable) $arr[]  = 'required';
+        $arr += ['confirm'];
+        return $arr;
     }
 
     /** Jsonに混ざってはいけないカラムを隠す */
@@ -63,7 +71,7 @@ class User extends Model
     public static function deleteRelations(int $id)
     {
         $db = self::db();
-        
+
         $db->update('user_tweets', [User\Tweet::$softDeleteColumn => new Raw('NOW()')], 'user_id = ?', $id);
     }
 }

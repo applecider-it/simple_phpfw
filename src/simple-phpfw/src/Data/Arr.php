@@ -37,4 +37,16 @@ class Arr
             ARRAY_FILTER_USE_BOTH
         );
     }
+
+    /**
+     * 特定のキーだけ除外
+     */
+    public static function exclude(array $array, array $keys): array
+    {
+        return array_filter(
+            $array,
+            fn($value, $key) => !in_array($key, $keys, true),
+            ARRAY_FILTER_USE_BOTH
+        );
+    }
 }

@@ -16,7 +16,12 @@ use function SFW\Helpers\html_esc as h;
 </div>
 
 <div style="margin-top: 1rem;">
-    <label class="app-form-label">Password</label>
+    <label class="app-form-label">
+        Password
+        <?php if ($data['exists']): ?>
+            （変更する場合のみ）
+        <?php endif; ?>
+    </label>
     <input type="password" name="password" value="<?= h($data['password']) ?>" class="app-form-input">
     <?= $this->render('partials.validation.error', ['errors' => $data['errors'] ?? null, 'attribute' => 'password']) ?>
 </div>
