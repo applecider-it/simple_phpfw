@@ -9,12 +9,13 @@ use SFW\Core\Config;
 use SFW\Web\Location;
 use SFW\Web\Flash;
 use SFW\Output\Log;
-use SFW\Pagination\Paginator;
 
 use App\Models\User;
 use App\Models\User\Tweet;
 
 use App\Core\Validator;
+
+use App\Services\Admin\User\ListService;
 
 /**
  * ユーザー管理コントローラー
@@ -24,24 +25,12 @@ class UserController extends Controller
     /** トップ画面 */
     public function index()
     {
-        $query = User::query()
-            ->scope([User::class, 'includeDeleted'])
-            ->order("id desc");
+        $listService = new ListService();
 
-        $softDelete = $this->params['soft_delete'] ?? 'all';
-        if ($softDelete === 'kept') $query->scope([User::class, 'kept']);
-        if ($softDelete === 'deleted') $query->scope([User::class, 'deleted']);
+        $data = $listService->getListData($this->params);
 
-        $paginator = new Paginator($this->params, 8, 'page');
-
-        $paginator->query($query);
-
-        $users = $query->all();
-
-        return $this->render('admin.user.index', [
-            'users' => $users,
+        return $this->render('admin.user.index', $data + [
             'params' => $this->params,
-            'paginator' => $paginator,
         ]);
     }
 
@@ -164,19 +153,13 @@ class UserController extends Controller
     }
 
     /** 更新時共通情報 */
-    private function getEditCommon($user)
+    private function getEditCommon(array $user)
     {
-        $query = User::tweets($user['id'])
-            ->scope([Tweet::class, 'includeDeleted'])
-            ->order("id desc");
+        $listService = new ListService();
 
-        $tweetsPaginator = new Paginator($this->params, 5, 'tweets_page');
+        $data = $listService->getUserTweetData($user, $this->params);
 
-        $tweetsPaginator->query($query);
-
-        $tweets = $query->all();
-
-        return compact('tweets', 'tweetsPaginator');
+        return $data;
     }
 
     /** 論理削除 */
