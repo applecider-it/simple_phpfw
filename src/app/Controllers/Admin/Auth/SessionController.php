@@ -13,6 +13,8 @@ use App\Controllers\Admin\Controller;
 
 use App\Models\AdminUser;
 
+use App\Services\AdminUser\AuthService;
+
 /**
  * 管理者ログイン管理コントローラー
  */
@@ -32,6 +34,8 @@ class SessionController extends Controller
     /** ログイン */
     public function post()
     {
+        $authService = new AuthService;
+
         $email = $this->params['email'];
         $password = $this->params['password'];
 
@@ -43,11 +47,7 @@ class SessionController extends Controller
             if (password_verify($password, $adminUser['password'])) {
                 Log::info('パスワード認証成功');
 
-                Session::reflesh();
-
-                Session::set(AdminUser::AUTH_SESSION_KEY, $adminUser["id"]);
-
-                Location::redirect(Config::get('adminPrefix'));
+                $authService->login($adminUser);
             }
         }
 
@@ -64,8 +64,8 @@ class SessionController extends Controller
     /** ログアウト */
     public function logout()
     {
-        Session::clear(AdminUser::AUTH_SESSION_KEY);
+        $authService = new AuthService;
 
-        Location::redirect(Config::get('adminPrefix') . "/login");
+        $authService->logout();
     }
 }

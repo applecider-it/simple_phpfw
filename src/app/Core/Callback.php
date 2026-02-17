@@ -7,6 +7,9 @@ use SFW\Core\App;
 use SFW\Core\Config;
 use SFW\Database\DB;
 
+use App\Services\User\AuthService;
+use App\Services\AdminUser\AuthService as AdminAuthService;
+
 /**
  * フレームワークからのコールバックを受け取る
  */
@@ -15,13 +18,13 @@ class Callback
     /** 初期化後。アプリケーションで利用するシングルトンの登録などをする。 */
     public function afterInit()
     {
+        $authService = new AuthService();
+        $adminAuthService = new AdminAuthService();
+
         Log::info('afterInit !!!!');
 
-        // ログインユーザー情報の入れ物を作る
-        App::getContainer()->setSingleton('user', null, 'ログインユーザー');
-
-        // 管理画面のログインユーザー情報の入れ物を作る
-        App::getContainer()->setSingleton('adminUser', null, '管理画面のログインユーザー');
+        $authService->initAuth();
+        $adminAuthService->initAuth();
 
         // 複数DB実装例
         $db_another = new DB(Config::get('database_another'));
@@ -31,6 +34,7 @@ class Callback
     /** リクエスト情報取得直後 */
     public function afterRequest(array &$params)
     {
+        // リクエストパラメーターをtrimする
         array_walk_recursive($params, function (&$item, $key) {
             $item = trim($item);
         });

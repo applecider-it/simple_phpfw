@@ -12,6 +12,8 @@ use App\Controllers\Controller;
 
 use App\Models\User;
 
+use App\Services\User\AuthService;
+
 /**
  * ログイン管理コントローラー
  */
@@ -31,6 +33,8 @@ class SessionController extends Controller
     /** ログイン */
     public function post()
     {
+        $authService = new AuthService;
+
         $email = $this->params['email'];
         $password = $this->params['password'];
 
@@ -42,11 +46,7 @@ class SessionController extends Controller
             if (password_verify($password, $user['password'])) {
                 Log::info('パスワード認証成功');
 
-                Session::reflesh();
-
-                Session::set(User::AUTH_SESSION_KEY, $user["id"]);
-
-                Location::redirect("/");
+                $authService->login($user);
             }
         }
 
@@ -63,8 +63,8 @@ class SessionController extends Controller
     /** ログアウト */
     public function logout()
     {
-        Session::clear(User::AUTH_SESSION_KEY);
+        $authService = new AuthService;
 
-        Location::redirect("/");
+        $authService->logout();
     }
 }
