@@ -3,9 +3,9 @@
 namespace App\Controllers;
 
 use SFW\Core\App;
+use SFW\Core\Config;
 use SFW\Data\Arr;
 use SFW\Core\Lang;
-use SFW\Core\Config;
 use SFW\Web\Location;
 use SFW\Web\Flash;
 use SFW\Output\Log;

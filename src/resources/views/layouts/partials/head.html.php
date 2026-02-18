@@ -1,10 +1,10 @@
 <?php
 
-use SFW\Core\App;
 use SFW\Core\Config;
 use SFW\Output\Html;
+use App\Services\User\AuthService as Auth;
 
-$user = App::get('user');
+$user = Auth::get();
 ?>
 <meta charset="UTF-8">
 

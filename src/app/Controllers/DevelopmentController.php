@@ -9,6 +9,7 @@ use SFW\Data\Json;
 use App\Services\Sample\SampleService;
 use App\Services\Development\DatabaseService;
 use App\Services\Development\ValidationService;
+use App\Services\User\AuthService as Auth;
 
 use App\Core\Validator;
 
@@ -136,7 +137,7 @@ class DevelopmentController extends Controller
     /** javascriptテスト(POST API部分) */
     public function api_post()
     {
-        $user = App::get('user');
+        $user = Auth::get();
 
         return [
             'data' => [
@@ -149,7 +150,7 @@ class DevelopmentController extends Controller
     /** javascriptテスト(GET API部分) */
     public function api_get()
     {
-        $user = App::get('user');
+        $user = Auth::get();
 
         return [
             'data' => [
@@ -167,7 +168,7 @@ class DevelopmentController extends Controller
     /** javascriptテスト(セッションがないPOST API部分) */
     public function api_post_nosession()
     {
-        $user = App::get('user');
+        $user = Auth::get();
 
         return [
             'data' => [
