@@ -14,7 +14,7 @@ $adminUser = Auth::get();
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
-<link rel="stylesheet" href="<?= Html::file('/css/app.css') ?>">
+<link rel="stylesheet" href="<?= Html::file('/css/admin.css') ?>">
 
 <?php if ($adminUser): ?>
     <meta name="user" data-json="<?= Html::esc(json_encode($adminUser)) ?>">
