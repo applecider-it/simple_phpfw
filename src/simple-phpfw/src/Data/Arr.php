@@ -49,4 +49,16 @@ class Arr
             ARRAY_FILTER_USE_BOTH
         );
     }
+
+    /**
+     * 特定のキーを再帰的に隠す
+     */
+    public static function mask(array $array, array $keys, string $maskValue = '[Filtered]'): array
+    {
+        array_walk_recursive($array, function (&$value, $key) use ($keys, $maskValue) {
+            $value = in_array($key, $keys, true) ? $maskValue : $value;
+        });
+
+        return $array;
+    }
 }

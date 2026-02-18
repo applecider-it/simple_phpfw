@@ -6,6 +6,7 @@ use SFW\Output\Log;
 use SFW\Core\App;
 use SFW\Core\Config;
 use SFW\Database\DB;
+use SFW\Data\Arr;
 
 use App\Services\User\AuthService;
 use App\Services\AdminUser\AuthService as AdminAuthService;
@@ -42,7 +43,7 @@ class Callback
         if (! Config::get('debug')) return;
 
         Log::info('afterRequest: route: ', App::get('router')->currentRoute());
-        Log::info('afterRequest: params: ', $params);
+        Log::info('afterRequest: params: ', Arr::mask($params, ['password', 'password_confirm']));
     }
 
     /** セッションスタート直後 */
