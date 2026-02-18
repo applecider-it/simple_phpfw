@@ -42,7 +42,7 @@ class AuthService
 
         // 認証処理
         if (($currentRoute['options']['auth'] ?? null) === self::ROUTE_OPTION_KEY) {
-            if (! App::get(self::CONTAINER_KEY)) {
+            if (! self::get()) {
                 Flash::set('alert', Lang::get('errors.loginRequired'));
                 Location::redirect('/login');
             }
@@ -65,5 +65,11 @@ class AuthService
         Session::clear(User::AUTH_SESSION_KEY);
 
         Location::redirect("/");
+    }
+
+    /** 認証結果取得 */
+    public static function get()
+    {
+        return App::get(self::CONTAINER_KEY);
     }
 }

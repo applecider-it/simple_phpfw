@@ -1,10 +1,10 @@
 <?php
 
 use SFW\Core\Config;
-use SFW\Core\App;
 use SFW\Output\Html;
+use App\Services\AdminUser\AuthService as Auth;
 
-$adminUser = App::get('adminUser');
+$adminUser = Auth::get();
 
 $adminPrefix = Config::get('adminPrefix');
 ?>

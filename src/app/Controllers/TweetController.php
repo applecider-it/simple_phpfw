@@ -16,6 +16,7 @@ use App\Models\User\Tweet;
 use App\Core\Validator;
 
 use App\Services\Tweet\WebScoketService;
+use App\Services\User\AuthService as Auth;
 
 /**
  * ツイートコントローラー
@@ -72,7 +73,7 @@ class TweetController extends Controller
             }
         }
 
-        $user = App::get('user');
+        $user = Auth::get();
         $newId = Tweet::insert(['user_id' => $user['id']] + $form);
         Log::info('New Tweet', [$newId]);
 

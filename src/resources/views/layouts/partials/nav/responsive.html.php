@@ -1,10 +1,10 @@
 <?php
 
 use SFW\Core\Config;
-use SFW\Core\App;
 use SFW\Output\Html;
+use App\Services\User\AuthService as Auth;
 
-$user = App::get('user');
+$user = Auth::get();
 ?>
 <div class="app-layout-nav-responsive">
     <div style="display: flex; justify-content: space-between; align-items: center;">

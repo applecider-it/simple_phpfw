@@ -1,10 +1,10 @@
 <?php
 
 use SFW\Core\Config;
-use SFW\Core\App;
 use SFW\Output\Html;
+use App\Services\User\AuthService as Auth;
 
-$user = App::get('user');
+$user = Auth::get();
 ?>
 <div class="app-layout-nav-primary">
     <h1 class="app-h1"><?= Config::get('applicationName') ?></h1>
