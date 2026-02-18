@@ -4,13 +4,9 @@ namespace App\Controllers\Auth;
 
 use SFW\Core\Lang;
 use SFW\Output\Log;
-use SFW\Web\Location;
-use SFW\Web\Session;
 use SFW\Web\Flash;
 
 use App\Controllers\Controller;
-
-use App\Models\User;
 
 use App\Services\User\AuthService;
 
@@ -38,17 +34,7 @@ class SessionController extends Controller
         $email = $this->params['email'];
         $password = $this->params['password'];
 
-        $user = User::query()
-            ->where('email = ?', $email)
-            ->one();
-
-        if ($user) {
-            if (password_verify($password, $user['password'])) {
-                Log::info('パスワード認証成功');
-
-                $authService->login($user);
-            }
-        }
+        $authService->authenticate($email, $password);
 
         $form = [
             'email' => $email,

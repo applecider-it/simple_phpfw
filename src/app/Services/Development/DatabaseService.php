@@ -9,6 +9,7 @@ use SFW\Output\Log;
 use SFW\Database\Query;
 use SFW\Database\DB;
 use SFW\Database\Raw;
+use SFW\Security\Hash;
 
 use App\Models\User;
 use App\Models\User\Tweet;
@@ -79,7 +80,7 @@ class DatabaseService
             [
                 'name' => 'テスト',
                 'email' => 'test' . time() . '@example.com',
-                'password'  => password_hash($password, PASSWORD_DEFAULT)
+                'password'  => Hash::make($password)
             ]
         );
         Log::info('After User Insert', [$newId]);
@@ -172,7 +173,7 @@ class DatabaseService
         $rows = User::update($newId, [
             'name' => 'テスト2',
             'updated_at' => new Raw('NOW()'),
-            'password' => password_hash('aaaaaa', PASSWORD_DEFAULT),
+            'password' => Hash::make('aaaaaa'),
         ]);
         Log::info('更新', [$rows]);
 

@@ -45,7 +45,7 @@ admin@localhost.com / adminadmin
 
 管理者作成
 
-php ./bin/console runner "echo App\Models\AdminUser::insert(['name' => 'admin', 'email' => 'admin@localhost.com', 'password' => password_hash('adminadmin', PASSWORD_DEFAULT)]);"
+php ./bin/console runner "echo App\Models\AdminUser::insert(['name' => 'admin', 'email' => 'admin@localhost.com', 'password' => SFW\Security\Hash::make('adminadmin')]);"
 
 -----------------------------------
 

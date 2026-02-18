@@ -9,6 +9,7 @@ use SFW\Core\Config;
 use SFW\Web\Location;
 use SFW\Web\Flash;
 use SFW\Output\Log;
+use SFW\Security\Hash;
 
 use App\Models\User;
 use App\Models\User\Tweet;
@@ -16,6 +17,7 @@ use App\Models\User\Tweet;
 use App\Core\Validator;
 
 use App\Services\Admin\User\ListService;
+use App\Services\Admin\User\EditService;
 
 /**
  * ユーザー管理コントローラー
@@ -79,7 +81,7 @@ class UserController extends Controller
 
         unset($form['password_confirm']);
 
-        $form['password'] = password_hash($form['password'], PASSWORD_DEFAULT);
+        $form['password'] = Hash::make($form['password']);
 
         $newId = User::insert($form);
         Log::info('New User', [$newId]);
@@ -107,6 +109,8 @@ class UserController extends Controller
     /** 更新 */
     public function update()
     {
+        $editService = new EditService();
+
         $user = $this->user();
         $userId = $user['id'];
 
@@ -139,11 +143,7 @@ class UserController extends Controller
 
         unset($form['password_confirm']);
 
-        if (!empty($form['password'])) {
-            $form['password'] = password_hash($form['password'], PASSWORD_DEFAULT);
-        } else {
-            unset($form['password']);
-        }
+        $editService->updateForm($form);
 
         User::update($userId, $form);
 
