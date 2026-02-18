@@ -17,13 +17,25 @@ use App\Models\User;
 class AuthService
 {
     private const CONTAINER_KEY = 'user';
-    private const ROUTE_OPTION_KEY = 'user';
+    private const CONTAINER_DESC = 'ログインユーザー';
+    private const ROUTE_OPTION_VALUE = 'user';
+
+    private string $loginUrl = '';
+    private string $afterLoginUrl = '';
+    private string $afterLogoutUrl = '';
+
+    public function __construct()
+    {
+        $this->loginUrl = '/login';
+        $this->afterLoginUrl = '/';
+        $this->afterLogoutUrl = '/';
+    }
 
     /** 認証初期化 */
     public function initAuth()
     {
         // ログインユーザー情報の入れ物を作る
-        App::getContainer()->setSingleton(self::CONTAINER_KEY, null, 'ログインユーザー');
+        App::getContainer()->setSingleton(self::CONTAINER_KEY, null, self::CONTAINER_DESC);
     }
 
     /** 認証処理実行 */
@@ -41,10 +53,10 @@ class AuthService
         }
 
         // 認証処理
-        if (($currentRoute['options']['auth'] ?? null) === self::ROUTE_OPTION_KEY) {
+        if (($currentRoute['options']['auth'] ?? null) === self::ROUTE_OPTION_VALUE) {
             if (! self::get()) {
                 Flash::set('alert', Lang::get('errors.loginRequired'));
-                Location::redirect('/login');
+                Location::redirect($this->loginUrl);
             }
         }
     }
@@ -56,7 +68,7 @@ class AuthService
 
         Session::set(User::AUTH_SESSION_KEY, $user["id"]);
 
-        Location::redirect("/");
+        Location::redirect($this->afterLoginUrl);
     }
 
     /** ログアウト */
@@ -64,7 +76,7 @@ class AuthService
     {
         Session::clear(User::AUTH_SESSION_KEY);
 
-        Location::redirect("/");
+        Location::redirect($this->afterLogoutUrl);
     }
 
     /** 認証結果取得 */

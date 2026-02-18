@@ -17,7 +17,21 @@ use App\Models\AdminUser;
 class AuthService
 {
     private const CONTAINER_KEY = 'adminUser';
-    private const ROUTE_OPTION_KEY = 'admin_user';
+    private const CONTAINER_DESC = '管理画面のログインユーザー';
+    private const ROUTE_OPTION_VALUE = 'admin_user';
+
+    private string $loginUrl = '';
+    private string $afterLoginUrl = '';
+    private string $afterLogoutUrl = '';
+
+    public function __construct()
+    {
+        $adminPrefix = Config::get('adminPrefix');
+
+        $this->loginUrl = $adminPrefix . '/login';
+        $this->afterLoginUrl = $adminPrefix;
+        $this->afterLogoutUrl = $adminPrefix . '/login';
+    }
 
     /**
      * 認証初期化
@@ -25,7 +39,7 @@ class AuthService
     public function initAuth()
     {
         // 管理画面のログインユーザー情報の入れ物を作る
-        App::getContainer()->setSingleton(self::CONTAINER_KEY, null, '管理画面のログインユーザー');
+        App::getContainer()->setSingleton(self::CONTAINER_KEY, null, self::CONTAINER_DESC);
     }
 
     /**
@@ -45,10 +59,10 @@ class AuthService
         }
 
         // 認証処理
-        if (($currentRoute['options']['auth'] ?? null) === self::ROUTE_OPTION_KEY) {
+        if (($currentRoute['options']['auth'] ?? null) === self::ROUTE_OPTION_VALUE) {
             if (! self::get()) {
                 Flash::set('alert', Lang::get('errors.loginRequired'));
-                Location::redirect(Config::get('adminPrefix') . "/login");
+                Location::redirect($this->loginUrl);
             }
         }
     }
@@ -60,7 +74,7 @@ class AuthService
 
         Session::set(AdminUser::AUTH_SESSION_KEY, $adminUser["id"]);
 
-        Location::redirect(Config::get('adminPrefix'));
+        Location::redirect($this->afterLoginUrl);
     }
 
     /** ログアウト */
@@ -68,7 +82,7 @@ class AuthService
     {
         Session::clear(AdminUser::AUTH_SESSION_KEY);
 
-        Location::redirect(Config::get('adminPrefix') . "/login");
+        Location::redirect($this->afterLogoutUrl);
     }
 
     /** 認証結果取得 */
