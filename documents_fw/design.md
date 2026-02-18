@@ -31,7 +31,6 @@ database/ <- データベース関連
 public/ <- Webルート
   css/
   js/ <- Javascript
-    app.js <- アプリケーション全体の管理を想定している。
     services/ <- Javascriptのサービスクラス置き場
   index.php <- Webのエントリーポイント
 resources/ 

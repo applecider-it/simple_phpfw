@@ -21,4 +21,4 @@ $adminUser = Auth::get();
 <?php endif; ?>
 
 <script type="importmap"><?= json_encode(Config::get('importmapAdmin')) ?></script>
-<script type="module">import "@/app";</script>
+<script type="module">import "@/services/admin/app/setup-app";</script>

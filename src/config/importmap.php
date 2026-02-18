@@ -4,10 +4,9 @@
  * インポートマップ情報
  */
 
+// 共通
 $common = [
     // アプリケーションメイン
-    '@/app' => "/js/app.js?{$filePostfix}",
-    '@/services/app/setup-app' => "/js/services/app/setup-app.js?{$filePostfix}",
     '@/services/app/application' => "/js/services/app/application.js?{$filePostfix}",
     '@/services/app/vue/app-common' => "/js/services/app/vue/app-common.js?{$filePostfix}",
 
@@ -26,7 +25,11 @@ $common = [
     '@/outer/vue3' => "https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js?{$filePostfix}",
 ];
 
+// サイト用
 $list = [
+    // アプリケーションメイン
+    '@/services/app/setup-app' => "/js/services/app/setup-app.js?{$filePostfix}",
+
     // 開発者向けページ用
     '@/services/development/setup-development' => "/js/services/development/setup-development.js?{$filePostfix}",
     '@/services/development/javascript-test' => "/js/services/development/javascript-test.js?{$filePostfix}",
@@ -47,4 +50,10 @@ $list = [
     '@/services/tweet/setup-tweet' => "/js/services/tweet/setup-tweet.js?{$filePostfix}",
 ];
 
-return [$list + $common, $common];
+// 管理画面用
+$adminList = [
+    // アプリケーションメイン
+    '@/services/admin/app/setup-app' => "/js/services/admin/app/setup-app.js?{$filePostfix}",
+];
+
+return [$list + $common, $adminList + $common];

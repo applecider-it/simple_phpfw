@@ -10,17 +10,16 @@ Javascriptは、moduleのみ利用している。
 
 ```
 config/
-  config.php <- importmapの設定がある場所
+  importmap.php <- importmapの設定がある場所。config.phpから読み込んでいる。
 public/
   js/
-    app.js <- アプリケーション全体の管理を想定している。
     services/ <- Javascriptのサービスクラス置き場
   css/
 ```
 
 ## Javascriptモジュールの追加方法
 
-config.phpにimportmapの追記が必要。
+importmap.phpにimportmapの追記が必要。
 
 ## ブラウザキャッシュ対応
 

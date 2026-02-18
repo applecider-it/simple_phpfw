@@ -37,8 +37,6 @@ const Loading = {
         style.opacity = 0;
       }
 
-      console.log(style);
-
       return style;
     },
 

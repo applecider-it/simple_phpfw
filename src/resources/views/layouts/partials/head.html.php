@@ -22,5 +22,5 @@ $user = Auth::get();
 
 <script type="importmap"><?= json_encode(Config::get('importmap')) ?></script>
 <script type="module">
-    import "@/app";
+    import "@/services/app/setup-app";
 </script>
