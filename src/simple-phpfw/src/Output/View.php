@@ -30,8 +30,15 @@ class View
         }
 
         ob_start();
-        include $path;
-        return ob_get_clean();
+        try {
+            include $path;
+        } catch (\Throwable $e) {
+            ob_end_clean();
+            throw $e;
+        }
+        $val = ob_get_clean();
+
+        return $val;
     }
 
     /**
