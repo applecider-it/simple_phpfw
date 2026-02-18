@@ -6,6 +6,7 @@
 </head>
 
 <body class="app-layout-body">
+    <?= $this->render('admin.layouts.partials.common') ?>
     <?= $this->render('admin.layouts.partials.nav') ?>
 
     <main class="app-layout-main">
