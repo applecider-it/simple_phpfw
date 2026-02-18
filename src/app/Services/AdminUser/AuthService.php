@@ -54,6 +54,7 @@ class AuthService
                 ->one();
 
             if ($adminUser) {
+                AdminUser::hidden($adminUser);
                 App::getContainer()->setSingleton(self::CONTAINER_KEY, $adminUser);
             }
         }
