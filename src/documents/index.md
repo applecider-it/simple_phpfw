@@ -13,3 +13,11 @@
 
 - [ユーザー](./Models/User.md)
   - [ユーザーツイート](./Models/User/Tweet.md)
+
+## ルート
+
+### options
+
+| 項目名 | 内容 | 型 | 詳細 |
+|--------|--------|--------|--------|
+| auth | 認証の指定 | string | `user` \| `admin_user` |
