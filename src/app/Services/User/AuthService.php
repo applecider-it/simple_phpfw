@@ -14,8 +14,7 @@ class AuthService extends BaseService
     protected static string $containerKey = 'user';
     protected static string $containerDesc = 'ログインユーザー';
     protected static string $routeOptionValue = 'user';
-    protected static string $authSessionKey = '___auth___user_id';
-    protected static string $urlSessionKey = '___auth___keep_url';
+    protected static string $authSessionKey = '___auth___user';
 
     public function __construct()
     {

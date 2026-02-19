@@ -26,7 +26,7 @@ abstract class BaseService
     /** ログインユーザーIDを保管するセッションのキー */
     protected static string $authSessionKey = '';
     /** ログイン後のURLを保管するセッションのキー */
-    protected static string $urlSessionKey = '';
+    private static string $urlSessionKey = '___auth___url';
 
     /** ログインページのURL */
     protected string $loginUrl = '';
@@ -45,10 +45,16 @@ abstract class BaseService
         App::getContainer()->setSingleton(static::$containerKey, null, static::$containerDesc);
     }
 
-    /** 認証処理実行 */
+    /** 認証のセットアップと確認 */
     public function execAuth(array $currentRoute)
     {
-        // ログインユーザー取得
+        $this->setupAuthUser();
+        $this->confirmAuth($currentRoute);
+    }
+
+    /** ログインユーザーのセットアップ */
+    private function setupAuthUser()
+    {
         $userId = Session::get(static::$authSessionKey);
         if ($userId) {
             // セッションに値があるとき
@@ -64,8 +70,11 @@ abstract class BaseService
                 App::getContainer()->setSingleton(static::$containerKey, $user);
             }
         }
+    }
 
-        // 認証確認処理
+    /** 認証確認処理 */
+    private function confirmAuth(array $currentRoute)
+    {
         if (($currentRoute['options']['auth'] ?? null) === static::$routeOptionValue) {
             // 認証必須ページの時
 
@@ -77,6 +86,7 @@ abstract class BaseService
                 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                     // GETリクエストの時
 
+                    // ログイン後のURLの保存
                     Session::set(static::$urlSessionKey, $_SERVER['REQUEST_URI']);
                 }
 
@@ -112,10 +122,11 @@ abstract class BaseService
 
         Session::set(static::$authSessionKey, $user["id"]);
 
-        $uri = Session::get(static::$urlSessionKey);
+        // ログイン後のURLの取得と消去
+        $url = Session::get(static::$urlSessionKey);
         Session::clear(static::$urlSessionKey);
 
-        Location::redirect($uri ?? $this->afterLoginUrl);
+        Location::redirect($url ?? $this->afterLoginUrl);
     }
 
     /** ログアウト */
