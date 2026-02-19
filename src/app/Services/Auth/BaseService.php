@@ -15,14 +15,25 @@ use SFW\Security\Hash;
  */
 abstract class BaseService
 {
+    /** ユーザーデータを保管するサービスコンテナのキー */
     protected static string $containerKey = '';
+    /** ユーザーデータを保管するサービスコンテナの説明 */
     protected static string $containerDesc = '';
+
+    /** 認証必須を判別するルートのオプションの値 */
     protected static string $routeOptionValue = '';
 
+    /** ログインページのURL */
     protected string $loginUrl = '';
+    /** ログイン後に遷移するページのURL */
     protected string $afterLoginUrl = '';
+    /** ログアウト後に遷移するページのURL */
     protected string $afterLogoutUrl = '';
+
+    /** ログインユーザーIDを保管するセッションのキー */
     protected string $authSessionKey = '';
+
+    /** 認証で利用するモデル */
     protected string $model = '';
 
     /** 認証初期化 */
@@ -38,31 +49,47 @@ abstract class BaseService
         // ログインユーザー取得
         $userId = Session::get($this->authSessionKey);
         if ($userId) {
+            // セッションに値があるとき
+
             $user = "{$this->model}"::find($userId);
 
             if ($user) {
+                // 有効なデータがDBにあるとき
+
+                // 秘匿データを隠す
                 "{$this->model}"::hidden($user);
+
                 App::getContainer()->setSingleton(static::$containerKey, $user);
             }
         }
 
-        // 認証処理
+        // 認証確認処理
         if (($currentRoute['options']['auth'] ?? null) === static::$routeOptionValue) {
+            // 認証必須ページの時
+
             if (! self::get()) {
+                // 認証していないとき
+
                 Flash::set('alert', Lang::get('errors.loginRequired'));
+
                 Location::redirect($this->loginUrl);
             }
         }
     }
 
     /** ログイン処理 */
-    public function authenticate(string $email, string $password) {
+    public function authenticate(string $email, string $password)
+    {
         $user = "{$this->model}"::query()
             ->where('email = ?', $email)
             ->one();
 
         if ($user) {
+            // 有効なデータがDBにあるとき
+
             if (Hash::check($password, $user['password'])) {
+                // パスワードが有効な時
+
                 Log::info('パスワード認証成功');
 
                 $this->login($user);
