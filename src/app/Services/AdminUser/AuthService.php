@@ -16,6 +16,8 @@ class AuthService extends BaseService
     protected static string $containerKey = 'adminUser';
     protected static string $containerDesc = '管理画面のログインユーザー';
     protected static string $routeOptionValue = 'admin_user';
+    protected static string $authSessionKey = '___auth___admin_user_id';
+    protected static string $urlSessionKey = '___auth___admin_keep_url';
 
     public function __construct()
     {
@@ -24,7 +26,6 @@ class AuthService extends BaseService
         $this->loginUrl = $adminPrefix . '/login';
         $this->afterLoginUrl = $adminPrefix;
         $this->afterLogoutUrl = $adminPrefix . '/login';
-        $this->authSessionKey = AdminUser::AUTH_SESSION_KEY;
         $this->model = AdminUser::class;
     }
 }

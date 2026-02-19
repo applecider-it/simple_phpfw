@@ -14,13 +14,14 @@ class AuthService extends BaseService
     protected static string $containerKey = 'user';
     protected static string $containerDesc = 'ログインユーザー';
     protected static string $routeOptionValue = 'user';
+    protected static string $authSessionKey = '___auth___user_id';
+    protected static string $urlSessionKey = '___auth___keep_url';
 
     public function __construct()
     {
         $this->loginUrl = '/login';
         $this->afterLoginUrl = '/';
         $this->afterLogoutUrl = '/';
-        $this->authSessionKey = User::AUTH_SESSION_KEY;
         $this->model = User::class;
     }
 }

@@ -13,9 +13,6 @@ use SFW\Database\Query;
  */
 class User extends Model
 {
-    /** 認証で使うセッションのキー */
-    const AUTH_SESSION_KEY = "user_id";
-
     protected static string $table = 'users';
 
     protected static function defaultScope(Query $query)

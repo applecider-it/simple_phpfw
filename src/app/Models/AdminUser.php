@@ -7,9 +7,6 @@ namespace App\Models;
  */
 class AdminUser extends Model
 {
-    /** 認証で使うセッションのキー */
-    const AUTH_SESSION_KEY = "admin_user_id";
-
     protected static string $table = 'admin_users';
 
     /** Jsonに混ざってはいけないカラムを隠す */

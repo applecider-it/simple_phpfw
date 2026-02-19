@@ -23,15 +23,17 @@ abstract class BaseService
     /** 認証必須を判別するルートのオプションの値 */
     protected static string $routeOptionValue = '';
 
+    /** ログインユーザーIDを保管するセッションのキー */
+    protected static string $authSessionKey = '';
+    /** ログイン後のURLを保管するセッションのキー */
+    protected static string $urlSessionKey = '';
+
     /** ログインページのURL */
     protected string $loginUrl = '';
     /** ログイン後に遷移するページのURL */
     protected string $afterLoginUrl = '';
     /** ログアウト後に遷移するページのURL */
     protected string $afterLogoutUrl = '';
-
-    /** ログインユーザーIDを保管するセッションのキー */
-    protected string $authSessionKey = '';
 
     /** 認証で利用するモデル */
     protected string $model = '';
@@ -47,7 +49,7 @@ abstract class BaseService
     public function execAuth(array $currentRoute)
     {
         // ログインユーザー取得
-        $userId = Session::get($this->authSessionKey);
+        $userId = Session::get(static::$authSessionKey);
         if ($userId) {
             // セッションに値があるとき
 
@@ -71,6 +73,12 @@ abstract class BaseService
                 // 認証していないとき
 
                 Flash::set('alert', Lang::get('errors.loginRequired'));
+
+                if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+                    // GETリクエストの時
+
+                    Session::set(static::$urlSessionKey, $_SERVER['REQUEST_URI']);
+                }
 
                 Location::redirect($this->loginUrl);
             }
@@ -102,15 +110,18 @@ abstract class BaseService
     {
         Session::reflesh();
 
-        Session::set($this->authSessionKey, $user["id"]);
+        Session::set(static::$authSessionKey, $user["id"]);
 
-        Location::redirect($this->afterLoginUrl);
+        $uri = Session::get(static::$urlSessionKey);
+        Session::clear(static::$urlSessionKey);
+
+        Location::redirect($uri ?? $this->afterLoginUrl);
     }
 
     /** ログアウト */
     public function logout()
     {
-        Session::clear($this->authSessionKey);
+        Session::clear(static::$authSessionKey);
 
         Location::redirect($this->afterLogoutUrl);
     }
