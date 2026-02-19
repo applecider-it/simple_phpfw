@@ -1,11 +1,6 @@
 <?php
 
 return [
-    'errors' => [
-        'loginRequired' => 'ログインしてください。',
-        'LoginFailed' => 'ログインに失敗しました。',
-    ],
-
     // バリデーション用
     'validation' => [
         'errors' => [
@@ -21,18 +16,26 @@ return [
         ],
     ],
 
-    // モデル用
-    'models' => [
-        'user' => [
-            'attributes' => [
-                'name' => '名前',
-                'email' => 'メールアドレス',
-                'password' => 'パスワード',
-            ],
+    // アプリケーション独自の言語データ
+    'myapp' => [
+        'errors' => [
+            'loginRequired' => 'ログインしてください。',
+            'LoginFailed' => 'ログインに失敗しました。',
         ],
-        'user/tweet' => [
-            'attributes' => [
-                'content' => '投稿内容',
+
+        // モデル用
+        'models' => [
+            'user' => [
+                'attributes' => [
+                    'name' => '名前',
+                    'email' => 'メールアドレス',
+                    'password' => 'パスワード',
+                ],
+            ],
+            'user/tweet' => [
+                'attributes' => [
+                    'content' => '投稿内容',
+                ],
             ],
         ],
     ],

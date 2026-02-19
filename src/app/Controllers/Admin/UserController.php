@@ -61,9 +61,9 @@ class UserController extends Controller
         ];
 
         $labels = [
-            'name' => Lang::get('models.user.attributes.name'),
-            'email' => Lang::get('models.user.attributes.email'),
-            'password' => Lang::get('models.user.attributes.password'),
+            'name' => Lang::get('myapp.models.user.attributes.name'),
+            'email' => Lang::get('myapp.models.user.attributes.email'),
+            'password' => Lang::get('myapp.models.user.attributes.password'),
         ];
 
         $v = Validator::make($form, $rules, $labels);
@@ -123,9 +123,9 @@ class UserController extends Controller
         ];
 
         $labels = [
-            'name' => Lang::get('models.user.attributes.name'),
-            'email' => Lang::get('models.user.attributes.email'),
-            'password' => Lang::get('models.user.attributes.password'),
+            'name' => Lang::get('myapp.models.user.attributes.name'),
+            'email' => Lang::get('myapp.models.user.attributes.email'),
+            'password' => Lang::get('myapp.models.user.attributes.password'),
         ];
 
         $v = Validator::make($form, $rules, $labels);

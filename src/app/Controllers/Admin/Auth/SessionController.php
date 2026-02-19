@@ -41,7 +41,7 @@ class SessionController extends Controller
             'password' => '',
         ];
 
-        Flash::set('alert', Lang::get('errors.LoginFailed'));
+        Flash::set('alert', Lang::get('myapp.errors.LoginFailed'));
 
         return $this->render('admin.auth.session.login', $form);
     }
