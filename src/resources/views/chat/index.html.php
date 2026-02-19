@@ -36,7 +36,7 @@ use function SFW\Helpers\html_esc as h;
         data-all="<?= h(json_encode([
                         'token' => $data['token'],
                         'room' => $data['room'],
-                        'host' => Config::get('ws_server_host'),
+                        'host' => Config::get('myapp.ws_server_host'),
                     ])) ?>">
         <?= $this->render('partials.message.loading') ?>
     </div>

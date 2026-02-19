@@ -9,7 +9,7 @@ use SFW\Core\Config;
 use App\Controllers\Admin\HomeController;
 use App\Controllers\Admin\UserController;
 
-$basePrefix = Config::get('adminPrefix');
+$basePrefix = Config::get('myapp.adminPrefix');
 $baseOptions = ['auth' => 'admin_user'];
 
 $router->get($basePrefix, [HomeController::class, 'index'], $baseOptions);

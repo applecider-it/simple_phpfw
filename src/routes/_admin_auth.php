@@ -8,7 +8,7 @@ use SFW\Core\Config;
 
 use App\Controllers\Admin\Auth\SessionController;
 
-$basePrefix = Config::get('adminPrefix');
+$basePrefix = Config::get('myapp.adminPrefix');
 
 $router->get($basePrefix . '/login', [SessionController::class, 'login']);
 $router->post($basePrefix . '/login', [SessionController::class, 'post']);

@@ -20,7 +20,7 @@ $softDelete = $data['soft_delete'] ?? 'all';
         <?= $row[0] ?>
     <?php else: ?>
         <?php
-        $url = Config::get('adminPrefix') . '/users?'
+        $url = Config::get('myapp.adminPrefix') . '/users?'
             . http_build_query(
                 ['soft_delete' => $row[1]]
                     + $data

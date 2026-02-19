@@ -9,7 +9,7 @@ use SFW\Core\Config;
 
 <div>
     <div style="margin-top: 1rem;">
-        <form method="POST" action="<?= Config::get('adminPrefix') ?>/login">
+        <form method="POST" action="<?= Config::get('myapp.adminPrefix') ?>/login">
             <?= $this->render('partials.form.csrf') ?>
             <div style="margin-top: 1rem;">
                 <label class="app-form-label">Email</label>

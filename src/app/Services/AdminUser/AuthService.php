@@ -20,7 +20,7 @@ class AuthService extends BaseService
 
     public function __construct()
     {
-        $adminPrefix = Config::get('adminPrefix');
+        $adminPrefix = Config::get('myapp.adminPrefix');
 
         $this->loginUrl = $adminPrefix . '/login';
         $this->afterLoginUrl = $adminPrefix;

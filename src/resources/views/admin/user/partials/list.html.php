@@ -20,7 +20,7 @@ use SFW\Core\Config;
                     <td class="app-table-cell"><?= h($user['email'] ?? '') ?></td>
                     <td class="app-table-cell"><?= $user['deleted_at'] ?? '' ?></td>
                     <td class="app-table-cell" style="text-align:center;">
-                        <a href="<?= Config::get('adminPrefix') ?>/users/<?= $user['id'] ?>/edit" class="app-btn-primary">
+                        <a href="<?= Config::get('myapp.adminPrefix') ?>/users/<?= $user['id'] ?>/edit" class="app-btn-primary">
                             更新
                         </a>
                     </td>

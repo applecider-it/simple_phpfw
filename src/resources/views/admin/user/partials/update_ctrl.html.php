@@ -2,7 +2,7 @@
 
 use SFW\Core\Config;
 
-$adminPrefix = Config::get('adminPrefix');
+$adminPrefix = Config::get('myapp.adminPrefix');
 ?>
 <div>
     <h3>操作</h3>
