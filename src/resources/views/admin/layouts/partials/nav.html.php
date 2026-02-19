@@ -6,7 +6,7 @@ use App\Services\AdminUser\AuthService as Auth;
 
 $adminUser = Auth::get();
 
-$adminPrefix = Config::get('myapp.adminPrefix');
+$adminPrefix = Config::get('app.adminPrefix');
 ?>
 <div class="app-layout-nav" style="background: #633;">
     <h1 class="app-h1"><?= Config::get('applicationName') ?> Admin</h1>

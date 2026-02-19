@@ -28,7 +28,7 @@ class Callback
         $adminAuthService->initAuth();
 
         // 複数DB実装例
-        $db_another = new DB(Config::get('myapp.database_another'));
+        $db_another = new DB(Config::get('app.database_another'));
         App::getContainer()->setSingleton('db_another', $db_another, '複数DB実装例');
     }
 
@@ -43,7 +43,7 @@ class Callback
         if (! Config::get('debug')) return;
 
         Log::info('afterRequest: route: ', App::get('router')->currentRoute());
-        Log::info('afterRequest: params: ', Arr::mask($params, Config::get('myapp.trace_mask_keys')));
+        Log::info('afterRequest: params: ', Arr::mask($params, Config::get('app.trace_mask_keys')));
     }
 
     /** セッションスタート直後 */

@@ -61,9 +61,9 @@ class UserController extends Controller
         ];
 
         $labels = [
-            'name' => Lang::get('myapp.models.user.attributes.name'),
-            'email' => Lang::get('myapp.models.user.attributes.email'),
-            'password' => Lang::get('myapp.models.user.attributes.password'),
+            'name' => Lang::get('app.models.user.attributes.name'),
+            'email' => Lang::get('app.models.user.attributes.email'),
+            'password' => Lang::get('app.models.user.attributes.password'),
         ];
 
         $v = Validator::make($form, $rules, $labels);
@@ -88,7 +88,7 @@ class UserController extends Controller
 
         Flash::set('notice', '登録しました。');
 
-        Location::redirect(Config::get('myapp.adminPrefix') . "/users/{$newId}/edit");
+        Location::redirect(Config::get('app.adminPrefix') . "/users/{$newId}/edit");
     }
 
     /** 更新画面 */
@@ -123,9 +123,9 @@ class UserController extends Controller
         ];
 
         $labels = [
-            'name' => Lang::get('myapp.models.user.attributes.name'),
-            'email' => Lang::get('myapp.models.user.attributes.email'),
-            'password' => Lang::get('myapp.models.user.attributes.password'),
+            'name' => Lang::get('app.models.user.attributes.name'),
+            'email' => Lang::get('app.models.user.attributes.email'),
+            'password' => Lang::get('app.models.user.attributes.password'),
         ];
 
         $v = Validator::make($form, $rules, $labels);
@@ -149,7 +149,7 @@ class UserController extends Controller
 
         Flash::set('notice', '更新しました。');
 
-        Location::redirect(Config::get('myapp.adminPrefix') . "/users/{$userId}/edit");
+        Location::redirect(Config::get('app.adminPrefix') . "/users/{$userId}/edit");
     }
 
     /** 更新時共通情報 */
@@ -177,7 +177,7 @@ class UserController extends Controller
 
         Flash::set('notice', '論理削除しました。');
 
-        Location::redirect(Config::get('myapp.adminPrefix') . "/users/{$userId}/edit");
+        Location::redirect(Config::get('app.adminPrefix') . "/users/{$userId}/edit");
     }
 
     /** 復元 */
@@ -190,7 +190,7 @@ class UserController extends Controller
 
         Flash::set('notice', '復元しました。');
 
-        Location::redirect(Config::get('myapp.adminPrefix') . "/users/{$userId}/edit");
+        Location::redirect(Config::get('app.adminPrefix') . "/users/{$userId}/edit");
     }
 
     /** ユーザー取得 */

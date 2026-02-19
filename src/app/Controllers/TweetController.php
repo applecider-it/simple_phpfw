@@ -42,7 +42,7 @@ class TweetController extends Controller
         ];
 
         $labels = [
-            'content' => Lang::get('myapp.models.user/tweet.attributes.content'),
+            'content' => Lang::get('app.models.user/tweet.attributes.content'),
         ];
 
         $v = Validator::make($form, $rules, $labels);

@@ -26,6 +26,6 @@ class SystemService
 
         $redis = App::get('redis');
 
-        $redis->rPush(Config::get('myapp.ws_redis_relation_key'), json_encode($sendData));
+        $redis->rPush(Config::get('app.ws_redis_relation_key'), json_encode($sendData));
     }
 }

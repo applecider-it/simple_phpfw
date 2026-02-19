@@ -16,6 +16,6 @@ use SFW\Core\Config;
 <div id="tweet"
     data-all="<?= Html::esc(json_encode([
                     'token' => $data['token'],
-                    'host' => Config::get('myapp.ws_server_host'),
+                    'host' => Config::get('app.ws_server_host'),
                 ])) ?>">
 </div>

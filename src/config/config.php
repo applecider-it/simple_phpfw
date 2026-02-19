@@ -10,7 +10,7 @@
 $filePostfix = '20260204_0000';
 
 // アプリケーション独自の設定
-$myapp = (fn($env, $filePostfix) => include(__DIR__ . '/myapp.php'))($env, $filePostfix);
+$app = (fn($env, $filePostfix) => include(__DIR__ . '/app.php'))($env, $filePostfix);
 
 return [
     'debug' => $env['SFW_DEBUG'],
@@ -53,5 +53,5 @@ return [
     'filePostfix' => $filePostfix,
 
     // アプリケーション独自の設定
-    'myapp' => $myapp,
+    'app' => $app,
 ];

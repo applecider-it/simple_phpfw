@@ -17,7 +17,7 @@ return [
     ],
 
     // アプリケーション独自の言語データ
-    'myapp' => [
+    'app' => [
         'errors' => [
             'loginRequired' => 'ログインしてください。',
             'LoginFailed' => 'ログインに失敗しました。',

@@ -2,7 +2,7 @@
 
 use SFW\Core\Config;
 
-$adminPrefix = Config::get('myapp.adminPrefix');
+$adminPrefix = Config::get('app.adminPrefix');
 ?>
 <h2 class="app-h2">admin.user.index</h2>
 

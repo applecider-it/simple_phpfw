@@ -81,7 +81,7 @@ abstract class BaseService
             if (! self::get()) {
                 // 認証していないとき
 
-                Flash::set('alert', Lang::get('myapp.errors.loginRequired'));
+                Flash::set('alert', Lang::get('app.errors.loginRequired'));
 
                 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                     // GETリクエストの時

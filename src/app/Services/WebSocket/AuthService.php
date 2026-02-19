@@ -15,7 +15,7 @@ class AuthService
      */
     public function createUserJwt(array $user, string $channel)
     {
-        $secret = Config::get('myapp.jwt_secret');
+        $secret = Config::get('app.jwt_secret');
         $payload = [
             'channel' => $channel,
             'id' => $user['id'],

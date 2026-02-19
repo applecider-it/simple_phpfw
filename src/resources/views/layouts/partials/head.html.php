@@ -20,7 +20,7 @@ $user = Auth::get();
     <meta name="user" data-json="<?= Html::esc(json_encode($user)) ?>">
 <?php endif; ?>
 
-<script type="importmap"><?= json_encode(Config::get('myapp.importmap.site')) ?></script>
+<script type="importmap"><?= json_encode(Config::get('app.importmap.site')) ?></script>
 <script type="module">
     import "@/services/app/setup-app";
 </script>
