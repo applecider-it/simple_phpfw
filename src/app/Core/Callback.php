@@ -43,7 +43,7 @@ class Callback
         if (! Config::get('debug')) return;
 
         Log::info('afterRequest: route: ', App::get('router')->currentRoute());
-        Log::info('afterRequest: params: ', Arr::mask($params, ['password', 'password_confirm']));
+        Log::info('afterRequest: params: ', Arr::mask($params, Config::get('trace_mask_keys')));
     }
 
     /** セッションスタート直後 */

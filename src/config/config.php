@@ -79,4 +79,10 @@ return [
 
     // WebSocketサーバーのRedis連携名
     'ws_redis_relation_key' => 'websocket_publish',
+
+    // トレースで隠すキーリスト
+    'trace_mask_keys' => [
+        'password',
+        'password_confirm',
+    ],
 ];
