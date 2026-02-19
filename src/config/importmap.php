@@ -5,7 +5,7 @@
  */
 
 // 共通
-$common = [
+$commonList = [
     // アプリケーションメイン
     '@/services/app/application' => "/js/services/app/application.js?{$filePostfix}",
     '@/services/app/vue/app-common' => "/js/services/app/vue/app-common.js?{$filePostfix}",
@@ -26,7 +26,7 @@ $common = [
 ];
 
 // サイト用
-$list = [
+$siteList = [
     // アプリケーションメイン
     '@/services/app/setup-app' => "/js/services/app/setup-app.js?{$filePostfix}",
 
@@ -56,4 +56,11 @@ $adminList = [
     '@/services/admin/app/setup-app' => "/js/services/admin/app/setup-app.js?{$filePostfix}",
 ];
 
-return [$list + $common, $adminList + $common];
+return [
+    'site' => [
+        'imports' => $siteList + $commonList,
+    ],
+    'admin' => [
+        'imports' => $adminList + $commonList,
+    ]
+];

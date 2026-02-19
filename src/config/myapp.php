@@ -4,10 +4,8 @@
  * アプリケーション独自の設定
  */
 
-// ローカル変数を保護するためクロージャで囲って、読み込む
-
 // インポートマップ情報
-[$importmapImports, $importmapAdminImports] = (fn($filePostfix) => include(__DIR__ . '/importmap.php'))($filePostfix);
+$importmap = (fn($filePostfix) => include(__DIR__ . '/importmap.php'))($filePostfix);
 
 return [
     // 複数DB実装例
@@ -24,12 +22,7 @@ return [
     'adminPrefix' => '/admin_secret',
 
     // インポートマップ
-    'importmap' => [
-        'imports' => $importmapImports,
-    ],
-    'importmapAdmin' => [
-        'imports' => $importmapAdminImports,
-    ],
+    'importmap' => $importmap,
 
     // JWTシークレット
     'jwt_secret' => $env['SFW_JWT_SECRET'],

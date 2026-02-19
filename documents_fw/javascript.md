@@ -10,7 +10,7 @@ Javascriptは、moduleのみ利用している。
 
 ```
 config/
-  importmap.php <- importmapの設定がある場所。config.phpから読み込んでいる。
+  importmap.php <- importmapの設定がある場所。
 public/
   js/
     services/ <- Javascriptのサービスクラス置き場
