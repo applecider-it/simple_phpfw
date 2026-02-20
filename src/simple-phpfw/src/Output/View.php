@@ -18,7 +18,7 @@ class View
     /**
      * 描画して文字列を返す
      */
-    public function render(string $name, array $data = [])
+    public function render(string $name, array $data = []): string
     {
         // $dataはインクルード先で利用している
 
@@ -44,7 +44,7 @@ class View
     /**
      * 基準となるディレクトリパスを設定
      */
-    public function setBaseDir(string $baseDir)
+    public function setBaseDir(string $baseDir): void
     {
         $this->baseDir = $baseDir;
     }
@@ -52,7 +52,7 @@ class View
     /**
      * データ追加
      */
-    public function appendData(array $data)
+    public function appendData(array $data): void
     {
         $this->data = $data + $this->data;
     }
@@ -66,7 +66,7 @@ class View
         ?string $layout = null,
         array $layoutData = [],
         array $globalData = []
-    ) {
+    ): string {
         $this->appendData($globalData);
 
         $val = $this->render($name, $data);
@@ -81,7 +81,7 @@ class View
     }
 
     /** フレームワークで使うview */
-    public static function fwView()
+    public static function fwView(): self
     {
         $view = new self();
 
@@ -91,7 +91,7 @@ class View
     }
 
     /** エラー画面で使うview */
-    public static function errorView()
+    public static function errorView(): self
     {
         $view = Config::get('debug') ? self::fwView() : new self();
 

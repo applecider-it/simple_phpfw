@@ -10,19 +10,19 @@ use SFW\Core\Config;
 class Log
 {
     /** 情報ログ */
-    public static function info(string $msg, ?array $context = null)
+    public static function info(string $msg, ?array $context = null): void
     {
         self::write('INFO',  $msg, $context);
     }
 
     /** エラーログ */
-    public static function error(string $msg, ?array $context = null)
+    public static function error(string $msg, ?array $context = null): void
     {
         self::write('ERROR',  $msg, $context);
     }
 
     /** ログ出力共通 */
-    private static function write(string $level, string $message, ?array $context)
+    private static function write(string $level, string $message, ?array $context): void
     {
         $date = date('Y-m-d H:i:s');
         $logFile = Config::get('logging.' . SFW_BOOT_TYPE . '.file');

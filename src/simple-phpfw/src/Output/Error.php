@@ -8,7 +8,7 @@ namespace SFW\Output;
 class Error
 {
     /** 500エラー表示 */
-    public static function error500(\Throwable $e)
+    public static function error500(\Throwable $e): void
     {
         $view = View::errorView();
         echo $view->render('errors.error500', [
@@ -18,7 +18,7 @@ class Error
     }
 
     /** 404エラー表示 */
-    public static function error404(\Throwable $e)
+    public static function error404(\Throwable $e): void
     {
         $view = View::errorView();
         echo $view->render('errors.error404', [

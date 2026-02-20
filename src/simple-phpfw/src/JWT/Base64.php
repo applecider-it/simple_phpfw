@@ -8,13 +8,13 @@ namespace SFW\JWT;
 class Base64
 {
     /** JWT用のBase64エンコード */
-    public static function urlEncode($data)
+    public static function urlEncode($data): string
     {
         return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
     }
 
     /** JWT用のBase64デコード */
-    public static function urlDecode($data)
+    public static function urlDecode($data): string|false
     {
         $remainder = strlen($data) % 4;
         if ($remainder) $data .= str_repeat('=', 4 - $remainder);

@@ -14,7 +14,7 @@ class StdOut
      * 
      * 最初の行はヘッダー扱いされる
      */
-    public static function table(array $argRows)
+    public static function table(array $argRows): void
     {
         $margin = 1;
         $separator = '|';
@@ -63,7 +63,7 @@ class StdOut
     /**
      * 色を付ける
      */
-    public static function color(string $color)
+    public static function color(string $color): void
     {
         $colors = [
             'red' => "\e[31m",
@@ -75,7 +75,7 @@ class StdOut
     /**
      * 色をリセット
      */
-    public static function reset()
+    public static function reset(): void
     {
         echo "\e[0m";
     }

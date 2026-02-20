@@ -8,7 +8,7 @@ namespace App\Services\JWT;
 class Parce
 {
     /** JWTトークンをパース */
-    public static function verify_jwt($jwt, $secret)
+    public static function verify_jwt($jwt, $secret): mixed
     {
         $parts = explode('.', $jwt);
         if (count($parts) !== 3) return false;

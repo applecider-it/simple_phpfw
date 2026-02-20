@@ -8,7 +8,7 @@ namespace SFW\JWT;
 class Create
 {
     /** JWTを生成 */
-    public static function createJwt($payload, $secret)
+    public static function createJwt($payload, $secret): string
     {
         $header = ['alg' => 'HS256', 'typ' => 'JWT'];
 
