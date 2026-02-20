@@ -9,6 +9,9 @@ use SFW\Core\Config;
  */
 class View
 {
+    /** テンプレートファイルのポストフィックス */
+    private const FILE_POSTFIX = '.html.php';
+
     /** 基準となるディレクトリパス。nullだとresources/viewsになる。 */
     private ?string $baseDir = null;
 
@@ -20,18 +23,32 @@ class View
      */
     public function render(string $name, array $data = []): string
     {
-        // $dataはインクルード先で利用している
-
         $baseDir = $this->baseDir ?? SFW_PROJECT_ROOT . '/resources/views';
-        $path = $baseDir . '/' . str_replace('.', '/', $name) . '.html.php';
+        $path = $baseDir . '/' . str_replace('.', '/', $name) . self::FILE_POSTFIX;
 
         if (!file_exists($path)) {
             throw new \Exception("View not found: $name. path: $path.");
         }
 
+        $meta = [
+            'name' => $name,
+            'baseDir' => $baseDir,
+            'path' => $path,
+        ];
+
+        return $this->includeTemplate($meta, $data);
+    }
+
+    /**
+     * アウトバッファーを使い、テンプレート読み込み
+     */
+    private function includeTemplate(array $meta, array $data): string
+    {
+        // $dataはインクルード先で利用している
+
         ob_start();
         try {
-            include $path;
+            include $meta['path'];
         } catch (\Throwable $e) {
             ob_end_clean();
             throw $e;
@@ -50,9 +67,9 @@ class View
     }
 
     /**
-     * データ追加
+     * 共通変数追加
      */
-    public function appendData(array $data): void
+    public function appendGlobalData(array $data): void
     {
         $this->data = $data + $this->data;
     }
@@ -67,7 +84,7 @@ class View
         array $layoutData = [],
         array $globalData = []
     ): string {
-        $this->appendData($globalData);
+        $this->appendGlobalData($globalData);
 
         $val = $this->render($name, $data);
 
