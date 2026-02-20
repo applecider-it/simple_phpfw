@@ -18,5 +18,8 @@ if (el) {
 
   const javascriptTest = new JavascriptTest();
 
-  createApp(JavascriptTestArea, { javascriptTest }).mount(el);
+  createApp(JavascriptTestArea, {
+    javascriptTest,
+    formData: all.formData,
+  }).mount(el);
 }

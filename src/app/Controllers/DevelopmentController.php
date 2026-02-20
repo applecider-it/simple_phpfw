@@ -131,7 +131,10 @@ class DevelopmentController extends Controller
     /** javascriptテスト */
     public function javascript_test()
     {
-        return $this->render('development.javascript_test');
+        return $this->render(
+            'development.javascript_test',
+            ['formData' => $this->view_test_common()]
+        );
     }
 
     /** javascriptテスト(POST API部分) */

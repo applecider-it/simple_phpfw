@@ -39,6 +39,7 @@ $siteList = [
     '@/services/development/vue/javascript-test-area/vue-model-area/form-component' => "/js/services/development/vue/javascript-test-area/vue-model-area/form-component.js?{$filePostfix}",
     '@/services/development/vue/javascript-test-area/ui-area' => "/js/services/development/vue/javascript-test-area/ui-area.js?{$filePostfix}",
     '@/services/development/vue/javascript-test-area/json-area' => "/js/services/development/vue/javascript-test-area/json-area.js?{$filePostfix}",
+    '@/services/development/vue/javascript-test-area/form-area' => "/js/services/development/vue/javascript-test-area/form-area.js?{$filePostfix}",
 
     // チャットページ用
     '@/services/chat/chat-client' => "/js/services/chat/chat-client.js?{$filePostfix}",
