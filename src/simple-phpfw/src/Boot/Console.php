@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SFW\Boot;
 
 use SFW\Console\Starter;

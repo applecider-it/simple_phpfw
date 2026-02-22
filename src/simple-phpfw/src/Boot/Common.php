@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SFW\Boot;
 
 use SFW\Core\App;
@@ -74,7 +76,7 @@ class Common
     private function setupRedis(): void
     {
         $redis = new \Redis();
-        $redis->connect(Config::get('redis.host'), Config::get('redis.port'));
+        $redis->connect(Config::get('redis.host'), (int) Config::get('redis.port'));
         App::getContainer()->setSingleton('redis', $redis, 'Main redis');
     }
 

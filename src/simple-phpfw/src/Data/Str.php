@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SFW\Data;
 
 /**
@@ -15,7 +17,7 @@ class Str
     public static function template(string $text, array $vars): string
     {
         foreach ($vars as $key => $val) {
-            $text = str_replace("{" . $key . "}", $val, $text);
+            $text = str_replace("{" . $key . "}", (string) $val, $text);
         }
         return $text;
     }
@@ -50,7 +52,7 @@ class Str
 
         // STR_PAD_BOTH（左右）の場合は左右のバランス調整
         if ($pad_type === STR_PAD_BOTH) {
-            $left_pad  = floor($pad_size / 2);
+            $left_pad  = (int) floor($pad_size / 2);
             $right_pad = $pad_size - $left_pad;
             return str_repeat($pad_string, $left_pad) . $input . str_repeat($pad_string, $right_pad);
         }
@@ -65,12 +67,14 @@ class Str
     }
 
     /** スネークケースをパスカルケースに変換 */
-    public static function snakeToPascal(string $text): string {
+    public static function snakeToPascal(string $text): string
+    {
         return str_replace(' ', '', ucwords(str_replace('_', ' ', $text)));
     }
 
     /** パスカルケースをスネークケースに変換 */
-    public static function pascalToSnake(string $text): string {
+    public static function pascalToSnake(string $text): string
+    {
         return ltrim(strtolower(preg_replace('/[A-Z]/', '_$0', $text)), '_');
     }
 }

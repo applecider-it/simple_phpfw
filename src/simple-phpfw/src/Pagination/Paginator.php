@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SFW\Pagination;
 
 use SFW\Database\Query;
@@ -64,7 +66,7 @@ class Paginator
      */
     private function createInfo(): void
     {
-        $this->totalPages = ceil($this->totalCount / $this->perPage);
+        $this->totalPages = (int) ceil($this->totalCount / $this->perPage);
 
         $this->currentPage = (int) ($this->params[$this->pageName] ?? 1);
         $this->currentPage = max(1, min($this->currentPage, $this->totalPages));
