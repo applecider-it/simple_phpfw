@@ -9,7 +9,7 @@ require_once dirname(__DIR__) . '/vendor/autoload.php';
 /** 起動タイプ（SFWで必要な定数） */
 define('SFW_BOOT_TYPE', 'web');
 
-require_once dirname(__DIR__) . '/boot/start.php';
+require_once dirname(__DIR__) . '/bootstrap/app.php';
 
 (new SFW\Boot\Web)->dispatch();
 
