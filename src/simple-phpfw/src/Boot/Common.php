@@ -99,15 +99,11 @@ class Common
         $lang = [];
         foreach ($phpFiles as $file) {
             $name = pathinfo($file, PATHINFO_FILENAME);
-            $lang[$name] = $this->safeInclude($path . '/' . $file);
+
+            // ローカル変数を保護しながらinclude
+            $lang[$name] = (fn ($fullPath) => include($fullPath))($path . '/' . $file);
         }
 
         return $lang;
-    }
-
-    /** ローカル変数を保護しながらinclude */
-    private function safeInclude($path): array
-    {
-        return include($path);
     }
 }
