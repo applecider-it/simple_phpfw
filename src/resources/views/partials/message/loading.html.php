@@ -1,5 +1,5 @@
 <?php
-$targetClass = "app-local__views__partials__message__loading";
+$idPrefix = "app-local__views__partials__message__loading";
 
 $style = "
   display: flex;
@@ -21,13 +21,13 @@ $styleSpinner = "
   border: 3px solid #ccc;
   border-top-color: #333;
   border-radius: 50%;
-  animation: app-local__views__partials__message__loading__loading-spin 1s linear infinite;
+  animation: {$idPrefix}__loading-spin 1s linear infinite;
   margin-right: 0.5rem;
   ";
 ?>
 <style>
   /* viewのローディング用アニメーション */
-  @keyframes app-local__views__partials__message__loading__loading-spin {
+  @keyframes <?= $idPrefix ?>__loading-spin {
     0% {
       transform: rotate(0deg);
     }
@@ -37,14 +37,14 @@ $styleSpinner = "
     }
   }
 </style>
-<div class="<?= $targetClass ?>" style="<?= $style ?>">
+<div class="<?= $idPrefix ?>" style="<?= $style ?>">
   <div style="<?= $styleSpinner ?>"></div>
   <div>読み込み中…</div>
 </div>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.<?= $targetClass ?>').forEach((el) => {
+    document.querySelectorAll('.<?= $idPrefix ?>').forEach((el) => {
       setTimeout(() => {
         el.style.opacity = '1';
       }, 1000);
