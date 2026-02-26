@@ -1,4 +1,5 @@
 import { showToast, setIsLoading } from "@/services/ui/message";
+import LoadingInline from "@/services/ui/vue/message/loading-inline";
 
 /**
  * UI動作確認
@@ -8,25 +9,45 @@ const UIArea = {
   <div>
     <h3>UI動作確認</h3>
     
-    <div style="display:flex; flex-direction:row; gap:1rem;">
-      <button type="submit" class="app-btn-primary" @click="() => uiTest('loading')">
-        Loading
-      </button>
+    <div style="display:flex; flex-direction:column; gap:1rem;">
+      <div style="display:flex; flex-direction:row; gap:1rem;">
+        <button type="submit" class="app-btn-secondary" @click="() => uiTest('loading')">
+          Loading
+        </button>
 
-      <button type="submit" class="app-btn-primary" @click="() => uiTest('toast')">
-        Toast
-      </button>
-      
-      <button type="submit" class="app-btn-primary" @click="() => uiTest('toastAlert')">
-        Toast alert
-      </button>
-      
-      <button type="submit" class="app-btn-primary" @click="() => uiTest('toast2')">
-        Toast 2
-      </button>
+        <button type="submit" class="app-btn-secondary" @click="() => uiTest('loadingInline')">
+          Loading Inline
+        </button>
+      </div>
+
+      <div v-if="inline">
+        <LoadingInline />
+      </div>
+
+      <div style="display:flex; flex-direction:row; gap:1rem;">
+        <button type="submit" class="app-btn-primary" @click="() => uiTest('toast')">
+          Toast
+        </button>
+        
+        <button type="submit" class="app-btn-primary" @click="() => uiTest('toastAlert')">
+          Toast alert
+        </button>
+        
+        <button type="submit" class="app-btn-primary" @click="() => uiTest('toast2')">
+          Toast 2
+        </button>
+      </div>
     </div>
   </div>
   `,
+
+  components: { LoadingInline },
+
+  data() {
+    return {
+      inline: false,
+    };
+  },
 
   methods: {
     /** UIテスト */
@@ -39,6 +60,11 @@ const UIArea = {
         setTimeout(() => {
           setIsLoading(false);
         }, 2000);
+      } else if (type === "loadingInline") {
+        this.inline = true;
+        setTimeout(() => {
+          this.inline = false;
+        }, 3000);
       } else if (type === "toast") {
         showToast("トーストテスト");
       } else if (type === "toastAlert") {

@@ -17,6 +17,7 @@ $commonList = [
     // UI
     '@/services/ui/message' => "/js/services/ui/message.js?{$filePostfix}",
     '@/services/ui/vue/message/loading' => "/js/services/ui/vue/message/loading.js?{$filePostfix}",
+    '@/services/ui/vue/message/loading-inline' => "/js/services/ui/vue/message/loading-inline.js?{$filePostfix}",
     '@/services/ui/vue/message/toasts' => "/js/services/ui/vue/message/toasts.js?{$filePostfix}",
     '@/services/ui/vue/popup/modal' => "/js/services/ui/vue/popup/modal.js?{$filePostfix}",
     '@/services/ui/vue-hook/use-toast' => "/js/services/ui/vue-hook/use-toast.js?{$filePostfix}",
