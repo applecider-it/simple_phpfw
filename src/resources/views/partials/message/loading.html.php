@@ -1,33 +1,33 @@
 <?php
 $idPrefix = "app-local__views__partials__message__loading";
 
-$style = "
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 30vh;
-  font-family: sans-serif;
-  font-size: 1.2rem;
-  color: #555;
-  opacity: 0;
-  transition-property: opacity;
-  transition-duration: 500ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
-  ";
+$styleContainer = implode(';', [
+  'display: flex',
+  'justify-content: center',
+  'align-items: center',
+  'height: 30vh',
+  'font-family: sans-serif',
+  'font-size: 1.2rem',
+  'color: #555',
+  'opacity: 0',
+  'transition-property: opacity',
+  'transition-duration: 500ms',
+  'transition-timing-function: cubic-bezier(0.4, 0, 1, 1)',
+]);
 
-$styleSpinner = "
-  width: 2rem;
-  height: 2rem;
-  border: 3px solid #ccc;
-  border-top-color: #333;
-  border-radius: 50%;
-  animation: {$idPrefix}__loading-spin 1s linear infinite;
-  margin-right: 0.5rem;
-  ";
-?>
-<style>
+$styleSpinner = implode(';', [
+  'width: 2rem',
+  'height: 2rem',
+  'border: 3px solid #ccc',
+  'border-top-color: #333',
+  'border-radius: 50%',
+  'animation: ' . $idPrefix . '__loading-spin 1s linear infinite',
+  'margin-right: 0.5rem',
+]);
+
+$styleAnimation = "
   /* viewのローディング用アニメーション */
-  @keyframes <?= $idPrefix ?>__loading-spin {
+  @keyframes {$idPrefix}__loading-spin {
     0% {
       transform: rotate(0deg);
     }
@@ -36,8 +36,13 @@ $styleSpinner = "
       transform: rotate(360deg);
     }
   }
+";
+?>
+<style>
+  <?= $styleAnimation ?>
 </style>
-<div class="<?= $idPrefix ?>" style="<?= $style ?>">
+
+<div class="<?= $idPrefix ?>" style="<?= $styleContainer ?>">
   <div style="<?= $styleSpinner ?>"></div>
   <div>読み込み中…</div>
 </div>
