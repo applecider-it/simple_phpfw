@@ -2,32 +2,27 @@
 
 use SFW\Core\Config;
 
-use SFW\Web\Breadcrumbs;
+use SFW\Web\Breadcrumbs\Maker;
 
 // 管理画面ホーム
-$breadcrumbs->set('admin.dashboard', function (Breadcrumbs $breadcrumbs) {
-    $arr = [];
-    $arr[] = ['ダッシュボード', Config::get('app.adminPrefix')];
-    return $arr;
+$breadcrumbs->set('admin.dashboard', function (Maker $maker) {
+    $maker->add('ダッシュボード', Config::get('app.adminPrefix'));
 });
 
 // ユーザー一覧
-$breadcrumbs->set('admin.users.index', function (Breadcrumbs $breadcrumbs) {
-    $arr = $breadcrumbs->get('admin.dashboard');
-    $arr[] = ['ユーザー', Config::get('app.adminPrefix') . '/users'];
-    return $arr;
+$breadcrumbs->set('admin.users.index', function (Maker $maker) {
+    $maker->parent('admin.dashboard');
+    $maker->add('ユーザー', Config::get('app.adminPrefix') . '/users');
 });
 
 // ユーザー新規作成
-$breadcrumbs->set('admin.users.create', function (Breadcrumbs $breadcrumbs) {
-    $arr = $breadcrumbs->get('admin.users.index');
-    $arr[] = ['新規作成', Config::get('app.adminPrefix') . '/users/create'];
-    return $arr;
+$breadcrumbs->set('admin.users.create', function (Maker $maker) {
+    $maker->parent('admin.users.index');
+    $maker->add('新規作成', Config::get('app.adminPrefix') . '/users/create');
 });
 
 // ユーザー編集
-$breadcrumbs->set('admin.users.edit', function (Breadcrumbs $breadcrumbs, array $user) {
-    $arr = $breadcrumbs->get('admin.users.index');
-    $arr[] = [$user['name'], Config::get('app.adminPrefix') . '/users/' . $user['id'] . '/edit'];
-    return $arr;
+$breadcrumbs->set('admin.users.edit', function (Maker $maker, array $user) {
+    $maker->parent('admin.users.index');
+    $maker->add($user['name'], Config::get('app.adminPrefix') . '/users/' . $user['id'] . '/edit');
 });

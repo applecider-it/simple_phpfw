@@ -24,7 +24,11 @@ class Breadcrumbs
 
         $func = $this->funcs[$name];
 
-        $arr = $func($this, ...$data);
+        $maker = new Breadcrumbs\Maker($this);
+
+        $func($maker, ...$data);
+
+        $arr = $maker->urls();
 
         return $arr;
     }

@@ -14,10 +14,10 @@ use function SFW\Helpers\html_esc as h;
                 <span style="padding: 0 0.5rem;"> > </span>
             <?php endif; ?>
             <?php if ($idx === count($arr) - 1): ?>
-                <?= h($row[0]) ?>
+                <?= h($row['name']) ?>
             <?php else: ?>
-                <a href="<?= h($row[1]) ?>" class="app-link-normal">
-                    <?= h($row[0]) ?>
+                <a href="<?= h($row['url']) ?>" class="app-link-normal">
+                    <?= h($row['name']) ?>
                 </a>
             <?php endif; ?>
         <?php endforeach; ?>
