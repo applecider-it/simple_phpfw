@@ -16,14 +16,4 @@ use SFW\Output\Html;
                     ])) ?>">
         <?= $this->render('partials.message.loading') ?>
     </div>
-
-    <div>
-        <h3>読み込み中表示の動作確認</h3>
-        <div style="border: 1px solid #555; padding: 0;">
-            <?= $this->render('partials.message.loading') ?>
-        </div>
-        <div style="border: 1px solid #555; padding: 0; margin-top: 1rem;">
-            <?= $this->render('partials.message.loading') ?>
-        </div>
-    </div>
 </div>
