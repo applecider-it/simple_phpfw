@@ -1,6 +1,7 @@
 <?php
 
 use SFW\Core\Config;
+use function SFW\Helpers\route;
 
 $adminPrefix = Config::get('app.adminPrefix');
 
@@ -10,7 +11,7 @@ $return['breadcrumbs'] = ['admin.users.index'];
 
 <div>
     <div>
-        <a href="<?= $adminPrefix ?>/users/create" class="app-btn-primary">
+        <a href="<?= route('admin.users.create') ?>" class="app-btn-primary">
             新規作成
         </a>
     </div>

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SFW\Web;
 
 use SFW\Core\App;
+use SFW\Data\Str;
 
 /**
  * ルート管理
@@ -18,6 +19,9 @@ class Router
         'GET' => [],
         'POST' => [],
     ];
+
+    /** 名前定義 */
+    private array $names = [];
 
     /** カレントのルート */
     private ?array $currentRoute = null;
@@ -53,6 +57,14 @@ class Router
             'handler' => $handler,
             'options' => $options,
         ];
+
+        $name = $options['name'] ?? null;
+
+        if ($name) {
+            !isset($this->names[$name]) ?: throw new \Exception("duplicate route name. [ $name ]");
+
+            $this->names[$name] = $path;
+        }
     }
 
     /** 実行 */
@@ -174,5 +186,12 @@ class Router
     public function currentRoute(): ?array
     {
         return $this->currentRoute;
+    }
+
+    /** ルート取得 */
+    public function route(string $name, array $data = []): string {
+        isset($this->names[$name]) ?: throw new \Exception("not found route name. [ $name ]");
+
+        return Str::template($this->names[$name], $data);
     }
 }

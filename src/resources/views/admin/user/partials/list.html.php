@@ -1,7 +1,7 @@
 <?php
 
 use function SFW\Helpers\html_esc as h;
-use SFW\Core\Config;
+use function SFW\Helpers\route;
 ?>
 <div class="app-table-wrap">
     <table style="margin-top: 1rem;" class="app-table">
@@ -20,7 +20,7 @@ use SFW\Core\Config;
                     <td class="app-table-cell"><?= h($user['email'] ?? '') ?></td>
                     <td class="app-table-cell"><?= $user['deleted_at'] ?? '' ?></td>
                     <td class="app-table-cell" style="text-align:center;">
-                        <a href="<?= Config::get('app.adminPrefix') ?>/users/<?= $user['id'] ?>/edit" class="app-btn-primary">
+                        <a href="<?= route('admin.users.edit', ['id' => $user['id']]) ?>" class="app-btn-primary">
                             更新
                         </a>
                     </td>

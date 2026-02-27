@@ -1,8 +1,6 @@
 <?php
 
-use SFW\Core\Config;
-
-$adminPrefix = Config::get('app.adminPrefix');
+use function SFW\Helpers\route;
 
 $return['breadcrumbs'] = ['admin.users.create'];
 
@@ -12,13 +10,13 @@ $data['exists'] = false;
 
 <div>
     <div style="margin-top: 1rem;">
-        <a href="<?= $adminPrefix ?>/users" class="app-link-normal">一覧</a>
+        <a href="<?= route('admin.users.index') ?>" class="app-link-normal">一覧</a>
     </div>
 
     <?= $this->render('partials.validation.errors', ['errors' => $data['errors'] ?? null]) ?>
 
     <div style="margin-top: 1rem;">
-        <form method="POST" action="<?= $adminPrefix ?>/users/create">
+        <form method="POST" action="<?= route('admin.users.create') ?>">
             <?= $this->render('partials.form.csrf') ?>
             <?= $this->render('admin.user.partials.form', $data) ?>
             <div style="margin-top: 1rem;">
