@@ -11,12 +11,6 @@ use SFW\Core\App;
  */
 class Query
 {
-    /** カウント取得時の作業用カラム */
-    private const WORK_COUNT_COLUMN = 'app_work_cnt';
-
-    /** テーブルラップ時の作業用カラム */
-    private const WORK_WRAP_TABLE = 'app_work_tbl';
-
     /** テーブル用データ配列 */
     private array $tables = [];
 
@@ -169,88 +163,10 @@ class Query
     }
 
     /** SQLと値をビルドする */
-    public function build($buildForCount = false): array
+    public function build(bool $buildForCount = false): array
     {
-        // カウント取得じゃないときはそのまま返す
-        if (! $buildForCount) return $this->buildSelect($buildForCount);
-
-        /** @var string 作業テーブルでラップする必要があるときはtrue */
-        $needWrap = ($this->distinct || $this->groups);
-
-        // 作業テーブルでラップする必要がないときはそのまま返す
-        if (! $needWrap) return $this->buildSelect($buildForCount);
-
-        // 作業テーブルでラップする必要があるカウント取得時
-
-        $tableSubquery = $this->buildSelect(false);
-
-        $query = new self($this->database);
-
-        return $query
-            ->table(
-                "(" . $tableSubquery['sql'] . ") as " . self::WORK_WRAP_TABLE,
-                ...$tableSubquery['bindings']
-            )
-            ->buildSelect(true);
-    }
-
-    /** SELECT文をビルドする */
-    private function buildSelect($buildForCount): array
-    {
-        $sql = "SELECT";
-        $bindings = [];
-
-        if ($this->distinct) {
-            $sql .= " DISTINCT";
-        }
-
-        if ($buildForCount) {
-            $sql .= " count(*) as " . self::WORK_COUNT_COLUMN;
-        } else {
-            if ($this->columns) {
-                $ret = $this->buildColumns();
-                $sql .= " " . $ret['sql'];
-                $bindings = array_merge($bindings, $ret['bindings']);
-            } else {
-                $sql .= " *";
-            }
-        }
-
-        if ($this->tables) {
-            $ret = $this->buildTable();
-            $sql .= " FROM " . $ret['sql'];
-            $bindings = array_merge($bindings, $ret['bindings']);
-        }
-
-        if ($this->wheres) {
-            $ret = $this->buildWhere();
-            $sql .= " WHERE " . $ret['sql'];
-            $bindings = array_merge($bindings, $ret['bindings']);
-        }
-
-        if ($this->groups) {
-            $sql .= " GROUP BY " . implode(", ", $this->groups);
-        }
-
-        if ($this->havings) {
-            $ret = $this->buildHaving();
-            $sql .= " HAVING " . $ret['sql'];
-            $bindings = array_merge($bindings, $ret['bindings']);
-        }
-
-        if ($this->orders) {
-            $sql .= " ORDER BY " . implode(", ", $this->orders);
-        }
-
-        if (! $buildForCount) {
-            if ($this->limit) $sql .= " LIMIT {$this->limit}";
-            if ($this->offset) $sql .= " OFFSET {$this->offset}";
-        }
-
-        return [
-            'sql' => $sql,
-            'bindings' => $bindings,
-        ];
+        $builder = new Query\Builder($this);
+        return $builder->build($buildForCount);
     }
 
     /** カウントする */
@@ -260,7 +176,7 @@ class Query
 
         $row = $this->db()->one($ret['sql'], ...$ret['bindings']);
 
-        return (int) $row[self::WORK_COUNT_COLUMN];
+        return (int) $row[Query\Builder::WORK_COUNT_COLUMN];
     }
 
     /** １行だけ取得 */
@@ -299,46 +215,19 @@ class Query
         );
     }
 
-    /** テーブルのビルド */
-    private function buildTable(): array
-    {
-        return $this->buildCommon($this->tables, ' ');
-    }
-
-    /** カラムのビルド */
-    private function buildColumns(): array
-    {
-        return $this->buildCommon($this->columns, ', ');
-    }
-
-    /** WHERE文のビルド */
-    private function buildWhere(): array
-    {
-        return $this->buildCommon($this->wheres, ' AND ');
-    }
-
-    /** HAVING文のビルド */
-    private function buildHaving(): array
-    {
-        return $this->buildCommon($this->havings, ' AND ');
-    }
-
-    /** 共通のビルド */
-    private function buildCommon(array $conf, string $connector): array
-    {
-        $sqls = [];
-        $bindings = [];
-
-        foreach ($conf as $where) {
-            $sqls[] = $where['sql'];
-            $bindings = array_merge($bindings, $where['bindings']);
-        }
-
-        $sql = implode($connector, $sqls);
-
+    /** 全ての情報を返す */
+    public function getAllDatta() : array {
         return [
-            'sql' => $sql,
-            'bindings' => $bindings,
+            'tables' => $this->tables,
+            'distinct' => $this->distinct,
+            'columns' => $this->columns,
+            'wheres' => $this->wheres,
+            'havings' => $this->havings,
+            'orders' => $this->orders,
+            'groups' => $this->groups,
+            'limit' => $this->limit,
+            'offset' => $this->offset,
+            'database' => $this->database,
         ];
     }
 }

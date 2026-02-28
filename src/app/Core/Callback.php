@@ -59,7 +59,7 @@ class Callback
     {
         $message = "SQL" . ($meta['valid'] ? '' : ' Error!!!') . ": ";
         $message .= $sql;
-        $message .= " (" . bcdiv((string)$meta['executionTime'], 1, 5) . ")";
+        $message .= " (" . $meta['executionTime'] . ")";
         Log::info($message, $bindings);
     }
 
