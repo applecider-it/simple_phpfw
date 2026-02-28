@@ -59,12 +59,12 @@ const UIArea = {
         setIsLoading(true);
         setTimeout(() => {
           setIsLoading(false);
-        }, 2000);
+        }, 3000);
       } else if (type === "loadingInline") {
         this.inline = true;
         setTimeout(() => {
           this.inline = false;
-        }, 3000);
+        }, 4000);
       } else if (type === "toast") {
         showToast("トーストテスト");
       } else if (type === "toastAlert") {

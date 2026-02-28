@@ -32,8 +32,7 @@ const LoadingInline = {
         margin: "7rem 0",
         opacity: 0,
         animation:
-          idPrefix + "__fadeInAccel 3s cubic-bezier(0.16, 1, 0.3, 1) forwards",
-        animationDelay: "1s",
+          idPrefix + "__fadeInAccel 3s cubic-bezier(0.16, 1, 0.3, 1) 1s forwards",
       };
     },
 
