@@ -74,7 +74,7 @@ class View
     /**
      * 共通変数追加
      */
-    public function appendGlobalData(array $data): void
+    public function appendCommonData(array $data): void
     {
         $this->data = $data + $this->data;
     }
@@ -89,7 +89,7 @@ class View
         array $layoutData = [],
         array $globalData = []
     ): string {
-        $this->appendGlobalData($globalData);
+        $this->appendCommonData($globalData);
 
         // レイアウトに渡す値
         //（オブジェクトにすることで参照渡しになるので、$nameのテンプレートからレイアウトに値を渡せる）

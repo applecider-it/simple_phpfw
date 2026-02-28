@@ -24,8 +24,8 @@ class Maker
         ];
     }
 
-    /** 親データ追加 */
-    public function parent(string $name, ...$data): void
+    /** 別の設定をマージする */
+    public function merge(string $name, ...$data): void
     {
         $urls = $this->breadcrumbs->get($name, ...$data);
         $this->urls = array_merge($this->urls, $urls);
