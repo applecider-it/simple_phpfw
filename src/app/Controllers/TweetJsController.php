@@ -7,6 +7,7 @@ use SFW\Core\App;
 use App\Services\WebSocket\AuthService;
 use App\Services\Channels\TweetChannel;
 use App\Services\User\AuthService as Auth;
+use App\Models\User\Tweet;
 
 /**
  * ツイート(JS)コントローラー
@@ -18,10 +19,17 @@ class TweetJsController extends Controller
     {
         $user = Auth::get();
 
+        $tweets = Tweet::query()
+            ->order("id desc")
+            ->limit(10)
+            ->all();
+
+        Tweet::withUser($tweets);
+
         $authService = new AuthService;
 
         $token = $authService->createUserJwt($user, TweetChannel::getChannel());
 
-        return $this->render('tweet_js.index', compact('token'));
+        return $this->render('tweet_js.index', compact('token', 'tweets'));
     }
 }

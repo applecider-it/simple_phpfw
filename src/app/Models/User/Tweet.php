@@ -18,7 +18,8 @@ class Tweet extends Model
 {
     protected static string $table = 'user_tweets';
 
-    protected static function defaultScope(Query $query) {
+    protected static function defaultScope(Query $query)
+    {
         $query->scope([self::class, 'kept']);
     }
 
@@ -44,6 +45,12 @@ class Tweet extends Model
     /** ユーザーを含める */
     public static function withUser(array &$tweets)
     {
-        Relation::with($tweets, 'user_id', User::query(), 'id', 'user');
+        $query =
+            User::query()
+            ->column('id')
+            ->column('name')
+            ->column('email');
+
+        Relation::with($tweets, 'user_id', $query, 'id', 'user');
     }
 }

@@ -50,6 +50,7 @@ $appList = [
     // ツイートページ用
     '@/services/tweet/tweet-client' => "/js/services/tweet/tweet-client.js?{$filePostfix}",
     '@/services/tweet/setup-tweet' => "/js/services/tweet/setup-tweet.js?{$filePostfix}",
+    '@/services/tweet/vue/tweet-area' => "/js/services/tweet/vue/tweet-area.js?{$filePostfix}",
 ];
 
 // 管理画面用
