@@ -35,9 +35,10 @@ class Callback
     /** リクエスト情報取得直後 */
     public function afterRequest(array &$params)
     {
-        // リクエストパラメーターをtrimする
+        // リクエストパラメーターを変更
         array_walk_recursive($params, function (&$item, $key) {
-            $item = trim($item);
+            // trimする
+            $item = trim($item, "　 \n\r\t\v\0");
         });
 
         if (! Config::get('debug')) return;
