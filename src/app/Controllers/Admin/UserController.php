@@ -11,6 +11,8 @@ use SFW\Web\Flash;
 use SFW\Output\Log;
 use SFW\Security\Hash;
 
+use function SFW\Helpers\route;
+
 use App\Models\User;
 use App\Models\User\Tweet;
 
@@ -88,7 +90,7 @@ class UserController extends Controller
 
         Flash::set('notice', '登録しました。');
 
-        Location::redirect(Config::get('app.adminPrefix') . "/users/{$newId}/edit");
+        Location::redirect(route('admin.users.edit', ['id' => $newId]));
     }
 
     /** 更新画面 */
@@ -149,7 +151,7 @@ class UserController extends Controller
 
         Flash::set('notice', '更新しました。');
 
-        Location::redirect(Config::get('app.adminPrefix') . "/users/{$userId}/edit");
+        Location::redirect(route('admin.users.edit', ['id' => $userId]));
     }
 
     /** 更新時共通情報 */
@@ -177,7 +179,7 @@ class UserController extends Controller
 
         Flash::set('notice', '論理削除しました。');
 
-        Location::redirect(Config::get('app.adminPrefix') . "/users/{$userId}/edit");
+        Location::redirect(route('admin.users.edit', ['id' => $userId]));
     }
 
     /** 復元 */
@@ -190,7 +192,7 @@ class UserController extends Controller
 
         Flash::set('notice', '復元しました。');
 
-        Location::redirect(Config::get('app.adminPrefix') . "/users/{$userId}/edit");
+        Location::redirect(route('admin.users.edit', ['id' => $userId]));
     }
 
     /** ユーザー取得 */
