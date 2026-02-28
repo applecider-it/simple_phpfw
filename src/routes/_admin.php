@@ -24,6 +24,6 @@ $router->get($basePrefix, [HomeController::class, 'index'], $baseOptions + ['nam
     $router->post($prefix . '/create', [$controller, 'store'], $baseOptions);
     $router->get($prefix . '/{id}/edit', [$controller, 'edit'], $baseOptions + ['name' => 'admin.users.edit']);
     $router->post($prefix . '/{id}/edit', [$controller, 'update'], $baseOptions);
-    $router->post($prefix . '/{id}/destroy', [$controller, 'destroy'], $baseOptions);
-    $router->post($prefix . '/{id}/restore', [$controller, 'restore'], $baseOptions);
+    $router->post($prefix . '/{id}/destroy', [$controller, 'destroy'], $baseOptions + ['name' => 'admin.users.destroy']);
+    $router->post($prefix . '/{id}/restore', [$controller, 'restore'], $baseOptions + ['name' => 'admin.users.restore']);
 })($router, $basePrefix, $baseOptions);

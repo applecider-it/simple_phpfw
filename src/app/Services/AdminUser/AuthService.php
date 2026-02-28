@@ -3,6 +3,7 @@
 namespace App\Services\AdminUser;
 
 use SFW\Core\Config;
+use function SFW\Helpers\route;
 
 use App\Models\AdminUser;
 
@@ -20,11 +21,9 @@ class AuthService extends BaseService
 
     public function __construct()
     {
-        $adminPrefix = Config::get('app.adminPrefix');
-
-        $this->loginUrl = $adminPrefix . '/login';
-        $this->afterLoginUrl = $adminPrefix;
-        $this->afterLogoutUrl = $adminPrefix . '/login';
+        $this->loginUrl = route('admin.login');
+        $this->afterLoginUrl = route('admin.index');
+        $this->afterLogoutUrl = route('admin.login');
         $this->model = AdminUser::class;
     }
 }

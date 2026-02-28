@@ -1,6 +1,6 @@
 <?php
 
-use SFW\Core\Config;
+use function SFW\Helpers\route;
 
 $softDeleteList = [
     ['全て', 'all'],
@@ -20,7 +20,7 @@ $softDelete = $data['soft_delete'] ?? 'all';
         <?= $row[0] ?>
     <?php else: ?>
         <?php
-        $url = Config::get('app.adminPrefix') . '/users?'
+        $url = route('admin.users.index') . '?'
             . http_build_query(
                 ['soft_delete' => $row[1]]
                     + $data
