@@ -15,6 +15,7 @@ export default class JavascriptTest {
         bbb: {
           ccc: {
             ddd: "eee",
+            fff: 1234,
           },
         },
       },

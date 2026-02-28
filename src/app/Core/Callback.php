@@ -7,6 +7,7 @@ use SFW\Core\App;
 use SFW\Core\Config;
 use SFW\Database\DB;
 use SFW\Data\Arr;
+use SFW\Data\Str;
 
 use App\Services\User\AuthService;
 use App\Services\AdminUser\AuthService as AdminAuthService;
@@ -37,8 +38,7 @@ class Callback
     {
         // リクエストパラメーターを変更
         array_walk_recursive($params, function (&$item, $key) {
-            // trimする
-            $item = trim($item, "　 \n\r\t\v\0");
+            if (is_string($item)) $item = Str::trimAll($item);
         });
 
         if (! Config::get('debug')) return;

@@ -77,4 +77,10 @@ class Str
     {
         return ltrim(strtolower(preg_replace('/[A-Z]/', '_$0', $text)), '_');
     }
+
+    /** 全角スペースを含めてtrim */
+    public static function trimAll(string $text): string
+    {
+        return trim($text, "　 \n\r\t\v\0");
+    }
 }
