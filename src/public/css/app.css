@@ -186,6 +186,11 @@ a.app-link-normal:hover {
   font-weight: bold;
   color: #2c3e50;
 }
+.app-form-error {
+  color: #f00;
+  font-size: 0.8rem;
+  margin: 0.5rem 0;
+}
 
 /* タイトル */
 

@@ -18,7 +18,7 @@ export default class TweetClient {
 
     this.ws.onmessage = (e) => this.#handleMessage(e);
 
-    this.addMessage = null;
+    this.refreshList = null;
   }
 
   /**
@@ -33,9 +33,11 @@ export default class TweetClient {
       return;
     }
 
-    console.log('handleMessage', data);
+    console.log("handleMessage", data);
 
-    showToast(`新しいツイートがあります。[ ${data.data.content} ]`)
+    showToast(`新しいツイートがあります。[ ${data.data.content} ]`);
+
+    this.refreshList();
   }
 
   /** 一覧取得 */
@@ -45,6 +47,20 @@ export default class TweetClient {
     const url = "/tweets_js/list";
 
     const result = await sendData(method, url);
+
+    return result;
+  }
+
+  /** ツイート送信 */
+  async storeTweet(content) {
+    const method = "POST";
+    const data = { content };
+
+    const url = "/tweets_js/store";
+
+    const result = await sendData(method, url, data);
+
+    console.log("result", result);
 
     return result;
   }

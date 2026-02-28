@@ -14,7 +14,7 @@ export async function sendData(method, url, argData = {}) {
   const params = {
     method: method,
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json; charset=UTF-8",
     },
   };
 

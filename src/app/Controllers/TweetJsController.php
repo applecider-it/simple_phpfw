@@ -3,11 +3,18 @@
 namespace App\Controllers;
 
 use SFW\Core\App;
+use SFW\Data\Arr;
+use SFW\Core\Lang;
+use SFW\Output\Log;
 
 use App\Services\WebSocket\AuthService;
 use App\Services\Channels\TweetChannel;
 use App\Services\User\AuthService as Auth;
+use App\Services\Tweet\WebScoketService;
+
 use App\Models\User\Tweet;
+
+use App\Core\Validator;
 
 /**
  * ツイート(JS)コントローラー
@@ -39,5 +46,43 @@ class TweetJsController extends Controller
         Tweet::withUser($tweets);
 
         return compact('tweets');
+    }
+
+    /** 登録処理 */
+    public function store()
+    {
+        $form = Arr::choise($this->params, ['content']);
+
+        //usleep(1000000 * 5);
+
+        $rules = [
+            'content' => Tweet::validationContent(),
+        ];
+
+        $labels = [
+            'content' => Lang::get('app.models.user/tweet.attributes.content'),
+        ];
+
+        $v = Validator::make($form, $rules, $labels);
+
+        $errors = null;
+
+        if ($v->fails()) {
+            // エラーがあるとき
+
+            $errors = $v->errors();
+
+            return compact('errors');
+        }
+
+        $user = Auth::get();
+
+        $newId = Tweet::insert(['user_id' => $user['id']] + $form);
+        Log::info('New Tweet', [$newId]);
+
+        $webScoketService = new WebScoketService();
+        $webScoketService->broadcastTweet($form);
+
+        return compact('newId');
     }
 }

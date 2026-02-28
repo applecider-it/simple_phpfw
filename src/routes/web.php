@@ -38,6 +38,7 @@ $router->get('/chat', [ChatController::class, 'index'], ['auth' => 'user']);
 
     $router->get($prefix, [$controller, 'index'], $options);
     $router->get($prefix . '/list', [$controller, 'list'], $options);
+    $router->post($prefix . '/store', [$controller, 'store'], $options);
 })($router);
 
 // 開発者向けページ
