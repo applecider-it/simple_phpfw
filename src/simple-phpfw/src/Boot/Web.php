@@ -7,6 +7,7 @@ namespace SFW\Boot;
 use SFW\Core\App;
 use SFW\Output\Error;
 use SFW\Output\Log;
+use SFW\Web\Router\Dispatcher;
 use SFW\Exceptions;
 
 /**
@@ -21,7 +22,8 @@ class Web
         $router = App::get('router');
 
         try {
-            $val = $router->dispatch();
+            $dispacher = new Dispatcher($router);
+            $val = $dispacher->dispatch();
 
             App::get('callback')->afterRouter($val);
         } catch (Exceptions\NotFound $e) {
