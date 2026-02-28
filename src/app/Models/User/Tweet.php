@@ -3,6 +3,7 @@
 namespace App\Models\User;
 
 use SFW\Database\Query;
+use SFW\Database\Relation;
 
 use App\Models\Model;
 use App\Models\User;
@@ -43,6 +44,6 @@ class Tweet extends Model
     /** ユーザーを含める */
     public static function withUser(array &$tweets)
     {
-        self::with($tweets, 'user_id', User::query(), 'id', 'user');
+        Relation::with($tweets, 'user_id', User::query(), 'id', 'user');
     }
 }
