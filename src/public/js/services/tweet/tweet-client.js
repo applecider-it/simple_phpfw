@@ -1,4 +1,5 @@
 import { showToast } from "@/services/ui/message";
+import { sendData } from "@/services/data/json";
 
 /**
  * ツイートクライアント
@@ -35,5 +36,16 @@ export default class TweetClient {
     console.log('handleMessage', data);
 
     showToast(`新しいツイートがあります。[ ${data.data.content} ]`)
+  }
+
+  /** 一覧取得 */
+  async getList() {
+    const method = "GET";
+
+    const url = "/tweets_js/list";
+
+    const result = await sendData(method, url);
+
+    return result;
   }
 }

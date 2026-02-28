@@ -13,7 +13,6 @@ use SFW\Core\Config;
     data-all="<?= Html::esc(json_encode([
                     'token' => $data['token'],
                     'host' => Config::get('app.ws_server_host'),
-                    'tweets' => $data['tweets'],
                 ])) ?>">
     <?= $this->render('partials.message.loading') ?>
 </div>

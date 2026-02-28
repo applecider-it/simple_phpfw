@@ -16,5 +16,5 @@ if (el) {
 
   const tweetClient = new TweetClient(all.host, all.token);
 
-  createApp(TweetArea, { tweetClient, tweets: all.tweets }).mount(el);
+  createApp(TweetArea, { tweetClient }).mount(el);
 }

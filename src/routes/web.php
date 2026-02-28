@@ -37,6 +37,7 @@ $router->get('/chat', [ChatController::class, 'index'], ['auth' => 'user']);
     $controller = TweetJsController::class;
 
     $router->get($prefix, [$controller, 'index'], $options);
+    $router->get($prefix . '/list', [$controller, 'list'], $options);
 })($router);
 
 // 開発者向けページ

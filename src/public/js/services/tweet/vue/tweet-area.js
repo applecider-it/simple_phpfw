@@ -19,10 +19,11 @@ const TweetArea = {
     </div>
   `,
 
-  props: ["tweetClient", "tweets"],
+  props: ["tweetClient"],
 
   data() {
     return {
+      tweets: [],
     };
   },
 
@@ -30,7 +31,12 @@ const TweetArea = {
   },
 
   /** マウント時 */
-  mounted() {
+  async mounted() {
+    const result = await this.tweetClient.getList();
+
+    console.log(result.tweets);
+
+    this.tweets = result.tweets;
   },
 };
 

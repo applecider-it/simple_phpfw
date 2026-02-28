@@ -14,8 +14,20 @@ use App\Models\User\Tweet;
  */
 class TweetJsController extends Controller
 {
-    /** 一覧画面 */
+    /** 画面 */
     public function index()
+    {
+        $user = Auth::get();
+
+        $authService = new AuthService;
+
+        $token = $authService->createUserJwt($user, TweetChannel::getChannel());
+
+        return $this->render('tweet_js.index', compact('token'));
+    }
+
+    /** 一覧取得 */
+    public function list()
     {
         $user = Auth::get();
 
@@ -26,10 +38,6 @@ class TweetJsController extends Controller
 
         Tweet::withUser($tweets);
 
-        $authService = new AuthService;
-
-        $token = $authService->createUserJwt($user, TweetChannel::getChannel());
-
-        return $this->render('tweet_js.index', compact('token', 'tweets'));
+        return compact('tweets');
     }
 }
