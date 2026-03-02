@@ -4,6 +4,15 @@ import FormComponent from "@/services/development/vue/javascript-test-area/vue-m
  * Vueモデル動作確認
  */
 const VueModelArea = {
+  components: { FormComponent },
+
+  data() {
+    return {
+      val1: "",
+      val2: "",
+    };
+  },
+
   template: `
   <div>
     <h3>Vueモデル動作確認</h3>
@@ -43,15 +52,6 @@ const VueModelArea = {
     </div>
   </div>
   `,
-
-  components: { FormComponent },
-
-  data() {
-    return {
-      val1: "",
-      val2: "",
-    };
-  },
 };
 
 export default VueModelArea;

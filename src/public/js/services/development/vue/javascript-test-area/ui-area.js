@@ -5,6 +5,41 @@ import LoadingInline from "@/services/ui/vue/message/loading-inline";
  * UI動作確認
  */
 const UIArea = {
+  components: { LoadingInline },
+
+  data() {
+    return {
+      inline: false,
+    };
+  },
+
+  methods: {
+    /** UIテスト */
+    uiTest(type) {
+      console.log("Test type", type);
+
+      // UIテスト
+      if (type === "loading") {
+        setIsLoading(true);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 3000);
+      } else if (type === "loadingInline") {
+        this.inline = true;
+        setTimeout(() => {
+          this.inline = false;
+        }, 4000);
+      } else if (type === "toast") {
+        showToast("トーストテスト");
+      } else if (type === "toastAlert") {
+        showToast("トーストテスト", "alert");
+      } else if (type === "toast2") {
+        showToast("トーストテスト");
+        showToast("トーストテスト", "alert");
+      }
+    },
+  },
+
   template: `
   <div>
     <h3>UI動作確認</h3>
@@ -40,41 +75,6 @@ const UIArea = {
     </div>
   </div>
   `,
-
-  components: { LoadingInline },
-
-  data() {
-    return {
-      inline: false,
-    };
-  },
-
-  methods: {
-    /** UIテスト */
-    uiTest(type) {
-      console.log("Test type", type);
-
-      // UIテスト
-      if (type === "loading") {
-        setIsLoading(true);
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 3000);
-      } else if (type === "loadingInline") {
-        this.inline = true;
-        setTimeout(() => {
-          this.inline = false;
-        }, 4000);
-      } else if (type === "toast") {
-        showToast("トーストテスト");
-      } else if (type === "toastAlert") {
-        showToast("トーストテスト", "alert");
-      } else if (type === "toast2") {
-        showToast("トーストテスト");
-        showToast("トーストテスト", "alert");
-      }
-    },
-  },
 };
 
 export default UIArea;

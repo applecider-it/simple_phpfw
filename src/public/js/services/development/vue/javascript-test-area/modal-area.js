@@ -4,6 +4,27 @@ import Modal from "@/services/ui/vue/popup/modal";
  * モーダル動作確認
  */
 const ModalArea = {
+  components: { Modal },
+
+  data() {
+    return {
+      open: false,
+      modalVal: "",
+    };
+  },
+
+  methods: {
+    /** モーダルを閉じる */
+    closeModal() {
+      this.open = false;
+    },
+
+    /** モーダルの値を確認 */
+    checkModalVal() {
+      alert(this.modalVal);
+    },
+  },
+
   template: `
   <div>
     <div>
@@ -45,27 +66,6 @@ const ModalArea = {
     </Modal>
   </div>
   `,
-
-  components: { Modal },
-
-  data() {
-    return {
-      open: false,
-      modalVal: "",
-    };
-  },
-
-  methods: {
-    /** モーダルを閉じる */
-    closeModal() {
-      this.open = false;
-    },
-
-    /** モーダルの値を確認 */
-    checkModalVal() {
-      alert(this.modalVal);
-    },
-  },
 };
 
 export default ModalArea;

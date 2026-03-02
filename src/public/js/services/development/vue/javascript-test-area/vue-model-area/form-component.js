@@ -2,6 +2,25 @@ import { vuePropModel } from "@/services/data/html";
 
 /** フォームテスト */
 const FormComponent = {
+  props: ["propVal1", "propVal2"],
+  emits: ["update:propVal1", "update:propVal2"],
+
+  computed: {
+    val1: vuePropModel("propVal1"),
+    val2: vuePropModel("propVal2"),
+  },
+
+  methods: {
+    /** クリック時 */
+    execTest(type) {
+      console.log("Test type", type);
+
+      if (type === "addText") {
+        this.val1 += "[add text]";
+      }
+    },
+  },
+
   template: `
   <div>
     <h4>FormComponent</h4>
@@ -40,25 +59,6 @@ const FormComponent = {
     </div>
   </div>
   `,
-
-  props: ["propVal1", "propVal2"],
-  emits: ["update:propVal1", "update:propVal2"],
-
-  computed: {
-    val1: vuePropModel("propVal1"),
-    val2: vuePropModel("propVal2"),
-  },
-
-  methods: {
-    /** クリック時 */
-    execTest(type) {
-      console.log("Test type", type);
-
-      if (type === "addText") {
-        this.val1 += "[add text]";
-      }
-    },
-  },
 };
 
 export default FormComponent;

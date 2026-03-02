@@ -8,6 +8,16 @@ import FormArea from "@/services/development/vue/javascript-test-area/form-area"
  * Javascriptテストエリア
  */
 const JavascriptTestArea = {
+  components: { VueModelArea, ModalArea, UIArea, JsonArea, FormArea },
+
+  props: ["javascriptTest", "formData"],
+
+  data() {
+    return {
+      blockStyle: "border: 2px solid #444; padding: 1rem;",
+    };
+  },
+
   template: `
   <div>
     <div style="display:flex; flex-direction:column; gap:1rem;">
@@ -39,16 +49,6 @@ const JavascriptTestArea = {
     </div>
   </div>
   `,
-
-  components: { VueModelArea, ModalArea, UIArea, JsonArea, FormArea },
-
-  props: ["javascriptTest", "formData"],
-
-  data() {
-    return {
-      blockStyle: "border: 2px solid #444; padding: 1rem;",
-    };
-  },
 };
 
 export default JavascriptTestArea;

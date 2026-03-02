@@ -7,7 +7,7 @@
  */
 
 /** @var string ブラウザキャッシュ対応。多分、コンフリクトしやすいと思う。 */
-$filePostfix = '20260226_0000';
+$filePostfix = '20260302_0000';
 
 // アプリケーション独自の設定
 $app = (fn($env, $filePostfix) => include(__DIR__ . '/app.php'))($env, $filePostfix);

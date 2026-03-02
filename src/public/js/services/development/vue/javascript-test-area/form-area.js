@@ -2,6 +2,33 @@
  * Form動作確認
  */
 const FormArea = {
+  props: [
+    "propListVal",
+    "propRadioVal",
+    "propDateTimeVal",
+    "listVals",
+    "radioVals",
+  ],
+
+  data() {
+    return {
+      listVal: this.propListVal,
+      radioVal: this.propRadioVal,
+      dateTimeVal: this.propDateTimeVal,
+    };
+  },
+
+  methods: {
+    /** フォームの値の確認 */
+    confirmFormValue() {
+      console.log("confirmFormValue", {
+        listVal: this.listVal,
+        radioVal: this.radioVal,
+        dateTimeVal: this.dateTimeVal,
+      });
+    },
+  },
+
   template: `
   <div class="app-form">
       Form動作確認
@@ -52,27 +79,6 @@ const FormArea = {
       </div>
   </div>
   `,
-
-  props: ["propListVal", "propRadioVal", "propDateTimeVal", "listVals", "radioVals"],
-
-  data() {
-    return {
-      listVal: this.propListVal,
-      radioVal: this.propRadioVal,
-      dateTimeVal: this.propDateTimeVal,
-    };
-  },
-
-  methods: {
-    /** フォームの値の確認 */
-    confirmFormValue() {
-      console.log("confirmFormValue", {
-        listVal: this.listVal,
-        radioVal: this.radioVal,
-        dateTimeVal: this.dateTimeVal,
-      });
-    },
-  },
 };
 
 export default FormArea;

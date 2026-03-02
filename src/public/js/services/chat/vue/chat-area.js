@@ -1,39 +1,4 @@
 const ChatArea = {
-  template: `
-    <!-- 送信フォーム -->
-    <div style="margin-top: 1rem;">
-      <input
-        type="text"
-        placeholder="メッセージ"
-        autofocus
-        autocomplete="off"
-        class="app-form-input"
-        style="max-width: 30rem;"
-        @keydown="onKeydown"
-        v-model="message"
-      >
-
-      <button
-        @click="onClick"
-        class="app-btn-primary"
-        style="margin-left: 1rem;"
-        >
-        送信
-      </button>
-    </div>
-
-    <!-- ログ一覧 -->
-    <div style="margin-top: 2rem" class="chat-log">
-      <div v-for="(item, index) in reversedList" :key="index">
-        <span>{{ item.data.message }}</span>
-
-        <span style="color:#444; font-size:0.7rem;">
-          by {{ item.sender.name }}
-        </span>
-      </div>
-    </div>
-  `,
-
   props: ["chatClient"],
 
   data() {
@@ -74,6 +39,41 @@ const ChatArea = {
       this.list.push(row);
     };
   },
+
+  template: `
+    <!-- 送信フォーム -->
+    <div style="margin-top: 1rem;">
+      <input
+        type="text"
+        placeholder="メッセージ"
+        autofocus
+        autocomplete="off"
+        class="app-form-input"
+        style="max-width: 30rem;"
+        @keydown="onKeydown"
+        v-model="message"
+      >
+
+      <button
+        @click="onClick"
+        class="app-btn-primary"
+        style="margin-left: 1rem;"
+        >
+        送信
+      </button>
+    </div>
+
+    <!-- ログ一覧 -->
+    <div style="margin-top: 2rem" class="chat-log">
+      <div v-for="(item, index) in reversedList" :key="index">
+        <span>{{ item.data.message }}</span>
+
+        <span style="color:#444; font-size:0.7rem;">
+          by {{ item.sender.name }}
+        </span>
+      </div>
+    </div>
+  `,
 };
 
 export default ChatArea;
