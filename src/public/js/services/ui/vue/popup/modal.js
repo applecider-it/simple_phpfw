@@ -7,20 +7,6 @@ const Modal = {
     onClose: Function,
   },
 
-  template: `
-    <div 
-      :style="backdropStyle"
-      @click="onClose"
-    >
-      <div 
-        :style="contentStyle"
-        @click.stop
-      >
-        <slot></slot>
-      </div>
-    </div>
-  `,
-
   computed: {
     // 背景のインラインスタイル
     backdropStyle() {
@@ -63,6 +49,20 @@ const Modal = {
       };
     },
   },
+
+  template: `
+    <div 
+      :style="backdropStyle"
+      @click="onClose"
+    >
+      <div 
+        :style="contentStyle"
+        @click.stop
+      >
+        <slot></slot>
+      </div>
+    </div>
+  `,
 };
 
 export default Modal;

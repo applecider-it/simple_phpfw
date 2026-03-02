@@ -2,14 +2,6 @@ const idPrefix = "app-local__js__services__ui__vue__message__loading-inline";
 
 /** インラインローディングコンポーネント */
 const LoadingInline = {
-  template: `
-    <div :style="loaderStyle">
-      <span :style="dotStyle"></span>
-      <span :style="dotStyleDelay1"></span>
-      <span :style="dotStyleDelay2"></span>
-    </div>
-  `,
-
   data() {
     return {
       dotStyleBase: {
@@ -32,7 +24,8 @@ const LoadingInline = {
         margin: "7rem 0",
         opacity: 0,
         animation:
-          idPrefix + "__fadeInAccel 3s cubic-bezier(0.16, 1, 0.3, 1) 1s forwards",
+          idPrefix +
+          "__fadeInAccel 3s cubic-bezier(0.16, 1, 0.3, 1) 1s forwards",
       };
     },
 
@@ -54,6 +47,14 @@ const LoadingInline = {
       };
     },
   },
+
+  template: `
+    <div :style="loaderStyle">
+      <span :style="dotStyle"></span>
+      <span :style="dotStyleDelay1"></span>
+      <span :style="dotStyleDelay2"></span>
+    </div>
+  `,
 };
 
 /** スタイルを一度だけ追加 */

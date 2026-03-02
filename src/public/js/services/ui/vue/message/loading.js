@@ -9,12 +9,6 @@ const Loading = {
     },
   },
 
-  template: `
-    <div :style="overlayStyle">
-      <div :style="spinnerStyle"></div>
-    </div>
-  `,
-
   computed: {
     overlayStyle() {
       const style = {
@@ -49,12 +43,17 @@ const Loading = {
         border: "2px solid #6b7280",
         borderTopColor: "transparent",
         borderRadius: "50%",
-        animation:
-          idPrefix + "__loading-spin 0.8s linear infinite",
+        animation: idPrefix + "__loading-spin 0.8s linear infinite",
         boxShadow: "0 0 4px rgba(0,0,0,0.3)",
       };
     },
   },
+
+  template: `
+    <div :style="overlayStyle">
+      <div :style="spinnerStyle"></div>
+    </div>
+  `,
 };
 
 /** スタイルを一度だけ追加 */
