@@ -64,37 +64,28 @@ class Builder
         $this->database = $allData['database'];
     }
 
-    /** SQLと値をビルドする */
+    /**
+     * SQLと値をビルドする
+     * 
+     * カウント取得時の特殊処理もしている
+     */
     public function build(bool $buildForCount): array
     {
         // カウント取得じゃないときはそのまま返す
         if (! $buildForCount) return $this->buildSelect($buildForCount);
 
-        /** @var string 作業テーブルでラップする必要があるときはtrue */
-        $needWrap = ($this->distinct || $this->groups);
+        $needWrap = $this->needWrap();
 
         // 作業テーブルでラップする必要がないときはそのまま返す
         if (! $needWrap) return $this->buildSelect($buildForCount);
 
         // 作業テーブルでラップする必要があるカウント取得時
 
-        $tableSubquery = $this->buildSelect(false);
-
-        $query = new Query($this->database);
-
-        $query
-            ->table(
-                "(" . $tableSubquery['sql'] . ") as " . self::WORK_WRAP_TABLE,
-                ...$tableSubquery['bindings']
-            );
-
-        $builder = new self($query);
-
-        return $builder->buildSelect(true);
+        return $this->buildWrapCount();
     }
 
     /** SELECT文をビルドする */
-    public function buildSelect(bool $buildForCount): array
+    private function buildSelect(bool $buildForCount): array
     {
         $sql = "SELECT";
         $bindings = [];
@@ -193,5 +184,29 @@ class Builder
             'sql' => $sql,
             'bindings' => $bindings,
         ];
+    }
+
+    /** テーブルをラップしてカウントする必要があるか返す */
+    private function needWrap(): bool
+    {
+        return $this->distinct || $this->groups;
+    }
+
+    /** テーブルをラップしてカウントするSELECT文をビルドする */
+    private function buildWrapCount(): array
+    {
+        $tableSubquery = $this->buildSelect(false);
+
+        $query = new Query($this->database);
+
+        $query
+            ->table(
+                "(" . $tableSubquery['sql'] . ") as " . self::WORK_WRAP_TABLE,
+                ...$tableSubquery['bindings']
+            );
+
+        $builder = new self($query);
+
+        return $builder->build(true);
     }
 }

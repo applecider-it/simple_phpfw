@@ -10,9 +10,9 @@ namespace SFW\Database;
 class Relation
 {
     /**
-     * 関連情報を混ぜる
+     * 関連所属情報を混ぜる
      */
-    public static function with(
+    public static function withBelongs(
         array &$rows,
         string $relationColumn,
         Query $relationTableQuery,
