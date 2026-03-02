@@ -9,11 +9,14 @@ namespace SFW\Web;
  */
 class Response
 {
+    /** 処理できないエンティティ (入力エラー) */
+    public const int UNPROCESSABLE_ENTITY = 422;
+
     /** HTTPレスポンスコード */
     public static function code(int $code): void
     {
         $conf = [
-            422 => 'Unprocessable Entity',
+            self::UNPROCESSABLE_ENTITY => 'Unprocessable Entity',
         ];
 
         if (isset($conf[$code])) {

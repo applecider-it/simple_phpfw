@@ -73,7 +73,7 @@ class TweetJsController extends Controller
 
             $errors = $v->errors();
 
-            Response::code(422);
+            Response::code(Response::UNPROCESSABLE_ENTITY);
             return compact('errors');
         }
 
