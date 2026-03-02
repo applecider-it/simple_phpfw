@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core;
+namespace App\Validations;
 
 use SFW\Validation\Validator as BaseValidator;
 use SFW\Validation\BasicValidations;

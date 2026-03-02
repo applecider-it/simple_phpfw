@@ -13,7 +13,7 @@ use SFW\Output\Log;
 use App\Models\User;
 use App\Models\User\Tweet;
 
-use App\Core\Validator;
+use App\Validations\Validator;
 
 use App\Services\Tweet\WebScoketService;
 use App\Services\User\AuthService as Auth;

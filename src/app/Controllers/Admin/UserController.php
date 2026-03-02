@@ -16,7 +16,7 @@ use function SFW\Helpers\route;
 use App\Models\User;
 use App\Models\User\Tweet;
 
-use App\Core\Validator;
+use App\Validations\Validator;
 
 use App\Services\Admin\User\ListService;
 use App\Services\Admin\User\EditService;

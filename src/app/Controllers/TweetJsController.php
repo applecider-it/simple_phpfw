@@ -14,7 +14,7 @@ use App\Services\Tweet\WebScoketService;
 
 use App\Models\User\Tweet;
 
-use App\Core\Validator;
+use App\Validations\Validator;
 
 /**
  * ツイート(JS)コントローラー

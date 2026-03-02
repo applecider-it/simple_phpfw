@@ -11,7 +11,7 @@ use App\Services\Development\DatabaseService;
 use App\Services\Development\ValidationService;
 use App\Services\User\AuthService as Auth;
 
-use App\Core\Validator;
+use App\Validations\Validator;
 
 /**
  * 開発者向けページ
