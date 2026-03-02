@@ -44,7 +44,7 @@ class Callback
         if (! Config::get('debug')) return;
 
         Log::info('afterRequest: route: ', App::get('router')->currentRoute());
-        Log::info('afterRequest: params: ', Arr::mask($params, Config::get('app.trace_mask_keys')));
+        Log::info('afterRequest: params: ', Arr::maskRecursive($params, Config::get('app.trace_mask_keys')));
     }
 
     /** セッションスタート直後 */
