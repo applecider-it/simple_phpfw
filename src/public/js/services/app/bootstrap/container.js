@@ -1,7 +1,6 @@
 import { createApp } from "@/outer/vue3";
 
 import AppCommon from "@/services/app/vue/app-common";
-import { getAuthUser } from "@/services/app/application";
 
 /** 共通コンテナをセットアップする */
 function setupContainerCommon() {
@@ -12,5 +11,3 @@ function setupContainerCommon() {
 }
 
 setupContainerCommon();
-
-console.log("getAuthUser", getAuthUser());

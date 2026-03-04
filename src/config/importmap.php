@@ -7,8 +7,7 @@
 // 共通
 $commonList = [
     // アプリケーションメイン
-    '@/services/app/application' => "/js/services/app/application.js?{$filePostfix}",
-    '@/services/app/bootstrap/app' => "/js/services/app/bootstrap/app.js?{$filePostfix}",
+    '@/services/app/bootstrap/container' => "/js/services/app/bootstrap/container.js?{$filePostfix}",
     '@/services/app/bootstrap/menu' => "/js/services/app/bootstrap/menu.js?{$filePostfix}",
     '@/services/app/vue/app-common' => "/js/services/app/vue/app-common.js?{$filePostfix}",
 
@@ -33,6 +32,7 @@ $commonList = [
 $appList = [
     // アプリケーションメイン
     '@/services/app/setup-app' => "/js/services/app/setup-app.js?{$filePostfix}",
+    '@/services/app/application' => "/js/services/app/application.js?{$filePostfix}",
 
     // 開発者向けページ用
     '@/services/development/setup-development' => "/js/services/development/setup-development.js?{$filePostfix}",
@@ -60,6 +60,7 @@ $appList = [
 $adminList = [
     // アプリケーションメイン
     '@/services/admin/app/setup-app' => "/js/services/admin/app/setup-app.js?{$filePostfix}",
+    '@/services/admin/app/application' => "/js/services/admin/app/application.js?{$filePostfix}",
 ];
 
 return [

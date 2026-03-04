@@ -17,7 +17,7 @@ $adminUser = Auth::get();
 <link rel="stylesheet" href="<?= Html::file('/css/admin.css') ?>">
 
 <?php if ($adminUser): ?>
-    <meta name="user" data-json="<?= Html::esc(json_encode($adminUser)) ?>">
+    <meta name="admin-user" data-json="<?= Html::esc(json_encode($adminUser)) ?>">
 <?php endif; ?>
 
 <script type="importmap"><?= json_encode(Config::get('app.importmap.admin')) ?></script>
