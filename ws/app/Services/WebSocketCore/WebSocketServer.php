@@ -62,7 +62,7 @@ class WebSocketServer
             ($this->onLoop)($this);
 
             // 少しスリープして CPU 低減
-            usleep(500000);
+            usleep(1000000 * 1);
         }
     }
 
