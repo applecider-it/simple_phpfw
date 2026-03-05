@@ -54,7 +54,7 @@ $router->get('/chat', [ChatController::class, 'index'], ['auth' => 'user']);
     $router->post($prefix . '/param_test/{id}', [$controller, 'param_test']);
     $router->get($prefix . '/database_test', [$controller, 'database_test']);
     $router->get($prefix . '/validation_test', [$controller, 'validation_test']);
-    $router->get($prefix . '/redirect_test', [$controller, 'redirect_test'], ['name' => 'redirect_test']);
+    $router->get($prefix . '/redirect_test', [$controller, 'redirect_test'], ['name' => 'development.redirect_test']);
     $router->get($prefix . '/exeption_test', [$controller, 'exeption_test']);
     $router->get($prefix . '/javascript_test', [$controller, 'javascript_test'], ['auth' => 'user']);
     $router->post($prefix . '/api_post', [$controller, 'api_post'], ['auth' => 'user']);

@@ -26,7 +26,7 @@ abstract class Controller extends BaseController
         $currentRoute = App::get('router')->currentRoute();
 
         // beforeActionでの、リダイレクト処理のサンプル
-        if (($currentRoute['options']['name'] ?? null) === 'redirect_test') {
+        if (($currentRoute['options']['name'] ?? null) === 'development.redirect_test') {
             Log::info('redirect_test');
 
             Location::redirect('/');
