@@ -21,7 +21,7 @@ class Info
     /** テンプレートファイルタイプリスト */
     private const FILE_TYPES = [
         'html',
-        'sfw',
+        'sfw.blade',
     ];
 
     function __construct(View $view)
@@ -67,7 +67,7 @@ class Info
      */
     private function getPathInfo(string $path, string $type): ?array
     {
-        if ($type === 'sfw') {
+        if ($type === 'sfw.blade') {
             return $this->SfwTemplate->getPathInfo($path);
         }
 
