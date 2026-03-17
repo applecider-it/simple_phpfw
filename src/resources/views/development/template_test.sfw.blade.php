@@ -17,15 +17,27 @@ $metaStyle = implode(
 <div>
     <div>
         <div>$data['val1']:</div>
+
         <div>
             エスケープあり:
-            {{ $data['val1'] }} - {{ $data['val1'] }} |
-            {{ $data['val1'] }} - {{ $data['val1'] }} |
+            {{ $data['val1'] }} - {{ $data['val2'] }} |
+            {{ $data['val2'] }} - {{ $data['val1'] }} |
         </div>
         <div>
             エスケープなし:
-            {!! $data['val1'] !!} - {!! $data['val1'] !!} |
-            {!! $data['val1'] !!} - {!! $data['val1'] !!} |
+            {!! $data['val2'] !!} - {!! $data['val1'] !!} |
+            {!! $data['val1'] !!} - {!! $data['val2'] !!} |
+        </div>
+
+        <div>
+            エスケープあり:
+            {{ $data['val1'] }} - {{ $data['val2'] }} |
+            {{ $data['val1'] }} - {{ $data['val2'] }} |
+        </div>
+        <div>
+            エスケープなし:
+            {!! $data['val2'] !!} - {!! $data['val1'] !!} |
+            {!! $data['val2'] !!} - {!! $data['val1'] !!} |
         </div>
     </div>
 

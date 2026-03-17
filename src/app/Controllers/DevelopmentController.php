@@ -67,7 +67,8 @@ class DevelopmentController extends Controller
     public function template_test()
     {
         return $this->render('development.template_test', [
-            'val1' => '<div>abc</div>',
+            'val1' => '<div style="color: red">abc</div>',
+            'val2' => '<div style="color: blue">123</div>',
         ]);
     }
 

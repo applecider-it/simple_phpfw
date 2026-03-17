@@ -14,15 +14,14 @@ class SfwTemplate
      */
     public function getPathInfo(string $path): ?array
     {
-        $name = basename($path);
-
         /** @var string テンポラリーファイルパス */
-        $tmpPath = SFW_PROJECT_ROOT . '/storage/views/' . md5($path) . '_' . $name;
+        $tmpPath = SFW_PROJECT_ROOT . '/storage/views/' . Util::tempFileName($path);
 
-        if (!file_exists($tmpPath)) {
-            // テンポラリーファイルがないとき
+        $needGenerate = Util::checkGenarate($path, $tmpPath);
 
-            // テンポラリーファイル生成
+        if ($needGenerate) {
+            // テンポラリーファイル生成が必要な時
+
             $templateData = file_get_contents($path);
             $resultTemplateData = $this->convertTemplate($templateData);
             file_put_contents($tmpPath, $resultTemplateData);
