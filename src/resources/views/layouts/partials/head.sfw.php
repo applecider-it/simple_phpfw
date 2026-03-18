@@ -10,14 +10,14 @@ $user = Auth::get();
 
 <?= $this->render('partials.form.csrf_meta') ?>
 
-<title><?= $data['title'] ?? Config::get('applicationName') ?></title>
+<title>{{ $data['title'] ?? Config::get('applicationName') }}</title>
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
-<link rel="stylesheet" href="<?= Html::file('/css/app.css') ?>">
+<link rel="stylesheet" href="{{ Html::file('/css/app.css') }}">
 
 <?php if ($user): ?>
-    <meta name="user" data-json="<?= Html::esc(json_encode($user)) ?>">
+    <meta name="user" data-json="{{ json_encode($user) }}">
 <?php endif; ?>
 
 <?= $this->render('partials.app.meta') ?>
