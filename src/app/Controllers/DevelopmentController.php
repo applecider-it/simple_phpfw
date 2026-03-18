@@ -55,6 +55,8 @@ class DevelopmentController extends Controller
             [
                 'id' => $sampleService->sampleMethod(),
                 'content' => 'ページにcontentを指定した場合',
+                'meta' => 'ページにmetaを指定した場合',
+                'data' => 'ページにdataを指定した場合',
             ],
             layoutData: ['title' => 'renderのテスト'],
             globalData: ['id' => 456],

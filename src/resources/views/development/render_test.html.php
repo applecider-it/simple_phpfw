@@ -45,6 +45,8 @@ $metaStyle = implode(
     <div>$id <?= h($id) ?></div>
     <div>$content <?= h($content) ?></div>
     <div>$val1 <?= h($val1 ?? 'none') ?></div>
+    <div>$data['data'] <?= h($data['data']) ?></div>
+    <div>$data['meta'] <?= h($data['meta']) ?></div>
 
     <div style="<?= h($partialStyle) ?>">
         <div>partial test</div>
