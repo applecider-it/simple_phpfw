@@ -14,7 +14,7 @@ use function SFW\Helpers\route;
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($data['users'] as $user): ?>
+            <?php foreach ($users as $user): ?>
                 <tr class="app-table-row-data">
                     <td class="app-table-cell"><?= h($user['name'] ?? '') ?></td>
                     <td class="app-table-cell"><?= h($user['email'] ?? '') ?></td>

@@ -15,7 +15,7 @@ use function SFW\Helpers\html_esc as h;
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($data['tweets'] as $tweet): ?>
+                <?php foreach ($tweets as $tweet): ?>
                     <tr class="app-table-row-data">
                         <td class="app-table-cell"><?= h($tweet['content']) ?></td>
                         <td class="app-table-cell"><?= $tweet['created_at'] ?? '' ?></td>

@@ -14,7 +14,7 @@ $data['exists'] = true;
         <a href="<?= route('admin.users.index') ?>" class="app-link-normal">一覧</a>
     </div>
 
-    <?= $this->render('partials.validation.errors', ['errors' => $data['errors'] ?? null]) ?>
+    <?= $this->render('partials.validation.errors', ['errors' => $errors ?? null]) ?>
 
     <?= $this->render('partials.message.flash') ?>
 
@@ -34,8 +34,8 @@ $data['exists'] = true;
     </div>
 
     <div style="margin-top: 3rem;">
-        <?= $this->render('admin.user.partials.tweets', ['tweets' => $data['tweets']]) ?>
+        <?= $this->render('admin.user.partials.tweets', ['tweets' => $tweets]) ?>
 
-        <?= $this->render('partials.pagination.paginator', ['paginator' => $data['tweetsPaginator']]) ?>
+        <?= $this->render('partials.pagination.paginator', ['paginator' => $tweetsPaginator]) ?>
     </div>
 </div>

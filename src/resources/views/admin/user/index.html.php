@@ -15,12 +15,12 @@ $data[Layout::KEY_LAYOUT_OPTIONS]->breadcrumbs = ['admin.users.index'];
     </div>
 
     <div style="margin-top: 1rem;">
-        <?= $this->render('admin.user.partials.search', $data['params']) ?>
+        <?= $this->render('admin.user.partials.search', $params) ?>
     </div>
 
-    <?= $this->render('partials.pagination.paginator', ['paginator' => $data['paginator']]) ?>
+    <?= $this->render('partials.pagination.paginator', ['paginator' => $paginator]) ?>
 
-    <?= $this->render('admin.user.partials.list', ['users' => $data['users']]) ?>
+    <?= $this->render('admin.user.partials.list', ['users' => $users]) ?>
 
-    <?= $this->render('partials.pagination.paginator', ['paginator' => $data['paginator']]) ?>
+    <?= $this->render('partials.pagination.paginator', ['paginator' => $paginator]) ?>
 </div>

@@ -14,7 +14,7 @@ $data['exists'] = false;
         <a href="<?= route('admin.users.index') ?>" class="app-link-normal">一覧</a>
     </div>
 
-    <?= $this->render('partials.validation.errors', ['errors' => $data['errors'] ?? null]) ?>
+    <?= $this->render('partials.validation.errors', ['errors' => $errors ?? null]) ?>
 
     <div style="margin-top: 1rem;">
         <form method="POST" action="<?= route('admin.users.create') ?>">
