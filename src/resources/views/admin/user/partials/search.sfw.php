@@ -2,30 +2,32 @@
 
 use function SFW\Helpers\route;
 
-$softDeleteList = [
-    ['全て', 'all'],
-    ['論理削除を除外', 'kept'],
-    ['論理削除済み', 'deleted'],
+$softDeleteHash = [
+    'all' => '全て',
+    'kept' => '論理削除を除外',
+    'deleted' => '論理削除済み',
 ];
 
 $softDelete = $data['soft_delete'] ?? 'all';
 
 ?>
-<?php foreach ($softDeleteList as $idx => $row): ?>
+<?php $idx = 0 ?>
+<?php foreach ($softDeleteHash as $value => $text): ?>
     <?php if ($idx !== 0): ?>
         <span style="margin: 0 0.5rem;">|</span>
     <?php endif; ?>
 
-    <?php if ($softDelete === $row[1]): ?>
-        <?= $row[0] ?>
+    <?php if ($softDelete === $value): ?>
+        {{ $text }}
     <?php else: ?>
         <?php
         $url = route('admin.users.index') . '?'
             . http_build_query(
-                ['soft_delete' => $row[1]]
+                ['soft_delete' => $value]
                     + $data
             );
         ?>
-        <a href="<?= $url ?>" class="app-link-normal"><?= $row[0] ?></a>
+        <a href="{{ $url }}" class="app-link-normal">{{ $text }}</a>
     <?php endif; ?>
+    <?php $idx++ ?>
 <?php endforeach; ?>

@@ -1,7 +1,3 @@
-<?php
-
-use function SFW\Helpers\html_esc as h;
-?>
 <h3 class="app-h3">tweets</h3>
 
 <div>
@@ -17,9 +13,9 @@ use function SFW\Helpers\html_esc as h;
             <tbody>
                 <?php foreach ($tweets as $tweet): ?>
                     <tr class="app-table-row-data">
-                        <td class="app-table-cell"><?= h($tweet['content']) ?></td>
-                        <td class="app-table-cell"><?= $tweet['created_at'] ?? '' ?></td>
-                        <td class="app-table-cell"><?= $tweet['deleted_at'] ?? '' ?></td>
+                        <td class="app-table-cell">{{ $tweet['content'] }}</td>
+                        <td class="app-table-cell">{{ $tweet['created_at'] ?? '' }}</td>
+                        <td class="app-table-cell">{{ $tweet['deleted_at'] ?? '' }}</td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

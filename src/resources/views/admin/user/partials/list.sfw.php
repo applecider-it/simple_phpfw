@@ -1,6 +1,5 @@
 <?php
 
-use function SFW\Helpers\html_esc as h;
 use function SFW\Helpers\route;
 ?>
 <div class="app-table-wrap">
@@ -16,11 +15,11 @@ use function SFW\Helpers\route;
         <tbody>
             <?php foreach ($users as $user): ?>
                 <tr class="app-table-row-data">
-                    <td class="app-table-cell"><?= h($user['name'] ?? '') ?></td>
-                    <td class="app-table-cell"><?= h($user['email'] ?? '') ?></td>
-                    <td class="app-table-cell"><?= $user['deleted_at'] ?? '' ?></td>
+                    <td class="app-table-cell">{{ $user['name'] ?? '' }}</td>
+                    <td class="app-table-cell">{{ $user['email'] ?? '' }}</td>
+                    <td class="app-table-cell">{{ $user['deleted_at'] ?? '' }}</td>
                     <td class="app-table-cell" style="text-align:center;">
-                        <a href="<?= route('admin.users.edit', ['id' => $user['id']]) ?>" class="app-btn-primary">
+                        <a href="{{ route('admin.users.edit', ['id' => $user['id']]) }}" class="app-btn-primary">
                             更新
                         </a>
                     </td>

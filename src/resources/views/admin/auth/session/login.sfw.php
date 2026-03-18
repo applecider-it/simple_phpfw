@@ -12,12 +12,12 @@ use function SFW\Helpers\route;
             <?= $this->render('partials.form.csrf') ?>
             <div style="margin-top: 1rem;">
                 <label class="app-form-label">Email</label>
-                <input type="text" name="email" value="{{ $data['email'] }}" class="app-form-input">
+                <input type="text" name="email" value="{{ $email }}" class="app-form-input">
             </div>
 
             <div style="margin-top: 1rem;">
                 <label class="app-form-label">Password</label>
-                <input type="password" name="password" value="{{ $data['password'] }}" class="app-form-input">
+                <input type="password" name="password" value="{{ $password }}" class="app-form-input">
             </div>
             <div style="margin-top: 1rem;">
                 <button type="submit" class="app-btn-primary">ログイン</button>

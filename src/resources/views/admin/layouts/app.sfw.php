@@ -6,7 +6,7 @@ use SFW\Output\View\Layout;
 <html lang="ja">
 
 <head>
-    <?= $this->render('admin.layouts.partials.head', ['title' => $data['title'] ?? null]) ?>
+    <?= $this->render('admin.layouts.partials.head', ['title' => $title ?? null]) ?>
 </head>
 
 <body class="app-layout-body">
