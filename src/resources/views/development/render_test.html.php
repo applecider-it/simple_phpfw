@@ -40,10 +40,8 @@ $metaStyle = implode(
 
     <div>$this->data['id'] <?= h($this->data['id']) ?></div>
     <div>$data['id'] <?= h($data['id']) ?></div>
-    <div>$data['content'] <?= h($data['content']) ?></div>
     <div>$data['val1'] <?= h($data['val1'] ?? 'none') ?></div>
     <div>$id <?= h($id) ?></div>
-    <div>$content <?= h($content) ?></div>
     <div>$val1 <?= h($val1 ?? 'none') ?></div>
     <div>$data['data'] <?= h($data['data']) ?></div>
     <div>$data['meta'] <?= h($data['meta']) ?></div>

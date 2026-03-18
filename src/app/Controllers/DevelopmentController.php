@@ -54,7 +54,6 @@ class DevelopmentController extends Controller
             'development.render_test',
             [
                 'id' => $sampleService->sampleMethod(),
-                'content' => 'ページにcontentを指定した場合',
                 'meta' => 'ページにmetaを指定した場合',
                 'data' => 'ページにdataを指定した場合',
             ],
