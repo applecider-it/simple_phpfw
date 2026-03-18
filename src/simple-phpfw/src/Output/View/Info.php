@@ -21,7 +21,7 @@ class Info
     /** テンプレートファイルタイプリスト */
     private const FILE_TYPES = [
         'html',
-        'sfw.blade',
+        'sfw.blade',    // .bladeをつけないとエディタエラーが出る
     ];
 
     function __construct(View $view)

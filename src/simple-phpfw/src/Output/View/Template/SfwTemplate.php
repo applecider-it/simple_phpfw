@@ -39,19 +39,12 @@ class SfwTemplate
      * テンプレート変換
      * 
      * {{ $val }} -> <?= \SFW\Output\Html::esc($val) ?>
-     * {!! $val !!} -> <?= $val ?>
      */
     private function convertTemplate(string $templateData): string
     {
         $templateData = preg_replace(
             '/\{\{\s*(.*?)\s*\}\}/',
             '<?= \SFW\Output\Html::esc($1) ?>',
-            $templateData
-        );
-
-        $templateData = preg_replace(
-            '/\{\!\!\s*(.*?)\s*\!\!\}/',
-            '<?= $1 ?>',
             $templateData
         );
 

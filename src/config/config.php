@@ -12,6 +12,9 @@ $filePostfix = '20260303_0000';
 // アプリケーション独自の設定
 $app = (fn($env, $filePostfix) => include(__DIR__ . '/app.php'))($env, $filePostfix);
 
+// タイムゾーンの設定
+date_default_timezone_set('Asia/Tokyo');
+
 return [
     'debug' => $env['SFW_DEBUG'],
 
