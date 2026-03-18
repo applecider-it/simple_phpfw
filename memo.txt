@@ -85,6 +85,9 @@ php ./bin/console container
 
 php ./bin/console runner "print_r(App\Models\User::query()->one());"
 
+各種クリア
+
+php ./bin/console clear
 
 
 

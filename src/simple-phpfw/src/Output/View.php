@@ -12,15 +12,16 @@ class View
     /** 基準となるディレクトリパス。nullだとresources/viewsになる。 */
     private ?string $baseDir = null;
 
-    /** 共通変数 */
-    private array $data = [];
-
     /** テンプレート管理 */
     private View\Template $template;
+
+    /** テンプレート管理 */
+    private View\Loader $loader;
 
     function __construct()
     {
         $this->template = new View\Template($this);
+        $this->loader = new View\Loader($this);
     }
 
     /**
@@ -38,30 +39,7 @@ class View
      */
     private function includeTemplate(array $meta, array $data): string
     {
-        // 変数を退避
-        $___sfw__view__keep = [
-            'meta' => $meta,
-            'data' => $data,
-        ];
-
-        // 変数を展開
-        extract($data);
-
-        // 戻す
-        // $data, $meta変数は上書きされるので注意！
-        $data = $___sfw__view__keep['data'];
-        $meta = $___sfw__view__keep['meta'];
-
-        ob_start();
-        try {
-            include $meta['path'];
-        } catch (\Throwable $e) {
-            ob_end_clean();
-            throw $e;
-        }
-        $val = ob_get_clean();
-
-        return $val;
+        return $this->loader->includeTemplate($meta, $data);
     }
 
     /**
@@ -85,6 +63,6 @@ class View
      */
     public function appendCommonData(array $data): void
     {
-        $this->data = $data + $this->data;
+        $this->loader->data = $data + $this->loader->data;
     }
 }

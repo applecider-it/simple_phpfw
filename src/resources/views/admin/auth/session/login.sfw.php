@@ -1,14 +1,10 @@
-<?php
-
-use function SFW\Helpers\route;
-?>
 <h2 class="app-h2">admin.auth.session.login</h2>
 
 <?= $this->render('partials.message.flash') ?>
 
 <div>
     <div style="margin-top: 1rem;">
-        <form method="POST" action="{{ route('admin.login') }}">
+        <form method="POST" action="{{ $this->route('admin.login') }}">
             <?= $this->render('partials.form.csrf') ?>
             <div style="margin-top: 1rem;">
                 <label class="app-form-label">Email</label>
