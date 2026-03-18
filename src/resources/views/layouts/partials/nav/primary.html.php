@@ -9,9 +9,9 @@ $user = Auth::get();
 $prefix = Config::get('prefix');
 ?>
 <div class="app-layout-nav-primary">
-    <h1 class="app-h1"><?= Config::get('applicationName') ?></h1>
     <div class="app-layout-nav-menu-container">
         <div>
+            <h1 class="app-h1"><?= Config::get('applicationName') ?></h1>
             <a href="<?= route('index') ?>">Home</a>
             <a href="<?= $prefix ?>/tweets">Tweet</a>
             <a href="<?= $prefix ?>/tweets_js">Tweet(JS)</a>

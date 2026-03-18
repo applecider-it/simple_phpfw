@@ -7,10 +7,10 @@ use App\Services\AdminUser\AuthService as Auth;
 
 $adminUser = Auth::get();
 ?>
-<div class="app-layout-nav" style="background: #633;">
-    <h1 class="app-h1"><?= Config::get('applicationName') ?> Admin</h1>
+<div class="app-layout-nav" style="background: #aaa;">
     <div class="app-layout-nav-menu-container">
         <div>
+            <h1 class="app-h1"><?= Config::get('applicationName') ?></h1>
             <a href="<?= route('admin.index') ?>">ダッシュボード</a>
             <a href="<?= route('admin.users.index') ?>">ユーザー</a>
         </div>

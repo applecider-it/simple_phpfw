@@ -24,7 +24,7 @@ return [
     'prefix' => $prefix,
 
     // アプリケーション名
-    'applicationName' => 'Simple PHPFW Project',
+    'applicationName' => 'My Site',
 
     'lang' => 'ja',
 
