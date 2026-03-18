@@ -1,6 +1,6 @@
 <?php
 
-use SFW\Output\Html;
+use function SFW\Helpers\html_esc as h;
 use SFW\Core\Config;
 use function SFW\Helpers\route;
 ?>
@@ -16,7 +16,7 @@ use function SFW\Helpers\route;
 
             <div style="margin-top: 1rem;">
                 <label class="app-form-label">内容</label>
-                <input type="text" name="content" value="<?= Html::esc($data['content'] ?? '') ?>" class="app-form-input">
+                <input type="text" name="content" value="<?= h($data['content'] ?? '') ?>" class="app-form-input">
                 <?= $this->render('partials.validation.error', ['errors' => $data['errors'] ?? null, 'attribute' => 'content']) ?>
             </div>
 

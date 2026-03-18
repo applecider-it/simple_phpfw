@@ -1,6 +1,6 @@
 <?php
 
-use SFW\Output\Html;
+use function SFW\Helpers\html_esc as h;
 use SFW\Core\Config;
 use function SFW\Helpers\route;
 ?>
@@ -13,8 +13,8 @@ use function SFW\Helpers\route;
 
             <div style="margin-top: 1rem;">
                 <label class="app-form-label">内容</label>
-                <?= Html::esc($data['content'] ?? '') ?>
-                <input type="hidden" name="content" value="<?= Html::esc($data['content'] ?? '') ?>">
+                <?= h($data['content'] ?? '') ?>
+                <input type="hidden" name="content" value="<?= h($data['content'] ?? '') ?>">
             </div>
 
             <div style="margin-top: 1rem;">
