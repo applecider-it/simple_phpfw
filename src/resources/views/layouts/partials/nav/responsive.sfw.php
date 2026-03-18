@@ -1,7 +1,6 @@
 <?php
 
 use SFW\Core\Config;
-use function SFW\Helpers\html_esc as h;
 use function SFW\Helpers\route;
 use App\Services\User\AuthService as Auth;
 
@@ -9,7 +8,7 @@ $user = Auth::get();
 ?>
 <div class="app-layout-nav-responsive">
     <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div><a href="<?= route('index') ?>"><?= Config::get('applicationName') ?></a></div>
+        <div><a href="{{ route('index') }}">{{ Config::get('applicationName') }}</a></div>
         <div>
             <div id="app-nav-mobile-menu-button" style="cursor: pointer;">
                 <!-- Heroicons: Menu -->
@@ -20,17 +19,17 @@ $user = Auth::get();
         </div>
     </div>
     <div class="app-layout-nav-responsive-links" id="app-nav-mobile-menu-area" style="margin-top: 1rem;">
-        <a href="<?= route('index') ?>">Home</a>
+        <a href="{{ route('index') }}">Home</a>
         <a href="#">Tweet</a>
         <a href="#">Chat</a>
         <?php if ($user): ?>
-            <div style="margin: 1rem 0;">(Name: <?= h($user['name']) ?>)</div>
-            <a href="<?= route('logout') ?>" onclick="if (confirm('ログアウトしますか？')) document.getElementById('app_nav_logout_form').submit(); return false; ">Logout</a>
-            <form method="POST" action="<?= route('logout') ?>" id="app_nav_logout_form">
+            <div style="margin: 1rem 0;">{{ $user['name'] }}</div>
+            <a href="{{ route('logout') }}" onclick="if (confirm('ログアウトしますか？')) document.getElementById('app_nav_logout_form').submit(); return false; ">Logout</a>
+            <form method="POST" action="{{ route('logout') }}" id="app_nav_logout_form">
                 <?= $this->render('partials.form.csrf') ?>
             </form>
         <?php else: ?>
-            <a href="<?= route('login') ?>">Login</a>
+            <a href="{{ route('login') }}">Login</a>
         <?php endif ?>
     </div>
 </div>

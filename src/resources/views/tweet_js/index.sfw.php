@@ -10,9 +10,9 @@ use SFW\Core\Config;
 </script>
 
 <div id="tweet"
-    data-all="<?= Html::esc(json_encode([
+    data-all="{{ json_encode([
                     'token' => $token,
                     'host' => Config::get('app.ws_server_host'),
-                ])) ?>">
+                ]) }}">
     <?= $this->render('partials.message.loading') ?>
 </div>
