@@ -21,16 +21,15 @@ class Template
 
     /** テンプレートファイルタイプリスト */
     private const FILE_TYPES = [
-        'html', // HTMLテンプレート
-
-        'sfw.blade',    // 独自テンプレート（.bladeをつけないとエディタエラーが出る）
+        'html', // PHPテンプレート
+        'sfw', // 独自テンプレート
     ];
 
     function __construct(View $view)
     {
         $this->view = $view;
 
-        $this->templates['sfw.blade'] = new SfwTemplate;
+        $this->templates['sfw'] = new SfwTemplate;
     }
 
     /**

@@ -61,7 +61,7 @@ $codeStyle = implode(
         </div>
     </div>
 
-    <div style="{{ $metaStyle }}">
+    <div style="<?= $metaStyle ?>">
         <div>$meta['name']: {{ $meta['name'] }}</div>
         <div>$meta['baseDir']: {{ $meta['baseDir'] }}</div>
         <div>$meta['path']: {{ $meta['path'] }}</div>
@@ -73,11 +73,11 @@ $codeStyle = implode(
 
     <div>
         <div>ソース</div>
-        <pre style="{{ $codeStyle }}">{{ file_get_contents($meta['srcPath']) }}</pre>
+        <pre style="<?= $codeStyle ?>">{{ file_get_contents($meta['srcPath']) }}</pre>
     </div>
 
     <div>
         <div>テンポラリーファイル</div>
-        <pre style="{{ $codeStyle }}">{{ file_get_contents($meta['path']) }}</pre>
+        <pre style="<?= $codeStyle ?>">{{ file_get_contents($meta['path']) }}</pre>
     </div>
 </div>
