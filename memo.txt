@@ -181,3 +181,19 @@ php ./bin/console test --fw
 
 /database/sqls_another/をSFW_DATABASE_DATABASE_ANOTHERのDBで実行
 
+-----------------------------------
+
+URIにプレフィックスをつける場合の動作確認
+
+.env
+
+SFW_PREFIX=/public
+
+php -S localhost:9000 -t .
+
+http://localhost:9000/public
+
+http://localhost:9000/public/admin_secret
+
+
+

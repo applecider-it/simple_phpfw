@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SFW\Web;
 
-use SFW\Core\App;
+use SFW\Core\Config;
 use SFW\Data\Str;
 
 /**
@@ -84,6 +84,8 @@ class Router
     {
         isset($this->names[$name]) ?: throw new \Exception("not found route name. [ $name ]");
 
-        return Str::template($this->names[$name], $data);
+        $prefix = Config::get('prefix');
+
+        return $prefix . Str::template($this->names[$name], $data);
     }
 }

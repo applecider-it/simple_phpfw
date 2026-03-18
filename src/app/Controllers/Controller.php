@@ -9,6 +9,8 @@ use SFW\Output\Log;
 use SFW\Output\View;
 use SFW\Web\Location;
 
+use function SFW\Helpers\route;
+
 use App\Services\User\AuthService;
 
 /**
@@ -29,7 +31,7 @@ abstract class Controller extends BaseController
         if (($currentRoute['options']['name'] ?? null) === 'development.redirect_test') {
             Log::info('redirect_test');
 
-            Location::redirect('/');
+            Location::redirect(route('index'));
 
             Log::info('このログは出力されない。');
         }

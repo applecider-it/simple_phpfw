@@ -82,7 +82,7 @@ class TweetController extends Controller
 
         Flash::set('notice', '投稿しました。');
 
-        Location::redirect("/tweets");
+        Location::redirect(Config::get('prefix') . "/tweets");
     }
 
     /** 共通情報 */

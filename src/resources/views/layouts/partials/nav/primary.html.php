@@ -6,15 +6,16 @@ use function SFW\Helpers\route;
 use App\Services\User\AuthService as Auth;
 
 $user = Auth::get();
+$prefix = Config::get('prefix');
 ?>
 <div class="app-layout-nav-primary">
     <h1 class="app-h1"><?= Config::get('applicationName') ?></h1>
     <div class="app-layout-nav-menu-container">
         <div>
             <a href="<?= route('index') ?>">Home</a>
-            <a href="/tweets">Tweet</a>
-            <a href="/tweets_js">Tweet(JS)</a>
-            <a href="/chat">Chat</a>
+            <a href="<?= $prefix ?>/tweets">Tweet</a>
+            <a href="<?= $prefix ?>/tweets_js">Tweet(JS)</a>
+            <a href="<?= $prefix ?>/chat">Chat</a>
         </div>
         <div>
             <?php if ($user): ?>

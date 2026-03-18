@@ -1,7 +1,9 @@
 <?php
 
 use function SFW\Helpers\html_esc as h;
+use SFW\Core\Config;
 
+$prefix = Config::get('prefix');
 ?>
 <h2 class="app-h2">development.view_test</h2>
 <div>
@@ -15,7 +17,7 @@ use function SFW\Helpers\html_esc as h;
 
     <h3 style="margin-top: 2rem;">フォーム動作確認</h3>
     <div style="border: 1px solid #aaa; padding: 1rem;">
-        <form method="POST" action="/development/view_test_post">
+        <form method="POST" action="<?= $prefix ?>/development/view_test_post">
             <?= $this->render('partials.form.csrf') ?>
             <div style="margin-top: 1rem">
                 <label for="list_val" class="app-form-label">リスト動作確認</label>

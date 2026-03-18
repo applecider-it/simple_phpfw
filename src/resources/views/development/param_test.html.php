@@ -1,6 +1,9 @@
 <?php
 
 use SFW\Output\Html;
+use SFW\Core\Config;
+
+$prefix = Config::get('prefix');
 ?>
 <h2 class="app-h2">development.param_test</h2>
 <div>
@@ -8,7 +11,7 @@ use SFW\Output\Html;
     <div>$data['val1'] <?= Html::esc($data['val1']) ?></div>
 </div>
 <div style="margin-top: 5rem;">
-    <form method="POST" action="/development/param_test/xyz">
+    <form method="POST" action="<?= $prefix ?>/development/param_test/xyz">
         <?= $this->render('partials.form.csrf') ?>
 
         <input type="text" name="val1" value="バリュー１">

@@ -1,4 +1,5 @@
 import { clone } from "@/services/data/json";
+import { getMetaJson } from "@/services/data/html";
 
 /**
  * REST関連
@@ -10,8 +11,10 @@ export function toQueryString(params) {
 }
 
 /** Jsonデータを送受信 */
-export async function sendData(method, url, argData = {}) {
+export async function sendData(method, uri, argData = {}) {
   const data = clone(argData);
+
+  const prefix = getMetaJson('app').prefix;
 
   const params = {
     method: method,
@@ -27,7 +30,7 @@ export async function sendData(method, url, argData = {}) {
     params.headers["X-CSRF-TOKEN"] = token;
   }
 
-  const res = await fetch(url, params);
+  const res = await fetch(prefix + uri, params);
 
   // JSONとして受け取る
   const result = await res.json();

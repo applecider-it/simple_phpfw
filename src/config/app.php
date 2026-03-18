@@ -5,7 +5,7 @@
  */
 
 // インポートマップ情報
-$importmap = (fn($filePostfix) => include(__DIR__ . '/importmap.php'))($filePostfix);
+$importmap = (fn($filePostfix, $prefix) => include(__DIR__ . '/importmap.php'))($filePostfix, $prefix);
 
 return [
     // 複数DB実装例

@@ -1,4 +1,5 @@
 import { toQueryString, sendData } from "@/services/api/rest";
+import { getMetaJson } from "@/services/data/html";
 
 /**
  * Javascriptテスト用クラス
@@ -69,7 +70,9 @@ export default class JavascriptTest {
    *
    * 動作確認のため、あえて、csrfトークンを除外している送信
    */
-  async sendDataNosession(method, url, data) {
+  async sendDataNosession(method, uri, data) {
+    const prefix = getMetaJson("app").prefix;
+
     const params = {
       method: method,
       headers: {
@@ -78,7 +81,7 @@ export default class JavascriptTest {
       body: JSON.stringify(data),
     };
 
-    const res = await fetch(url, params);
+    const res = await fetch(prefix + uri, params);
 
     // JSONとして受け取る
     const result = await res.json();

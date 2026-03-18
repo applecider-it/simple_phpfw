@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SFW\Web\Router;
 
 use SFW\Core\App;
+use SFW\Core\Config;
 use SFW\Web\Json;
 use SFW\Web\Session;
 use SFW\Web\Csrf;
@@ -24,7 +25,11 @@ class Dispatcher
     public function dispatch(): mixed
     {
         $method = $_SERVER['REQUEST_METHOD'];
-        $uri    = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
+        $prefix = Config::get('prefix');
+        $uri = substr($uri, strlen($prefix));
+        if ($uri === '') $uri = '/';
 
         $routes = $this->router->routes();
 

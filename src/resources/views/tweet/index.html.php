@@ -2,6 +2,8 @@
 
 use SFW\Output\Html;
 use SFW\Core\Config;
+
+$prefix = Config::get('prefix');
 ?>
 <h2 class="app-h2">tweet.index</h2>
 
@@ -10,7 +12,7 @@ use SFW\Core\Config;
     <?= $this->render('partials.message.flash') ?>
 
     <div>
-        <form method="POST" action="/tweets">
+        <form method="POST" action="<?= $prefix ?>/tweets">
             <?= $this->render('partials.form.csrf') ?>
 
             <div style="margin-top: 1rem;">

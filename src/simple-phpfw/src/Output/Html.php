@@ -22,6 +22,8 @@ class Html
     {
         $filePostfix = Config::get('filePostfix');
 
-        return $url . '?' . $filePostfix;
+        $prefix = Config::get('prefix');
+
+        return $prefix . $url . '?' . $filePostfix;
     }
 }
