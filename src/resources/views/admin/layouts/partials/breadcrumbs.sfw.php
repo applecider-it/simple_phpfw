@@ -1,7 +1,6 @@
 <?php
 
 use SFW\Core\App;
-use function SFW\Helpers\html_esc as h;
 ?>
 <?php if (isset($data['breadcrumbs'])): ?>
     <?php
@@ -14,10 +13,10 @@ use function SFW\Helpers\html_esc as h;
                 <span style="padding: 0 0.5rem;"> > </span>
             <?php endif; ?>
             <?php if ($idx === count($arr) - 1): ?>
-                <?= h($row['name']) ?>
+                {{ $row['name'] }}
             <?php else: ?>
-                <a href="<?= h($row['url']) ?>" class="app-link-normal">
-                    <?= h($row['name']) ?>
+                <a href="{{ $row['url'] }}" class="app-link-normal">
+                    {{ $row['name'] }}
                 </a>
             <?php endif; ?>
         <?php endforeach; ?>

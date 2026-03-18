@@ -10,14 +10,14 @@ $adminUser = Auth::get();
 
 <?= $this->render('partials.form.csrf_meta') ?>
 
-<title><?= $data['title'] ?? Config::get('applicationName') ?> Admin</title>
+<title>{{ $data['title'] ?? Config::get('applicationName') }} Admin</title>
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
-<link rel="stylesheet" href="<?= Html::file('/css/admin.css') ?>">
+<link rel="stylesheet" href="{{ Html::file('/css/admin.css') }}">
 
 <?php if ($adminUser): ?>
-    <meta name="admin-user" data-json="<?= Html::esc(json_encode($adminUser)) ?>">
+    <meta name="admin-user" data-json="{{ json_encode($adminUser) }}">
 <?php endif; ?>
 
 <?= $this->render('partials.app.meta') ?>
