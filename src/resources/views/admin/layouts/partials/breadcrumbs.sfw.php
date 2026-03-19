@@ -1,10 +1,6 @@
-<?php
-
-use SFW\Core\App;
-?>
 <?php if (isset($breadcrumbs)): ?>
     <?php
-    $arr = App::get('breadcrumbs')->get(...$breadcrumbs);
+    $arr = $this->app('breadcrumbs')->get(...$breadcrumbs);
     ?>
 
     <div style="padding: 1rem;">

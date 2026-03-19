@@ -1,7 +1,3 @@
-<?php
-
-use function SFW\Helpers\route;
-?>
 <div class="app-table-wrap">
     <table style="margin-top: 1rem;" class="app-table">
         <thead>
@@ -19,7 +15,7 @@ use function SFW\Helpers\route;
                     <td class="app-table-cell">{{ $user['email'] ?? '' }}</td>
                     <td class="app-table-cell">{{ $user['deleted_at'] ?? '' }}</td>
                     <td class="app-table-cell" style="text-align:center;">
-                        <a href="{{ route('admin.users.edit', ['id' => $user['id']]) }}" class="app-btn-primary">
+                        <a href="{{ $this->route('admin.users.edit', ['id' => $user['id']]) }}" class="app-btn-primary">
                             更新
                         </a>
                     </td>

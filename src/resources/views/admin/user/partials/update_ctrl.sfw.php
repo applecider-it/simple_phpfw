@@ -1,7 +1,3 @@
-<?php
-
-use function SFW\Helpers\route;
-?>
 <div>
     <h3>操作</h3>
 
@@ -9,7 +5,7 @@ use function SFW\Helpers\route;
         <?php if ($deleted_at): ?>
             <form
                 method="POST"
-                action="{{ route('admin.users.restore', ['id' => $data['id']]) }}"
+                action="{{ $this->route('admin.users.restore', ['id' => $data['id']]) }}"
                 onsubmit="return confirm('復元しますか？')"
                 style="margin:0;">
                 <?= $this->render('partials.form.csrf') ?>
@@ -20,7 +16,7 @@ use function SFW\Helpers\route;
         <?php else: ?>
             <form
                 method="POST"
-                action="{{ route('admin.users.destroy', ['id' => $data['id']]) }}"
+                action="{{ $this->route('admin.users.destroy', ['id' => $data['id']]) }}"
                 onsubmit="return confirm('論理削除しますか？')"
                 style="margin:0;">
                 <?= $this->render('partials.form.csrf') ?>

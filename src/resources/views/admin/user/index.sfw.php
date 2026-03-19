@@ -1,7 +1,6 @@
 <?php
 
 use SFW\Output\View\Layout;
-use function SFW\Helpers\route;
 
 $data[Layout::KEY_LAYOUT_OPTIONS]->breadcrumbs = ['admin.users.index'];
 ?>
@@ -9,7 +8,7 @@ $data[Layout::KEY_LAYOUT_OPTIONS]->breadcrumbs = ['admin.users.index'];
 
 <div>
     <div>
-        <a href="{{ route('admin.users.create') }}" class="app-btn-primary">
+        <a href="{{ $this->route('admin.users.create') }}" class="app-btn-primary">
             新規作成
         </a>
     </div>

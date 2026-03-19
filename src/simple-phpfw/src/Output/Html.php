@@ -18,12 +18,12 @@ class Html
     }
 
     /** ファイル読み込みの際のキャッシュ対応 */
-    public static function file(string $url): string
+    public static function file(string $uri): string
     {
         $filePostfix = Config::get('filePostfix');
 
         $prefix = Config::get('prefix');
 
-        return $prefix . $url . '?' . $filePostfix;
+        return $prefix . $uri . '?' . $filePostfix;
     }
 }

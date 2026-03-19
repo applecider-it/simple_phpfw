@@ -1,7 +1,5 @@
 <?php
 
-use function SFW\Helpers\route;
-
 $softDeleteHash = [
     'all' => '全て',
     'kept' => '論理削除を除外',
@@ -21,7 +19,7 @@ $softDelete = $data['soft_delete'] ?? 'all';
         {{ $text }}
     <?php else: ?>
         <?php
-        $url = route('admin.users.index') . '?'
+        $url = $this->route('admin.users.index') . '?'
             . http_build_query(
                 ['soft_delete' => $value]
                     + $data
