@@ -32,8 +32,11 @@ $metaStyle = implode(
     <div style="<?= $this->h($metaStyle) ?>">
         <div>$meta['name']: {{ $meta['name'] }}</div>
         <div>$meta['baseDir']: {{ $meta['baseDir'] }}</div>
-        <div>$meta['path']: {{ $meta['path'] }}</div>
         <div>$meta['type']: {{ $meta['type'] }}</div>
+        <div>$meta['path']: {{ $meta['path'] }}</div>
+        <div>$meta['srcPath']: {{ $meta['srcPath'] }}</div>
+        <div>ソース更新日時: {{ date('Y-m-d H:i:s', filemtime($meta['srcPath'])) }}</div>
+        <div>テンポラリーファイル更新日時: {{ date('Y-m-d H:i:s', filemtime($meta['path'])) }}</div>
     </div>
 
     <div>$this->data['id'] {{ $this->data['id'] }}</div>
@@ -58,8 +61,11 @@ $metaStyle = implode(
     <div style="<?= $this->h($metaStyle) ?>">
         <div>$meta['name']: {{ $meta['name'] }}</div>
         <div>$meta['baseDir']: {{ $meta['baseDir'] }}</div>
-        <div>$meta['path']: {{ $meta['path'] }}</div>
         <div>$meta['type']: {{ $meta['type'] }}</div>
+        <div>$meta['path']: {{ $meta['path'] }}</div>
+        <div>$meta['srcPath']: {{ $meta['srcPath'] }}</div>
+        <div>ソース更新日時: {{ date('Y-m-d H:i:s', filemtime($meta['srcPath'])) }}</div>
+        <div>テンポラリーファイル更新日時: {{ date('Y-m-d H:i:s', filemtime($meta['path'])) }}</div>
     </div>
 
     <div style="<?= $this->h($partialStyle) ?>">
@@ -76,7 +82,10 @@ $metaStyle = implode(
     <div style="<?= $this->h($metaStyle) ?>">
         <div>$meta['name']: {{ $meta['name'] }}</div>
         <div>$meta['baseDir']: {{ $meta['baseDir'] }}</div>
-        <div>$meta['path']: {{ $meta['path'] }}</div>
         <div>$meta['type']: {{ $meta['type'] }}</div>
+        <div>$meta['path']: {{ $meta['path'] }}</div>
+        <div>$meta['srcPath']: {{ $meta['srcPath'] }}</div>
+        <div>ソース更新日時: {{ date('Y-m-d H:i:s', filemtime($meta['srcPath'])) }}</div>
+        <div>テンポラリーファイル更新日時: {{ date('Y-m-d H:i:s', filemtime($meta['path'])) }}</div>
     </div>
 </div>

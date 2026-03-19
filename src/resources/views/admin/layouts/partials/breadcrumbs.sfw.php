@@ -1,4 +1,4 @@
-<?php if (isset($breadcrumbs)): ?>
+<?php if ($breadcrumbs): ?>
     <?php
     $arr = $this->app('breadcrumbs')->get(...$breadcrumbs);
     ?>
