@@ -29,6 +29,7 @@
         border: 1px solid #aaa;
         padding: 0.5rem;
         overflow-y: auto;
+        white-space: pre-wrap;
     }
 
     footer {
