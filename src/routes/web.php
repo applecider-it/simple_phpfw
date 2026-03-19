@@ -47,23 +47,23 @@ $router->post('/chat/store_redis', [ChatController::class, 'store_redis'], ['aut
     $prefix = '/development';
     $controller = DevelopmentController::class;
 
-    $router->get($prefix, [$controller, 'index']);
-    $router->get($prefix . '/view_test', [$controller, 'view_test']);
-    $router->post($prefix . '/view_test_post', [$controller, 'view_test_post']);
-    $router->get($prefix . '/render_test', [$controller, 'render_test']);
-    $router->get($prefix . '/template_test', [$controller, 'template_test']);
-    $router->get($prefix . '/param_test/{id}', [$controller, 'param_test']);
+    $router->get($prefix, [$controller, 'index'], ['name' => 'development.index']);
+    $router->get($prefix . '/view_test', [$controller, 'view_test'], ['name' => 'development.view_test']);
+    $router->post($prefix . '/view_test_post', [$controller, 'view_test_post'], ['name' => 'development.view_test_post']);
+    $router->get($prefix . '/render_test', [$controller, 'render_test'], ['name' => 'development.render_test']);
+    $router->get($prefix . '/template_test', [$controller, 'template_test'], ['name' => 'development.template_test']);
+    $router->get($prefix . '/param_test/{id}', [$controller, 'param_test'], ['name' => 'development.param_test']);
     $router->post($prefix . '/param_test/{id}', [$controller, 'param_test']);
-    $router->get($prefix . '/database_test', [$controller, 'database_test']);
-    $router->get($prefix . '/validation_test', [$controller, 'validation_test']);
+    $router->get($prefix . '/database_test', [$controller, 'database_test'], ['name' => 'development.database_test']);
+    $router->get($prefix . '/validation_test', [$controller, 'validation_test'], ['name' => 'development.validation_test']);
     $router->get($prefix . '/redirect_test', [$controller, 'redirect_test'], ['name' => 'development.redirect_test']);
-    $router->get($prefix . '/exeption_test', [$controller, 'exeption_test']);
-    $router->get($prefix . '/javascript_test', [$controller, 'javascript_test'], ['auth' => 'user']);
+    $router->get($prefix . '/exeption_test', [$controller, 'exeption_test'], ['name' => 'development.exeption_test']);
+    $router->get($prefix . '/javascript_test', [$controller, 'javascript_test'], ['auth' => 'user', 'name' => 'development.javascript_test']);
     $router->post($prefix . '/api_post', [$controller, 'api_post'], ['auth' => 'user']);
     $router->get($prefix . '/api_get', [$controller, 'api_get'], ['auth' => 'user']);
     $router->post($prefix . '/api_post_nosession', [$controller, 'api_post_nosession'], ['nosession' => true]);
-    $router->get($prefix . '/design', [$controller, 'design']);
-    $router->get($prefix . '/php_test', [$controller, 'php_test']);
+    $router->get($prefix . '/design', [$controller, 'design'], ['name' => 'development.design']);
+    $router->get($prefix . '/php_test', [$controller, 'php_test'], ['name' => 'development.php_test']);
 })($router);
 
 // 別ファイルにしているルート読み込み
