@@ -10,7 +10,7 @@
 
     <main>
         <h2>404 Error</h2>
-        <pre class="description">{{ $data['e'] ?? '' }}</pre>
+        <pre class="description"><?= $this->h($data['e'] ?? '') ?></pre>
     </main>
 
     <?= $this->render('layouts.partials.footer') ?>
