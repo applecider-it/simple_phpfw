@@ -1,8 +1,5 @@
 <?php
-
-use SFW\Core\Config;
-
-$prefix = Config::get('prefix');
+$prefix = $this->config('prefix');
 ?>
 <h2 class="app-h2">home.index</h2>
 

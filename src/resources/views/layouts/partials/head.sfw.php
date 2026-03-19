@@ -1,7 +1,5 @@
 <?php
 
-use SFW\Core\Config;
-use SFW\Output\Html;
 use App\Services\User\AuthService as Auth;
 
 $user = Auth::get();
@@ -10,11 +8,11 @@ $user = Auth::get();
 
 <?= $this->render('partials.form.csrf_meta') ?>
 
-<title>{{ $data['title'] ?? Config::get('applicationName') }}</title>
+<title>{{ $data['title'] ?? $this->config('applicationName') }}</title>
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
-<link rel="stylesheet" href="{{ Html::file('/css/app.css') }}">
+<link rel="stylesheet" href="{{ $this->file('/css/app.css') }}">
 
 <?php if ($user): ?>
     <meta name="user" data-json="{{ json_encode($user) }}">
@@ -22,7 +20,7 @@ $user = Auth::get();
 
 <?= $this->render('partials.app.meta') ?>
 
-<script type="importmap"><?= json_encode(Config::get('app.importmap.app')) ?></script>
+<script type="importmap"><?= json_encode($this->config('app.importmap.app')) ?></script>
 <script type="module">
     import "@/services/app/setup-app";
 </script>

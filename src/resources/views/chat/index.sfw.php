@@ -1,8 +1,3 @@
-<?php
-
-use SFW\Core\Config;
-use function SFW\Helpers\route;
-?>
 <script type="module">
     import "@/services/chat/setup-chat";
 </script>
@@ -27,17 +22,19 @@ use function SFW\Helpers\route;
             <?php if ($key === $room): ?>
                 <span>{{ $val }}</span>
             <?php else: ?>
-                <a href="{{ route('chat.index') . '?room=' . $key }}" class="app-link-normal">{{ $val }}</a>
+                <a href="{{ $this->route('chat.index') . '?room=' . $key }}" class="app-link-normal">{{ $val }}</a>
             <?php endif; ?>
         <?php endforeach; ?>
     </div>
 
     <div id="chat"
-        data-all="{{ json_encode([
-                        'token' => $token,
-                        'room' => $room,
-                        'host' => Config::get('app.ws_server_host'),
-                    ]) }}">
+        data-all="{{
+            json_encode([
+                'token' => $token,
+                'room' => $room,
+                'host' => $this->config('app.ws_server_host'),
+            ])
+        }}">
         <?= $this->render('partials.message.loading') ?>
     </div>
 
