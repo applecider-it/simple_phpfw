@@ -15,7 +15,9 @@ $getRootPrevious = function ($e) {
     <div>
         <?php if ($srcPath): ?>
             <div>Source: <?= $this->h($srcPath) ?></div>
-            <div>Exception: <?= $this->h($rootPrevious->getFile()) ?> (<?= $rootPrevious->getLine() ?>)</div>
+            <div style="margin-top: 0.5rem;">Exception:</div>
+            <div><?= $this->h(get_class($rootPrevious)) ?>: <?= $this->h($rootPrevious->getMessage()) ?> in</div>
+            <div><?= $this->h($rootPrevious->getFile()) ?> (<?= $rootPrevious->getLine() ?>)</div>
         <?php endif; ?>
         <pre class="description"><?= $this->h($rootPrevious) ?></pre>
     </div>
