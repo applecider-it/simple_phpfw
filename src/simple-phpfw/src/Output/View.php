@@ -31,14 +31,6 @@ class View
     {
         $meta = $this->template->renderInfo($name);
 
-        return $this->includeTemplate($meta, $data);
-    }
-
-    /**
-     * アウトバッファーを使い、テンプレート読み込み
-     */
-    private function includeTemplate(array $meta, array $data): string
-    {
         return $this->loader->includeTemplate($meta, $data);
     }
 

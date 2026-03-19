@@ -16,6 +16,7 @@ class SfwTemplate extends Base
      */
     public function convertTemplate(string $templateData): string
     {
+        /* {{ $val }} -> <?= \SFW\Output\Html::esc($val) ?> */
         $templateData = preg_replace(
             '/\{\{\s*(.*?)\s*\}\}/s',
             '<?= $this->h($1) ?>',

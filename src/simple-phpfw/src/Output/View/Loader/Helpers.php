@@ -13,20 +13,28 @@ use SFW\Core\Config;
  */
 trait Helpers
 {
+    /**
+     * 描画して文字列を返す
+     */
+    private function render(string $name, array $data = []): string
+    {
+        return $this->view->render($name, $data);
+    }
+
     /** HTMLエスケープ */
-    function h(mixed $val): string
+    private function h(mixed $val): string
     {
         return Html::esc($val);
     }
 
     /** ファイル読み込みの際のキャッシュ対応 */
-    public static function file(string $uri): string
+    private function file(string $uri): string
     {
         return Html::file($uri);
     }
 
     /** ルート取得 */
-    function route(string $name, array $data = []): string
+    private function route(string $name, array $data = []): string
     {
         /** @var \SFW\Web\Router */
         $router = App::get('router');
@@ -34,13 +42,13 @@ trait Helpers
     }
 
     /** シングルトン取得 */
-    public static function app(string $key): mixed
+    private function app(string $key): mixed
     {
         return App::get($key);
     }
 
     /** 設定取得 */
-    public static function config(string $key): mixed
+    private function config(string $key): mixed
     {
         return Config::get($key);
     }

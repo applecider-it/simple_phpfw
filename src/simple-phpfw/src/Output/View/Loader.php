@@ -25,14 +25,6 @@ class Loader
     }
 
     /**
-     * 描画して文字列を返す（テンプレート内からの利用のみ）
-     */
-    public function render(string $name, array $data = []): string
-    {
-        return $this->view->render($name, $data);
-    }
-
-    /**
      * アウトバッファーを使い、テンプレート読み込み
      */
     public function includeTemplate(array $meta, array $data): string

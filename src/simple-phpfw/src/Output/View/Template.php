@@ -35,6 +35,8 @@ class Template
     /**
      * 描画情報を返す
      * 
+     * 必要な場合は、テンポラリーファイルを生成する。
+     * 
      * テンプレートがないときは例外
      * 
      * 戻り値  
@@ -124,7 +126,7 @@ class Template
         }
 
         return [
-            'path' => $tmpPath, // Viewクラスから読み込まれるのはテンポラリーファイルのほう
+            'path' => $tmpPath, // SFW\View\Loaderクラスから読み込まれるのはテンポラリーファイルのほう
             'srcPath' => $path,
         ];
     }
