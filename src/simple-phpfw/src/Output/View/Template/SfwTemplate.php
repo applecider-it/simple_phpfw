@@ -18,7 +18,7 @@ class SfwTemplate extends Base
     {
         $templateData = preg_replace(
             '/\{\{\s*(.*?)\s*\}\}/s',
-            '<?= \SFW\Output\Html::esc($1) ?>',
+            '<?= $this->h($1) ?>',
             $templateData
         );
 
