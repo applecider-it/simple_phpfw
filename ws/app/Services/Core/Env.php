@@ -30,7 +30,7 @@ class Env
             $key = trim($name);
 
             // 環境変数を優先する
-            $data[$key] = (getenv($key)) ? getenv($key) : self::strToValue($value);
+            $data[$key] = self::strToValue((getenv($key) !== false ? getenv($key) : $value));
         }
 
         return $data;
