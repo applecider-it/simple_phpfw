@@ -12,11 +12,11 @@ class SfwTemplate extends Base
     /**
      * テンプレート変換
      * 
-     * {{ $val }} -> <?= \SFW\Output\Html::esc($val) ?>
+     * {{ $val }} -> <?= $this->h($val) ?>
      */
     public function convertTemplate(string $templateData): string
     {
-        /* {{ $val }} -> <?= \SFW\Output\Html::esc($val) ?> */
+        /* {{ $val }} -> <?= $this->h($val) ?> */
         $templateData = preg_replace(
             '/\{\{\s*(.*?)\s*\}\}/s',
             '<?= $this->h($1) ?>',

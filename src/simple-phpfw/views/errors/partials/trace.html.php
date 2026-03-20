@@ -1,31 +1,50 @@
 <?php
-$getRootPrevious = function ($e) {
-    while ($e->getPrevious() !== null) {
-        $e = $e->getPrevious();
-    }
-    return $e;
-}
+
+use SFW\Exceptions\Trace;
+
+$exceptions = Trace::getExceptions($data['e']);
+
+$isViewException = $data['e'] instanceof SFW\Exceptions\View;
+
+$exception = $exceptions[count($exceptions) - 1];
 ?>
-<?php if ($data['e'] instanceof SFW\Exceptions\View): ?>
-    <?php $meta = $data['e']->meta(); ?>
-    <?php $srcPath = $meta['srcPath'] ?? null; ?>
-    <?php $rootPrevious = $getRootPrevious($data['e']); ?>
+<?php if ($isViewException): ?>
+    <?php
+    $meta = $data['e']->meta();
+    $srcPath = $meta['srcPath'] ?? null;
+    ?>
 
-    <h3>View Error</h3>
-    <div>
+    <h3>View Exception</h3>
+    <div style="margin-bottom: 4rem;">
         <?php if ($srcPath): ?>
-            <div>Source: <?= $this->h($srcPath) ?></div>
-            <div style="margin-top: 0.5rem;">Exception:</div>
-            <div><?= $this->h(get_class($rootPrevious)) ?>: <?= $this->h($rootPrevious->getMessage()) ?> in</div>
-            <div><?= $this->h($rootPrevious->getFile()) ?> (<?= $rootPrevious->getLine() ?>)</div>
+            <div><?= $this->h(get_class($exception)) ?>: <?= $this->h($exception->getMessage()) ?> in</div>
+            <div><?= $this->h($srcPath) ?> (<?= $exception->getLine() ?>)</div>
+            <?= $this->render('errors.partials.lines', [
+                'srcPath' => $srcPath,
+                'srcLine' => $exception->getLine(),
+            ]) ?>
         <?php endif; ?>
-        <pre class="description"><?= $this->h($rootPrevious) ?></pre>
     </div>
-
-    <h3>All Errors</h3>
-    <div>
-        <pre class="description"><?= $this->h($data['e']) ?></pre>
-    </div>
-<?php else: ?>
-    <pre class="description"><?= $this->h($data['e']) ?></pre>
 <?php endif; ?>
+
+<h3>Exception</h3>
+<div>
+    <div><?= $this->h(get_class($exception)) ?>: <?= $this->h($exception->getMessage()) ?> in</div>
+    <div><?= $this->h($exception->getFile()) ?> (<?= $exception->getLine() ?>)</div>
+    <?= $this->render('errors.partials.lines', [
+        'srcPath' => $exception->getFile(),
+        'srcLine' => $exception->getLine(),
+    ]) ?>
+    <pre class="description"><?= $this->h($exception->getTraceAsString()) ?></pre>
+</div>
+
+<h3 style="margin-top: 4rem;">All Exceptions</h3>
+<div style="display:flex; flex-direction:column; gap:1rem;">
+    <?php foreach ($exceptions as $exception): ?>
+        <div>
+            <div><?= $this->h(get_class($exception)) ?>: <?= $this->h($exception->getMessage()) ?> in</div>
+            <div><?= $this->h($exception->getFile()) ?> (<?= $exception->getLine() ?>)</div>
+            <pre class="description"><?= $this->h($exception->getTraceAsString()) ?></pre>
+        </div>
+    <?php endforeach; ?>
+</div>
