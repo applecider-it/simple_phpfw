@@ -2,7 +2,7 @@
 
 use SFW\Data\File;
 
-$lines = File::getLinesAround($srcPath, $srcLine);
+$lines = File::getLinesAround($srcPath, $srcLine - 1);
 
 $html = '';
 foreach ($lines as $idx => $line) {
