@@ -30,7 +30,7 @@
         padding: 0.5rem;
         overflow-y: auto;
         white-space: pre-wrap;
-        max-height: 10rem;
+        max-height: 15rem;
     }
 
     .lines {

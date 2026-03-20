@@ -1,8 +1,8 @@
 <?php
 
-use SFW\Exceptions\Trace;
+use SFW\Data\File;
 
-$lines = Trace::getLinesAround($srcPath, $srcLine);
+$lines = File::getLinesAround($srcPath, $srcLine);
 
 $html = '';
 foreach ($lines as $idx => $line) {

@@ -2,25 +2,13 @@
 
 declare(strict_types=1);
 
-namespace SFW\Exceptions;
+namespace SFW\Data;
 
 /**
- * トレース用
+ * ファイル関連
  */
-class Trace
+class File
 {
-    /** 全ての例外をリストにする */
-    public static function getExceptions(\Throwable $e): array
-    {
-        $list = [];
-        $list[] = $e;
-        while ($e->getPrevious() !== null) {
-            $e = $e->getPrevious();
-            $list[] = $e;
-        }
-        return $list;
-    }
-
     /** ファイルを読み込んで、指定行数の範囲だけ配列で取得 */
     public static function getLinesAround($filePath, $targetLine, $range = 5)
     {

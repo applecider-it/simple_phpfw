@@ -28,4 +28,10 @@ class Path
 
         return $iterator;
     }
+
+    /** Viewのテンポラリーファイルか返す */
+    public static function isViewTemporaryPath(string $path): bool
+    {
+        return str_contains($path, '/storage/views/');
+    }
 }
