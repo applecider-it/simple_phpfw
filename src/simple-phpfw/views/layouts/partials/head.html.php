@@ -40,6 +40,14 @@
         white-space: pre-wrap;
     }
 
+    #trace-all-exceptions-box {
+        display: none;
+    }
+
+    #trace-all-exceptions-box.active {
+        display: block;
+    }
+
     footer {
         background: #eee;
         text-align: center;
