@@ -28,7 +28,24 @@ class TweetController extends Controller
     /** 一覧画面 */
     public function index()
     {
-        return $this->render('tweet.index', $this->getCommonInfo());
+        $tweets = Tweet::query()
+            ->order("id desc")
+            ->limit(10)
+            ->all();
+
+        Tweet::withUser($tweets);
+
+        return $this->render('tweet.index', compact('tweets'));
+    }
+
+    /** 新規作成画面 */
+    public function create()
+    {
+        $initialData = [
+            'content' => '',
+        ];
+
+        return $this->render('tweet.create', $initialData);
     }
 
     /** 登録処理 */
@@ -56,7 +73,7 @@ class TweetController extends Controller
 
             $errors = $v->errors();
 
-            return $this->render('tweet.index', $form + ['errors' => $errors] + $this->getCommonInfo());
+            return $this->render('tweet.create', $form + ['errors' => $errors]);
         } else {
             // エラーがないとき
 
@@ -66,11 +83,11 @@ class TweetController extends Controller
                 if ($confirm) {
                     // 確認へ遷移するとき
 
-                    return $this->render('tweet.confirm', $form + $this->getCommonInfo());
+                    return $this->render('tweet.confirm', $form);
                 } else {
                     // フォームに戻るとき
 
-                    return $this->render('tweet.index', $form + $this->getCommonInfo());
+                    return $this->render('tweet.create', $form);
                 }
             }
         }
@@ -85,18 +102,5 @@ class TweetController extends Controller
         Flash::set('notice', '投稿しました。');
 
         Location::redirect(route('tweets.index'));
-    }
-
-    /** 共通情報 */
-    private function getCommonInfo()
-    {
-        $tweets = Tweet::query()
-            ->order("id desc")
-            ->limit(10)
-            ->all();
-
-        Tweet::withUser($tweets);
-
-        return compact('tweets');
     }
 }

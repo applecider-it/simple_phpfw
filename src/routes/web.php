@@ -27,7 +27,8 @@ $router->post('/chat/store_redis', [ChatController::class, 'store_redis'], ['aut
     $controller = TweetController::class;
 
     $router->get($prefix, [$controller, 'index'], $options + ['name' => 'tweets.index']);
-    $router->post($prefix, [$controller, 'store'], $options + ['name' => 'tweets.store']);
+    $router->get($prefix . '/create', [$controller, 'create'], $options + ['name' => 'tweets.create']);
+    $router->post($prefix . '/create', [$controller, 'store'], $options);
 })($router);
 
 // ツイートJS
