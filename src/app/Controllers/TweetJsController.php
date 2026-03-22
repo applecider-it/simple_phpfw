@@ -34,7 +34,7 @@ class TweetJsController extends Controller
         return $this->render('tweet_js.index', compact('token'));
     }
 
-    /** 一覧取得 */
+    /** 一覧取得API */
     public function list()
     {
         $user = Auth::get();
@@ -49,7 +49,7 @@ class TweetJsController extends Controller
         return compact('tweets');
     }
 
-    /** 登録処理 */
+    /** 登録処理API */
     public function store()
     {
         $form = Arr::choise($this->params, ['content']);
