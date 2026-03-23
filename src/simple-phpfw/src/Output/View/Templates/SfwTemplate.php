@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SFW\Output\View\Template;
+namespace SFW\Output\View\Templates;
 
 /**
  * SFW用テンプレート管理

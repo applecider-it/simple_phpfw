@@ -6,7 +6,7 @@ namespace SFW\Output\View;
 
 use SFW\Output\View;
 
-use SFW\Output\View\Template\SfwTemplate;
+use SFW\Output\View\Templates\SfwTemplate;
 
 /**
  * テンプレート管理
@@ -110,9 +110,9 @@ class Template
     private function getGenartedPathInfo(string $path, string $type): array
     {
         /** @var string テンポラリーファイルパス */
-        $tmpPath = SFW_PROJECT_ROOT . '/storage/views/' . $this->tempFileName($path);
+        $tmpPath = SFW_PROJECT_ROOT . '/storage/views/' . Template\File::tempFileName($path);
 
-        $needGenerate = $this->checkGenarate($path, $tmpPath);
+        $needGenerate = Template\File::checkGenarate($path, $tmpPath);
 
         if ($needGenerate) {
             // テンポラリーファイル生成が必要な時
@@ -129,38 +129,5 @@ class Template
             'path' => $tmpPath, // SFW\View\Loaderクラスから読み込まれるのはテンポラリーファイルのほう
             'srcPath' => $path,
         ];
-    }
-
-    /** テンポラリーファイル生成が必要か返す */
-    private function checkGenarate(string $path, string $tmpPath): bool
-    {
-        if (!file_exists($tmpPath)) {
-            // テンポラリーファイルがないとき
-
-            return true;
-        }
-
-        if (filemtime($tmpPath) < filemtime($path)) {
-            // テンポラリーファイルより、ソースファイルの更新日時が新しいとき
-
-            return true;
-        }
-
-        return false;
-    }
-
-    /** テンポラリーファイル名 */
-    private function tempFileName(string $path): string
-    {
-        $name = basename($path);
-        $dir = basename(dirname($path));
-
-        $info = pathinfo($name);
-        $fileName = $info['filename'];
-        $extension  = $info['extension'];
-
-        $tempFileName = $dir . '__' . $fileName . '__' . md5($path) . '.' . $extension;
-
-        return $tempFileName;
     }
 }
