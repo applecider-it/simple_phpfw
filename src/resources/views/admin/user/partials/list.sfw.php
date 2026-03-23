@@ -2,6 +2,7 @@
     <table style="margin-top: 1rem;" class="app-table">
         <thead>
             <tr class="app-table-row-header">
+                <th class="app-table-cell" style="text-align: left;">ID</th>
                 <th class="app-table-cell" style="text-align: left;">Name</th>
                 <th class="app-table-cell" style="text-align: left;">Email</th>
                 <th class="app-table-cell" style="text-align: left;">削除日時</th>
@@ -10,7 +11,8 @@
         </thead>
         <tbody>
             <?php foreach ($users as $user): ?>
-                <tr class="app-table-row-data">
+                <tr class="app-table-row-data" style="<?= $user['deleted_at'] ? 'background: #ddd;' : '' ?>">
+                    <td class="app-table-cell">{{ $user['id'] ?? '' }}</td>
                     <td class="app-table-cell">{{ $user['name'] ?? '' }}</td>
                     <td class="app-table-cell">{{ $user['email'] ?? '' }}</td>
                     <td class="app-table-cell">{{ $user['deleted_at'] ?? '' }}</td>
