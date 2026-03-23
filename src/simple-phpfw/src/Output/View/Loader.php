@@ -49,12 +49,7 @@ class Loader
         } catch (\Throwable $e) {
             ob_end_clean();
 
-            $metaForException = $meta;
-            if ($e instanceof \SFW\Exceptions\View) {
-                $metaForException = $e->meta();
-            }
-
-            throw new \SFW\Exceptions\View($metaForException, $e);
+            throw $e;
         }
         $val = ob_get_clean();
 

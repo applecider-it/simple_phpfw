@@ -9,7 +9,11 @@ namespace SFW\Data;
  */
 class Exception
 {
-    /** 全ての例外をリストにする */
+    /**
+     * 全ての例外をリストにする
+     * 
+     * 例外は通常は１つだけど、例外をつないでいったときには複数になる
+     */
     public static function getExceptions(\Throwable $e): array
     {
         $list = [];

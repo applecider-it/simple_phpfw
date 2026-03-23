@@ -24,6 +24,10 @@
         margin: 0.5rem;
     }
 
+    .trace-exception-info {
+        word-break: break-word;
+    }
+
     .trace-exception-description {
         border: 1px solid #aaa;
         padding: 0.5rem;
@@ -55,14 +59,6 @@
     .trace-exception-lines>div>span.number {
         background: #fff;
         width: 2.5rem;
-    }
-
-    #trace-all-exceptions-box {
-        display: none;
-    }
-
-    #trace-all-exceptions-box.active {
-        display: block;
     }
 
     footer {
