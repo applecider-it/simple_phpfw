@@ -15,12 +15,12 @@ class Clear extends Command
     public static string $name = 'clear';
 
     /** コマンド説明 */
-    public static string $desc = 'Viewのテンポラリーファイル削除';
+    public static string $desc = '各種クリア';
 
     /** ハンドル */
     public function handle()
     {
-        $cmd = "rm " . SFW_PROJECT_ROOT . "/storage/views/*.php";
+        $cmd = "rm " . SFW_PROJECT_ROOT . "/storage/logs/*.log";
 
         echo "cmd: {$cmd}" . PHP_EOL;
         echo PHP_EOL;
