@@ -12,6 +12,7 @@ use App\Services\WebSocket\AuthService;
 use App\Services\Channels\TweetChannel;
 use App\Services\User\AuthService as Auth;
 use App\Services\Tweet\WebScoketService;
+use App\Services\Tweet\ListService;
 
 use App\Models\User\Tweet;
 
@@ -37,16 +38,9 @@ class TweetJsController extends Controller
     /** 一覧取得API */
     public function list()
     {
-        $user = Auth::get();
+        $listService = new ListService;
 
-        $tweets = Tweet::query()
-            ->order("id desc")
-            ->limit(10)
-            ->all();
-
-        Tweet::withUser($tweets);
-
-        return compact('tweets');
+        return $listService->getTweets();
     }
 
     /** 登録処理API */

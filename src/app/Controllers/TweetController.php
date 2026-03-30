@@ -19,6 +19,7 @@ use App\Validations\Validator;
 
 use App\Services\Tweet\WebScoketService;
 use App\Services\User\AuthService as Auth;
+use App\Services\Tweet\ListService;
 
 /**
  * ツイートコントローラー
@@ -28,14 +29,9 @@ class TweetController extends Controller
     /** 一覧画面 */
     public function index()
     {
-        $tweets = Tweet::query()
-            ->order("id desc")
-            ->limit(10)
-            ->all();
+        $listService = new ListService;
 
-        Tweet::withUser($tweets);
-
-        return $this->render('tweet.index', compact('tweets'));
+        return $this->render('tweet.index', $listService->getTweets());
     }
 
     /** 新規作成画面 */
