@@ -4,7 +4,7 @@ use App\Services\AdminUser\AuthService as Auth;
 
 $adminUser = Auth::get();
 ?>
-<div class="app-layout-nav" style="background: #aaa;">
+<div class="app-layout-nav" style="background: #ddd;">
     <div class="app-layout-nav-menu-container">
         <div>
             <h1 class="app-h1"><?= $this->h($this->config('applicationName')) ?></h1>

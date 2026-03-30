@@ -6,7 +6,7 @@ $user = Auth::get();
 ?>
 <div class="app-layout-nav-responsive">
     <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div><a href="<?= $this->h($this->route('index')) ?>"><?= $this->h($this->config('applicationName')) ?></a></div>
+        <div><span class="app-h1"><?= $this->h($this->config('applicationName')) ?></span></div>
         <div>
             <div id="app-nav-mobile-menu-button" style="cursor: pointer;">
                 <!-- Heroicons: Menu -->
