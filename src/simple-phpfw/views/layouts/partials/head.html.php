@@ -11,7 +11,7 @@
     header {
         background: #aaa;
         color: #333;
-        padding: 0.5rem;
+        padding: 0.7rem;
     }
 
     main {
@@ -19,9 +19,8 @@
     }
 
     h1 {
-        font-size: 2rem;
-        padding: 0.5rem;
-        margin: 0.5rem;
+        font-size: 1.5rem;
+        margin: 0.2rem;
     }
 
     .trace-exception-info {

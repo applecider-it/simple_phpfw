@@ -1,16 +1,16 @@
 <?php
+$exception = $data['e'];
 
-use SFW\Data\Exception;
-
-$exceptions = Exception::getExceptions($data['e']);
-
-//$exceptions = [...$exceptions, ...$exceptions];   // 動作確認用
+$file = $exception->getFile();
+$line = $exception->getLine();
 ?>
-<h3>Exceptions</h3>
-<div style="display:flex; flex-direction:column; gap:1rem;">
-    <?php foreach ($exceptions as $exception): ?>
-        <?= $this->render('errors.partials.exception', [
-            'exception' => $exception,
-        ]) ?>
-    <?php endforeach; ?>
+<h3>Exception</h3>
+<div>
+    <div class="trace-exception-info"><?= $this->h(get_class($exception)) ?>: <?= $this->h($exception->getMessage()) ?> in</div>
+    <div class="trace-exception-info"><?= $this->h($file) ?> (<?= $line ?>)</div>
+    <?= $this->render('errors.partials.lines', [
+        'srcPath' => $file,
+        'srcLine' => $line,
+    ]) ?>
+    <pre class="trace-exception-description"><?= $this->h($exception->getTraceAsString()) ?></pre>
 </div>
