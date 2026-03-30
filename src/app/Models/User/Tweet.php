@@ -47,6 +47,7 @@ class Tweet extends Model
     {
         $query =
             User::query()
+            ->scope([User::class, 'includeDeleted'])
             ->column('id')
             ->column('name')
             ->column('email');
