@@ -9,7 +9,7 @@ $adminUser = Auth::get();
         <div>
             <h1 class="app-h1"><?= $this->h($this->config('applicationName')) ?></h1>
             <a href="<?= $this->h($this->route('admin.index')) ?>">ダッシュボード</a>
-            <a href="<?= $this->h($this->route('admin.users.index')) ?>">ユーザー</a>
+            <a href="<?= $this->h($this->route('admin.user.index')) ?>">ユーザー</a>
         </div>
         <div>
             <?php if ($adminUser): ?>

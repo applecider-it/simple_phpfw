@@ -10,6 +10,7 @@ use App\Controllers\HomeController;
 use App\Controllers\TweetController;
 use App\Controllers\TweetJsController;
 use App\Controllers\ChatController;
+use App\Controllers\UserController;
 use App\Controllers\DevelopmentController;
 
 // トップページ
@@ -41,6 +42,20 @@ $router->post('/chat/store_redis', [ChatController::class, 'store_redis'], ['aut
     $router->get($prefix, [$controller, 'index'], $options + ['name' => 'tweets_js.index']);
     $router->get($prefix . '/list', [$controller, 'list'], $options);
     $router->post($prefix . '/store', [$controller, 'store'], $options);
+})($router);
+
+// ユーザー画面
+(function ($router) {
+    $options = ['auth' => 'user'];
+
+    $prefix = '/user';
+    $controller = UserController::class;
+
+    $router->get($prefix . '/create', [$controller, 'create'], ['name' => 'user.create']);
+    $router->post($prefix . '/create', [$controller, 'store']);
+    $router->get($prefix . '/edit', [$controller, 'edit'], $options + ['name' => 'user.edit']);
+    $router->post($prefix . '/edit', [$controller, 'update'], $options);
+    $router->post($prefix . '/destroy', [$controller, 'destroy'], $options + ['name' => 'user.destroy']);
 })($router);
 
 // 開発者向けページ

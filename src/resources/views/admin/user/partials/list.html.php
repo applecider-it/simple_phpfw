@@ -17,7 +17,7 @@
                     <td class="app-table-cell"><?= $this->h($user['email'] ?? '') ?></td>
                     <td class="app-table-cell"><?= $this->h($user['deleted_at'] ?? '') ?></td>
                     <td class="app-table-cell" style="text-align:center;">
-                        <a href="<?= $this->h($this->route('admin.users.edit', ['id' => $user['id']])) ?>" class="app-btn-primary">
+                        <a href="<?= $this->h($this->route('admin.user.edit', ['id' => $user['id']])) ?>" class="app-btn-primary">
                             更新
                         </a>
                     </td>

@@ -15,12 +15,13 @@ $user = Auth::get();
         </div>
         <div>
             <?php if ($user): ?>
-                <span style="margin-right: 1rem;"><?= $this->h($user['name']) ?></span>
+                <a href="<?= $this->h($this->route('user.edit')) ?>" style="margin-right: 1rem;"><?= $this->h($user['name']) ?></a>
                 <a href="<?= $this->h($this->route('logout')) ?>" onclick="if (confirm('ログアウトしますか？')) document.getElementById('app_nav_logout_form').submit(); return false; ">Logout</a>
                 <form method="POST" action="<?= $this->h($this->route('logout')) ?>" id="app_nav_logout_form">
                     <?= $this->render('partials.form.csrf') ?>
                 </form>
             <?php else: ?>
+                <a href="<?= $this->h($this->route('user.create')) ?>">Sign Up</a>
                 <a href="<?= $this->h($this->route('login')) ?>">Login</a>
             <?php endif ?>
         </div>

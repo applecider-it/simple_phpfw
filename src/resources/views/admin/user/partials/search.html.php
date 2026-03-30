@@ -19,7 +19,7 @@ $softDelete = $data['soft_delete'] ?? 'all';
         <?= $this->h($text) ?>
     <?php else: ?>
         <?php
-        $url = $this->route('admin.users.index') . '?'
+        $url = $this->route('admin.user.index') . '?'
             . http_build_query(
                 ['soft_delete' => $value]
                     + $data

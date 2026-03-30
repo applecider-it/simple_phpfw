@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Admin;
+namespace App\Controllers;
 
 use SFW\Data\Arr;
 use SFW\Core\App;
@@ -18,26 +18,14 @@ use App\Models\User\Tweet;
 
 use App\Validations\Validator;
 
-use App\Services\Admin\User\ListService;
-use App\Services\Admin\User\EditService;
+use App\Services\User\EditService;
+use App\Services\User\AuthService as Auth;
 
 /**
- * ユーザー管理コントローラー
+ * ユーザーコントローラー
  */
 class UserController extends Controller
 {
-    /** トップ画面 */
-    public function index()
-    {
-        $listService = new ListService();
-
-        $data = $listService->getListData($this->params);
-
-        return $this->render('admin.user.index', $data + [
-            'params' => $this->params,
-        ]);
-    }
-
     /** 新規作成画面 */
     public function create()
     {
@@ -48,7 +36,7 @@ class UserController extends Controller
             'password_confirm' => '',
         ];
 
-        return $this->render('admin.user.create', $initialData);
+        return $this->render('user.create', $initialData);
     }
 
     /** 新規作成 */
@@ -76,7 +64,7 @@ class UserController extends Controller
             $errors = $v->errors();
 
             return $this->render(
-                'admin.user.create',
+                'user.create',
                 $form + ['errors' => $errors]
             );
         }
@@ -90,21 +78,21 @@ class UserController extends Controller
 
         Flash::set('notice', '登録しました。');
 
-        Location::redirect(route('admin.user.edit', ['id' => $newId]));
+        Location::redirect(route('login'));
     }
 
     /** 更新画面 */
     public function edit()
     {
-        $user = $this->user();
+        $user = Auth::get();
 
         $form = $user;
         $form['password'] = '';
         $form['password_confirm'] = '';
 
         return $this->render(
-            'admin.user.edit',
-            $form + $this->getEditCommon($user)
+            'user.edit',
+            $form
         );
     }
 
@@ -113,7 +101,7 @@ class UserController extends Controller
     {
         $editService = new EditService();
 
-        $user = $this->user();
+        $user = Auth::get();
         $userId = $user['id'];
 
         $form = Arr::choise($this->params, ['name', 'email', 'password', 'password_confirm']);
@@ -138,8 +126,8 @@ class UserController extends Controller
             $errors = $v->errors();
 
             return $this->render(
-                'admin.user.edit',
-                $form + ['errors' => $errors] + $user + $this->getEditCommon($user)
+                'user.edit',
+                $form + ['errors' => $errors] + $user
             );
         }
 
@@ -151,23 +139,13 @@ class UserController extends Controller
 
         Flash::set('notice', '更新しました。');
 
-        Location::redirect(route('admin.user.edit', ['id' => $userId]));
-    }
-
-    /** 更新時共通情報 */
-    private function getEditCommon(array $user)
-    {
-        $listService = new ListService();
-
-        $data = $listService->getUserTweetData($user, $this->params);
-
-        return $data;
+        Location::redirect(route('user.edit'));
     }
 
     /** 論理削除 */
     public function destroy()
     {
-        $user = $this->user();
+        $user = Auth::get();
         $userId = $user['id'];
 
         $db = App::get('db');
@@ -177,31 +155,12 @@ class UserController extends Controller
         User::softDelete($userId);
         $db->commitTransaction();
 
-        Flash::set('notice', '論理削除しました。');
+        $authService = new Auth;
 
-        Location::redirect(route('admin.user.edit', ['id' => $userId]));
-    }
+        $authService->logout();
 
-    /** 復元 */
-    public function restore()
-    {
-        $user = $this->user();
-        $userId = $user['id'];
+        Flash::set('notice', '削除しました。');
 
-        User::restore($userId);
-
-        Flash::set('notice', '復元しました。');
-
-        Location::redirect(route('admin.user.edit', ['id' => $userId]));
-    }
-
-    /** ユーザー取得 */
-    private function user()
-    {
-        $user = User::queryIncludeId($this->params['id'])
-            ->scope([User::class, 'includeDeleted'])
-            ->one();
-        if (! $user) throw new \SFW\Exceptions\NotFound;
-        return $user;
+        Location::redirect(route('index'));
     }
 }
