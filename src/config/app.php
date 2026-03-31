@@ -18,15 +18,6 @@ return [
     // 管理画面のprefix
     'adminPrefix' => '/admin_secret',
 
-    // JWTシークレット
-    'jwt_secret' => $env['SFW_JWT_SECRET'],
-
-    // WebSocketサーバーのホスト名
-    'ws_server_host' => $env['SFW_WS_SERVER_HOST'],
-
-    // WebSocketサーバーのRedis連携名
-    'ws_redis_relation_key' => 'websocket_publish',
-
     // トレースで隠すキーリスト
     'trace_mask_keys' => [
         'password',

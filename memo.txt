@@ -6,7 +6,6 @@ cd ~/workspace/github/simple-phpfw/src
 port
 
 php: 9000
-websocket: 9090
 
 -----------------------------------
 
@@ -30,15 +29,6 @@ php ./bin/console help server
 ログクリア
 
 echo "" > ./storage/logs/simple_framework.log
-
-----------
-
-WebSocketサーバー
-
-
-cd ~/workspace/github/simple-phpfw/ws
-
-php ./app/entrypoints/server.php
 
 
 -----------------------------------
@@ -95,19 +85,12 @@ php ./bin/console runner "print_r(App\Models\User::query()->one());"
 php ./bin/console app-samplecommand arg1 --opt1 arg2 --opt2=val2 arg3
 
 
-WebSocketの動作確認
-
-php ./bin/console app-web-socket-test
-
-
 -------
 
 Redis確認
 
 
 redis-cli
-
-LRANGE websocket_publish 0 -1
 
 
 -----------------------------------
@@ -178,7 +161,7 @@ php ./bin/console test --fw
 composer install
     オートロード作成で必要
 
-.env.exampleを.envにコピー
+cp .env.example .env
 
 .envの情報のDBテーブル作成
 
