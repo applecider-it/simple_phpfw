@@ -25,7 +25,10 @@ $user = Auth::get();
 
 <?= $this->render('partials.app.meta') ?>
 
-<script type="importmap"><?= json_encode($this->config('app.importmap.app')) ?></script>
+<script type="module" src="<?= $this->h($this->file('/js/app.js')) ?>"></script>
 <script type="module">
-    import "@/services/app/setup-app";
+    console.log("init admin");
+
+    // 動作確認
+    console.log("auth user", app.getMetaJson('user'));
 </script>

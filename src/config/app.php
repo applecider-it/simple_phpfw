@@ -4,9 +4,6 @@
  * アプリケーション独自の設定
  */
 
-// インポートマップ情報
-$importmap = (fn($filePostfix, $prefix) => include(__DIR__ . '/importmap.php'))($filePostfix, $prefix);
-
 return [
     // 複数DB実装例
     'database_another' => [
@@ -20,9 +17,6 @@ return [
 
     // 管理画面のprefix
     'adminPrefix' => '/admin_secret',
-
-    // インポートマップ
-    'importmap' => $importmap,
 
     // JWTシークレット
     'jwt_secret' => $env['SFW_JWT_SECRET'],
