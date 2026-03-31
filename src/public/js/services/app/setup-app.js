@@ -2,8 +2,6 @@
  * アプリケーションのセットアップ
  */
 
-import "@/services/app/bootstrap/menu";
-
 console.log("init app");
 
 // 動作確認
