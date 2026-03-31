@@ -19,7 +19,6 @@ $user = Auth::get();
     <div class="app-layout-nav-responsive-links" id="app-nav-mobile-menu-area" style="margin-top: 1rem;">
         <a href="<?= $this->h($this->route('index')) ?>">Home</a>
         <a href="#">Tweet</a>
-        <a href="#">Chat</a>
         <?php if ($user): ?>
             <div style="margin: 1rem 0;"><?= $this->h($user['name']) ?></div>
             <a href="<?= $this->h($this->route('logout')) ?>" onclick="if (confirm('ログアウトしますか？')) document.getElementById('app_nav_logout_form').submit(); return false; ">Logout</a>

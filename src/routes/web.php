@@ -8,17 +8,11 @@
 
 use App\Controllers\HomeController;
 use App\Controllers\TweetController;
-use App\Controllers\TweetJsController;
-use App\Controllers\ChatController;
 use App\Controllers\UserController;
 use App\Controllers\DevelopmentController;
 
 // トップページ
 $router->get('/', [HomeController::class, 'index'], ['name' => 'index']);
-
-// チャット
-$router->get('/chat', [ChatController::class, 'index'], ['auth' => 'user', 'name' => 'chat.index']);
-$router->post('/chat/store_redis', [ChatController::class, 'store_redis'], ['auth' => 'user']);
 
 // ツイート
 (function ($router) {
@@ -30,18 +24,6 @@ $router->post('/chat/store_redis', [ChatController::class, 'store_redis'], ['aut
     $router->get($prefix, [$controller, 'index'], $options + ['name' => 'tweets.index']);
     $router->get($prefix . '/create', [$controller, 'create'], $options + ['name' => 'tweets.create']);
     $router->post($prefix . '/create', [$controller, 'store'], $options);
-})($router);
-
-// ツイートJS
-(function ($router) {
-    $options = ['auth' => 'user'];
-
-    $prefix = '/tweets_js';
-    $controller = TweetJsController::class;
-
-    $router->get($prefix, [$controller, 'index'], $options + ['name' => 'tweets_js.index']);
-    $router->get($prefix . '/list', [$controller, 'list'], $options);
-    $router->post($prefix . '/store', [$controller, 'store'], $options);
 })($router);
 
 // ユーザー画面
@@ -77,7 +59,6 @@ $router->post('/chat/store_redis', [ChatController::class, 'store_redis'], ['aut
     $router->post($prefix . '/api_post', [$controller, 'api_post'], ['auth' => 'user']);
     $router->get($prefix . '/api_get', [$controller, 'api_get'], ['auth' => 'user']);
     $router->post($prefix . '/api_post_nosession', [$controller, 'api_post_nosession'], ['nosession' => true]);
-    $router->get($prefix . '/design', [$controller, 'design'], ['name' => 'development.design']);
     $router->get($prefix . '/php_test', [$controller, 'php_test'], ['name' => 'development.php_test']);
 })($router);
 

@@ -10,8 +10,6 @@ $user = Auth::get();
             <h1 class="app-h1"><?= $this->h($this->config('applicationName')) ?></h1>
             <a href="<?= $this->h($this->route('index')) ?>">Home</a>
             <a href="<?= $this->h($this->route('tweets.index')) ?>">Tweet</a>
-            <a href="<?= $this->h($this->route('tweets_js.index')) ?>">Tweet(JS)</a>
-            <a href="<?= $this->h($this->route('chat.index')) ?>">Chat</a>
         </div>
         <div>
             <?php if ($user): ?>
