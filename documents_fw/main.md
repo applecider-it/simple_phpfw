@@ -69,3 +69,7 @@ Web/ <- Web関連
 | SFW_BOOT_TYPE | 起動タイプ | string | `web` \| `console` |
 
 
+## ブラウザキャッシュ対応
+
+更新時にconfig.phpの$filePostfixを変更することで可能。
+

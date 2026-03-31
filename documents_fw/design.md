@@ -30,8 +30,7 @@ config/ <- 設定
 database/ <- データベース関連
 public/ <- Webルート
   css/
-  js/ <- Javascript
-    services/ <- Javascriptのサービスクラス置き場
+  js/
   index.php <- Webのエントリーポイント
 resources/ 
   lang/ <- 言語ファイル
