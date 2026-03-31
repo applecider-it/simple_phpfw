@@ -13,9 +13,9 @@ use SFW\Output\View\Layout;
     <?= $this->render('partials.app.container') ?>
     <?= $this->render('layouts.partials.nav') ?>
 
-    <div>layouts.render_test</div>
-
     <main class="app-layout-main">
+        <div class="app-card" style="margin-bottom: 2rem;">layouts.render_test</div>
+
         <?= $data[Layout::KEY_LAYOUT_CONTENT] ?? '' ?>
     </main>
 </body>

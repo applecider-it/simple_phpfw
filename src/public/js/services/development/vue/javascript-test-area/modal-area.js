@@ -28,7 +28,7 @@ const ModalArea = {
   template: `
   <div>
     <div>
-      <h3>モーダル動作確認</h3>
+      <h3 class="app-h3">モーダル動作確認</h3>
 
       <div style="display:flex; flex-direction:row; gap:1rem;">
           <button class="app-btn-primary" @click="open = true">

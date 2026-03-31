@@ -15,7 +15,7 @@ const VueModelArea = {
 
   template: `
   <div>
-    <h3>Vueモデル動作確認</h3>
+    <h3 class="app-h3">Vueモデル動作確認</h3>
 
     <div>
       val1: <input
@@ -41,7 +41,7 @@ const VueModelArea = {
       val2: {{ val2 }}
     </div>
 
-    <h3>別コンポーネントとのv-modelの連携の動作確認</h3>
+    <h3 class="app-h3" style="margin-top: 1rem;">別コンポーネントとのv-modelの連携の動作確認</h3>
 
     <div>
       <FormComponent

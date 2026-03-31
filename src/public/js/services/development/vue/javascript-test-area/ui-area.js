@@ -42,7 +42,7 @@ const UIArea = {
 
   template: `
   <div>
-    <h3>UI動作確認</h3>
+    <h3 class="app-h3">UI動作確認</h3>
     
     <div style="display:flex; flex-direction:column; gap:1rem;">
       <div style="display:flex; flex-direction:row; gap:1rem;">

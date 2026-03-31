@@ -7,7 +7,7 @@ $btnList = [
 ?>
 <h2 class="app-h2">development.design</h2>
 <div>
-    <h3>app-btn</h3>
+    <h3 class="app-h3">app-btn</h3>
     <?php foreach ($btnList as $type): ?>
         <h4>app-btn-<?= $this->h($type) ?></h4>
         <div>

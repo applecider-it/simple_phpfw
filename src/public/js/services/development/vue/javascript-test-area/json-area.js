@@ -22,7 +22,7 @@ const JsonArea = {
 
   template: `
   <div>
-    <h3>Json動作確認</h3>
+    <h3 class="app-h3">Json動作確認</h3>
 
     <div style="display:flex; flex-direction:row; gap:1rem;">
       <button type="submit" class="app-btn-primary" @click="() => jsonTest('postJsonTest')">

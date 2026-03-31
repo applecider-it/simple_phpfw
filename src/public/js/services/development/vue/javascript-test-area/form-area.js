@@ -31,7 +31,7 @@ const FormArea = {
 
   template: `
   <div class="app-form">
-      Form動作確認
+      <h3 class="app-h3">Form動作確認</h3>
 
       <div class="mt-5">
           <label for="listVal" class="app-form-label">リスト動作確認</label>

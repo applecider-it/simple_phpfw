@@ -14,8 +14,6 @@
 .app-layout-body {
   font-family: Figtree, sans-serif;
   line-height: 1.6;
-  margin: 0;
-  padding: 0;
 }
 
 .app-layout-nav {
@@ -237,4 +235,11 @@ a.app-link-normal:hover {
   padding-left: 0.5rem;
   margin-bottom: 1rem;
   display: block;
+}
+
+/* カード */
+.app-card {
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
