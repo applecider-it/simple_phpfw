@@ -164,12 +164,6 @@ class DevelopmentController extends Controller
         ];
     }
 
-    /** デザイン確認画面 */
-    public function design()
-    {
-        return $this->render('development.design');
-    }
-
     /** phpテスト */
     public function php_test()
     {

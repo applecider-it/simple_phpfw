@@ -17,7 +17,6 @@ use App\Models\User\Tweet;
 
 use App\Validations\Validator;
 
-use App\Services\Tweet\WebScoketService;
 use App\Services\User\AuthService as Auth;
 use App\Services\Tweet\ListService;
 
@@ -91,9 +90,6 @@ class TweetController extends Controller
         $user = Auth::get();
         $newId = Tweet::insert(['user_id' => $user['id']] + $form);
         Log::info('New Tweet', [$newId]);
-
-        $webScoketService = new WebScoketService();
-        $webScoketService->broadcastTweet($form);
 
         Flash::set('notice', '投稿しました。');
 
