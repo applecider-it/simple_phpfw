@@ -14,12 +14,6 @@
   - [ユーザーツイート](./Models/User/Tweet.md)
 - [管理者](./Models/AdminUser.md)
 
-## モデル（外部DB実装例用）
-
-`id`, `created_at`, `updated_at`の説明は省略しています。
-
-- [アナザー](./ModelsAnother/Another.md)
-
 ## ルート
 
 ### options

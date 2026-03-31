@@ -123,8 +123,6 @@ cp .env.example .env
 
 /database/sqls/をSFW_DATABASE_DATABASEのDBで実行
 
-/database/sqls_another/をSFW_DATABASE_DATABASE_ANOTHERのDBで実行
-
 -----------------------------------
 
 URIにプレフィックスをつける場合の動作確認

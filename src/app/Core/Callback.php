@@ -27,10 +27,6 @@ class Callback
 
         $authService->initAuth();
         $adminAuthService->initAuth();
-
-        // 複数DB実装例
-        $db_another = new DB(Config::get('app.database_another'));
-        App::getContainer()->setSingleton('db_another', $db_another, '複数DB実装例');
     }
 
     /** リクエスト情報取得直後 */

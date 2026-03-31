@@ -19,7 +19,6 @@ app/ <- アプリケーション部分
     Callback.php <- フレームワークからのコールバックを受け取る
     Validator.php <- アプリケーションで利用するバリデーター
   Models/ <- DBモデル
-  ModelsAnother/ <- 別DBを使う場合の実装例のDBモデル
   Services/ <- サービスクラス置き場
 bin/ <- 実行ファイル置き場
   console <- コンソールコマンドエントリーポイント
