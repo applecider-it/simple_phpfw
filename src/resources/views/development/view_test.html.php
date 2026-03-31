@@ -1,14 +1,6 @@
 <h2 class="app-h2">development.view_test</h2>
 <div>
-    <h3 class="app-h3">読み込み中表示の動作確認</h3>
-    <div style="border: 1px solid #555; padding: 0;">
-        <?= $this->render('partials.message.loading') ?>
-    </div>
-    <div style="border: 1px solid #555; padding: 0; margin-top: 1rem;">
-        <?= $this->render('partials.message.loading') ?>
-    </div>
-
-    <h3 class="app-h3" style="margin-top: 2rem;">フォーム動作確認</h3>
+    <h3 class="app-h3">フォーム動作確認</h3>
     <div style="border: 1px solid #aaa; padding: 1rem;">
         <form method="POST" action="<?= $this->h($this->route('development.view_test_post')) ?>">
             <?= $this->render('partials.form.csrf') ?>

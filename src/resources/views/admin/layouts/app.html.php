@@ -10,7 +10,6 @@ use SFW\Output\View\Layout;
 </head>
 
 <body class="app-layout-body">
-    <?= $this->render('partials.app.container') ?>
     <?= $this->render('admin.layouts.partials.nav') ?>
     <?= $this->render('partials.nav.breadcrumbs', [
         'breadcrumbs' => $this->layoutValue('breadcrumbs'),
