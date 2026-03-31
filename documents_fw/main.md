@@ -26,9 +26,6 @@ Database/ <- データベース管理
 Exceptions/ <- フレームワークで利用する例外
   ・
   ・
-Generator/ <- ジェネレーター管理
-  ・
-  ・
 JWT/ <- JWT管理
   ・
   ・

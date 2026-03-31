@@ -18,7 +18,6 @@ app/ <- アプリケーション部分
   Core/ <- フレームワークから呼び出すコアの部分を含む
     Callback.php <- フレームワークからのコールバックを受け取る
     Validator.php <- アプリケーションで利用するバリデーター
-  Generators/ <- ジェネレーター
   Models/ <- DBモデル
   ModelsAnother/ <- 別DBを使う場合の実装例のDBモデル
   Services/ <- サービスクラス置き場
