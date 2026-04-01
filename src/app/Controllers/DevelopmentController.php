@@ -59,7 +59,7 @@ class DevelopmentController extends Controller
             ],
             layoutData: ['title' => 'renderのテスト'],
             globalData: ['id' => 456],
-            layout: 'layouts.render_test',
+            layout: 'development.layouts.render_test',
             //layout: null,
         );
     }
