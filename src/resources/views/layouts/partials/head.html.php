@@ -13,7 +13,7 @@ $user = Auth::get();
 
 <?= $this->render('partials.form.csrf_meta') ?>
 
-<title><?= $this->h($data['title'] ?? $this->config('applicationName')) ?></title>
+<title><?= $this->h($title ?? $this->config('applicationName')) ?></title>
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
@@ -27,7 +27,7 @@ $user = Auth::get();
 
 <script type="module" src="<?= $this->h($this->file('/js/app.js')) ?>"></script>
 <script type="module">
-    console.log("init admin");
+    console.log("init app");
 
     // 動作確認
     console.log("auth user", app.getMetaJson('user'));

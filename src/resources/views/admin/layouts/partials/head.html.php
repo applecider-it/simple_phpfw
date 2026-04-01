@@ -27,7 +27,7 @@ $adminUser = Auth::get();
 
 <script type="module" src="<?= $this->h($this->file('/js/app.js')) ?>"></script>
 <script type="module">
-    console.log("init app");
+    console.log("init admin");
 
     // 動作確認
     console.log("auth admin-user", app.getMetaJson('admin-user'));
