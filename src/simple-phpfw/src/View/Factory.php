@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SFW\Output\View;
+namespace SFW\View;
 
 use SFW\Core\Config;
-use SFW\Output\View;
 
 /**
  * Viewの生成管理
@@ -17,7 +16,7 @@ class Factory
     {
         $view = new View();
 
-        $view->setBaseDir(dirname(dirname(dirname(__DIR__))) . '/views');
+        $view->setBaseDir(dirname(dirname(__DIR__)) . '/views');
 
         return $view;
     }

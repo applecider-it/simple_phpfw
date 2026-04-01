@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SFW\Output\View;
-
-use SFW\Output\View;
+namespace SFW\View;
 
 /**
  * Viewのレイアウト管理

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SFW\Output;
+namespace SFW\View;
 
 /**
  * View管理
@@ -13,11 +13,11 @@ class View
     private ?string $baseDir = null;
 
     /** 読み込み管理 */
-    private View\Loader $loader;
+    private Loader $loader;
 
     function __construct()
     {
-        $this->loader = new View\Loader($this);
+        $this->loader = new Loader($this);
     }
 
     /**

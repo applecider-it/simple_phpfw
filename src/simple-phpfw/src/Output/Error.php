@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SFW\Output;
 
 use SFW\Web\Response;
+use SFW\View\Factory;
 
 /**
  * エラー表示関連
@@ -16,7 +17,7 @@ class Error
     {
         Response::code(Response::CODE_INTERNAL_SERVER_ERROR);
 
-        $view = View\Factory::errorView();
+        $view = Factory::errorView();
         echo $view->render('errors.error500', [
             'e' => $e,
         ]);
@@ -27,7 +28,7 @@ class Error
     {
         Response::code(Response::CODE_NOT_FOUND);
 
-        $view = View\Factory::errorView();
+        $view = Factory::errorView();
         echo $view->render('errors.error404', [
             'e' => $e,
         ]);

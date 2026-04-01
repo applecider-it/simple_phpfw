@@ -1,6 +1,6 @@
 <?php
 
-use SFW\Output\View\Layout;
+use SFW\View\Layout;
 ?>
 <!DOCTYPE html>
 <html lang="ja">

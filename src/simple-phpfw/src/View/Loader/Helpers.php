@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace SFW\Output\View\Loader;
+namespace SFW\View\Loader;
 
 use SFW\Output\Html;
 use SFW\Core\App;
 use SFW\Core\Config;
-use SFW\Output\View\Layout;
+use SFW\View\Layout;
 
 /**
  * ヘルパー関数

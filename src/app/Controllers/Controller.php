@@ -6,10 +6,8 @@ use SFW\Web\Controller as BaseController;
 
 use SFW\Core\App;
 use SFW\Output\Log;
-use SFW\Output\View;
-use SFW\Web\Location;
-
-use function SFW\Helpers\route;
+use SFW\View\View;
+use SFW\View\Layout;
 
 use App\Services\User\AuthService;
 
@@ -44,7 +42,7 @@ abstract class Controller extends BaseController
 
         if ($layout === 'controller-layout') $layout = $this->layout;
 
-        return View\Layout::renderWithLayout(
+        return Layout::renderWithLayout(
             $view,
             $name,
             $data,
