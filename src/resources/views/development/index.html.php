@@ -11,7 +11,6 @@
         <div><a href="<?= $this->h($this->route('development.param_test', ['id' => 321])) ?>?val1=abc" class="app-link-normal">param_test</a></div>
         <div><a href="<?= $this->h($this->route('development.database_test')) ?>" class="app-link-normal">database_test</a></div>
         <div><a href="<?= $this->h($this->route('development.validation_test')) ?>" class="app-link-normal">validation_test</a></div>
-        <div><a href="<?= $this->h($this->route('development.redirect_test')) ?>" class="app-link-normal">redirect_test</a></div>
         <div><a href="<?= $this->h($this->route('development.render_test')) ?>" class="app-link-normal">render_test</a></div>
     </div>
 
