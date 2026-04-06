@@ -49,8 +49,6 @@ $router->get('/', [HomeController::class, 'index'], ['name' => 'index']);
     $router->get($prefix . '/view_test', [$controller, 'view_test'], ['name' => 'development.view_test']);
     $router->post($prefix . '/view_test_post', [$controller, 'view_test_post'], ['name' => 'development.view_test_post']);
     $router->get($prefix . '/render_test', [$controller, 'render_test'], ['name' => 'development.render_test']);
-    $router->get($prefix . '/param_test/{id}', [$controller, 'param_test'], ['name' => 'development.param_test']);
-    $router->post($prefix . '/param_test/{id}', [$controller, 'param_test']);
     $router->get($prefix . '/database_test', [$controller, 'database_test'], ['name' => 'development.database_test']);
     $router->get($prefix . '/validation_test', [$controller, 'validation_test'], ['name' => 'development.validation_test']);
     $router->get($prefix . '/exeption_test', [$controller, 'exeption_test'], ['name' => 'development.exeption_test']);

@@ -64,15 +64,6 @@ class DevelopmentController extends Controller
         );
     }
 
-    /** パラメーターテスト */
-    public function param_test()
-    {
-        return $this->render('development.param_test', [
-            'id' => $this->params['id'],
-            'val1' => $this->params['val1'],
-        ]);
-    }
-
     /** データベーステスト */
     public function database_test()
     {

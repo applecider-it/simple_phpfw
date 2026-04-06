@@ -22,6 +22,7 @@
         const result = await app.sendData(method, url, data);
 
         console.log("result", result);
+        console.log("result.data", result.data);
     };
 
     /** GET Jsonの送受信の動作確認 */
@@ -36,6 +37,7 @@
         const result = await app.sendData(method, url);
 
         console.log("result", result);
+        console.log("result.data", result.data);
     };
 
     /** セッションのないPOST Jsonの送受信の動作確認 */
@@ -61,6 +63,7 @@
         const result = await sendDataNosession(method, url, data);
 
         console.log("result", result);
+        console.log("result.data", result.data);
     };
 
     /**
