@@ -30,7 +30,6 @@ JWT/ <- JWT管理
   ・
   ・
 Output/ <- 出力関連
-  View.php <- View管理
   ・
   ・
 Pagination/ <- 改ページ管理
@@ -40,7 +39,11 @@ Test/ <- ユニットテスト処理
   ・
   ・
 Validation/ <- バリデーション処理
-  Validator.php <- バリデーターベースクラス
+  ・
+  ・
+View/ <- View管理
+  ・
+  ・
 Web/ <- Web関連
   ・
   ・
@@ -68,5 +71,5 @@ Web/ <- Web関連
 
 ## ブラウザキャッシュ対応
 
-更新時にconfig.phpの$filePostfixを変更することで可能。
+更新時に`config.php`の`$filePostfix`を変更することで可能。
 

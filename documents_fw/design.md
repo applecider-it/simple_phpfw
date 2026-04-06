@@ -1,14 +1,12 @@
 # 設計
 
-MVCS
-
-composerはオートロードのみ利用している。
+composerはオートロードのみ利用しています。
 
 ## 構成
 
 src/以下がプロジェクト。
 
-構成はLaravelに寄せているので、Laravelがわかる人は、比較的わかりやすいと思う。
+構成はLaravelに寄せています。
 
 ```
 app/ <- アプリケーション部分
@@ -17,10 +15,10 @@ app/ <- アプリケーション部分
     Admin/ <- 管理画面
   Core/ <- フレームワークから呼び出すコアの部分を含む
     Callback.php <- フレームワークからのコールバックを受け取る
-    Validator.php <- アプリケーションで利用するバリデーター
   Models/ <- DBモデル
-  Services/ <- サービスクラス置き場
-bin/ <- 実行ファイル置き場
+  Services/ <- サービスクラス
+  Validations/ <- バリデーション
+bin/ <- 実行ファイル
   console <- コンソールコマンドエントリーポイント
 boot/ <- 起動時共通処理
 config/ <- 設定
@@ -36,7 +34,7 @@ resources/
     admin/ <- 管理画面
 routes/
   web.php <- ルート設定
-simple-phpfw/ <- フレームワーク部分（本来ならvendor内にあるべき部分）
+simple-phpfw/ <- フレームワーク部分
   src/ <- PHPクラス
   tests/ <- フレームワーク用のユニットテスト
   views/ <- フレームワークで使うview
