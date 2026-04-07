@@ -85,14 +85,6 @@ php ./bin/console runner "print_r(App\Models\User::query()->one());"
 php ./bin/console app-samplecommand arg1 --opt1 arg2 --opt2=val2 arg3
 
 
--------
-
-Redis確認
-
-
-redis-cli
-
-
 -----------------------------------
 
 テスト

@@ -37,11 +37,6 @@ return [
         'charset'  => $env['SFW_DATABASE_CHARSET'],
     ],
 
-    'redis' => [
-        'host'     => $env['SFW_REDIS_HOST'],
-        'port'     => $env['SFW_REDIS_PORT'],
-    ],
-
     'logging' => [
         'web' => [
             'file' => 'php://stderr',

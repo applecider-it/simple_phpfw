@@ -161,11 +161,6 @@ class DevelopmentController extends Controller
         $all = App::getContainer()->getAll();
         Log::info('コンテナデータ' . Json::trace($all, true));
 
-        $redis = App::get('redis');
-
-        $redis->set('sfw-redis-test', (int) $redis->get('sfw-redis-test') + 1);
-        Log::info('redis', [$redis->get('sfw-redis-test')]);
-
         return $this->render('development.complate');
     }
 

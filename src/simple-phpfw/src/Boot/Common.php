@@ -33,7 +33,6 @@ class Common
         $this->includeRoutes();
         $this->includeBreadcrumbs();
         $this->setupDatabase();
-        $this->setupRedis();
 
         App::get('callback')->afterInit();
     }
@@ -81,15 +80,6 @@ class Common
     {
         $db = new DB(Config::get('database'));
         App::getContainer()->setSingleton('db', $db, 'Main database');
-    }
-
-
-    /** Redisセットアップ */
-    private function setupRedis(): void
-    {
-        $redis = new \Redis();
-        $redis->connect(Config::get('redis.host'), (int) Config::get('redis.port'));
-        App::getContainer()->setSingleton('redis', $redis, 'Main redis');
     }
 
     /** 設定ファイルをinclude */
