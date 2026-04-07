@@ -46,6 +46,16 @@ Web/ <- Web関連
   ・
 ```
 
+## コンテナ
+
+| 項目名 | 内容 | 型 | 詳細 |
+|--------|--------|--------|--------|
+| callback | Callback class | App\Core\Callback |  |
+| config | Config | array |  |
+| db | Main database | SFW\Database\DB |  |
+| lang | Language Data | array |  |
+| router | Router | SFW\Web\Router |  |
+
 ## ルート
 
 ### options
