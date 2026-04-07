@@ -4,6 +4,7 @@ namespace App\Models;
 
 use SFW\Database\Raw;
 use SFW\Database\Query;
+use SFW\Database\Model\SoftDelete;
 
 /**
  * ユーザーモデル
@@ -13,6 +14,8 @@ use SFW\Database\Query;
  */
 class User extends Model
 {
+    use SoftDelete;
+
     protected static string $table = 'users';
 
     protected static function defaultScope(Query $query)

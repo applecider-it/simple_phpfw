@@ -4,6 +4,7 @@ namespace App\Models\User;
 
 use SFW\Database\Query;
 use SFW\Database\Relation;
+use SFW\Database\Model\SoftDelete;
 
 use App\Models\Model;
 use App\Models\User;
@@ -16,6 +17,8 @@ use App\Models\User;
  */
 class Tweet extends Model
 {
+    use SoftDelete;
+
     protected static string $table = 'user_tweets';
 
     protected static function defaultScope(Query $query)
