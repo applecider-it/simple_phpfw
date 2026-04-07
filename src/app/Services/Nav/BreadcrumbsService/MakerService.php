@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace SFW\Web\Breadcrumbs;
+namespace App\Services\Nav\BreadcrumbsService;
 
-use SFW\Web\Breadcrumbs;
+use App\Services\Nav\BreadcrumbsService;
 
 /**
  * パンくず生成
  */
-class Maker
+class MakerService
 {
     private array $urls = [];
 
-    function __construct(private Breadcrumbs $breadcrumbs) {}
+    function __construct(private BreadcrumbsService $breadcrumbs) {}
 
     /** パンくずを追加 */
     public function add(string $name, string $url): void

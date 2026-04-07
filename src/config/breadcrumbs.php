@@ -1,6 +1,6 @@
 <?php
 
-use SFW\Web\Breadcrumbs\Maker;
+use App\Services\Nav\BreadcrumbsService\MakerService as Maker;
 use function SFW\Helpers\route;
 
 // 管理画面ホーム

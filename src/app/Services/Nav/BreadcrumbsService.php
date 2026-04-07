@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace SFW\Web;
+namespace App\Services\Nav;
 
 /**
  * パンくず管理
  */
-class Breadcrumbs
+class BreadcrumbsService
 {
     private array $funcs = [];
 
@@ -24,7 +24,7 @@ class Breadcrumbs
 
         $func = $this->funcs[$name];
 
-        $maker = new Breadcrumbs\Maker($this);
+        $maker = new BreadcrumbsService\MakerService($this);
 
         $func($maker, ...$data);
 

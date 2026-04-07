@@ -5,9 +5,10 @@ namespace App\Core;
 use SFW\Output\Log;
 use SFW\Core\App;
 use SFW\Core\Config;
-use SFW\Database\DB;
 use SFW\Data\Arr;
 use SFW\Data\Str;
+
+use App\Services\Nav\BreadcrumbsService;
 
 use App\Services\User\AuthService;
 use App\Services\AdminUser\AuthService as AdminAuthService;
@@ -27,6 +28,14 @@ class Callback
 
         $authService->initAuth();
         $adminAuthService->initAuth();
+
+        App::getContainer()->setSingleton('breadcrumbs', new BreadcrumbsService(), 'パンくず');
+        (function () {
+            // include先で、$breadcrumbsが使われている
+            $breadcrumbs = App::get('breadcrumbs');
+
+            include(SFW_PROJECT_ROOT . '/config/breadcrumbs.php');
+        })();
     }
 
     /** リクエスト情報取得直後 */
