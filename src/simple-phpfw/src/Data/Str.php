@@ -66,18 +66,6 @@ class Str
         return $input . str_repeat($pad_string, $pad_size);
     }
 
-    /** スネークケースをパスカルケースに変換 */
-    public static function snakeToPascal(string $text): string
-    {
-        return str_replace(' ', '', ucwords(str_replace('_', ' ', $text)));
-    }
-
-    /** パスカルケースをスネークケースに変換 */
-    public static function pascalToSnake(string $text): string
-    {
-        return ltrim(strtolower(preg_replace('/[A-Z]/', '_$0', $text)), '_');
-    }
-
     /** 全角スペースを含めてtrim */
     public static function trimAll(string $text): string
     {
