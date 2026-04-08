@@ -9,23 +9,22 @@ $softDeleteHash = [
 $softDelete = $data['soft_delete'] ?? 'all';
 
 ?>
-<?php $idx = 0 ?>
-<?php foreach ($softDeleteHash as $value => $text): ?>
-    <?php if ($idx !== 0): ?>
-        <span style="margin: 0 0.5rem;">|</span>
-    <?php endif; ?>
+<form action="<?= $this->h($this->route('admin.user.index')) ?>">
+    <input type="hidden" name="page" value="<?= $this->h($page ?? 1) ?>" />
 
-    <?php if ($softDelete === $value): ?>
-        <?= $this->h($text) ?>
-    <?php else: ?>
-        <?php
-        $url = $this->route('admin.user.index') . '?'
-            . http_build_query(
-                ['soft_delete' => $value]
-                    + $data
-            );
-        ?>
-        <a href="<?= $this->h($url) ?>" class="app-link-normal"><?= $this->h($text) ?></a>
-    <?php endif; ?>
-    <?php $idx++ ?>
-<?php endforeach; ?>
+    <select name="soft_delete">
+        <?php foreach ($softDeleteHash as $value => $text): ?>
+            <option
+                <?= ($softDelete === $value) ? 'selected' : '' ?>
+                value="<?= $this->h($value) ?>"><?= $this->h($text) ?></option>
+        <?php endforeach; ?>
+    </select>
+
+    <input type="text" name="search" value="<?= $this->h($search ?? '') ?>"
+            placeholder="名前・メールで検索"
+            class="app-search-input">
+
+    <div style="margin-top: 1rem;">
+        <button type="submit" class="app-btn-secondary">検索</button>
+    </div>
+</form>

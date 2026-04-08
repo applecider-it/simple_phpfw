@@ -23,6 +23,18 @@ class User extends Model
         $query->scope([self::class, 'kept']);
     }
 
+    /** キーワード検索Scope */
+    public static function scopeSearchKeyword(Query $query, $keyword)
+    {
+        $likeKeyword = "%{$keyword}%";
+
+        $query->where(
+            '(email LIKE ? OR name LIKE ?)',
+            $likeKeyword,
+            $likeKeyword
+        );
+    }
+
     /** ツイートのクエリービルダー */
     public static function tweets($user_id)
     {

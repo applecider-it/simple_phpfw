@@ -25,6 +25,9 @@ class ListService
         if ($softDelete === 'kept') $query->scope([User::class, 'kept']);
         if ($softDelete === 'deleted') $query->scope([User::class, 'deleted']);
 
+        $search = $params['search'] ?? null;
+        if ($search) $query->scope([User::class, 'searchKeyword'], $search);
+
         $paginator = new Paginator($params, 8, 'page');
 
         $paginator->query($query);

@@ -142,6 +142,7 @@ class DatabaseService
             ->table('users')
             ->where("id > ?", 0)
             ->where("id < ?", 20000)
+            ->where('(id = ? OR id != ?)', 20001, 20002)
             ->order("id desc")
             ->order("email asc")
             ->all();
