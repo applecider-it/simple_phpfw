@@ -16,7 +16,7 @@
                 <input type="password" name="password" value="<?= $this->h($password) ?>">
             </div>
             <div>
-                <button type="submit" class="app-btn-primary">ログイン</button>
+                <button type="submit">ログイン</button>
             </div>
         </form>
     </div>

@@ -1,22 +1,19 @@
 <?php if (!empty($errors)): ?>
     <div style="
-        border-left: 6px solid #e74c3c;
         background-color: #fdecea;
         color: #c0392b;
         padding: 1rem 1.5rem;
         margin: 1rem 0;
-        border-radius: 8px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
         margin-bottom: 1rem;
-        font-family: sans-serif;
     ">
-        <strong style="display:flex; align-items:center; gap:0.5rem;">
+        <strong>
             ⚠ エラー発生
         </strong>
-        <ul style="margin-top:0.5rem; padding-left: 1.2rem;">
+        <ul style="margin-top:0.5rem; padding-left: 1.2rem; font-size: 0.8rem;">
             <?php foreach ($errors as $arr): ?>
                 <?php foreach ($arr as $val): ?>
                     <li><?= $this->h($val) ?></li>
+                    <?php break; ?>
                 <?php endforeach; ?>
             <?php endforeach; ?>
         </ul>

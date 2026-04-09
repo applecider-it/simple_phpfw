@@ -5,5 +5,5 @@
     <?= $this->render('layouts.partials.head') ?>
 </head>
 
-<body class="app-layout-body">
+<body>
     <?= $this->render('layouts.partials.nav') ?>

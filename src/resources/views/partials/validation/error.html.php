@@ -3,9 +3,10 @@
 $array = $errors[$attribute] ?? null;
 ?>
 <?php if ($array): ?>
-    <ul style="margin-top:0.5rem; padding-left: 1.2rem; color: #c0392b;">
+    <div style="margin:0.5rem 0; color: #c0392b; font-size: 0.8rem;">
         <?php foreach ($array as $val): ?>
-            <li><?= $this->h($val) ?></li>
+            <div><?= $this->h($val) ?></div>
+            <?php break; ?>
         <?php endforeach; ?>
-    </ul>
+    </div>
 <?php endif; ?>
