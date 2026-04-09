@@ -1,11 +1,11 @@
-<h2 class="app-h2">development.view_test</h2>
+<h2>development.view_test</h2>
 <div>
-    <h3 class="app-h3">フォーム動作確認</h3>
-    <div style="border: 1px solid #aaa; padding: 1rem;">
+    <h3>フォーム動作確認</h3>
+    <div>
         <form method="POST" action="<?= $this->h($this->route('development.view_test_post')) ?>">
             <?= $this->render('partials.form.csrf') ?>
-            <div style="margin-top: 1rem">
-                <label for="list_val" class="app-form-label">リスト動作確認</label>
+            <div>
+                <label for="list_val">リスト動作確認</label>
 
                 <select name="list_val" id="list_val">
                     <option value="">選択してください</option>
@@ -18,10 +18,10 @@
                 </select>
             </div>
 
-            <div style="margin-top: 1rem">
-                <label class="app-form-label">ラジオボタン動作確認</label>
+            <div>
+                <label>ラジオボタン動作確認</label>
 
-                <div class="space-x-3">
+                <div>
                     <?php foreach ($data['radio_vals'] as $key => $value): ?>
                         <label>
                             <input type="radio" name="radio_val" value="<?= $this->h($key) ?>"
@@ -32,14 +32,13 @@
                 </div>
             </div>
 
-            <div style="margin-top: 1rem">
-                <label for="datetime_val" class="app-form-label">日時動作確認</label>
-                <input type="datetime-local" name="datetime_val" value="<?= $this->h($data['datetime_val']) ?>" id="datetime_val"
-                 class="app-form-input" style="width: auto;" />
+            <div>
+                <label for="datetime_val">日時動作確認</label>
+                <input type="datetime-local" name="datetime_val" value="<?= $this->h($data['datetime_val']) ?>" id="datetime_val" />
             </div>
 
-            <div style="margin-top: 1rem">
-                <button type="submit" class="app-btn-primary">送信</button>
+            <div>
+                <button type="submit">送信</button>
             </div>
         </form>
     </div>

@@ -1,21 +1,21 @@
-<h2 class="app-h2">auth.session.login</h2>
+<h2>auth.session.login</h2>
 
 <?= $this->render('partials.message.flash') ?>
 
 <div>
-    <div style="margin-top: 1rem;">
+    <div>
         <form method="POST" action="<?= $this->h($this->route('login')) ?>">
             <?= $this->render('partials.form.csrf') ?>
-            <div style="margin-top: 1rem;">
-                <label class="app-form-label">Email</label>
-                <input type="text" name="email" value="<?= $this->h($email) ?>" class="app-form-input">
+            <div>
+                <label>Email</label>
+                <input type="text" name="email" value="<?= $this->h($email) ?>">
             </div>
 
-            <div style="margin-top: 1rem;">
-                <label class="app-form-label">Password</label>
-                <input type="password" name="password" value="<?= $this->h($password) ?>" class="app-form-input">
+            <div>
+                <label>Password</label>
+                <input type="password" name="password" value="<?= $this->h($password) ?>">
             </div>
-            <div style="margin-top: 1rem;">
+            <div>
                 <button type="submit" class="app-btn-primary">ログイン</button>
             </div>
         </form>

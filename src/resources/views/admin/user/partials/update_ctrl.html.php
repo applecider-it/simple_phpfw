@@ -6,10 +6,9 @@
             <form
                 method="POST"
                 action="<?= $this->h($this->route('admin.user.restore', ['id' => $data['id']])) ?>"
-                onsubmit="return confirm('復元しますか？')"
-                style="margin:0;">
+                onsubmit="return confirm('復元しますか？')">
                 <?= $this->render('partials.form.csrf') ?>
-                <button type="submit" class="app-btn-orange">
+                <button type="submit">
                     復元
                 </button>
             </form>
@@ -17,10 +16,9 @@
             <form
                 method="POST"
                 action="<?= $this->h($this->route('admin.user.destroy', ['id' => $data['id']])) ?>"
-                onsubmit="return confirm('論理削除しますか？')"
-                style="margin:0;">
+                onsubmit="return confirm('論理削除しますか？')">
                 <?= $this->render('partials.form.csrf') ?>
-                <button type="submit" class="app-btn-danger">
+                <button type="submit">
                     論理削除
                 </button>
             </form>

@@ -84,6 +84,6 @@ class User extends Model
     {
         $db = self::db();
 
-        $db->update('user_tweets', [User\Tweet::$softDeleteColumn => new Raw('NOW()')], 'user_id = ?', $id);
+        $db->update('user_tweets', [User\Tweet::softDeleteColumn() => new Raw('NOW()')], 'user_id = ?', $id);
     }
 }

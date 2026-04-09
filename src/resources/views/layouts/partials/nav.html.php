@@ -1,15 +1,26 @@
-<div class="app-layout-nav">
-    <?= $this->render('layouts.partials.nav.primary') ?>
-    <?= $this->render('layouts.partials.nav.responsive') ?>
+<?php
+
+use App\Services\User\AuthService as Auth;
+
+$user = Auth::get();
+?>
+<div>
+    <h1><?= $this->h($this->config('applicationName')) ?></h1>
+    <a href="<?= $this->h($this->route('index')) ?>">Home</a>
+    <a href="<?= $this->h($this->route('tweets.index')) ?>">Tweet</a>
+
+    <?php if ($user): ?>
+        <a href="<?= $this->h($this->route('user.edit')) ?>"><?= $this->h($user['name']) ?></a>
+        <a
+            href="<?= $this->h($this->route('logout')) ?>"
+            onclick="if (confirm('ログアウトしますか？')) document.getElementById('app_nav_logout_form').submit(); return false; ">
+            Logout
+        </a>
+        <form method="POST" action="<?= $this->h($this->route('logout')) ?>" id="app_nav_logout_form">
+            <?= $this->render('partials.form.csrf') ?>
+        </form>
+    <?php else: ?>
+        <a href="<?= $this->h($this->route('user.create')) ?>">Sign Up</a>
+        <a href="<?= $this->h($this->route('login')) ?>">Login</a>
+    <?php endif ?>
 </div>
-
-<script type="module">
-    const btn = document.getElementById("app-nav-mobile-menu-button");
-    const area = document.getElementById("app-nav-mobile-menu-area");
-
-    if (btn && area) {
-        btn.addEventListener("click", () => {
-            area.classList.toggle("app-layout-nav-responsive-links__open");
-        });
-    }
-</script>

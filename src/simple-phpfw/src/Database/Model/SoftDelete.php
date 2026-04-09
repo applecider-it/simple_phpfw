@@ -55,4 +55,10 @@ trait SoftDelete
     {
         $query->where(static::table() . '.' . static::$softDeleteColumn . ' IS NOT NULL');
     }
+
+    /** softDeleteColumn */
+    public static function softDeleteColumn(): string
+    {
+        return static::$softDeleteColumn;
+    }
 }

@@ -1,26 +1,24 @@
-<h3 class="app-h3">tweets</h3>
+<h3>tweets</h3>
 
 <div>
-    <div class="app-table-wrap">
-        <table style="margin-top: 1rem;" class="app-table">
-            <thead>
-                <tr class="app-table-row-header">
-                    <th class="app-table-cell" style="text-align: left;">ID</th>
-                    <th class="app-table-cell" style="text-align: left;">Content</th>
-                    <th class="app-table-cell" style="text-align: left;">作成日時</th>
-                    <th class="app-table-cell" style="text-align: left;">削除日時</th>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Content</th>
+                <th>作成日時</th>
+                <th>削除日時</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($tweets as $tweet): ?>
+                <tr style="<?= $tweet['deleted_at'] ? 'background: #ddd;' : '' ?>">
+                    <td><?= $this->h($tweet['id']) ?></td>
+                    <td><?= $this->h($tweet['content']) ?></td>
+                    <td><?= $this->h($tweet['created_at'] ?? '') ?></td>
+                    <td><?= $this->h($tweet['deleted_at'] ?? '') ?></td>
                 </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($tweets as $tweet): ?>
-                    <tr class="app-table-row-data" style="<?= $tweet['deleted_at'] ? 'background: #ddd;' : '' ?>">
-                        <td class="app-table-cell"><?= $this->h($tweet['id']) ?></td>
-                        <td class="app-table-cell"><?= $this->h($tweet['content']) ?></td>
-                        <td class="app-table-cell"><?= $this->h($tweet['created_at'] ?? '') ?></td>
-                        <td class="app-table-cell"><?= $this->h($tweet['deleted_at'] ?? '') ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    </div>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 </div>

@@ -1,4 +1,4 @@
-<h3 class="app-h3" style="margin-top: 1rem;">development.partials.render_test_parts</h3>
+<h3>development.partials.render_test_parts</h3>
 <div>
     <div style="<?= $this->h($metaStyle) ?>">
         <div>$meta['name']: <?= $this->h($meta['name']) ?></div>

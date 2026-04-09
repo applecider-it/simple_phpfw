@@ -1,20 +1,20 @@
-<h2 class="app-h2">development.index</h2>
+<h2>development.index</h2>
 
-<div style="display:flex; flex-direction:column; gap:1rem;">
+<div style="display:flex; flex-direction:column; gap:2rem;">
     <div>
-        <div><a href="<?= $this->h($this->route('development.php_test')) ?>" class="app-link-normal">php_test</a></div>
-        <div><a href="<?= $this->h($this->route('development.view_test')) ?>" class="app-link-normal">view_test</a></div>
-        <div><a href="<?= $this->h($this->route('development.javascript_test')) ?>" class="app-link-normal">javascript_test</a></div>
+        <div><a href="<?= $this->h($this->route('development.php_test')) ?>">php_test</a></div>
+        <div><a href="<?= $this->h($this->route('development.view_test')) ?>">view_test</a></div>
+        <div><a href="<?= $this->h($this->route('development.javascript_test')) ?>">javascript_test</a></div>
     </div>
 
     <div>
-        <div><a href="<?= $this->h($this->route('development.database_test')) ?>" class="app-link-normal">database_test</a></div>
-        <div><a href="<?= $this->h($this->route('development.validation_test')) ?>" class="app-link-normal">validation_test</a></div>
-        <div><a href="<?= $this->h($this->route('development.render_test')) ?>" class="app-link-normal">render_test</a></div>
+        <div><a href="<?= $this->h($this->route('development.database_test')) ?>">database_test</a></div>
+        <div><a href="<?= $this->h($this->route('development.validation_test')) ?>">validation_test</a></div>
+        <div><a href="<?= $this->h($this->route('development.render_test')) ?>">render_test</a></div>
     </div>
 
     <div>
-        <div><a href="<?= $this->h($this->route('development.index')) ?>/notfoud_test" class="app-link-normal">notfoud_test</a></div>
-        <div><a href="<?= $this->h($this->route('development.exeption_test')) ?>" class="app-link-normal">exeption_test</a></div>
+        <div><a href="<?= $this->h($this->route('development.index')) ?>/notfoud_test">notfoud_test</a></div>
+        <div><a href="<?= $this->h($this->route('development.exeption_test')) ?>">exeption_test</a></div>
     </div>
 </div>

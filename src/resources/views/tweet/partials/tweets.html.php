@@ -1,28 +1,13 @@
-<style>
-    .tweet-card {
-        background: #fff;
-        border: 1px solid #dcdcdc;
-        border-radius: 12px;
-        padding: 14px 18px;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
-        transition: box-shadow .2s;
-    }
-
-    .tweet-card:hover {
-        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
-    }
-</style>
-
-<div style="display:flex; flex-direction:column; gap:1rem;">
+<div style="display:flex; flex-direction:column; gap:3rem;">
     <?php foreach ($data['tweets'] as $tweet): ?>
-        <div class="tweet-card">
-            <div style="font-size:15px; color:#222; line-height:1.6;">
+        <div style="border: 1px solid #dcdcdc; padding: 1rem;">
+            <div>
                 <?= $this->h($tweet['content']) ?>
             </div>
-            <div style="margin-top:8px; font-size:13px; color:#777;">
+            <div>
                 <?= $this->h($tweet['created_at']) ?>
             </div>
-            <div style="margin-top:8px; font-size:13px; color:#777;">
+            <div>
                 send by <?= $this->h($tweet['user']['name']) ?>
             </div>
         </div>

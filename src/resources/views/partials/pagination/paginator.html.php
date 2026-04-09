@@ -16,7 +16,7 @@ $totalPages = $paginator->totalPages();
         <span style="margin-left: 2rem;">
             <span>
                 <?php if ($currentPage > 1): ?>
-                    <a href="<?= $this->h($paginator->pageUrl($currentPage - 1)) ?>" class="app-link-normal">前のページへ</a>
+                    <a href="<?= $this->h($paginator->pageUrl($currentPage - 1)) ?>">前のページへ</a>
                 <?php else: ?>
                     前のページへ
                 <?php endif; ?>
@@ -24,7 +24,7 @@ $totalPages = $paginator->totalPages();
 
             <span style="margin-left: 1rem;">
                 <?php if ($currentPage < $totalPages): ?>
-                    <a href="<?= $this->h($paginator->pageUrl($currentPage + 1)) ?>" class="app-link-normal">次のページへ</a>
+                    <a href="<?= $this->h($paginator->pageUrl($currentPage + 1)) ?>">次のページへ</a>
                 <?php else: ?>
                     次のページへ
                 <?php endif; ?>

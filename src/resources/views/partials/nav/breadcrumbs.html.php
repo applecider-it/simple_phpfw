@@ -11,7 +11,7 @@
             <?php if ($idx === count($arr) - 1): ?>
                 <?= $this->h($row['name']) ?>
             <?php else: ?>
-                <a href="<?= $this->h($row['url']) ?>" class="app-link-normal">
+                <a href="<?= $this->h($row['url']) ?>">
                     <?= $this->h($row['name']) ?>
                 </a>
             <?php endif; ?>

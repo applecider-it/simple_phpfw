@@ -16,15 +16,19 @@ $softDelete = $data['soft_delete'] ?? 'all';
         <?php foreach ($softDeleteHash as $value => $text): ?>
             <option
                 <?= ($softDelete === $value) ? 'selected' : '' ?>
-                value="<?= $this->h($value) ?>"><?= $this->h($text) ?></option>
+                value="<?= $this->h($value) ?>"
+            >
+                <?= $this->h($text) ?>
+            </option>
         <?php endforeach; ?>
     </select>
 
-    <input type="text" name="search" value="<?= $this->h($search ?? '') ?>"
-            placeholder="名前・メールで検索"
-            class="app-search-input">
+    <input
+        type="text" name="search" value="<?= $this->h($search ?? '') ?>"
+        placeholder="名前・メールで検索"
+    >
 
-    <div style="margin-top: 1rem;">
-        <button type="submit" class="app-btn-secondary">検索</button>
+    <div>
+        <button type="submit">検索</button>
     </div>
 </form>
