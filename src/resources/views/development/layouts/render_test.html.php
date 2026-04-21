@@ -9,11 +9,11 @@ use SFW\View\Layout;
     <?= $this->render('layouts.partials.head', ['title' => $title ?? null]) ?>
 </head>
 
-<body>
+<body style="margin: 0;">
     <?= $this->render('layouts.partials.nav') ?>
 
-    <main>
-        <div>
+    <main style="padding: 1rem; padding-bottom: 3rem;">
+        <div style="padding: 1rem; border: 2px solid #ddd; border-radius: 10px;">
             development.layouts.render_test
         </div>
 
