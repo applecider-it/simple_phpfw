@@ -80,10 +80,17 @@ class User extends Model
     }
 
     /** 関連テーブル削除 */
-    public static function deleteRelations(int $id)
+    private static function deleteRelations(int $id)
     {
         $db = self::db();
 
         $db->update('user_tweets', [User\Tweet::softDeleteColumn() => new Raw('NOW()')], 'user_id = ?', $id);
+    }
+
+    /** 関連テーブルを含めて削除 */
+    public static function deleteWithRelations(int $id)
+    {
+        self::deleteRelations($id);
+        self::softDelete($id);
     }
 }

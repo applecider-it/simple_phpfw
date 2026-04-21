@@ -151,8 +151,7 @@ class UserController extends Controller
         $db = App::get('db');
 
         $db->startTransaction();
-        User::deleteRelations($userId);
-        User::softDelete($userId);
+        User::deleteWithRelations($userId);
         $db->commitTransaction();
 
         $authService = new Auth;
