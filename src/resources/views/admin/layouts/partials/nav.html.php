@@ -4,7 +4,7 @@ use App\Services\AdminUser\AuthService as Auth;
 
 $adminUser = Auth::get();
 ?>
-<div style="background: #ddd;">
+<div style="background: #eee; padding: 0.5rem;">
     <div>
         <h1><?= $this->h($this->config('applicationName')) ?></h1>
         <a href="<?= $this->h($this->route('admin.index')) ?>">ダッシュボード</a>

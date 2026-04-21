@@ -9,13 +9,13 @@ use SFW\View\Layout;
     <?= $this->render('admin.layouts.partials.head', ['title' => $title ?? null]) ?>
 </head>
 
-<body>
+<body style="margin: 0;">
     <?= $this->render('admin.layouts.partials.nav') ?>
     <?= $this->render('partials.nav.breadcrumbs', [
         'breadcrumbs' => $this->layoutValue('breadcrumbs'),
     ]) ?>
 
-    <main>
+    <main style="padding: 1rem; padding-bottom: 3rem;">
         <?= $data[Layout::KEY_LAYOUT_CONTENT] ?? '' ?>
     </main>
 

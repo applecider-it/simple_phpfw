@@ -9,10 +9,10 @@ use SFW\View\Layout;
     <?= $this->render('layouts.partials.head', ['title' => $title ?? null]) ?>
 </head>
 
-<body>
+<body style="margin: 0;">
     <?= $this->render('layouts.partials.nav') ?>
 
-    <main>
+    <main style="padding: 1rem; padding-bottom: 3rem;">
         <?= $data[Layout::KEY_LAYOUT_CONTENT] ?? '' ?>
     </main>
 

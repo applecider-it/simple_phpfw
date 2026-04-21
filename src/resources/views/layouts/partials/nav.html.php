@@ -4,7 +4,7 @@ use App\Services\User\AuthService as Auth;
 
 $user = Auth::get();
 ?>
-<div>
+<div style="background: #eee; padding: 0.5rem;">
     <h1><?= $this->h($this->config('applicationName')) ?></h1>
     <a href="<?= $this->h($this->route('index')) ?>">Home</a>
     <a href="<?= $this->h($this->route('tweets.index')) ?>">Tweet</a>
