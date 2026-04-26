@@ -2,14 +2,15 @@
 
 use SFW\Web\Flash;
 ?>
+
 <?php if (Flash::get('notice')): ?>
-    <ul style="margin:1rem 0; padding-left: 1.2rem; color: #3498db;">
-        <li><?= $this->h(Flash::get('notice')) ?></li>
-    </ul>
+    <div class="my-4 px-4 py-3 rounded-lg bg-blue-50 text-blue-700 border border-blue-200">
+        <?= $this->h(Flash::get('notice')) ?>
+    </div>
 <?php endif; ?>
 
 <?php if (Flash::get('alert')): ?>
-    <ul style="margin:1rem 0; padding-left: 1.2rem; color: #ff3333;">
-        <li><?= $this->h(Flash::get('alert')) ?></li>
-    </ul>
+    <div class="my-4 px-4 py-3 rounded-lg bg-red-50 text-red-700 border border-red-200">
+        <?= $this->h(Flash::get('alert')) ?>
+    </div>
 <?php endif; ?>

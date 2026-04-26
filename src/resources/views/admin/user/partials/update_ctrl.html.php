@@ -1,5 +1,5 @@
 <div>
-    <h3>操作</h3>
+    <h3 class="app-h3">操作</h3>
 
     <div>
         <?php if ($deleted_at): ?>
@@ -8,7 +8,7 @@
                 action="<?= $this->h($this->route('admin.user.restore', ['id' => $data['id']])) ?>"
                 onsubmit="return confirm('復元しますか？')">
                 <?= $this->render('partials.form.csrf') ?>
-                <button type="submit">
+                <button type="submit" class="app-btn-secondary">
                     復元
                 </button>
             </form>
@@ -18,7 +18,7 @@
                 action="<?= $this->h($this->route('admin.user.destroy', ['id' => $data['id']])) ?>"
                 onsubmit="return confirm('論理削除しますか？')">
                 <?= $this->render('partials.form.csrf') ?>
-                <button type="submit">
+                <button type="submit" class="app-btn-secondary">
                     論理削除
                 </button>
             </form>
