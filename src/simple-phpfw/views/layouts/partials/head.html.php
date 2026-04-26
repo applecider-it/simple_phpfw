@@ -6,16 +6,24 @@
         line-height: 1.6;
         margin: 0;
         padding: 0;
+        min-height: 100vh;
     }
 
-    header {
-        background: #aaa;
+    .header {
         color: #333;
         padding: 0.7rem;
     }
 
-    main {
+    .main {
         padding: 3rem 5rem;
+        max-width: 48rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .footer {
+        text-align: center;
+        padding: 1rem;
     }
 
     h1 {
@@ -58,11 +66,5 @@
     .trace-exception-lines>div>span.number {
         background: #fff;
         width: 2.5rem;
-    }
-
-    footer {
-        background: #eee;
-        text-align: center;
-        padding: 1rem;
     }
 </style>

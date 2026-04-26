@@ -1,3 +1,3 @@
-<header>
-    <h1>Simple PHPFW</h1>
-</header>
+<div class="header">
+    <h1>エラーが発生しました。</h1>
+</div>
