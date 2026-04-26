@@ -15,7 +15,7 @@ use SFW\View\Layout;
         <div class="flex-grow">
             <?= $this->render('layouts.partials.nav') ?>
 
-            <div class="p-5 pb-40">
+            <div class="max-w-4xl mx-auto px-5 pt-10 pb-40">
                 <?= $data[Layout::KEY_LAYOUT_CONTENT] ?? '' ?>
             </div>
         </div>
