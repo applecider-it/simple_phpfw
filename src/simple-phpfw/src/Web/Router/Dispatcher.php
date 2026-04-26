@@ -91,9 +91,9 @@ class Dispatcher
             'isJsonRequest' => $isJsonRequest,
         ];
 
-        App::get('callback')->afterRequest($params, $meta);
-
         $csrfToken = $headers['X-CSRF-TOKEN'] ?? ($params['csrf_token'] ?? '');
+
+        App::get('callback')->afterRequest($params, $meta);
 
         if (! $nosession) {
             // セッションを利用する時
