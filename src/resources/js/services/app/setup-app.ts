@@ -1,3 +1,5 @@
+import "./bootstrap/alpinejs";
+
 console.log("app start");
 
 // 動作確認

@@ -5,6 +5,7 @@ use App\Services\User\AuthService as Auth;
 $user = Auth::get();
 
 $desktopClass = 'hover:text-indigo-500';
+$mobileClass = 'block py-2 text-gray-700 hover:text-indigo-500';
 ?>
 <header class="bg-white shadow-md" x-data="{ open:false }">
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -17,7 +18,7 @@ $desktopClass = 'hover:text-indigo-500';
         </a>
 
         <!-- Desktop Menu -->
-        <nav class="flex space-x-8 text-gray-700 font-medium">
+        <nav class="hidden md:flex space-x-8 text-gray-700 font-medium">
             <a href="<?= $this->h($this->route('index')) ?>" class="<?= $desktopClass ?>">Home</a>
             <a href="<?= $this->h($this->route('tweets.index')) ?>" class="<?= $desktopClass ?>">Tweet</a>
 
@@ -37,5 +38,22 @@ $desktopClass = 'hover:text-indigo-500';
                 <a href="<?= $this->h($this->route('login')) ?>" class="<?= $desktopClass ?>">Login</a>
             <?php endif ?>
         </nav>
+
+        <!-- Mobile Button -->
+        <button @click="open = !open" id="menuBtn" class="md:hidden text-2xl">
+            ☰
+        </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div
+        x-show="open"
+        x-transition.duration.200ms
+        id="mobileMenu"
+        class="px-6 pb-4 md:hidden"
+        style="display: none;">
+        <a href="#" class="<?= $mobileClass ?>">Home</a>
+        <a href="#" class="<?= $mobileClass ?>">About</a>
+        <a href="#" class="<?= $mobileClass ?>">Contact</a>
     </div>
 </header>

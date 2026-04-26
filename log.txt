@@ -22,3 +22,9 @@ npm install -D typescript @types/node
 npm install vue @vitejs/plugin-vue
 
 npm install -D vite-plugin-full-reload
+
+npm install alpinejs
+
+npm i --save-dev @types/alpinejs
+
+npm install axios
