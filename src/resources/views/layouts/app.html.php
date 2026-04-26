@@ -9,14 +9,19 @@ use SFW\View\Layout;
     <?= $this->render('layouts.partials.head', ['title' => $title ?? null]) ?>
 </head>
 
-<body style="margin: 0;">
-    <?= $this->render('layouts.partials.nav') ?>
+<body
+    class="bg-gradient-to-br from-indigo-100 via-white to-blue-100 min-h-screen">
+    <div class="flex flex-col min-h-screen">
+        <div class="flex-grow">
+            <?= $this->render('layouts.partials.nav') ?>
 
-    <main style="padding: 1rem; padding-bottom: 3rem;">
-        <?= $data[Layout::KEY_LAYOUT_CONTENT] ?? '' ?>
-    </main>
+            <div class="p-5 pb-40">
+                <?= $data[Layout::KEY_LAYOUT_CONTENT] ?? '' ?>
+            </div>
+        </div>
 
-    <?= $this->render('layouts.partials.footer') ?>
+        <?= $this->render('layouts.partials.footer') ?>
+    </div>
 </body>
 
 </html>

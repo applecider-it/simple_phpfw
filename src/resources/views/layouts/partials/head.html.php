@@ -16,8 +16,6 @@ $user = Auth::get();
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
-<link rel="stylesheet" href="<?= $this->h($this->file('/css/app.css')) ?>">
-
 <?php if ($user): ?>
     <meta name="user" data-json="<?= $this->h(json_encode($user)) ?>">
 <?php endif; ?>
@@ -27,11 +25,3 @@ $user = Auth::get();
 <?= $vite->init() ?>
 <link rel="stylesheet" href="<?= $this->h($vite->asset('resources/css/app.css')) ?>">
 <script type="module" src="<?= $this->h($vite->asset('resources/js/entrypoints/app.ts')) ?>"></script>
-
-<script type="module" src="<?= $this->h($this->file('/js/app.js')) ?>"></script>
-<script type="module">
-    console.log("init app");
-
-    // 動作確認
-    console.log("auth user", app.getMetaJson('user'));
-</script>

@@ -20,3 +20,5 @@ npx tailwindcss init -p
 npm install -D typescript @types/node
 
 npm install vue @vitejs/plugin-vue
+
+npm install -D vite-plugin-full-reload
