@@ -1,7 +1,7 @@
 <?php
 $data['exists'] = false;
 ?>
-<h2 class="app-h2">📝 user.create</h2>
+<h2 class="app-h2">ユーザー登録</h2>
 
 <div class="mt-10">
     <?= $this->render('partials.validation.errors', ['errors' => $errors ?? null]) ?>

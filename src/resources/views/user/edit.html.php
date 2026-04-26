@@ -1,7 +1,7 @@
 <?php
 $data['exists'] = true;
 ?>
-<h2 class="app-h2">📝 user.edit</h2>
+<h2 class="app-h2">プロフィール編集</h2>
 
 <div class="mt-10">
     <?= $this->render('partials.validation.errors', ['errors' => $errors ?? null]) ?>

@@ -13,6 +13,9 @@
   .app-btn-secondary {
     @apply app-btn bg-gray-500 text-white;
   }
+  .app-btn-sm {
+    @apply px-3 py-1 text-sm;
+  }
 
   /* タイトル */
 
@@ -66,6 +69,6 @@
 
   /* テーブルのtdタグ用 */
   .app-table-td {
-    @apply px-6 py-4 whitespace-nowrap;
+    @apply px-6 py-3 whitespace-nowrap;
   }
 }

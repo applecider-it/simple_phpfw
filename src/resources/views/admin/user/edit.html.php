@@ -3,9 +3,9 @@ $this->setLayoutValue('breadcrumbs', ['admin.user.edit', $data]);
 
 $data['exists'] = true;
 ?>
-<h2 class="app-h2">📝 admin.user.edit</h2>
+<h2 class="app-h2">ユーザー編集</h2>
 
-<div class="mt-10">
+<div class="mt-7">
     <div>
         <a href="<?= $this->h($this->route('admin.user.index')) ?>" class="app-link-normal">一覧</a>
     </div>

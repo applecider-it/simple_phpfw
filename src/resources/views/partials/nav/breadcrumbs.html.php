@@ -3,7 +3,7 @@
     $arr = $this->app('breadcrumbs')->get(...$breadcrumbs);
     ?>
 
-    <div class="p-4">
+    <div class="pt-4 px-5">
         <?php foreach ($arr as $idx => $row): ?>
             <?php if ($idx != 0): ?>
                 <span class="px-2"> > </span>

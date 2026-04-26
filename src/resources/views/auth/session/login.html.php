@@ -1,4 +1,4 @@
-<h2 class="app-h2">auth.session.login</h2>
+<h2 class="app-h2">ログイン</h2>
 
 <div class="mt-10">
     <?= $this->render('partials.message.flash') ?>

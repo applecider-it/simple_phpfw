@@ -1,4 +1,4 @@
-<h2 class="app-h2">tweet.index</h2>
+<h2 class="app-h2">ツイート</h2>
 
 <div>
     <?= $this->render('partials.message.flash') ?>

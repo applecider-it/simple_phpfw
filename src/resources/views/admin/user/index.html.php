@@ -1,9 +1,9 @@
 <?php
 $this->setLayoutValue('breadcrumbs', ['admin.user.index']);
 ?>
-<h2 class="app-h2">admin.user.index</h2>
+<h2 class="app-h2">ユーザー一覧</h2>
 
-<div class="mt-10">
+<div class="mt-7">
     <div>
         <a href="<?= $this->h($this->route('admin.user.create')) ?>" class="app-btn-primary">
             新規作成
@@ -14,7 +14,7 @@ $this->setLayoutValue('breadcrumbs', ['admin.user.index']);
         <?= $this->render('admin.user.partials.search', $params) ?>
     </div>
 
-    <div class="mt-10">
+    <div class="mt-7">
         <?= $this->render('admin.user.partials.list', ['users' => $users]) ?>
     </div>
 
