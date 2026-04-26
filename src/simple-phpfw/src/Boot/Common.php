@@ -9,6 +9,7 @@ use SFW\Core\Container;
 use SFW\Core\Env;
 use SFW\Core\Config;
 use SFW\Web\Router;
+use SFW\Web\Vite;
 use SFW\Database\DB;
 use SFW\Data\Path;
 
@@ -51,6 +52,7 @@ class Common
         App::getContainer()->setSingleton('config', $this->includeConfig(), 'Config');
         App::getContainer()->setSingleton('lang', $this->includeLang(), 'Language Data');
         App::getContainer()->setSingleton('callback', new Callback(), 'Callback class');
+        App::getContainer()->setSingleton('vite', new Vite(), 'Vite class');
     }
 
     /** ルート読み込み */

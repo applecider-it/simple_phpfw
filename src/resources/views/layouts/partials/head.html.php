@@ -1,6 +1,9 @@
 <?php
 
 use App\Services\User\AuthService as Auth;
+use SFW\Core\App;
+
+$vite = App::get('vite');
 
 $user = Auth::get();
 ?>
@@ -20,6 +23,10 @@ $user = Auth::get();
 <?php endif; ?>
 
 <?= $this->render('partials.app.meta') ?>
+
+<?= $vite->init() ?>
+<link rel="stylesheet" href="<?= $this->h($vite->asset('resources/css/app.css')) ?>">
+<script type="module" src="<?= $this->h($vite->asset('resources/js/entrypoints/app.ts')) ?>"></script>
 
 <script type="module" src="<?= $this->h($this->file('/js/app.js')) ?>"></script>
 <script type="module">

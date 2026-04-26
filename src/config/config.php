@@ -55,6 +55,11 @@ return [
     // ブラウザキャッシュ対応
     'filePostfix' => $filePostfix,
 
+    'vite' => [
+        'dev' => true,
+        'port' => 5173,
+    ],
+
     // アプリケーション独自の設定
     'app' => $app,
 ];

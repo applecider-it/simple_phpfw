@@ -30,6 +30,9 @@ php ./bin/console help server
 
 echo "" > ./storage/logs/simple_framework.log
 
+----------
+
+npm run dev
 
 -----------------------------------
 

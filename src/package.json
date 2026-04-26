@@ -1,4 +1,10 @@
 {
+  "private": true,
+  "type": "module",
+  "scripts": {
+      "build": "vite build",
+      "dev": "vite"
+  },
   "devDependencies": {
     "@types/node": "^25.6.0",
     "autoprefixer": "^10.5.0",
