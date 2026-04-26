@@ -6,6 +6,4 @@
 </head>
 
 <body>
-    <?= $this->render('layouts.partials.nav') ?>
-
     <div class="main">

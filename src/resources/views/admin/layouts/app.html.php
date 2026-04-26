@@ -9,17 +9,22 @@ use SFW\View\Layout;
     <?= $this->render('admin.layouts.partials.head', ['title' => $title ?? null]) ?>
 </head>
 
-<body style="margin: 0;">
-    <?= $this->render('admin.layouts.partials.nav') ?>
-    <?= $this->render('partials.nav.breadcrumbs', [
-        'breadcrumbs' => $this->layoutValue('breadcrumbs'),
-    ]) ?>
+<body
+    class="bg-gradient-to-br from-indigo-100 via-white to-blue-100 min-h-screen">
+    <div class="flex flex-col min-h-screen">
+        <div class="flex-grow">
+            <?= $this->render('admin.layouts.partials.nav') ?>
+            <?= $this->render('partials.nav.breadcrumbs', [
+                'breadcrumbs' => $this->layoutValue('breadcrumbs'),
+            ]) ?>
 
-    <main style="padding: 1rem; padding-bottom: 3rem;">
-        <?= $data[Layout::KEY_LAYOUT_CONTENT] ?? '' ?>
-    </main>
+            <div class="p-5 pb-40">
+                <?= $data[Layout::KEY_LAYOUT_CONTENT] ?? '' ?>
+            </div>
+        </div>
 
-    <?= $this->render('admin.layouts.partials.footer') ?>
+        <?= $this->render('admin.layouts.partials.footer') ?>
+    </div>
 </body>
 
 </html>

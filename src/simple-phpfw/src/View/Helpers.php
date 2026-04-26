@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SFW\View\Loader;
+namespace SFW\View;
 
 use SFW\Output\Html;
 use SFW\Core\App;

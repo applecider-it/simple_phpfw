@@ -6,7 +6,7 @@ $adminUser = Auth::get();
 
 $desktopClass = 'hover:text-indigo-500';
 ?>
-<header class="bg-gray-100 shadow-md" x-data="{ open:false }">
+<header class="bg-gray-200 shadow-md" x-data="{ open:false }">
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <!-- Logo -->
         <a href="<?= $this->h($this->route('admin.index')) ?>">

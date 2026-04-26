@@ -9,7 +9,7 @@ namespace SFW\View;
  */
 class Loader
 {
-    use Loader\Helpers;
+    use Helpers;
 
     /** View管理 */
     private View $view;
