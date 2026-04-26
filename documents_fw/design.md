@@ -25,10 +25,10 @@ config/ <- 設定
   config.php <- 全般の設定
 database/ <- データベース関連
 public/ <- Webルート
-  css/
-  js/
   index.php <- Webのエントリーポイント
 resources/ 
+  css/
+  js/
   lang/ <- 言語ファイル
   views/ <- Viewファイル
     admin/ <- 管理画面

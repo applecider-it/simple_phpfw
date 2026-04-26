@@ -55,6 +55,7 @@ Web/ <- Web関連
 | db | Main database | SFW\Database\DB |  |
 | lang | Language Data | array |  |
 | router | Router | SFW\Web\Router |  |
+| vite | Vite class | SFW\Web\Vite |  |
 
 ## ルート
 
