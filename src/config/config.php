@@ -17,8 +17,10 @@ $app = (fn($env) => include(__DIR__ . '/app.php'))($env);
 // タイムゾーンの設定
 date_default_timezone_set('Asia/Tokyo');
 
+$debug = $env['SFW_DEBUG'];
+
 return [
-    'debug' => $env['SFW_DEBUG'],
+    'debug' => $debug,
 
     // URIプレフィックス
     'prefix' => $prefix,
@@ -56,7 +58,7 @@ return [
     'filePostfix' => $filePostfix,
 
     'vite' => [
-        'dev' => true,
+        'dev' => $debug,
         'port' => 5173,
     ],
 

@@ -1,8 +1,6 @@
 <?= $this->render('errors.begin') ?>
 
-<main>
-    <h2>404 Error</h2>
-    <div>ページが見つかりません。</div>
-</main>
+<h2 class="app-h2">404 Error</h2>
+<div>ページが見つかりません。</div>
 
 <?= $this->render('errors.end') ?>
