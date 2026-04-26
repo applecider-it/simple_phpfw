@@ -10,6 +10,7 @@ use App\Services\Sample\SampleService;
 use App\Services\Development\DatabaseService;
 use App\Services\Development\ValidationService;
 use App\Services\Development\FormService;
+use App\Services\Development\JavascriptService;
 use App\Services\User\AuthService as Auth;
 
 use App\Validations\Validator;
@@ -113,46 +114,31 @@ class DevelopmentController extends Controller
     /** javascriptテスト(POST API部分) */
     public function api_post()
     {
+        $javascriptService = new JavascriptService;
+
         $user = Auth::get();
 
-        return [
-            'data' => [
-                'user' => $user,
-                'params.aaa' => $this->params['aaa'],
-            ]
-        ];
+        return $javascriptService->apiPostData($user, $this->params);
     }
 
     /** javascriptテスト(GET API部分) */
     public function api_get()
     {
+        $javascriptService = new JavascriptService;
+
         $user = Auth::get();
 
-        return [
-            'data' => [
-                'user' => $user,
-                'params.val1' => $this->params['get_val'],
-                '111' => [
-                    '222' => [
-                        '333' => '444',
-                    ]
-                ]
-            ]
-        ];
+        return $javascriptService->apiGetData($user, $this->params);
     }
 
     /** javascriptテスト(セッションがないPOST API部分) */
     public function api_post_nosession()
     {
+        $javascriptService = new JavascriptService;
+
         $user = Auth::get();
 
-        return [
-            'data' => [
-                'type' => 'nosession',
-                'user' => $user,
-                'params.aaa' => $this->params['aaa'],
-            ]
-        ];
+        return $javascriptService->apiPostNosessionData($user, $this->params);
     }
 
     /** phpテスト */

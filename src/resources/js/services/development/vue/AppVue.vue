@@ -18,7 +18,7 @@ const postJsonTest = async () => {
     };
 
     const url = "/development/api_post?get_val=Get!!";
-    console.log("url", url);
+    console.log("url", url, data);
 
     const result = await sendData(method, url, data);
 
@@ -34,7 +34,7 @@ const getJsonTest = async () => {
     const data = {
         get_val: "Get!!",
     };
-    console.log("url", url);
+    console.log("url", url, data);
 
     const result = await sendData(method, url, data);
 
@@ -57,7 +57,7 @@ const postNosessionJsonTest = async () => {
     };
 
     const url = "/development/api_post_nosession?get_val=Get!!";
-    console.log("url", url);
+    console.log("url", url, data);
 
     const result = await sendDataNosession(method, url, data);
 
