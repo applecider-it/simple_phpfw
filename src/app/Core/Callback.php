@@ -39,7 +39,7 @@ class Callback
     }
 
     /** リクエスト情報取得直後 */
-    public function afterRequest(array &$params)
+    public function afterRequest(array &$params, array $meta)
     {
         // リクエストパラメーターを変更
         array_walk_recursive($params, function (&$item, $key) {
@@ -50,6 +50,7 @@ class Callback
 
         Log::info('afterRequest: route: ', App::get('router')->currentRoute());
         Log::info('afterRequest: params: ', Arr::maskRecursive($params, Config::get('app.trace_mask_keys')));
+        Log::info('afterRequest: meta: ', $meta);
 
         $headers = getallheaders();
         Log::info('afterRequest: headers: ', Arr::maskRecursive(

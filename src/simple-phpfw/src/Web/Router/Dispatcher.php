@@ -87,7 +87,11 @@ class Dispatcher
         // 一番左が優先される
         $params = $urlParams + $_GET + $_POST + $jsonData;
 
-        App::get('callback')->afterRequest($params);
+        $meta = [
+            'isJsonRequest' => $isJsonRequest,
+        ];
+
+        App::get('callback')->afterRequest($params, $meta);
 
         $csrfToken = $headers['X-CSRF-TOKEN'] ?? ($params['csrf_token'] ?? '');
 

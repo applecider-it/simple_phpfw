@@ -14,8 +14,12 @@ class Json
     /** Jsonのリクエストか返す */
     public static function isJsonRequest(): bool
     {
-        return isset($_SERVER["CONTENT_TYPE"]) &&
-            stripos($_SERVER["CONTENT_TYPE"], "application/json") !== false;
+        $contetType = $_SERVER["CONTENT_TYPE"] ?? '';
+        $xhr = $_SERVER['HTTP_X_REQUESTED_WITH'] ?? '';
+
+        return
+            stripos($contetType, "application/json") !== false
+            || strtolower($xhr) === 'xmlhttprequest';
     }
 
     /** Jsonのリクエストデータを取得 */

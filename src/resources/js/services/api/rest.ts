@@ -6,6 +6,7 @@ const api = axios.create({
     baseURL: getMetaJson("app").prefix,
     headers: {
         "Content-Type": "application/json",
+        "X-Requested-With": "XMLHttpRequest",
     },
 });
 
