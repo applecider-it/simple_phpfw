@@ -133,4 +133,15 @@ http://localhost:9000/public
 http://localhost:9000/public/admin_secret
 
 
+-----------------------------------
+
+ビルド
+
+
+npm run build
+
+動作確認
+
+config.phpのvite.devをfalse
+
 
