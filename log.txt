@@ -10,3 +10,13 @@ composer dump-autoload
 php ./bin/console generator controller Tweet index store
 
 
+-----------------------------------
+
+
+npm install -D tailwindcss@^3.4.18 postcss autoprefixer
+
+npx tailwindcss init -p
+
+npm install -D typescript @types/node
+
+npm install vue @vitejs/plugin-vue
