@@ -1,6 +1,6 @@
 <h3>development.partials.render_test_parts</h3>
 <div>
-    <div style="<?= $this->h($metaStyle) ?>">
+    <div class="<?= $this->h($metaClass) ?>">
         <div>$meta['name']: <?= $this->h($meta['name']) ?></div>
         <div>$meta['baseDir']: <?= $this->h($meta['baseDir']) ?></div>
         <div>$meta['path']: <?= $this->h($meta['path']) ?></div>
