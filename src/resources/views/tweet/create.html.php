@@ -1,4 +1,4 @@
-<h2>tweet.index</h2>
+<h2 class="app-h2">tweet.index</h2>
 
 <div>
     <?= $this->render('partials.message.flash') ?>
@@ -7,13 +7,13 @@
         <?= $this->render('partials.form.csrf') ?>
 
         <div>
-            <label>内容</label>
-            <input type="text" name="content" value="<?= $this->h($content ?? '') ?>">
+            <label class="app-form-label">内容</label>
+            <input type="text" name="content" value="<?= $this->h($content ?? '') ?>" class="app-form-input">
             <?= $this->render('partials.validation.error', ['errors' => $errors ?? null, 'attribute' => 'content']) ?>
         </div>
 
-        <div>
-            <button type="submit" name="confirm" value="on">投稿確認</button>
+        <div class="my-10">
+            <button type="submit" name="confirm" value="on" class="app-btn-primary">投稿確認</button>
         </div>
     </form>
 </div>

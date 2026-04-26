@@ -10,6 +10,9 @@
   .app-btn-primary {
     @apply app-btn bg-blue-500 text-white;
   }
+  .app-btn-secondary {
+    @apply app-btn bg-gray-500 text-white;
+  }
 
   /* タイトル */
 
@@ -29,5 +32,40 @@
   /* テキストボックス */
   .app-form-input {
     @apply w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition;
+  }
+
+  /* フォームのラベル */
+  .app-form-label {
+    @apply block text-sm font-medium text-gray-700 dark:text-gray-200;
+  }
+
+  /* テーブルをレスポンシブ対応させるためのコンテナ */
+  .app-table-container {
+    @apply overflow-x-auto bg-white dark:bg-gray-800 shadow-md rounded-lg;
+  }
+
+  /* tableタグ用 */
+  .app-table {
+    @apply min-w-full divide-y divide-gray-200 dark:divide-gray-700;
+  }
+
+  /* テーブルのtheadタグ用 */
+  .app-table-thead {
+    @apply bg-gray-50 dark:bg-gray-700;
+  }
+
+  /* テーブルのtbodyタグ用 */
+  .app-table-tbody {
+    @apply bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700;
+  }
+
+  /* テーブルのthタグ用 */
+  .app-table-th {
+    @apply px-6 py-3 text-xs font-medium text-gray-500 dark:text-gray-300 tracking-wider;
+  }
+
+  /* テーブルのtdタグ用 */
+  .app-table-td {
+    @apply px-6 py-4 whitespace-nowrap;
   }
 }

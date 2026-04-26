@@ -1,4 +1,4 @@
-<h2>tweet.index</h2>
+<h2 class="app-h2">tweet.index</h2>
 
 <div>
     <form method="POST" action="<?= $this->h($this->route('tweets.create')) ?>">

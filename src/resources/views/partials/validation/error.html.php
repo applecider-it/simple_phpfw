@@ -3,7 +3,7 @@
 $array = $errors[$attribute] ?? null;
 ?>
 <?php if ($array): ?>
-    <div style="margin:0.5rem 0; color: #c0392b; font-size: 0.8rem;">
+    <div class="mt-2 text-sm text-red-600">
         <?php foreach ($array as $val): ?>
             <div><?= $this->h($val) ?></div>
             <?php break; ?>

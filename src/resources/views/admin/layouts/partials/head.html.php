@@ -1,6 +1,9 @@
 <?php
 
 use App\Services\AdminUser\AuthService as Auth;
+use SFW\Core\App;
+
+$vite = App::get('vite');
 
 $adminUser = Auth::get();
 ?>
@@ -13,18 +16,12 @@ $adminUser = Auth::get();
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
-<link rel="stylesheet" href="<?= $this->h($this->file('/css/admin.css')) ?>">
-
 <?php if ($adminUser): ?>
     <meta name="admin-user" data-json="<?= $this->h(json_encode($adminUser)) ?>">
 <?php endif; ?>
 
 <?= $this->render('partials.app.meta') ?>
 
-<script type="module" src="<?= $this->h($this->file('/js/app.js')) ?>"></script>
-<script type="module">
-    console.log("init admin");
-
-    // 動作確認
-    console.log("auth admin-user", app.getMetaJson('admin-user'));
-</script>
+<?= $vite->init() ?>
+<link rel="stylesheet" href="<?= $this->h($vite->asset('resources/css/admin.css')) ?>">
+<script type="module" src="<?= $this->h($vite->asset('resources/js/entrypoints/admin/app.ts')) ?>"></script>

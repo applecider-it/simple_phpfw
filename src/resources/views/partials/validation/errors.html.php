@@ -1,15 +1,10 @@
 <?php if (!empty($errors)): ?>
-    <div style="
-        background-color: #fdecea;
-        color: #c0392b;
-        padding: 1rem 1.5rem;
-        margin: 1rem 0;
-        margin-bottom: 1rem;
-    ">
-        <strong>
+    <div class="bg-red-50 border border-red-200 text-red-700 px-6 py-4 my-4 rounded-lg">
+        <strong class="block font-semibold mb-2">
             ⚠ エラー発生
         </strong>
-        <ul style="margin-top:0.5rem; padding-left: 1.2rem; font-size: 0.8rem;">
+
+        <ul class="list-disc pl-5 text-sm space-y-1">
             <?php foreach ($errors as $arr): ?>
                 <?php foreach ($arr as $val): ?>
                     <li><?= $this->h($val) ?></li>

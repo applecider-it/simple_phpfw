@@ -27,7 +27,7 @@ $metaStyle = implode(
     ]
 );
 ?>
-<h2>development.render_test</h2>
+<h2 class="app-h2">development.render_test</h2>
 <div>
     <div style="<?= $this->h($metaStyle) ?>">
         <div>$meta['name']: <?= $this->h($meta['name']) ?></div>

@@ -3,11 +3,11 @@ $this->setLayoutValue('breadcrumbs', ['admin.user.create']);
 
 $data['exists'] = false;
 ?>
-<h2>📝 admin.user.create</h2>
+<h2 class="app-h2">📝 admin.user.create</h2>
 
-<div>
+<div class="mt-10">
     <div>
-        <a href="<?= $this->h($this->route('admin.user.index')) ?>">一覧</a>
+        <a href="<?= $this->h($this->route('admin.user.index')) ?>" class="app-link-normal">一覧</a>
     </div>
 
     <?= $this->render('partials.validation.errors', ['errors' => $errors ?? null]) ?>
@@ -16,8 +16,8 @@ $data['exists'] = false;
         <form method="POST" action="<?= $this->h($this->route('admin.user.create')) ?>">
             <?= $this->render('partials.form.csrf') ?>
             <?= $this->render('admin.user.partials.form', $data) ?>
-            <div>
-                <button type="submit">登録</button>
+            <div class="mt-10">
+                <button type="submit" class="app-btn-primary">登録</button>
             </div>
         </form>
     </div>

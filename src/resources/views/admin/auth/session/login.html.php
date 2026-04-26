@@ -1,4 +1,4 @@
-<h2>admin.auth.session.login</h2>
+<h2 class="app-h2">admin.auth.session.login</h2>
 
 <?= $this->render('partials.message.flash') ?>
 

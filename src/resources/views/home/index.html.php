@@ -1,5 +1,5 @@
-<h2>home.index</h2>
+<h2 class="app-h2">home.index</h2>
 
 <div>
-    <a href="<?= $this->h($this->route('development.index')) ?>">development</a>
+    <div><a href="<?= $this->h($this->route('development.index')) ?>" class="app-link-normal">development</a></div>
 </div>
