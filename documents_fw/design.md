@@ -27,6 +27,7 @@ config/ <- 設定
   config.php <- 全般の設定
 database/ <- データベース関連
 public/ <- Webルート
+  assets/ <- ビルドしたファイルの出力先
   index.php <- Webのエントリーポイント
 resources/ 
   css/
