@@ -7,7 +7,7 @@
             <div>
                 <label for="list_val" class="app-form-label">リスト動作確認</label>
 
-                <select name="list_val" id="list_val">
+                <select name="list_val" id="list_val" class="app-form-input w-auto">
                     <option value="">選択してください</option>
                     <?php foreach ($data['list_vals'] as $key => $value): ?>
                         <option value="<?= $this->h($key) ?>"
