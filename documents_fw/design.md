@@ -47,3 +47,12 @@ storage/ <- 各種出力用
 tests/ <- ユニットテスト
 .env <- 環境変数
 ```
+
+## npm
+
+- Vite
+- Typescript
+- Vue
+- Tailwind3
+- axios
+- Alpine
