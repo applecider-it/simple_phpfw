@@ -11,6 +11,8 @@ php: 9000
 
 サーバー起動
 
+cd ~/workspace/github/simple-phpfw/src
+
 foreman start
 
 これで起動すると、foremanが.envを読み込む。
