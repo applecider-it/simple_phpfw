@@ -7,4 +7,4 @@ define('SFW_BOOT_TYPE', 'console');
 
 require_once dirname(__DIR__) . '/bootstrap/app.php';
 
-(new SFW\Boot\Console)->dispatch($argv);
+new SFW\Boot\Console()->dispatch($argv);

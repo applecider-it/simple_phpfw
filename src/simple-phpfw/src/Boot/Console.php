@@ -12,8 +12,10 @@ use SFW\Console\Starter;
 class Console
 {
     /** 実行 */
-    public function dispatch($argv): void
+    public function dispatch(array $argv): void
     {
+        new Common()->init();
+
         $starter = new Starter();
 
         $starter->dispatch($argv);

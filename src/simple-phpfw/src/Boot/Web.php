@@ -18,10 +18,12 @@ class Web
     /** 実行 */
     public function dispatch(): void
     {
-        /** @var \SFW\Web\Router */
-        $router = App::get('router');
-
         try {
+            new Common()->init();
+
+            /** @var \SFW\Web\Router */
+            $router = App::get('router');
+
             $dispacher = new Dispatcher($router);
             $val = $dispacher->dispatch();
 
