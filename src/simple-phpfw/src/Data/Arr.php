@@ -12,7 +12,7 @@ class Arr
     /**
      * ドット記法で配列取得
      */
-    public static function dotValue(array $array, string $key, $default = null): mixed
+    public static function dotValue(array $array, string $key, mixed $default = null): mixed
     {
         if ($key === null) return $array;
 

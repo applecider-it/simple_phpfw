@@ -65,12 +65,4 @@ class Str
         // STR_PAD_RIGHT
         return $input . str_repeat($pad_string, $pad_size);
     }
-
-    /** 全角スペースを含めてtrim */
-    public static function trimAll(string $text): string
-    {
-        $s = "\x0B\xE3\x80\x80";
-        $allSpace = '[\s' . $s . ']+';
-        return preg_replace('/^' . $allSpace . '|' . $allSpace . '$/u', '', $text);
-    }
 }

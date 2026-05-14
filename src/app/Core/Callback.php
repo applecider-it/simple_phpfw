@@ -43,7 +43,7 @@ class Callback
     {
         // リクエストパラメーターを変更
         array_walk_recursive($params, function (&$item, $key) {
-            if (is_string($item)) $item = Str::trimAll($item);
+            if (is_string($item)) $item = mb_trim($item);
         });
 
         if (! Config::get('debug')) return;

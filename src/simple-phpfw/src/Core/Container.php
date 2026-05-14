@@ -12,7 +12,7 @@ class Container
     private array $singleton = [];
 
     /** シングルトン設定 */
-    public function setSingleton(string $key, $value, $name = ''): void
+    public function setSingleton(string $key, mixed $value, string $name = ''): void
     {
         $this->singleton[$key] = [
             'name' => $name,

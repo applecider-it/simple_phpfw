@@ -33,19 +33,19 @@ class Router
     }
 
     /** GETメソッドルーツ追加 */
-    public function get(string $path, $handler, array $options = []): void
+    public function get(string $path, array $handler, array $options = []): void
     {
         $this->addRoute('GET', $path, $handler, $options);
     }
 
     /** POSTメソッドルーツ追加 */
-    public function post(string $path, $handler, array $options = []): void
+    public function post(string $path, array $handler, array $options = []): void
     {
         $this->addRoute('POST', $path, $handler, $options);
     }
 
     /** 共通ルート追加処理 */
-    private function addRoute(string $method, string $path, $handler, array $options = []): void
+    private function addRoute(string $method, string $path, array $handler, array $options = []): void
     {
         // {param} を名前付きキャプチャのある正規表現に変換
         $pattern = preg_replace('#\{([a-zA-Z0-9_]+)\}#', '(?P<$1>[^/]+)', $path);

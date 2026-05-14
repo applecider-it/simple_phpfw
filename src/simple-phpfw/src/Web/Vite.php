@@ -10,7 +10,7 @@ use SFW\Core\Config;
 class Vite
 {
     /** マニフェストのキャッシュ */
-    private $manifest = null;
+    private ?array $manifest = null;
 
     /** Viteを使用する準備 */
     public function init(): string

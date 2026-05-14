@@ -10,7 +10,7 @@ namespace SFW\Data;
 class File
 {
     /** ファイルを読み込んで、指定インデックスの範囲だけ配列で取得 */
-    public static function getLinesAround($filePath, $targetIdx, $range = 5)
+    public static function getLinesAround(string $filePath, int $targetIdx, int $range = 5): array
     {
         // ファイルを配列として読み込む（1行 = 1要素）
         $lines = file($filePath, FILE_IGNORE_NEW_LINES);

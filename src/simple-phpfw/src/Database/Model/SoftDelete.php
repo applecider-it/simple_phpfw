@@ -9,6 +9,9 @@ use SFW\Database\Raw;
 
 /**
  * 論理削除トレイト
+ * 
+ * @method static int update(int $id, array $data)
+ * @method static string table()
  */
 trait SoftDelete
 {

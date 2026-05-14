@@ -28,7 +28,7 @@ class DB
     }
 
     /** １行だけ取得 */
-    public function one(string $sql, ...$bindings): array|false
+    public function one(string $sql, mixed ...$bindings): array|false
     {
         $stmt = $this->exec($sql, $bindings);
 
@@ -36,7 +36,7 @@ class DB
     }
 
     /** 全件取得 */
-    public function all(string $sql, ...$bindings): array
+    public function all(string $sql, mixed ...$bindings): array
     {
         $stmt = $this->exec($sql, $bindings);
 
@@ -63,7 +63,7 @@ class DB
      * 更新
      * @return int 影響を与えたレコード件数
      */
-    public function update(string $table, array $data, string $whereSql, ...$whereBindings): int
+    public function update(string $table, array $data, string $whereSql, mixed ...$whereBindings): int
     {
         $sqlData = $this->dataToSqlData($data);
         $set = implode(', ', $sqlData['columnsForUpdate']);
@@ -107,7 +107,7 @@ class DB
      * 削除
      * @return int 影響を与えたレコード件数
      */
-    public function delete($table, string $whereSql, ...$whereBindings): int
+    public function delete(string $table, string $whereSql, mixed ...$whereBindings): int
     {
         $sql = "DELETE FROM {$table}";
         $sql .= " WHERE {$whereSql}";

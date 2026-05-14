@@ -13,7 +13,7 @@ use SFW\Data\Str;
 class Lang
 {
     /** 言語取得 */
-    public static function get($key, array $templateData = []): string
+    public static function get(string $key, array $templateData = []): string
     {
         $lang = App::get('lang');
         $val = Arr::dotValue($lang, Config::get('lang') . '.' . $key);

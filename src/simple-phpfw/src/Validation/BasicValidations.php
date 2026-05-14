@@ -12,7 +12,7 @@ use SFW\Core\Lang;
 trait BasicValidations
 {
     /** 必須項目チェック */
-    protected function validate_required($field, $value): void
+    protected function validate_required(string $field, mixed $value): void
     {
         if ($this->isBlank($value)) {
             $label = $this->getLabel($field);
@@ -21,7 +21,7 @@ trait BasicValidations
     }
 
     /** メール検査 */
-    protected function validate_email($field, $value): void
+    protected function validate_email(string $field, mixed $value): void
     {
         if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
             $label = $this->getLabel($field);
@@ -30,7 +30,7 @@ trait BasicValidations
     }
 
     /** 数値検査 */
-    protected function validate_numeric($field, $value): void
+    protected function validate_numeric(string $field, mixed $value): void
     {
         if (!is_numeric($value)) {
             $label = $this->getLabel($field);
@@ -39,7 +39,7 @@ trait BasicValidations
     }
 
     /** 最小値検査 */
-    protected function validate_min($field, $value, $params): void
+    protected function validate_min(string $field, mixed $value, array $params): void
     {
         $min = $params[0];
         if (is_numeric($value) && $value < $min) {
@@ -49,7 +49,7 @@ trait BasicValidations
     }
 
     /** 最大値検査 */
-    protected function validate_max($field, $value, $params): void
+    protected function validate_max(string $field, mixed $value, array $params): void
     {
         $max = $params[0];
         if (is_numeric($value) && $value > $max) {
@@ -59,7 +59,7 @@ trait BasicValidations
     }
 
     /** 値の確認の検査 */
-    protected function validate_confirm($field, $value): void
+    protected function validate_confirm(string $field, mixed $value): void
     {
         $confirmValue = $this->data[$field . '_confirm'];
 
@@ -70,7 +70,7 @@ trait BasicValidations
     }
 
     /** DBユニーク値の検査 */
-    protected function validate_unique($field, $value, $params): void
+    protected function validate_unique(string $field, mixed $value, array $params): void
     {
         $column = $params[0];
         $query = $params[1];

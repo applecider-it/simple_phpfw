@@ -106,7 +106,7 @@ abstract class Validator
     }
 
     /** 空白チェック */
-    protected function isBlank($value): bool
+    protected function isBlank(mixed $value): bool
     {
         return ($value === null || $value === '' || (is_array($value) && empty($value)));
     }

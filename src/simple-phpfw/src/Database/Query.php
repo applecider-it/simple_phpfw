@@ -44,7 +44,7 @@ class Query
     public function __construct(private string $database = 'db') {}
 
     /** テーブル指定 */
-    public function table(string $sql, ...$value): self
+    public function table(string $sql, mixed ...$value): self
     {
         $this->tables[] = [
             'sql' => $sql,
@@ -61,7 +61,7 @@ class Query
     }
 
     /** COLUMN追加 */
-    public function column(string $sql, ...$value): self
+    public function column(string $sql, mixed ...$value): self
     {
         $this->columns[] = [
             'sql' => $sql,
@@ -71,7 +71,7 @@ class Query
     }
 
     /** Where追加 */
-    public function where(string $sql, ...$value): self
+    public function where(string $sql, mixed ...$value): self
     {
         $this->wheres[] = [
             'sql' => $sql,
@@ -81,7 +81,7 @@ class Query
     }
 
     /** Where削除 */
-    public function removeWhere(string $sql, ...$value): self
+    public function removeWhere(string $sql, mixed ...$value): self
     {
         $target = [
             'sql' => $sql,
@@ -101,7 +101,7 @@ class Query
     }
 
     /** Having追加 */
-    public function having(string $sql, ...$value): self
+    public function having(string $sql, mixed ...$value): self
     {
         $this->havings[] = [
             'sql' => $sql,
@@ -139,7 +139,7 @@ class Query
     }
 
     /** $conditionがtrueの時だけクロージャー適用 */
-    public function when($condition, \Closure $func): self
+    public function when(mixed $condition, \Closure $func): self
     {
         if ($condition) {
             $func($this);
@@ -153,7 +153,7 @@ class Query
      * 例：
      * $scopeが[User::class, 'exampleScope']の場合、User::scopeExampleScopeというクラスメソッドを使う。
      */
-    public function scope(array $scope, ...$params): self
+    public function scope(array $scope, mixed ...$params): self
     {
         [$class, $name] = $scope;
         $method = 'scope' . ucfirst($name);
@@ -205,7 +205,7 @@ class Query
     }
 
     /** 部品削除 */
-    private function removeParts(&$parts, $target): void
+    private function removeParts(mixed &$parts, mixed $target): void
     {
         $parts = array_values(
             array_filter(

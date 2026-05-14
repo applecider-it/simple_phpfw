@@ -22,7 +22,7 @@ class Session
     }
 
     /** セッションを設定 */
-    public static function set(string $key, $val): void {
+    public static function set(string $key, mixed $val): void {
         $_SESSION[$key] = $val;
     }
 

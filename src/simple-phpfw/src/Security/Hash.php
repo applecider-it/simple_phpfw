@@ -20,7 +20,7 @@ class Hash
     /**
      * ハッシュ確認
      */
-    public static function check(string $password, $hashedPassword): bool
+    public static function check(string $password, string $hashedPassword): bool
     {
         return password_verify($password, $hashedPassword);
     }

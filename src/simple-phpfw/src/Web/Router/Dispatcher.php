@@ -60,7 +60,7 @@ class Dispatcher
      * ・セッションありなしの分岐。
      * ・GET、それ以外の分岐。
      */
-    private function runHandler($requestMethod, array $route, array $urlParams): mixed
+    private function runHandler(string $requestMethod, array $route, array $urlParams): mixed
     {
         $headers = getallheaders();
 
@@ -136,7 +136,7 @@ class Dispatcher
     }
 
     /** コントローラーを実行 */
-    private function execController($class, $method, array $params): mixed
+    private function execController(string $class, string $method, array $params): mixed
     {
         /** @var \SFW\Web\Controller */
         $obj = new $class();
