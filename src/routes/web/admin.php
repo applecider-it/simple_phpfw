@@ -2,6 +2,8 @@
 
 /**
  * 管理画面のルート設定
+ * 
+ * @var SFW\Web\Router $router;
  */
 
 use SFW\Core\Config;

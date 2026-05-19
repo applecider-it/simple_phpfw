@@ -25,7 +25,7 @@ class MakerService
     }
 
     /** 別の設定をマージする */
-    public function merge(string $name, ...$data): void
+    public function merge(string $name, array ...$data): void
     {
         $urls = $this->breadcrumbs->get($name, ...$data);
         $this->urls = array_merge($this->urls, $urls);

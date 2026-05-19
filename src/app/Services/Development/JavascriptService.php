@@ -8,7 +8,7 @@ namespace App\Services\Development;
 class JavascriptService
 {
     /** POST APIデータ */
-    public function apiPostData($user, $params)
+    public function apiPostData(array $user, array $params)
     {
         return [
             'data' => [
@@ -19,7 +19,7 @@ class JavascriptService
     }
 
     /** GET APIデータ */
-    public function apiGetData($user, $params)
+    public function apiGetData(array $user, array $params)
     {
         return [
             'data' => [
@@ -35,7 +35,7 @@ class JavascriptService
     }
 
     /** セッションがないPOST APIデータ */
-    public function apiPostNosessionData($user, $params)
+    public function apiPostNosessionData(?array $user, array $params)
     {
         return [
             'data' => [

@@ -1,4 +1,5 @@
 <?php
+/** @var App\Services\Nav\BreadcrumbsService $breadcrumbs */
 
 use App\Services\Nav\BreadcrumbsService\MakerService as Maker;
 use function SFW\Helpers\route;

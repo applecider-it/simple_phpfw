@@ -4,6 +4,8 @@
  * ルート設定
  * 
  * クロージャーで囲うことで、ローカル変数を保護している。
+ * 
+ * @var SFW\Web\Router $router;
  */
 
 use App\Controllers\HomeController;

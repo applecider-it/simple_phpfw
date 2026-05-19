@@ -98,6 +98,7 @@ class DevelopmentController extends Controller
     {
         Log::info('このログは出力される。');
         //throw new \Exception("例外テスト");
+        /** @disregard P1008 */
         echo $val;
         Log::info('このログは出力されない。');
     }

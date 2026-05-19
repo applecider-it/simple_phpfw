@@ -9,7 +9,7 @@ class BenchmarkService
 {
     private array $benchmarkData;
 
-    private $mega = 1024 * 1024;
+    private int $mega = 1024 * 1024;
 
     private array $keywords = [
         'vendor/illuminate',

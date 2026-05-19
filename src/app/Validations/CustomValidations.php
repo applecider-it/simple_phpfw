@@ -12,7 +12,7 @@ use SFW\Core\Lang;
 trait CustomValidations
 {
     /** 独自のチェックロジック */
-    protected function validate_original($field, $value, $params)
+    protected function validate_original(string $field, mixed $value, array $params)
     {
         $validValue = $this->data[$params[0]] . $this->data[$params[1]];
 

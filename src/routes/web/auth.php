@@ -2,6 +2,8 @@
 
 /**
  * 認証画面のルート設定
+ * 
+ * @var SFW\Web\Router $router;
  */
 
 use App\Controllers\Auth\SessionController;

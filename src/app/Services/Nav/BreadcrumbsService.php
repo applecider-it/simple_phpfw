@@ -18,7 +18,7 @@ class BreadcrumbsService
     }
 
     /** パンくずデータ取得 */
-    public function get(string $name, ...$data): array
+    public function get(string $name, array ...$data): array
     {
         isset($this->funcs[$name]) ?: throw new \Exception('Not found Breadcrumbs name. ' . $name);
 
