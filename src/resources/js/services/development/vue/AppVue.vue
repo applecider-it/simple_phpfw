@@ -20,7 +20,7 @@ const postJsonTest = async () => {
     const url = "/development/api_post?get_val=Get!!";
     console.log("url", url, data);
 
-    const result = await sendData(method, url, data);
+    const result = await sendData<any>(method, url, data);
 
     console.log("result", result);
     console.log("result.data", result.data);
@@ -36,7 +36,7 @@ const getJsonTest = async () => {
     };
     console.log("url", url, data);
 
-    const result = await sendData(method, url, data);
+    const result = await sendData<any>(method, url, data);
 
     console.log("result", result);
     console.log("result.data", result.data);

@@ -1,6 +1,8 @@
 /** METAタグ内のJSONデータを返す。 */
-export function getMetaJson(name) {
-    const meta = document.querySelector(`meta[name="${name}"]`);
+export function getMetaJson(name: string) {
+    const meta = document.querySelector(
+        `meta[name="${name}"]`,
+    ) as HTMLMetaElement;
 
     if (meta) {
         const json = meta.dataset.json;

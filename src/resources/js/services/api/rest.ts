@@ -1,4 +1,6 @@
 import axios from "axios";
+import type { AxiosRequestConfig } from "axios";
+
 import { getMetaJson } from "@/services/data/html";
 
 /** axiosインスタンス作成 */
@@ -11,21 +13,30 @@ const api = axios.create({
 });
 
 /** リクエスト送信 */
-export async function sendData(method: string, uri: string, data: any = {}) {
+export async function sendData<T>(
+    method: string,
+    uri: string,
+    data: Record<string, unknown> = {},
+): Promise<T> {
     const isGet = method.toUpperCase() === "GET";
 
-    const res = await api.request({
+    const config: AxiosRequestConfig = {
         url: uri,
         method,
-        ...(isGet ? { params: data } : { data }),
-        ...(isGet
-            ? {}
-            : {
-                  headers: {
-                      "X-CSRF-TOKEN": csrfToken(),
-                  },
-              }),
-    });
+    };
+
+    if (isGet) {
+        config.params = data;
+    } else {
+        config.data = data;
+        config.headers = {
+            "X-CSRF-TOKEN": csrfToken(),
+        };
+    }
+
+    console.log('sendData', {config})
+
+    const res = await api.request<T>(config);
 
     return res.data;
 }
